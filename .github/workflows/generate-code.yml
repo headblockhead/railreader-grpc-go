@@ -23,9 +23,8 @@ jobs:
           echo "$HOME/go/bin" >> $GITHUB_PATH
       - name: Generate, cd push
         run: |
-          # export PATH="$HOME/go/bin:$PATH"
-          protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative ./railreader-grpc/*.proto -I./railreader-grpc
+          ./gen.sh
           git config user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -am "autogen code"
+          git commit -am "chore: regenerate code"
           git push
