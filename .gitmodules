@@ -1,0 +1,3 @@
+[submodule "railreader-grpc"]
+	path = railreader-grpc
+	url = git@github.com:headblockhead/railreader-grpc
