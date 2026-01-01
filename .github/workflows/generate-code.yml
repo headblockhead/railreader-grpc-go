@@ -1,0 +1,29 @@
+name: Generate code
+
+on:
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  generate-code:
+    runs-on: ubuntu-latest
+    steps:  
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install Protoc
+        run: |
+          apt install -y protobuf-compiler
+      - name: Install Protoc-Gen-Go
+        run: |
+          go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+          go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+          # export PATH="$PATH:$(go env GOPATH)/bin"
+      - name: Generate, commit, and push
+        run: |
+          ./gen.sh  
+          git config user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -am "autogen code"
+          git push
