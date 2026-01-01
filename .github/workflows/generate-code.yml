@@ -12,16 +12,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-      - name: Install Protoc
+      - name: Install protoc
         run: |
           sudo apt-get update
           sudo apt-get install -y protobuf-compiler
-      - name: Install Protoc-Gen-Go
+      - name: Install Go protoc plugins
         run: |
           go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
           go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
           echo "$HOME/go/bin" >> $GITHUB_PATH
-      - name: Generate, cd push
+      - name: Generate, commit, and push
         run: |
           ./gen.sh
           git config user.name 'github-actions[bot]'
