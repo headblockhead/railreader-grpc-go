@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RailReader_GetDepartures_FullMethodName = "/RailReader/GetDepartures"
+	RailReader_GetLocationUpdates_FullMethodName = "/RailReader/GetLocationUpdates"
 )
 
 // RailReaderClient is the client API for RailReader service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RailReaderClient interface {
-	GetDepartures(ctx context.Context, in *DepartureRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[DepartureResponse], error)
+	GetLocationUpdates(ctx context.Context, in *LocationUpdatesRequest, opts ...grpc.CallOption) (*LocationUpdateResponse, error)
 }
 
 type railReaderClient struct {
@@ -37,30 +37,21 @@ func NewRailReaderClient(cc grpc.ClientConnInterface) RailReaderClient {
 	return &railReaderClient{cc}
 }
 
-func (c *railReaderClient) GetDepartures(ctx context.Context, in *DepartureRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[DepartureResponse], error) {
+func (c *railReaderClient) GetLocationUpdates(ctx context.Context, in *LocationUpdatesRequest, opts ...grpc.CallOption) (*LocationUpdateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &RailReader_ServiceDesc.Streams[0], RailReader_GetDepartures_FullMethodName, cOpts...)
+	out := new(LocationUpdateResponse)
+	err := c.cc.Invoke(ctx, RailReader_GetLocationUpdates_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[DepartureRequest, DepartureResponse]{ClientStream: stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
+	return out, nil
 }
-
-// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RailReader_GetDeparturesClient = grpc.ServerStreamingClient[DepartureResponse]
 
 // RailReaderServer is the server API for RailReader service.
 // All implementations must embed UnimplementedRailReaderServer
 // for forward compatibility.
 type RailReaderServer interface {
-	GetDepartures(*DepartureRequest, grpc.ServerStreamingServer[DepartureResponse]) error
+	GetLocationUpdates(context.Context, *LocationUpdatesRequest) (*LocationUpdateResponse, error)
 	mustEmbedUnimplementedRailReaderServer()
 }
 
@@ -71,8 +62,8 @@ type RailReaderServer interface {
 // pointer dereference when methods are called.
 type UnimplementedRailReaderServer struct{}
 
-func (UnimplementedRailReaderServer) GetDepartures(*DepartureRequest, grpc.ServerStreamingServer[DepartureResponse]) error {
-	return status.Error(codes.Unimplemented, "method GetDepartures not implemented")
+func (UnimplementedRailReaderServer) GetLocationUpdates(context.Context, *LocationUpdatesRequest) (*LocationUpdateResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetLocationUpdates not implemented")
 }
 func (UnimplementedRailReaderServer) mustEmbedUnimplementedRailReaderServer() {}
 func (UnimplementedRailReaderServer) testEmbeddedByValue()                    {}
@@ -95,16 +86,23 @@ func RegisterRailReaderServer(s grpc.ServiceRegistrar, srv RailReaderServer) {
 	s.RegisterService(&RailReader_ServiceDesc, srv)
 }
 
-func _RailReader_GetDepartures_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(DepartureRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _RailReader_GetLocationUpdates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LocationUpdatesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(RailReaderServer).GetDepartures(m, &grpc.GenericServerStream[DepartureRequest, DepartureResponse]{ServerStream: stream})
+	if interceptor == nil {
+		return srv.(RailReaderServer).GetLocationUpdates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RailReader_GetLocationUpdates_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RailReaderServer).GetLocationUpdates(ctx, req.(*LocationUpdatesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
-
-// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RailReader_GetDeparturesServer = grpc.ServerStreamingServer[DepartureResponse]
 
 // RailReader_ServiceDesc is the grpc.ServiceDesc for RailReader service.
 // It's only intended for direct use with grpc.RegisterService,
@@ -112,13 +110,12 @@ type RailReader_GetDeparturesServer = grpc.ServerStreamingServer[DepartureRespon
 var RailReader_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "RailReader",
 	HandlerType: (*RailReaderServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams: []grpc.StreamDesc{
+	Methods: []grpc.MethodDesc{
 		{
-			StreamName:    "GetDepartures",
-			Handler:       _RailReader_GetDepartures_Handler,
-			ServerStreams: true,
+			MethodName: "GetLocationUpdates",
+			Handler:    _RailReader_GetLocationUpdates_Handler,
 		},
 	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "railreader.proto",
 }
