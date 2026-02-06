@@ -73,7 +73,7 @@ type LocationUpdate struct {
 	IsDeleted       bool                   `protobuf:"varint,5,opt,name=is_deleted,json=isDeleted,proto3" json:"is_deleted,omitempty"`
 	CrsId           *string                `protobuf:"bytes,2,opt,name=crs_id,json=crsId,proto3,oneof" json:"crs_id,omitempty"`
 	TocId           *string                `protobuf:"bytes,3,opt,name=toc_id,json=tocId,proto3,oneof" json:"toc_id,omitempty"`
-	Name            *string                `protobuf:"bytes,4,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	Name            string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -144,8 +144,8 @@ func (x *LocationUpdate) GetTocId() string {
 }
 
 func (x *LocationUpdate) GetName() string {
-	if x != nil && x.Name != nil {
-		return *x.Name
+	if x != nil {
+		return x.Name
 	}
 	return ""
 }
@@ -209,7 +209,7 @@ const file_locationUpdates_proto_rawDesc = "" +
 	"\x15locationUpdates.proto\"m\n" +
 	"\x16LocationUpdatesRequest\x128\n" +
 	"\x16from_reference_file_id\x18\x01 \x01(\tH\x00R\x13fromReferenceFileId\x88\x01\x01B\x19\n" +
-	"\x17_from_reference_file_id\"\xec\x01\n" +
+	"\x17_from_reference_file_id\"\xde\x01\n" +
 	"\x0eLocationUpdate\x12*\n" +
 	"\x11reference_file_id\x18\x06 \x01(\tR\x0freferenceFileId\x12\x1f\n" +
 	"\vlocation_id\x18\x01 \x01(\tR\n" +
@@ -217,11 +217,10 @@ const file_locationUpdates_proto_rawDesc = "" +
 	"\n" +
 	"is_deleted\x18\x05 \x01(\bR\tisDeleted\x12\x1a\n" +
 	"\x06crs_id\x18\x02 \x01(\tH\x00R\x05crsId\x88\x01\x01\x12\x1a\n" +
-	"\x06toc_id\x18\x03 \x01(\tH\x01R\x05tocId\x88\x01\x01\x12\x17\n" +
-	"\x04name\x18\x04 \x01(\tH\x02R\x04name\x88\x01\x01B\t\n" +
+	"\x06toc_id\x18\x03 \x01(\tH\x01R\x05tocId\x88\x01\x01\x12\x12\n" +
+	"\x04name\x18\x04 \x01(\tR\x04nameB\t\n" +
 	"\a_crs_idB\t\n" +
-	"\a_toc_idB\a\n" +
-	"\x05_name\"t\n" +
+	"\a_toc_id\"t\n" +
 	"\x16LocationUpdateResponse\x12/\n" +
 	"\x14to_reference_file_id\x18\x01 \x01(\tR\x11toReferenceFileId\x12)\n" +
 	"\aupdates\x18\x02 \x03(\v2\x0f.LocationUpdateR\aupdatesB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
