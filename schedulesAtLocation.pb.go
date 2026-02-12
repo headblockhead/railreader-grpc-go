@@ -66,16 +66,14 @@ func (x *SchedulesAtLocationRequest) GetLocationId() string {
 }
 
 // This contains some minimal information about a schedule at the location requested.
-// Designed to use very little bandwidth, but still be useful for displaying simple departure/arrival boards.
+// Designed to use very little bandwidth.
 // More (useful) data can be requested using the IDs provided.
 type SchedulesAtLocationResponse struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	ScheduleUuid         string                 `protobuf:"bytes,1,opt,name=schedule_uuid,json=scheduleUuid,proto3" json:"schedule_uuid,omitempty"`
 	ScheduleId           string                 `protobuf:"bytes,2,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
 	ScheduleLocationUuid string                 `protobuf:"bytes,3,opt,name=schedule_location_uuid,json=scheduleLocationUuid,proto3" json:"schedule_location_uuid,omitempty"`
-	PlannedArrivalTime   string                 `protobuf:"bytes,6,opt,name=planned_arrival_time,json=plannedArrivalTime,proto3" json:"planned_arrival_time,omitempty"`
-	PlannedPassingTime   string                 `protobuf:"bytes,7,opt,name=planned_passing_time,json=plannedPassingTime,proto3" json:"planned_passing_time,omitempty"`
-	PlannedDepartureTime string                 `protobuf:"bytes,8,opt,name=planned_departure_time,json=plannedDepartureTime,proto3" json:"planned_departure_time,omitempty"`
+	ScheduledStartDate   string                 `protobuf:"bytes,4,opt,name=scheduled_start_date,json=scheduledStartDate,proto3" json:"scheduled_start_date,omitempty"` // in YYYY-MM-DD format
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -131,23 +129,9 @@ func (x *SchedulesAtLocationResponse) GetScheduleLocationUuid() string {
 	return ""
 }
 
-func (x *SchedulesAtLocationResponse) GetPlannedArrivalTime() string {
+func (x *SchedulesAtLocationResponse) GetScheduledStartDate() string {
 	if x != nil {
-		return x.PlannedArrivalTime
-	}
-	return ""
-}
-
-func (x *SchedulesAtLocationResponse) GetPlannedPassingTime() string {
-	if x != nil {
-		return x.PlannedPassingTime
-	}
-	return ""
-}
-
-func (x *SchedulesAtLocationResponse) GetPlannedDepartureTime() string {
-	if x != nil {
-		return x.PlannedDepartureTime
+		return x.ScheduledStartDate
 	}
 	return ""
 }
@@ -159,15 +143,13 @@ const file_schedulesAtLocation_proto_rawDesc = "" +
 	"\x19schedulesAtLocation.proto\"=\n" +
 	"\x1aSchedulesAtLocationRequest\x12\x1f\n" +
 	"\vlocation_id\x18\x01 \x01(\tR\n" +
-	"locationId\"\xb3\x02\n" +
+	"locationId\"\xcb\x01\n" +
 	"\x1bSchedulesAtLocationResponse\x12#\n" +
 	"\rschedule_uuid\x18\x01 \x01(\tR\fscheduleUuid\x12\x1f\n" +
 	"\vschedule_id\x18\x02 \x01(\tR\n" +
 	"scheduleId\x124\n" +
 	"\x16schedule_location_uuid\x18\x03 \x01(\tR\x14scheduleLocationUuid\x120\n" +
-	"\x14planned_arrival_time\x18\x06 \x01(\tR\x12plannedArrivalTime\x120\n" +
-	"\x14planned_passing_time\x18\a \x01(\tR\x12plannedPassingTime\x124\n" +
-	"\x16planned_departure_time\x18\b \x01(\tR\x14plannedDepartureTimeB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x14scheduled_start_date\x18\x04 \x01(\tR\x12scheduledStartDateB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
 	file_schedulesAtLocation_proto_rawDescOnce sync.Once
