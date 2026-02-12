@@ -23,7 +23,9 @@ const (
 
 type SchedulesAtLocationRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	LocationId    string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"` // TIPLOC
+	LocationId    string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
+	FromDate      string                 `protobuf:"bytes,2,opt,name=from_date,json=fromDate,proto3" json:"from_date,omitempty"`
+	ToDate        string                 `protobuf:"bytes,3,opt,name=to_date,json=toDate,proto3" json:"to_date,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -65,6 +67,20 @@ func (x *SchedulesAtLocationRequest) GetLocationId() string {
 	return ""
 }
 
+func (x *SchedulesAtLocationRequest) GetFromDate() string {
+	if x != nil {
+		return x.FromDate
+	}
+	return ""
+}
+
+func (x *SchedulesAtLocationRequest) GetToDate() string {
+	if x != nil {
+		return x.ToDate
+	}
+	return ""
+}
+
 // This contains some minimal information about a schedule at the location requested.
 // Designed to use very little bandwidth.
 // More (useful) data can be requested using the IDs provided.
@@ -73,7 +89,7 @@ type SchedulesAtLocationResponse struct {
 	ScheduleUuid         string                 `protobuf:"bytes,1,opt,name=schedule_uuid,json=scheduleUuid,proto3" json:"schedule_uuid,omitempty"`
 	ScheduleId           string                 `protobuf:"bytes,2,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
 	ScheduleLocationUuid string                 `protobuf:"bytes,3,opt,name=schedule_location_uuid,json=scheduleLocationUuid,proto3" json:"schedule_location_uuid,omitempty"`
-	ScheduledStartDate   string                 `protobuf:"bytes,4,opt,name=scheduled_start_date,json=scheduledStartDate,proto3" json:"scheduled_start_date,omitempty"` // in YYYY-MM-DD format
+	ScheduledStartDate   string                 `protobuf:"bytes,4,opt,name=scheduled_start_date,json=scheduledStartDate,proto3" json:"scheduled_start_date,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -140,10 +156,12 @@ var File_schedulesAtLocation_proto protoreflect.FileDescriptor
 
 const file_schedulesAtLocation_proto_rawDesc = "" +
 	"\n" +
-	"\x19schedulesAtLocation.proto\"=\n" +
+	"\x19schedulesAtLocation.proto\"s\n" +
 	"\x1aSchedulesAtLocationRequest\x12\x1f\n" +
 	"\vlocation_id\x18\x01 \x01(\tR\n" +
-	"locationId\"\xcb\x01\n" +
+	"locationId\x12\x1b\n" +
+	"\tfrom_date\x18\x02 \x01(\tR\bfromDate\x12\x17\n" +
+	"\ato_date\x18\x03 \x01(\tR\x06toDate\"\xcb\x01\n" +
 	"\x1bSchedulesAtLocationResponse\x12#\n" +
 	"\rschedule_uuid\x18\x01 \x01(\tR\fscheduleUuid\x12\x1f\n" +
 	"\vschedule_id\x18\x02 \x01(\tR\n" +

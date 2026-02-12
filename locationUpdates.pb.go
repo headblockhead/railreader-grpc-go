@@ -69,7 +69,7 @@ func (x *LocationUpdatesRequest) GetFromReferenceFileId() string {
 type LocationUpdate struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	ReferenceFileId string                 `protobuf:"bytes,6,opt,name=reference_file_id,json=referenceFileId,proto3" json:"reference_file_id,omitempty"` // The reference_file_id at which this change occurred.
-	LocationId      string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`                  // TIPLOC
+	LocationId      string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
 	IsDeleted       bool                   `protobuf:"varint,5,opt,name=is_deleted,json=isDeleted,proto3" json:"is_deleted,omitempty"`
 	CrsId           *string                `protobuf:"bytes,2,opt,name=crs_id,json=crsId,proto3,oneof" json:"crs_id,omitempty"`
 	TocId           *string                `protobuf:"bytes,3,opt,name=toc_id,json=tocId,proto3,oneof" json:"toc_id,omitempty"`
