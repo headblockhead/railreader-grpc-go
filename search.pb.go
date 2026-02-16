@@ -246,7 +246,7 @@ func (CategoryType) EnumDescriptor() ([]byte, []int) {
 type ActivityType int32
 
 const (
-	ActivityType_ACTIVITY_TYPE_NONE                                                        ActivityType = 0
+	ActivityType_ACTIVITY_TYPE_UNKNOWN                                                     ActivityType = 0
 	ActivityType_ACTIVITY_TYPE_TRAIN_BEGINS                                                ActivityType = 1
 	ActivityType_ACTIVITY_TYPE_TRAIN_FINISHES                                              ActivityType = 2
 	ActivityType_ACTIVITY_TYPE_STOPS_TO_TAKE_UP_AND_SET_DOWN_PASSENGERS                    ActivityType = 3
@@ -259,7 +259,7 @@ const (
 	ActivityType_ACTIVITY_TYPE_STOPS_TO_CHANGE_TRAIN_CREW                                  ActivityType = 10
 	ActivityType_ACTIVITY_TYPE_STOPS_TO_DETATCH_VEHICLES                                   ActivityType = 11
 	ActivityType_ACTIVITY_TYPE_STOPS_FOR_EXAMINATION                                       ActivityType = 12
-	ActivityType_ACTIVITY_TYPE_NATIONAL_RAIL_TIMETABLE_DATA_TOADD                          ActivityType = 13
+	ActivityType_ACTIVITY_TYPE_NATIONAL_RAIL_TIMETABLE_DATA_TO_ADD                         ActivityType = 13
 	ActivityType_ACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE       ActivityType = 14
 	ActivityType_ACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE_TWICE ActivityType = 15
 	ActivityType_ACTIVITY_TYPE_PASSENGER_COUNT_POINT                                       ActivityType = 16
@@ -287,7 +287,7 @@ const (
 // Enum value maps for ActivityType.
 var (
 	ActivityType_name = map[int32]string{
-		0:  "ACTIVITY_TYPE_NONE",
+		0:  "ACTIVITY_TYPE_UNKNOWN",
 		1:  "ACTIVITY_TYPE_TRAIN_BEGINS",
 		2:  "ACTIVITY_TYPE_TRAIN_FINISHES",
 		3:  "ACTIVITY_TYPE_STOPS_TO_TAKE_UP_AND_SET_DOWN_PASSENGERS",
@@ -300,7 +300,7 @@ var (
 		10: "ACTIVITY_TYPE_STOPS_TO_CHANGE_TRAIN_CREW",
 		11: "ACTIVITY_TYPE_STOPS_TO_DETATCH_VEHICLES",
 		12: "ACTIVITY_TYPE_STOPS_FOR_EXAMINATION",
-		13: "ACTIVITY_TYPE_NATIONAL_RAIL_TIMETABLE_DATA_TOADD",
+		13: "ACTIVITY_TYPE_NATIONAL_RAIL_TIMETABLE_DATA_TO_ADD",
 		14: "ACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE",
 		15: "ACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE_TWICE",
 		16: "ACTIVITY_TYPE_PASSENGER_COUNT_POINT",
@@ -325,7 +325,7 @@ var (
 		35: "ACTIVITY_TYPE_PASSES_ANOTHER_TRAIN_AT_CROSSING_POINT_ON_SINGLE_LINE",
 	}
 	ActivityType_value = map[string]int32{
-		"ACTIVITY_TYPE_NONE":                                                        0,
+		"ACTIVITY_TYPE_UNKNOWN":                                                     0,
 		"ACTIVITY_TYPE_TRAIN_BEGINS":                                                1,
 		"ACTIVITY_TYPE_TRAIN_FINISHES":                                              2,
 		"ACTIVITY_TYPE_STOPS_TO_TAKE_UP_AND_SET_DOWN_PASSENGERS":                    3,
@@ -338,7 +338,7 @@ var (
 		"ACTIVITY_TYPE_STOPS_TO_CHANGE_TRAIN_CREW":                                  10,
 		"ACTIVITY_TYPE_STOPS_TO_DETATCH_VEHICLES":                                   11,
 		"ACTIVITY_TYPE_STOPS_FOR_EXAMINATION":                                       12,
-		"ACTIVITY_TYPE_NATIONAL_RAIL_TIMETABLE_DATA_TOADD":                          13,
+		"ACTIVITY_TYPE_NATIONAL_RAIL_TIMETABLE_DATA_TO_ADD":                         13,
 		"ACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE":       14,
 		"ACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE_TWICE": 15,
 		"ACTIVITY_TYPE_PASSENGER_COUNT_POINT":                                       16,
@@ -1630,9 +1630,9 @@ const file_search_proto_rawDesc = "" +
 	"\x12CATEGORY_TYPE_SHIP\x10\x0f\x12&\n" +
 	"\"CATEGORY_TYPE_EMPTY_COACHING_STOCK\x10\x10\x12;\n" +
 	"7CATEGORY_TYPE_EMPTY_COACHING_STOCK_UNDERGROUND_OR_METRO\x10\x11\x12/\n" +
-	"+CATEGORY_TYPE_EMPTY_COACHING_STOCK_OR_STAFF\x10\x12*\xba\x0e\n" +
-	"\fActivityType\x12\x16\n" +
-	"\x12ACTIVITY_TYPE_NONE\x10\x00\x12\x1e\n" +
+	"+CATEGORY_TYPE_EMPTY_COACHING_STOCK_OR_STAFF\x10\x12*\xbe\x0e\n" +
+	"\fActivityType\x12\x19\n" +
+	"\x15ACTIVITY_TYPE_UNKNOWN\x10\x00\x12\x1e\n" +
 	"\x1aACTIVITY_TYPE_TRAIN_BEGINS\x10\x01\x12 \n" +
 	"\x1cACTIVITY_TYPE_TRAIN_FINISHES\x10\x02\x12:\n" +
 	"6ACTIVITY_TYPE_STOPS_TO_TAKE_UP_AND_SET_DOWN_PASSENGERS\x10\x03\x12-\n" +
@@ -1645,8 +1645,8 @@ const file_search_proto_rawDesc = "" +
 	"(ACTIVITY_TYPE_STOPS_TO_CHANGE_TRAIN_CREW\x10\n" +
 	"\x12+\n" +
 	"'ACTIVITY_TYPE_STOPS_TO_DETATCH_VEHICLES\x10\v\x12'\n" +
-	"#ACTIVITY_TYPE_STOPS_FOR_EXAMINATION\x10\f\x124\n" +
-	"0ACTIVITY_TYPE_NATIONAL_RAIL_TIMETABLE_DATA_TOADD\x10\r\x12G\n" +
+	"#ACTIVITY_TYPE_STOPS_FOR_EXAMINATION\x10\f\x125\n" +
+	"1ACTIVITY_TYPE_NATIONAL_RAIL_TIMETABLE_DATA_TO_ADD\x10\r\x12G\n" +
 	"CACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE\x10\x0e\x12M\n" +
 	"IACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE_TWICE\x10\x0f\x12'\n" +
 	"#ACTIVITY_TYPE_PASSENGER_COUNT_POINT\x10\x10\x129\n" +
