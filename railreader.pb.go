@@ -24,23 +24,23 @@ var File_railreader_proto protoreflect.FileDescriptor
 
 const file_railreader_proto_rawDesc = "" +
 	"\n" +
-	"\x10railreader.proto\x1a\x15locationUpdates.proto\x1a\x19schedulesAtLocation.proto2\xaf\x01\n" +
+	"\x10railreader.proto\x1a\x15updateLocations.proto\x1a\fsearch.proto2\x83\x01\n" +
 	"\n" +
-	"RailReader\x12H\n" +
-	"\x12GetLocationUpdates\x12\x17.LocationUpdatesRequest\x1a\x17.LocationUpdateResponse\"\x00\x12W\n" +
-	"\x16GetSchedulesAtLocation\x12\x1b.SchedulesAtLocationRequest\x1a\x1c.SchedulesAtLocationResponse\"\x000\x01B*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"RailReader\x12F\n" +
+	"\x0fUpdateLocations\x12\x17.UpdateLocationsRequest\x1a\x18.UpdateLocationsResponse\"\x00\x12-\n" +
+	"\x06Search\x12\x0e.SearchRequest\x1a\x0f.SearchResponse\"\x000\x01B*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var file_railreader_proto_goTypes = []any{
-	(*LocationUpdatesRequest)(nil),      // 0: LocationUpdatesRequest
-	(*SchedulesAtLocationRequest)(nil),  // 1: SchedulesAtLocationRequest
-	(*LocationUpdateResponse)(nil),      // 2: LocationUpdateResponse
-	(*SchedulesAtLocationResponse)(nil), // 3: SchedulesAtLocationResponse
+	(*UpdateLocationsRequest)(nil),  // 0: UpdateLocationsRequest
+	(*SearchRequest)(nil),           // 1: SearchRequest
+	(*UpdateLocationsResponse)(nil), // 2: UpdateLocationsResponse
+	(*SearchResponse)(nil),          // 3: SearchResponse
 }
 var file_railreader_proto_depIdxs = []int32{
-	0, // 0: RailReader.GetLocationUpdates:input_type -> LocationUpdatesRequest
-	1, // 1: RailReader.GetSchedulesAtLocation:input_type -> SchedulesAtLocationRequest
-	2, // 2: RailReader.GetLocationUpdates:output_type -> LocationUpdateResponse
-	3, // 3: RailReader.GetSchedulesAtLocation:output_type -> SchedulesAtLocationResponse
+	0, // 0: RailReader.UpdateLocations:input_type -> UpdateLocationsRequest
+	1, // 1: RailReader.Search:input_type -> SearchRequest
+	2, // 2: RailReader.UpdateLocations:output_type -> UpdateLocationsResponse
+	3, // 3: RailReader.Search:output_type -> SearchResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -53,8 +53,8 @@ func file_railreader_proto_init() {
 	if File_railreader_proto != nil {
 		return
 	}
-	file_locationUpdates_proto_init()
-	file_schedulesAtLocation_proto_init()
+	file_updateLocations_proto_init()
+	file_search_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

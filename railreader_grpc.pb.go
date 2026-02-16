@@ -19,16 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RailReader_GetLocationUpdates_FullMethodName     = "/RailReader/GetLocationUpdates"
-	RailReader_GetSchedulesAtLocation_FullMethodName = "/RailReader/GetSchedulesAtLocation"
+	RailReader_UpdateLocations_FullMethodName = "/RailReader/UpdateLocations"
+	RailReader_Search_FullMethodName          = "/RailReader/Search"
 )
 
 // RailReaderClient is the client API for RailReader service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RailReaderClient interface {
-	GetLocationUpdates(ctx context.Context, in *LocationUpdatesRequest, opts ...grpc.CallOption) (*LocationUpdateResponse, error)
-	GetSchedulesAtLocation(ctx context.Context, in *SchedulesAtLocationRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SchedulesAtLocationResponse], error)
+	UpdateLocations(ctx context.Context, in *UpdateLocationsRequest, opts ...grpc.CallOption) (*UpdateLocationsResponse, error)
+	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SearchResponse], error)
 }
 
 type railReaderClient struct {
@@ -39,23 +39,23 @@ func NewRailReaderClient(cc grpc.ClientConnInterface) RailReaderClient {
 	return &railReaderClient{cc}
 }
 
-func (c *railReaderClient) GetLocationUpdates(ctx context.Context, in *LocationUpdatesRequest, opts ...grpc.CallOption) (*LocationUpdateResponse, error) {
+func (c *railReaderClient) UpdateLocations(ctx context.Context, in *UpdateLocationsRequest, opts ...grpc.CallOption) (*UpdateLocationsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(LocationUpdateResponse)
-	err := c.cc.Invoke(ctx, RailReader_GetLocationUpdates_FullMethodName, in, out, cOpts...)
+	out := new(UpdateLocationsResponse)
+	err := c.cc.Invoke(ctx, RailReader_UpdateLocations_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *railReaderClient) GetSchedulesAtLocation(ctx context.Context, in *SchedulesAtLocationRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SchedulesAtLocationResponse], error) {
+func (c *railReaderClient) Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SearchResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &RailReader_ServiceDesc.Streams[0], RailReader_GetSchedulesAtLocation_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &RailReader_ServiceDesc.Streams[0], RailReader_Search_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[SchedulesAtLocationRequest, SchedulesAtLocationResponse]{ClientStream: stream}
+	x := &grpc.GenericClientStream[SearchRequest, SearchResponse]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -66,14 +66,14 @@ func (c *railReaderClient) GetSchedulesAtLocation(ctx context.Context, in *Sched
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RailReader_GetSchedulesAtLocationClient = grpc.ServerStreamingClient[SchedulesAtLocationResponse]
+type RailReader_SearchClient = grpc.ServerStreamingClient[SearchResponse]
 
 // RailReaderServer is the server API for RailReader service.
 // All implementations must embed UnimplementedRailReaderServer
 // for forward compatibility.
 type RailReaderServer interface {
-	GetLocationUpdates(context.Context, *LocationUpdatesRequest) (*LocationUpdateResponse, error)
-	GetSchedulesAtLocation(*SchedulesAtLocationRequest, grpc.ServerStreamingServer[SchedulesAtLocationResponse]) error
+	UpdateLocations(context.Context, *UpdateLocationsRequest) (*UpdateLocationsResponse, error)
+	Search(*SearchRequest, grpc.ServerStreamingServer[SearchResponse]) error
 	mustEmbedUnimplementedRailReaderServer()
 }
 
@@ -84,11 +84,11 @@ type RailReaderServer interface {
 // pointer dereference when methods are called.
 type UnimplementedRailReaderServer struct{}
 
-func (UnimplementedRailReaderServer) GetLocationUpdates(context.Context, *LocationUpdatesRequest) (*LocationUpdateResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetLocationUpdates not implemented")
+func (UnimplementedRailReaderServer) UpdateLocations(context.Context, *UpdateLocationsRequest) (*UpdateLocationsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateLocations not implemented")
 }
-func (UnimplementedRailReaderServer) GetSchedulesAtLocation(*SchedulesAtLocationRequest, grpc.ServerStreamingServer[SchedulesAtLocationResponse]) error {
-	return status.Error(codes.Unimplemented, "method GetSchedulesAtLocation not implemented")
+func (UnimplementedRailReaderServer) Search(*SearchRequest, grpc.ServerStreamingServer[SearchResponse]) error {
+	return status.Error(codes.Unimplemented, "method Search not implemented")
 }
 func (UnimplementedRailReaderServer) mustEmbedUnimplementedRailReaderServer() {}
 func (UnimplementedRailReaderServer) testEmbeddedByValue()                    {}
@@ -111,34 +111,34 @@ func RegisterRailReaderServer(s grpc.ServiceRegistrar, srv RailReaderServer) {
 	s.RegisterService(&RailReader_ServiceDesc, srv)
 }
 
-func _RailReader_GetLocationUpdates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LocationUpdatesRequest)
+func _RailReader_UpdateLocations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateLocationsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RailReaderServer).GetLocationUpdates(ctx, in)
+		return srv.(RailReaderServer).UpdateLocations(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RailReader_GetLocationUpdates_FullMethodName,
+		FullMethod: RailReader_UpdateLocations_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RailReaderServer).GetLocationUpdates(ctx, req.(*LocationUpdatesRequest))
+		return srv.(RailReaderServer).UpdateLocations(ctx, req.(*UpdateLocationsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RailReader_GetSchedulesAtLocation_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(SchedulesAtLocationRequest)
+func _RailReader_Search_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(SearchRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(RailReaderServer).GetSchedulesAtLocation(m, &grpc.GenericServerStream[SchedulesAtLocationRequest, SchedulesAtLocationResponse]{ServerStream: stream})
+	return srv.(RailReaderServer).Search(m, &grpc.GenericServerStream[SearchRequest, SearchResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RailReader_GetSchedulesAtLocationServer = grpc.ServerStreamingServer[SchedulesAtLocationResponse]
+type RailReader_SearchServer = grpc.ServerStreamingServer[SearchResponse]
 
 // RailReader_ServiceDesc is the grpc.ServiceDesc for RailReader service.
 // It's only intended for direct use with grpc.RegisterService,
@@ -148,14 +148,14 @@ var RailReader_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*RailReaderServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetLocationUpdates",
-			Handler:    _RailReader_GetLocationUpdates_Handler,
+			MethodName: "UpdateLocations",
+			Handler:    _RailReader_UpdateLocations_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "GetSchedulesAtLocation",
-			Handler:       _RailReader_GetSchedulesAtLocation_Handler,
+			StreamName:    "Search",
+			Handler:       _RailReader_Search_Handler,
 			ServerStreams: true,
 		},
 	},
