@@ -85,312 +85,6 @@ func (SearchType) EnumDescriptor() ([]byte, []int) {
 	return file_search_proto_rawDescGZIP(), []int{0}
 }
 
-type ServiceType int32
-
-const (
-	ServiceType_SERVICE_TYPE_UNKNOWN                  ServiceType = 0
-	ServiceType_SERVICE_TYPE_TRAIN                    ServiceType = 1
-	ServiceType_SERVICE_TYPE_SHORT_TERM_PLANNED_TRAIN ServiceType = 2
-	ServiceType_SERVICE_TYPE_BUS                      ServiceType = 3
-	ServiceType_SERVICE_TYPE_SHORT_TERM_PLANNED_BUS   ServiceType = 4
-	ServiceType_SERVICE_TYPE_SHIP                     ServiceType = 5
-	ServiceType_SERVICE_TYPE_SHORT_TERM_PLANNED_SHIP  ServiceType = 6 // Trip and Freight types ommitted as they are not tracked by Darwin
-)
-
-// Enum value maps for ServiceType.
-var (
-	ServiceType_name = map[int32]string{
-		0: "SERVICE_TYPE_UNKNOWN",
-		1: "SERVICE_TYPE_TRAIN",
-		2: "SERVICE_TYPE_SHORT_TERM_PLANNED_TRAIN",
-		3: "SERVICE_TYPE_BUS",
-		4: "SERVICE_TYPE_SHORT_TERM_PLANNED_BUS",
-		5: "SERVICE_TYPE_SHIP",
-		6: "SERVICE_TYPE_SHORT_TERM_PLANNED_SHIP",
-	}
-	ServiceType_value = map[string]int32{
-		"SERVICE_TYPE_UNKNOWN":                  0,
-		"SERVICE_TYPE_TRAIN":                    1,
-		"SERVICE_TYPE_SHORT_TERM_PLANNED_TRAIN": 2,
-		"SERVICE_TYPE_BUS":                      3,
-		"SERVICE_TYPE_SHORT_TERM_PLANNED_BUS":   4,
-		"SERVICE_TYPE_SHIP":                     5,
-		"SERVICE_TYPE_SHORT_TERM_PLANNED_SHIP":  6,
-	}
-)
-
-func (x ServiceType) Enum() *ServiceType {
-	p := new(ServiceType)
-	*p = x
-	return p
-}
-
-func (x ServiceType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (ServiceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_search_proto_enumTypes[1].Descriptor()
-}
-
-func (ServiceType) Type() protoreflect.EnumType {
-	return &file_search_proto_enumTypes[1]
-}
-
-func (x ServiceType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use ServiceType.Descriptor instead.
-func (ServiceType) EnumDescriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{1}
-}
-
-type CategoryType int32
-
-const (
-	CategoryType_CATEGORY_TYPE_UNKNOWN                                   CategoryType = 0
-	CategoryType_CATEGORY_TYPE_UNDERGROUND_OR_METRO                      CategoryType = 1
-	CategoryType_CATEGORY_TYPE_UNADVERTISED_PASSENGER                    CategoryType = 2
-	CategoryType_CATEGORY_TYPE_PASSENGER                                 CategoryType = 3
-	CategoryType_CATEGORY_TYPE_STAFF                                     CategoryType = 4
-	CategoryType_CATEGORY_TYPE_MIXED                                     CategoryType = 5
-	CategoryType_CATEGORY_TYPE_CHANNEL_TUNNEL                            CategoryType = 6
-	CategoryType_CATEGORY_TYPE_SLEEPER                                   CategoryType = 7
-	CategoryType_CATEGORY_TYPE_INTERNATIONAL                             CategoryType = 8
-	CategoryType_CATEGORY_TYPE_MOTORAIL                                  CategoryType = 9
-	CategoryType_CATEGORY_TYPE_UNADVERTISED_EXPRESS                      CategoryType = 10
-	CategoryType_CATEGORY_TYPE_EXPRESS                                   CategoryType = 11
-	CategoryType_CATEGORY_TYPE_SLEEPER_DOMESTIC                          CategoryType = 12
-	CategoryType_CATEGORY_TYPE_BUS_REPLACEMENT                           CategoryType = 13
-	CategoryType_CATEGORY_TYPE_BUS_SERVICE                               CategoryType = 14
-	CategoryType_CATEGORY_TYPE_SHIP                                      CategoryType = 15
-	CategoryType_CATEGORY_TYPE_EMPTY_COACHING_STOCK                      CategoryType = 16
-	CategoryType_CATEGORY_TYPE_EMPTY_COACHING_STOCK_UNDERGROUND_OR_METRO CategoryType = 17
-	CategoryType_CATEGORY_TYPE_EMPTY_COACHING_STOCK_OR_STAFF             CategoryType = 18
-)
-
-// Enum value maps for CategoryType.
-var (
-	CategoryType_name = map[int32]string{
-		0:  "CATEGORY_TYPE_UNKNOWN",
-		1:  "CATEGORY_TYPE_UNDERGROUND_OR_METRO",
-		2:  "CATEGORY_TYPE_UNADVERTISED_PASSENGER",
-		3:  "CATEGORY_TYPE_PASSENGER",
-		4:  "CATEGORY_TYPE_STAFF",
-		5:  "CATEGORY_TYPE_MIXED",
-		6:  "CATEGORY_TYPE_CHANNEL_TUNNEL",
-		7:  "CATEGORY_TYPE_SLEEPER",
-		8:  "CATEGORY_TYPE_INTERNATIONAL",
-		9:  "CATEGORY_TYPE_MOTORAIL",
-		10: "CATEGORY_TYPE_UNADVERTISED_EXPRESS",
-		11: "CATEGORY_TYPE_EXPRESS",
-		12: "CATEGORY_TYPE_SLEEPER_DOMESTIC",
-		13: "CATEGORY_TYPE_BUS_REPLACEMENT",
-		14: "CATEGORY_TYPE_BUS_SERVICE",
-		15: "CATEGORY_TYPE_SHIP",
-		16: "CATEGORY_TYPE_EMPTY_COACHING_STOCK",
-		17: "CATEGORY_TYPE_EMPTY_COACHING_STOCK_UNDERGROUND_OR_METRO",
-		18: "CATEGORY_TYPE_EMPTY_COACHING_STOCK_OR_STAFF",
-	}
-	CategoryType_value = map[string]int32{
-		"CATEGORY_TYPE_UNKNOWN":                                   0,
-		"CATEGORY_TYPE_UNDERGROUND_OR_METRO":                      1,
-		"CATEGORY_TYPE_UNADVERTISED_PASSENGER":                    2,
-		"CATEGORY_TYPE_PASSENGER":                                 3,
-		"CATEGORY_TYPE_STAFF":                                     4,
-		"CATEGORY_TYPE_MIXED":                                     5,
-		"CATEGORY_TYPE_CHANNEL_TUNNEL":                            6,
-		"CATEGORY_TYPE_SLEEPER":                                   7,
-		"CATEGORY_TYPE_INTERNATIONAL":                             8,
-		"CATEGORY_TYPE_MOTORAIL":                                  9,
-		"CATEGORY_TYPE_UNADVERTISED_EXPRESS":                      10,
-		"CATEGORY_TYPE_EXPRESS":                                   11,
-		"CATEGORY_TYPE_SLEEPER_DOMESTIC":                          12,
-		"CATEGORY_TYPE_BUS_REPLACEMENT":                           13,
-		"CATEGORY_TYPE_BUS_SERVICE":                               14,
-		"CATEGORY_TYPE_SHIP":                                      15,
-		"CATEGORY_TYPE_EMPTY_COACHING_STOCK":                      16,
-		"CATEGORY_TYPE_EMPTY_COACHING_STOCK_UNDERGROUND_OR_METRO": 17,
-		"CATEGORY_TYPE_EMPTY_COACHING_STOCK_OR_STAFF":             18,
-	}
-)
-
-func (x CategoryType) Enum() *CategoryType {
-	p := new(CategoryType)
-	*p = x
-	return p
-}
-
-func (x CategoryType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (CategoryType) Descriptor() protoreflect.EnumDescriptor {
-	return file_search_proto_enumTypes[2].Descriptor()
-}
-
-func (CategoryType) Type() protoreflect.EnumType {
-	return &file_search_proto_enumTypes[2]
-}
-
-func (x CategoryType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use CategoryType.Descriptor instead.
-func (CategoryType) EnumDescriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{2}
-}
-
-type ActivityType int32
-
-const (
-	ActivityType_ACTIVITY_TYPE_UNKNOWN                                                     ActivityType = 0
-	ActivityType_ACTIVITY_TYPE_TRAIN_BEGINS                                                ActivityType = 1
-	ActivityType_ACTIVITY_TYPE_TRAIN_FINISHES                                              ActivityType = 2
-	ActivityType_ACTIVITY_TYPE_STOPS_TO_TAKE_UP_AND_SET_DOWN_PASSENGERS                    ActivityType = 3
-	ActivityType_ACTIVITY_TYPE_STOPS_TO_TAKE_UP_PASSENGERS                                 ActivityType = 4
-	ActivityType_ACTIVITY_TYPE_STOPS_TO_SET_DOWN_PASSENGERS                                ActivityType = 5
-	ActivityType_ACTIVITY_TYPE_STOPS_OR_SHUNTS_FOR_OTHER_TRAINS_TO_PASS                    ActivityType = 6
-	ActivityType_ACTIVITY_TYPE_STOPS_TO_ATTACH_OR_DETACH_ASSISTING_LOCOMOTIVE              ActivityType = 7
-	ActivityType_ACTIVITY_TYPE_SHOWS_AS_X_ON_ARRIVAL                                       ActivityType = 8
-	ActivityType_ACTIVITY_TYPE_STOPS_FOR_BANKING_LOCOMOTIVE                                ActivityType = 9
-	ActivityType_ACTIVITY_TYPE_STOPS_TO_CHANGE_TRAIN_CREW                                  ActivityType = 10
-	ActivityType_ACTIVITY_TYPE_STOPS_TO_DETATCH_VEHICLES                                   ActivityType = 11
-	ActivityType_ACTIVITY_TYPE_STOPS_FOR_EXAMINATION                                       ActivityType = 12
-	ActivityType_ACTIVITY_TYPE_NATIONAL_RAIL_TIMETABLE_DATA_TO_ADD                         ActivityType = 13
-	ActivityType_ACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE       ActivityType = 14
-	ActivityType_ACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE_TWICE ActivityType = 15
-	ActivityType_ACTIVITY_TYPE_PASSENGER_COUNT_POINT                                       ActivityType = 16
-	ActivityType_ACTIVITY_TYPE_TICKET_COLLECTION_AND_EXAMINATION_POINT                     ActivityType = 17
-	ActivityType_ACTIVITY_TYPE_TICKET_EXAMINATION_POINT                                    ActivityType = 18
-	ActivityType_ACTIVITY_TYPE_TICKET_EXAMINATION_POINT_FIRST_CLASS_ONLY                   ActivityType = 19
-	ActivityType_ACTIVITY_TYPE_TICKET_EXAMINATION_POINT_SELECTIVE                          ActivityType = 20
-	ActivityType_ACTIVITY_TYPE_STOPS_TO_CHANGE_LOCOMOTIVES                                 ActivityType = 21
-	ActivityType_ACTIVITY_TYPE_STOP_NOT_ADVERTISED                                         ActivityType = 22
-	ActivityType_ACTIVITY_TYPE_STOPS_FOR_OTHER_OPERATING_REASONS                           ActivityType = 23
-	ActivityType_ACTIVITY_TYPE_TRAIN_LOCOMOTIVE_ON_REAR                                    ActivityType = 24
-	ActivityType_ACTIVITY_TYPE_PROPELLING_BETWEEN_POINTS_SHOWN                             ActivityType = 25
-	ActivityType_ACTIVITY_TYPE_STOPS_WHEN_REQUIRED                                         ActivityType = 26
-	ActivityType_ACTIVITY_TYPE_STOPS_FOR_REVERSING_MOVEMENT_OR_DRIVER_END_CHANGE           ActivityType = 27
-	ActivityType_ACTIVITY_TYPE_STOPS_FOR_LOCOMOTIVE_TO_RUN_ROUND                           ActivityType = 28
-	ActivityType_ACTIVITY_TYPE_STOPS_FOR_RAILWAY_PERSONELL_ONLY                            ActivityType = 29
-	ActivityType_ACTIVITY_TYPE_STOPS_TO_ATTACH_AND_DETACH_VEHICLES                         ActivityType = 30
-	ActivityType_ACTIVITY_TYPE_DETAIL_CONSIST_FOR_TOPS_DIRECT                              ActivityType = 31
-	ActivityType_ACTIVITY_TYPE_STOPS_OR_PASSES_FOR_TABLET_STAFF_OR_TOKEN                   ActivityType = 32
-	ActivityType_ACTIVITY_TYPE_STOPS_TO_ATTACH_VEHICLES                                    ActivityType = 33
-	ActivityType_ACTIVITY_TYPE_STOPS_FOR_WATERING_OF_COACHES                               ActivityType = 34
-	ActivityType_ACTIVITY_TYPE_PASSES_ANOTHER_TRAIN_AT_CROSSING_POINT_ON_SINGLE_LINE       ActivityType = 35
-)
-
-// Enum value maps for ActivityType.
-var (
-	ActivityType_name = map[int32]string{
-		0:  "ACTIVITY_TYPE_UNKNOWN",
-		1:  "ACTIVITY_TYPE_TRAIN_BEGINS",
-		2:  "ACTIVITY_TYPE_TRAIN_FINISHES",
-		3:  "ACTIVITY_TYPE_STOPS_TO_TAKE_UP_AND_SET_DOWN_PASSENGERS",
-		4:  "ACTIVITY_TYPE_STOPS_TO_TAKE_UP_PASSENGERS",
-		5:  "ACTIVITY_TYPE_STOPS_TO_SET_DOWN_PASSENGERS",
-		6:  "ACTIVITY_TYPE_STOPS_OR_SHUNTS_FOR_OTHER_TRAINS_TO_PASS",
-		7:  "ACTIVITY_TYPE_STOPS_TO_ATTACH_OR_DETACH_ASSISTING_LOCOMOTIVE",
-		8:  "ACTIVITY_TYPE_SHOWS_AS_X_ON_ARRIVAL",
-		9:  "ACTIVITY_TYPE_STOPS_FOR_BANKING_LOCOMOTIVE",
-		10: "ACTIVITY_TYPE_STOPS_TO_CHANGE_TRAIN_CREW",
-		11: "ACTIVITY_TYPE_STOPS_TO_DETATCH_VEHICLES",
-		12: "ACTIVITY_TYPE_STOPS_FOR_EXAMINATION",
-		13: "ACTIVITY_TYPE_NATIONAL_RAIL_TIMETABLE_DATA_TO_ADD",
-		14: "ACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE",
-		15: "ACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE_TWICE",
-		16: "ACTIVITY_TYPE_PASSENGER_COUNT_POINT",
-		17: "ACTIVITY_TYPE_TICKET_COLLECTION_AND_EXAMINATION_POINT",
-		18: "ACTIVITY_TYPE_TICKET_EXAMINATION_POINT",
-		19: "ACTIVITY_TYPE_TICKET_EXAMINATION_POINT_FIRST_CLASS_ONLY",
-		20: "ACTIVITY_TYPE_TICKET_EXAMINATION_POINT_SELECTIVE",
-		21: "ACTIVITY_TYPE_STOPS_TO_CHANGE_LOCOMOTIVES",
-		22: "ACTIVITY_TYPE_STOP_NOT_ADVERTISED",
-		23: "ACTIVITY_TYPE_STOPS_FOR_OTHER_OPERATING_REASONS",
-		24: "ACTIVITY_TYPE_TRAIN_LOCOMOTIVE_ON_REAR",
-		25: "ACTIVITY_TYPE_PROPELLING_BETWEEN_POINTS_SHOWN",
-		26: "ACTIVITY_TYPE_STOPS_WHEN_REQUIRED",
-		27: "ACTIVITY_TYPE_STOPS_FOR_REVERSING_MOVEMENT_OR_DRIVER_END_CHANGE",
-		28: "ACTIVITY_TYPE_STOPS_FOR_LOCOMOTIVE_TO_RUN_ROUND",
-		29: "ACTIVITY_TYPE_STOPS_FOR_RAILWAY_PERSONELL_ONLY",
-		30: "ACTIVITY_TYPE_STOPS_TO_ATTACH_AND_DETACH_VEHICLES",
-		31: "ACTIVITY_TYPE_DETAIL_CONSIST_FOR_TOPS_DIRECT",
-		32: "ACTIVITY_TYPE_STOPS_OR_PASSES_FOR_TABLET_STAFF_OR_TOKEN",
-		33: "ACTIVITY_TYPE_STOPS_TO_ATTACH_VEHICLES",
-		34: "ACTIVITY_TYPE_STOPS_FOR_WATERING_OF_COACHES",
-		35: "ACTIVITY_TYPE_PASSES_ANOTHER_TRAIN_AT_CROSSING_POINT_ON_SINGLE_LINE",
-	}
-	ActivityType_value = map[string]int32{
-		"ACTIVITY_TYPE_UNKNOWN":                                                     0,
-		"ACTIVITY_TYPE_TRAIN_BEGINS":                                                1,
-		"ACTIVITY_TYPE_TRAIN_FINISHES":                                              2,
-		"ACTIVITY_TYPE_STOPS_TO_TAKE_UP_AND_SET_DOWN_PASSENGERS":                    3,
-		"ACTIVITY_TYPE_STOPS_TO_TAKE_UP_PASSENGERS":                                 4,
-		"ACTIVITY_TYPE_STOPS_TO_SET_DOWN_PASSENGERS":                                5,
-		"ACTIVITY_TYPE_STOPS_OR_SHUNTS_FOR_OTHER_TRAINS_TO_PASS":                    6,
-		"ACTIVITY_TYPE_STOPS_TO_ATTACH_OR_DETACH_ASSISTING_LOCOMOTIVE":              7,
-		"ACTIVITY_TYPE_SHOWS_AS_X_ON_ARRIVAL":                                       8,
-		"ACTIVITY_TYPE_STOPS_FOR_BANKING_LOCOMOTIVE":                                9,
-		"ACTIVITY_TYPE_STOPS_TO_CHANGE_TRAIN_CREW":                                  10,
-		"ACTIVITY_TYPE_STOPS_TO_DETATCH_VEHICLES":                                   11,
-		"ACTIVITY_TYPE_STOPS_FOR_EXAMINATION":                                       12,
-		"ACTIVITY_TYPE_NATIONAL_RAIL_TIMETABLE_DATA_TO_ADD":                         13,
-		"ACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE":       14,
-		"ACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE_TWICE": 15,
-		"ACTIVITY_TYPE_PASSENGER_COUNT_POINT":                                       16,
-		"ACTIVITY_TYPE_TICKET_COLLECTION_AND_EXAMINATION_POINT":                     17,
-		"ACTIVITY_TYPE_TICKET_EXAMINATION_POINT":                                    18,
-		"ACTIVITY_TYPE_TICKET_EXAMINATION_POINT_FIRST_CLASS_ONLY":                   19,
-		"ACTIVITY_TYPE_TICKET_EXAMINATION_POINT_SELECTIVE":                          20,
-		"ACTIVITY_TYPE_STOPS_TO_CHANGE_LOCOMOTIVES":                                 21,
-		"ACTIVITY_TYPE_STOP_NOT_ADVERTISED":                                         22,
-		"ACTIVITY_TYPE_STOPS_FOR_OTHER_OPERATING_REASONS":                           23,
-		"ACTIVITY_TYPE_TRAIN_LOCOMOTIVE_ON_REAR":                                    24,
-		"ACTIVITY_TYPE_PROPELLING_BETWEEN_POINTS_SHOWN":                             25,
-		"ACTIVITY_TYPE_STOPS_WHEN_REQUIRED":                                         26,
-		"ACTIVITY_TYPE_STOPS_FOR_REVERSING_MOVEMENT_OR_DRIVER_END_CHANGE":           27,
-		"ACTIVITY_TYPE_STOPS_FOR_LOCOMOTIVE_TO_RUN_ROUND":                           28,
-		"ACTIVITY_TYPE_STOPS_FOR_RAILWAY_PERSONELL_ONLY":                            29,
-		"ACTIVITY_TYPE_STOPS_TO_ATTACH_AND_DETACH_VEHICLES":                         30,
-		"ACTIVITY_TYPE_DETAIL_CONSIST_FOR_TOPS_DIRECT":                              31,
-		"ACTIVITY_TYPE_STOPS_OR_PASSES_FOR_TABLET_STAFF_OR_TOKEN":                   32,
-		"ACTIVITY_TYPE_STOPS_TO_ATTACH_VEHICLES":                                    33,
-		"ACTIVITY_TYPE_STOPS_FOR_WATERING_OF_COACHES":                               34,
-		"ACTIVITY_TYPE_PASSES_ANOTHER_TRAIN_AT_CROSSING_POINT_ON_SINGLE_LINE":       35,
-	}
-)
-
-func (x ActivityType) Enum() *ActivityType {
-	p := new(ActivityType)
-	*p = x
-	return p
-}
-
-func (x ActivityType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (ActivityType) Descriptor() protoreflect.EnumDescriptor {
-	return file_search_proto_enumTypes[3].Descriptor()
-}
-
-func (ActivityType) Type() protoreflect.EnumType {
-	return &file_search_proto_enumTypes[3]
-}
-
-func (x ActivityType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use ActivityType.Descriptor instead.
-func (ActivityType) EnumDescriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{3}
-}
-
 type LocationType int32
 
 const (
@@ -439,11 +133,11 @@ func (x LocationType) String() string {
 }
 
 func (LocationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_search_proto_enumTypes[4].Descriptor()
+	return file_search_proto_enumTypes[1].Descriptor()
 }
 
 func (LocationType) Type() protoreflect.EnumType {
-	return &file_search_proto_enumTypes[4]
+	return &file_search_proto_enumTypes[1]
 }
 
 func (x LocationType) Number() protoreflect.EnumNumber {
@@ -452,7 +146,7 @@ func (x LocationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LocationType.Descriptor instead.
 func (LocationType) EnumDescriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{4}
+	return file_search_proto_rawDescGZIP(), []int{1}
 }
 
 type PlatformDataSource int32
@@ -491,11 +185,11 @@ func (x PlatformDataSource) String() string {
 }
 
 func (PlatformDataSource) Descriptor() protoreflect.EnumDescriptor {
-	return file_search_proto_enumTypes[5].Descriptor()
+	return file_search_proto_enumTypes[2].Descriptor()
 }
 
 func (PlatformDataSource) Type() protoreflect.EnumType {
-	return &file_search_proto_enumTypes[5]
+	return &file_search_proto_enumTypes[2]
 }
 
 func (x PlatformDataSource) Number() protoreflect.EnumNumber {
@@ -504,7 +198,7 @@ func (x PlatformDataSource) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PlatformDataSource.Descriptor instead.
 func (PlatformDataSource) EnumDescriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{5}
+	return file_search_proto_rawDescGZIP(), []int{2}
 }
 
 type SearchRequest struct {
@@ -1441,7 +1135,7 @@ var File_search_proto protoreflect.FileDescriptor
 
 const file_search_proto_rawDesc = "" +
 	"\n" +
-	"\fsearch.proto\"\xd0\x01\n" +
+	"\fsearch.proto\x1a\x0frailtypes.proto\"\xd0\x01\n" +
 	"\rSearchRequest\x12,\n" +
 	"\vsearch_type\x18\x01 \x01(\x0e2\v.SearchTypeR\n" +
 	"searchType\x12$\n" +
@@ -1601,74 +1295,7 @@ const file_search_proto_rawDesc = "" +
 	"\x1bSEARCH_TYPE_RETURN_ARRIVALS\x10\x04\x12.\n" +
 	"*SEARCH_TYPE_RETURN_ARRIVALS_AND_DEPARTURES\x10\x05\x12+\n" +
 	"'SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING\x10\x06\x12:\n" +
-	"6SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING_AND_DEPARTURES\x10\a*\xea\x01\n" +
-	"\vServiceType\x12\x18\n" +
-	"\x14SERVICE_TYPE_UNKNOWN\x10\x00\x12\x16\n" +
-	"\x12SERVICE_TYPE_TRAIN\x10\x01\x12)\n" +
-	"%SERVICE_TYPE_SHORT_TERM_PLANNED_TRAIN\x10\x02\x12\x14\n" +
-	"\x10SERVICE_TYPE_BUS\x10\x03\x12'\n" +
-	"#SERVICE_TYPE_SHORT_TERM_PLANNED_BUS\x10\x04\x12\x15\n" +
-	"\x11SERVICE_TYPE_SHIP\x10\x05\x12(\n" +
-	"$SERVICE_TYPE_SHORT_TERM_PLANNED_SHIP\x10\x06*\x9b\x05\n" +
-	"\fCategoryType\x12\x19\n" +
-	"\x15CATEGORY_TYPE_UNKNOWN\x10\x00\x12&\n" +
-	"\"CATEGORY_TYPE_UNDERGROUND_OR_METRO\x10\x01\x12(\n" +
-	"$CATEGORY_TYPE_UNADVERTISED_PASSENGER\x10\x02\x12\x1b\n" +
-	"\x17CATEGORY_TYPE_PASSENGER\x10\x03\x12\x17\n" +
-	"\x13CATEGORY_TYPE_STAFF\x10\x04\x12\x17\n" +
-	"\x13CATEGORY_TYPE_MIXED\x10\x05\x12 \n" +
-	"\x1cCATEGORY_TYPE_CHANNEL_TUNNEL\x10\x06\x12\x19\n" +
-	"\x15CATEGORY_TYPE_SLEEPER\x10\a\x12\x1f\n" +
-	"\x1bCATEGORY_TYPE_INTERNATIONAL\x10\b\x12\x1a\n" +
-	"\x16CATEGORY_TYPE_MOTORAIL\x10\t\x12&\n" +
-	"\"CATEGORY_TYPE_UNADVERTISED_EXPRESS\x10\n" +
-	"\x12\x19\n" +
-	"\x15CATEGORY_TYPE_EXPRESS\x10\v\x12\"\n" +
-	"\x1eCATEGORY_TYPE_SLEEPER_DOMESTIC\x10\f\x12!\n" +
-	"\x1dCATEGORY_TYPE_BUS_REPLACEMENT\x10\r\x12\x1d\n" +
-	"\x19CATEGORY_TYPE_BUS_SERVICE\x10\x0e\x12\x16\n" +
-	"\x12CATEGORY_TYPE_SHIP\x10\x0f\x12&\n" +
-	"\"CATEGORY_TYPE_EMPTY_COACHING_STOCK\x10\x10\x12;\n" +
-	"7CATEGORY_TYPE_EMPTY_COACHING_STOCK_UNDERGROUND_OR_METRO\x10\x11\x12/\n" +
-	"+CATEGORY_TYPE_EMPTY_COACHING_STOCK_OR_STAFF\x10\x12*\xbe\x0e\n" +
-	"\fActivityType\x12\x19\n" +
-	"\x15ACTIVITY_TYPE_UNKNOWN\x10\x00\x12\x1e\n" +
-	"\x1aACTIVITY_TYPE_TRAIN_BEGINS\x10\x01\x12 \n" +
-	"\x1cACTIVITY_TYPE_TRAIN_FINISHES\x10\x02\x12:\n" +
-	"6ACTIVITY_TYPE_STOPS_TO_TAKE_UP_AND_SET_DOWN_PASSENGERS\x10\x03\x12-\n" +
-	")ACTIVITY_TYPE_STOPS_TO_TAKE_UP_PASSENGERS\x10\x04\x12.\n" +
-	"*ACTIVITY_TYPE_STOPS_TO_SET_DOWN_PASSENGERS\x10\x05\x12:\n" +
-	"6ACTIVITY_TYPE_STOPS_OR_SHUNTS_FOR_OTHER_TRAINS_TO_PASS\x10\x06\x12@\n" +
-	"<ACTIVITY_TYPE_STOPS_TO_ATTACH_OR_DETACH_ASSISTING_LOCOMOTIVE\x10\a\x12'\n" +
-	"#ACTIVITY_TYPE_SHOWS_AS_X_ON_ARRIVAL\x10\b\x12.\n" +
-	"*ACTIVITY_TYPE_STOPS_FOR_BANKING_LOCOMOTIVE\x10\t\x12,\n" +
-	"(ACTIVITY_TYPE_STOPS_TO_CHANGE_TRAIN_CREW\x10\n" +
-	"\x12+\n" +
-	"'ACTIVITY_TYPE_STOPS_TO_DETATCH_VEHICLES\x10\v\x12'\n" +
-	"#ACTIVITY_TYPE_STOPS_FOR_EXAMINATION\x10\f\x125\n" +
-	"1ACTIVITY_TYPE_NATIONAL_RAIL_TIMETABLE_DATA_TO_ADD\x10\r\x12G\n" +
-	"CACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE\x10\x0e\x12M\n" +
-	"IACTIVITY_TYPE_NOTIONAL_ACTIVITY_TO_PREVENT_WTT_TIMING_COLUMNS_MERGE_TWICE\x10\x0f\x12'\n" +
-	"#ACTIVITY_TYPE_PASSENGER_COUNT_POINT\x10\x10\x129\n" +
-	"5ACTIVITY_TYPE_TICKET_COLLECTION_AND_EXAMINATION_POINT\x10\x11\x12*\n" +
-	"&ACTIVITY_TYPE_TICKET_EXAMINATION_POINT\x10\x12\x12;\n" +
-	"7ACTIVITY_TYPE_TICKET_EXAMINATION_POINT_FIRST_CLASS_ONLY\x10\x13\x124\n" +
-	"0ACTIVITY_TYPE_TICKET_EXAMINATION_POINT_SELECTIVE\x10\x14\x12-\n" +
-	")ACTIVITY_TYPE_STOPS_TO_CHANGE_LOCOMOTIVES\x10\x15\x12%\n" +
-	"!ACTIVITY_TYPE_STOP_NOT_ADVERTISED\x10\x16\x123\n" +
-	"/ACTIVITY_TYPE_STOPS_FOR_OTHER_OPERATING_REASONS\x10\x17\x12*\n" +
-	"&ACTIVITY_TYPE_TRAIN_LOCOMOTIVE_ON_REAR\x10\x18\x121\n" +
-	"-ACTIVITY_TYPE_PROPELLING_BETWEEN_POINTS_SHOWN\x10\x19\x12%\n" +
-	"!ACTIVITY_TYPE_STOPS_WHEN_REQUIRED\x10\x1a\x12C\n" +
-	"?ACTIVITY_TYPE_STOPS_FOR_REVERSING_MOVEMENT_OR_DRIVER_END_CHANGE\x10\x1b\x123\n" +
-	"/ACTIVITY_TYPE_STOPS_FOR_LOCOMOTIVE_TO_RUN_ROUND\x10\x1c\x122\n" +
-	".ACTIVITY_TYPE_STOPS_FOR_RAILWAY_PERSONELL_ONLY\x10\x1d\x125\n" +
-	"1ACTIVITY_TYPE_STOPS_TO_ATTACH_AND_DETACH_VEHICLES\x10\x1e\x120\n" +
-	",ACTIVITY_TYPE_DETAIL_CONSIST_FOR_TOPS_DIRECT\x10\x1f\x12;\n" +
-	"7ACTIVITY_TYPE_STOPS_OR_PASSES_FOR_TABLET_STAFF_OR_TOKEN\x10 \x12*\n" +
-	"&ACTIVITY_TYPE_STOPS_TO_ATTACH_VEHICLES\x10!\x12/\n" +
-	"+ACTIVITY_TYPE_STOPS_FOR_WATERING_OF_COACHES\x10\"\x12G\n" +
-	"CACTIVITY_TYPE_PASSES_ANOTHER_TRAIN_AT_CROSSING_POINT_ON_SINGLE_LINE\x10#*\xa7\x02\n" +
+	"6SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING_AND_DEPARTURES\x10\a*\xa7\x02\n" +
 	"\fLocationType\x12\x19\n" +
 	"\x15LOCATION_TYPE_UNKNOWN\x10\x00\x12\x18\n" +
 	"\x14LOCATION_TYPE_ORIGIN\x10\x01\x12$\n" +
@@ -1696,43 +1323,43 @@ func file_search_proto_rawDescGZIP() []byte {
 	return file_search_proto_rawDescData
 }
 
-var file_search_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
+var file_search_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_search_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_search_proto_goTypes = []any{
 	(SearchType)(0),              // 0: SearchType
-	(ServiceType)(0),             // 1: ServiceType
-	(CategoryType)(0),            // 2: CategoryType
-	(ActivityType)(0),            // 3: ActivityType
-	(LocationType)(0),            // 4: LocationType
-	(PlatformDataSource)(0),      // 5: PlatformDataSource
-	(*SearchRequest)(nil),        // 6: SearchRequest
-	(*SearchResponse)(nil),       // 7: SearchResponse
-	(*ServiceRoute)(nil),         // 8: ServiceRoute
-	(*ServiceRouteLocation)(nil), // 9: ServiceRouteLocation
-	(*DisruptionReason)(nil),     // 10: DisruptionReason
-	(*Schedule)(nil),             // 11: Schedule
-	(*ScheduleLocation)(nil),     // 12: ScheduleLocation
-	(*Forecast)(nil),             // 13: Forecast
+	(LocationType)(0),            // 1: LocationType
+	(PlatformDataSource)(0),      // 2: PlatformDataSource
+	(*SearchRequest)(nil),        // 3: SearchRequest
+	(*SearchResponse)(nil),       // 4: SearchResponse
+	(*ServiceRoute)(nil),         // 5: ServiceRoute
+	(*ServiceRouteLocation)(nil), // 6: ServiceRouteLocation
+	(*DisruptionReason)(nil),     // 7: DisruptionReason
+	(*Schedule)(nil),             // 8: Schedule
+	(*ScheduleLocation)(nil),     // 9: ScheduleLocation
+	(*Forecast)(nil),             // 10: Forecast
+	(ServiceType)(0),             // 11: ServiceType
+	(CategoryType)(0),            // 12: CategoryType
+	(ActivityType)(0),            // 13: ActivityType
 }
 var file_search_proto_depIdxs = []int32{
 	0,  // 0: SearchRequest.search_type:type_name -> SearchType
-	11, // 1: SearchResponse.schedule:type_name -> Schedule
-	12, // 2: SearchResponse.schedule_location:type_name -> ScheduleLocation
-	13, // 3: SearchResponse.forecast:type_name -> Forecast
-	8,  // 4: SearchResponse.previous_route:type_name -> ServiceRoute
-	8,  // 5: SearchResponse.next_route:type_name -> ServiceRoute
-	1,  // 6: Schedule.service_type:type_name -> ServiceType
-	2,  // 7: Schedule.category_type:type_name -> CategoryType
-	10, // 8: Schedule.schedule_cancellation_reason:type_name -> DisruptionReason
-	10, // 9: Schedule.schedule_diversion_reason:type_name -> DisruptionReason
-	3,  // 10: ScheduleLocation.activities:type_name -> ActivityType
-	3,  // 11: ScheduleLocation.planned_activities:type_name -> ActivityType
-	4,  // 12: ScheduleLocation.location_type:type_name -> LocationType
-	10, // 13: ScheduleLocation.location_cancellation_reason:type_name -> DisruptionReason
-	10, // 14: Forecast.schedule_late_reason:type_name -> DisruptionReason
-	10, // 15: Forecast.location_late_reason:type_name -> DisruptionReason
-	10, // 16: Forecast.location_disruption_risk_reason:type_name -> DisruptionReason
-	5,  // 17: Forecast.platform_data_source:type_name -> PlatformDataSource
+	8,  // 1: SearchResponse.schedule:type_name -> Schedule
+	9,  // 2: SearchResponse.schedule_location:type_name -> ScheduleLocation
+	10, // 3: SearchResponse.forecast:type_name -> Forecast
+	5,  // 4: SearchResponse.previous_route:type_name -> ServiceRoute
+	5,  // 5: SearchResponse.next_route:type_name -> ServiceRoute
+	11, // 6: Schedule.service_type:type_name -> ServiceType
+	12, // 7: Schedule.category_type:type_name -> CategoryType
+	7,  // 8: Schedule.schedule_cancellation_reason:type_name -> DisruptionReason
+	7,  // 9: Schedule.schedule_diversion_reason:type_name -> DisruptionReason
+	13, // 10: ScheduleLocation.activities:type_name -> ActivityType
+	13, // 11: ScheduleLocation.planned_activities:type_name -> ActivityType
+	1,  // 12: ScheduleLocation.location_type:type_name -> LocationType
+	7,  // 13: ScheduleLocation.location_cancellation_reason:type_name -> DisruptionReason
+	7,  // 14: Forecast.schedule_late_reason:type_name -> DisruptionReason
+	7,  // 15: Forecast.location_late_reason:type_name -> DisruptionReason
+	7,  // 16: Forecast.location_disruption_risk_reason:type_name -> DisruptionReason
+	2,  // 17: Forecast.platform_data_source:type_name -> PlatformDataSource
 	18, // [18:18] is the sub-list for method output_type
 	18, // [18:18] is the sub-list for method input_type
 	18, // [18:18] is the sub-list for extension type_name
@@ -1745,6 +1372,7 @@ func file_search_proto_init() {
 	if File_search_proto != nil {
 		return
 	}
+	file_railtypes_proto_init()
 	file_search_proto_msgTypes[0].OneofWrappers = []any{}
 	file_search_proto_msgTypes[1].OneofWrappers = []any{}
 	file_search_proto_msgTypes[4].OneofWrappers = []any{}
@@ -1756,7 +1384,7 @@ func file_search_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_search_proto_rawDesc), len(file_search_proto_rawDesc)),
-			NumEnums:      6,
+			NumEnums:      3,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
