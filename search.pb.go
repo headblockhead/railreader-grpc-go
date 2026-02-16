@@ -590,7 +590,7 @@ type SearchResponse struct {
 	Forecast         *Forecast              `protobuf:"bytes,3,opt,name=forecast,proto3,oneof" json:"forecast,omitempty"`
 	Platform         *string                `protobuf:"bytes,4,opt,name=platform,proto3,oneof" json:"platform,omitempty"` // can be sourced either from darwin.schedule_locations or darwin.forecast_locations
 	Length           *uint32                `protobuf:"varint,5,opt,name=length,proto3,oneof" json:"length,omitempty"`    // number of coaches, can be sourced either from darwin.formation_coaches or darwin.forecast_locations
-	CircularRoute    bool                   `protobuf:"varint,6,opt,name=circular_route,json=circularRoute,proto3" json:"circular_route,omitempty"`
+	IsCircularRoute  bool                   `protobuf:"varint,6,opt,name=is_circular_route,json=isCircularRoute,proto3" json:"is_circular_route,omitempty"`
 	PreviousRoute    *ServiceRoute          `protobuf:"bytes,7,opt,name=previous_route,json=previousRoute,proto3" json:"previous_route,omitempty"`
 	NextRoute        *ServiceRoute          `protobuf:"bytes,8,opt,name=next_route,json=nextRoute,proto3" json:"next_route,omitempty"`
 	unknownFields    protoimpl.UnknownFields
@@ -662,9 +662,9 @@ func (x *SearchResponse) GetLength() uint32 {
 	return 0
 }
 
-func (x *SearchResponse) GetCircularRoute() bool {
+func (x *SearchResponse) GetIsCircularRoute() bool {
 	if x != nil {
-		return x.CircularRoute
+		return x.IsCircularRoute
 	}
 	return false
 }
@@ -826,10 +826,10 @@ type Schedule struct {
 	TocId                         string                 `protobuf:"bytes,5,opt,name=toc_id,json=tocId,proto3" json:"toc_id,omitempty"`
 	ServiceType                   ServiceType            `protobuf:"varint,6,opt,name=service_type,json=serviceType,proto3,enum=ServiceType" json:"service_type,omitempty"`
 	CategoryType                  CategoryType           `protobuf:"varint,7,opt,name=category_type,json=categoryType,proto3,enum=CategoryType" json:"category_type,omitempty"`
-	Passenger                     bool                   `protobuf:"varint,8,opt,name=passenger,proto3" json:"passenger,omitempty"`
-	Active                        bool                   `protobuf:"varint,9,opt,name=active,proto3" json:"active,omitempty"`
-	Chartered                     bool                   `protobuf:"varint,10,opt,name=chartered,proto3" json:"chartered,omitempty"`
-	ScheduleCancelled             bool                   `protobuf:"varint,11,opt,name=schedule_cancelled,json=scheduleCancelled,proto3" json:"schedule_cancelled,omitempty"`
+	IsPassenger                   bool                   `protobuf:"varint,8,opt,name=is_passenger,json=isPassenger,proto3" json:"is_passenger,omitempty"`
+	IsActive                      bool                   `protobuf:"varint,9,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	IsChartered                   bool                   `protobuf:"varint,10,opt,name=is_chartered,json=isChartered,proto3" json:"is_chartered,omitempty"`
+	ScheduleIsCancelled           bool                   `protobuf:"varint,11,opt,name=schedule_is_cancelled,json=scheduleIsCancelled,proto3" json:"schedule_is_cancelled,omitempty"`
 	ScheduleCancellationReason    *DisruptionReason      `protobuf:"bytes,12,opt,name=schedule_cancellation_reason,json=scheduleCancellationReason,proto3,oneof" json:"schedule_cancellation_reason,omitempty"`
 	ScheduleDivertedViaLocationId *string                `protobuf:"bytes,13,opt,name=schedule_diverted_via_location_id,json=scheduleDivertedViaLocationId,proto3,oneof" json:"schedule_diverted_via_location_id,omitempty"`
 	ScheduleDiversionReason       *DisruptionReason      `protobuf:"bytes,14,opt,name=schedule_diversion_reason,json=scheduleDiversionReason,proto3,oneof" json:"schedule_diversion_reason,omitempty"`
@@ -916,30 +916,30 @@ func (x *Schedule) GetCategoryType() CategoryType {
 	return CategoryType_CATEGORY_TYPE_UNKNOWN
 }
 
-func (x *Schedule) GetPassenger() bool {
+func (x *Schedule) GetIsPassenger() bool {
 	if x != nil {
-		return x.Passenger
+		return x.IsPassenger
 	}
 	return false
 }
 
-func (x *Schedule) GetActive() bool {
+func (x *Schedule) GetIsActive() bool {
 	if x != nil {
-		return x.Active
+		return x.IsActive
 	}
 	return false
 }
 
-func (x *Schedule) GetChartered() bool {
+func (x *Schedule) GetIsChartered() bool {
 	if x != nil {
-		return x.Chartered
+		return x.IsChartered
 	}
 	return false
 }
 
-func (x *Schedule) GetScheduleCancelled() bool {
+func (x *Schedule) GetScheduleIsCancelled() bool {
 	if x != nil {
-		return x.ScheduleCancelled
+		return x.ScheduleIsCancelled
 	}
 	return false
 }
@@ -977,7 +977,7 @@ type ScheduleLocation struct {
 	ScheduledPublicArrivalTime    *string                `protobuf:"bytes,8,opt,name=scheduled_public_arrival_time,json=scheduledPublicArrivalTime,proto3,oneof" json:"scheduled_public_arrival_time,omitempty"`
 	ScheduledPublicDepartureTime  *string                `protobuf:"bytes,9,opt,name=scheduled_public_departure_time,json=scheduledPublicDepartureTime,proto3,oneof" json:"scheduled_public_departure_time,omitempty"`
 	RoutingDelay                  uint32                 `protobuf:"varint,10,opt,name=routing_delay,json=routingDelay,proto3" json:"routing_delay,omitempty"` // in minutes
-	LocationCancelled             bool                   `protobuf:"varint,11,opt,name=location_cancelled,json=locationCancelled,proto3" json:"location_cancelled,omitempty"`
+	LocationIsCancelled           bool                   `protobuf:"varint,11,opt,name=location_is_cancelled,json=locationIsCancelled,proto3" json:"location_is_cancelled,omitempty"`
 	LocationCancellationReason    *DisruptionReason      `protobuf:"bytes,12,opt,name=location_cancellation_reason,json=locationCancellationReason,proto3,oneof" json:"location_cancellation_reason,omitempty"`
 	unknownFields                 protoimpl.UnknownFields
 	sizeCache                     protoimpl.SizeCache
@@ -1083,9 +1083,9 @@ func (x *ScheduleLocation) GetRoutingDelay() uint32 {
 	return 0
 }
 
-func (x *ScheduleLocation) GetLocationCancelled() bool {
+func (x *ScheduleLocation) GetLocationIsCancelled() bool {
 	if x != nil {
-		return x.LocationCancelled
+		return x.LocationIsCancelled
 	}
 	return false
 }
@@ -1098,47 +1098,47 @@ func (x *ScheduleLocation) GetLocationCancellationReason() *DisruptionReason {
 }
 
 type Forecast struct {
-	state                           protoimpl.MessageState `protogen:"open.v1"`
-	ReverseFormation                bool                   `protobuf:"varint,1,opt,name=reverse_formation,json=reverseFormation,proto3" json:"reverse_formation,omitempty"`
-	ScheduleLateReason              *DisruptionReason      `protobuf:"bytes,2,opt,name=schedule_late_reason,json=scheduleLateReason,proto3,oneof" json:"schedule_late_reason,omitempty"`
-	EstimatedPublicArrivalTime      *string                `protobuf:"bytes,3,opt,name=estimated_public_arrival_time,json=estimatedPublicArrivalTime,proto3,oneof" json:"estimated_public_arrival_time,omitempty"`
-	EstimatedWorkingArrivalTime     *string                `protobuf:"bytes,4,opt,name=estimated_working_arrival_time,json=estimatedWorkingArrivalTime,proto3,oneof" json:"estimated_working_arrival_time,omitempty"`
-	EstimatedMinimumArrivalTime     *string                `protobuf:"bytes,5,opt,name=estimated_minimum_arrival_time,json=estimatedMinimumArrivalTime,proto3,oneof" json:"estimated_minimum_arrival_time,omitempty"`
-	ArrivalDelayed                  *bool                  `protobuf:"varint,6,opt,name=arrival_delayed,json=arrivalDelayed,proto3,oneof" json:"arrival_delayed,omitempty"`
-	ArrivalDelayedByUnknownAmount   *bool                  `protobuf:"varint,7,opt,name=arrival_delayed_by_unknown_amount,json=arrivalDelayedByUnknownAmount,proto3,oneof" json:"arrival_delayed_by_unknown_amount,omitempty"`
-	EstimatedPassingTime            *string                `protobuf:"bytes,8,opt,name=estimated_passing_time,json=estimatedPassingTime,proto3,oneof" json:"estimated_passing_time,omitempty"`
-	EstimatedMinimumPassingTime     *string                `protobuf:"bytes,9,opt,name=estimated_minimum_passing_time,json=estimatedMinimumPassingTime,proto3,oneof" json:"estimated_minimum_passing_time,omitempty"`
-	PassingDelayed                  *bool                  `protobuf:"varint,10,opt,name=passing_delayed,json=passingDelayed,proto3,oneof" json:"passing_delayed,omitempty"`
-	PassingDelayedByUnknownAmount   *bool                  `protobuf:"varint,11,opt,name=passing_delayed_by_unknown_amount,json=passingDelayedByUnknownAmount,proto3,oneof" json:"passing_delayed_by_unknown_amount,omitempty"`
-	EstimatedPublicDepartureTime    *string                `protobuf:"bytes,12,opt,name=estimated_public_departure_time,json=estimatedPublicDepartureTime,proto3,oneof" json:"estimated_public_departure_time,omitempty"`
-	EstimatedWorkingDepartureTime   *string                `protobuf:"bytes,13,opt,name=estimated_working_departure_time,json=estimatedWorkingDepartureTime,proto3,oneof" json:"estimated_working_departure_time,omitempty"`
-	EstimatedMinimumDepartureTime   *string                `protobuf:"bytes,14,opt,name=estimated_minimum_departure_time,json=estimatedMinimumDepartureTime,proto3,oneof" json:"estimated_minimum_departure_time,omitempty"`
-	DepartureDelayed                *bool                  `protobuf:"varint,15,opt,name=departure_delayed,json=departureDelayed,proto3,oneof" json:"departure_delayed,omitempty"`
-	DepartureDelayedByUnknownAmount *bool                  `protobuf:"varint,16,opt,name=departure_delayed_by_unknown_amount,json=departureDelayedByUnknownAmount,proto3,oneof" json:"departure_delayed_by_unknown_amount,omitempty"`
-	ActualArrivalTime               *string                `protobuf:"bytes,17,opt,name=actual_arrival_time,json=actualArrivalTime,proto3,oneof" json:"actual_arrival_time,omitempty"`
-	ActualArrivalDataClass          *string                `protobuf:"bytes,18,opt,name=actual_arrival_data_class,json=actualArrivalDataClass,proto3,oneof" json:"actual_arrival_data_class,omitempty"`
-	ActualArrivalDataSource         *string                `protobuf:"bytes,19,opt,name=actual_arrival_data_source,json=actualArrivalDataSource,proto3,oneof" json:"actual_arrival_data_source,omitempty"`
-	ActualArrivalDataSourceSystem   *string                `protobuf:"bytes,20,opt,name=actual_arrival_data_source_system,json=actualArrivalDataSourceSystem,proto3,oneof" json:"actual_arrival_data_source_system,omitempty"`
-	ActualPassingTime               *string                `protobuf:"bytes,21,opt,name=actual_passing_time,json=actualPassingTime,proto3,oneof" json:"actual_passing_time,omitempty"`
-	ActualPassingDataClass          *string                `protobuf:"bytes,22,opt,name=actual_passing_data_class,json=actualPassingDataClass,proto3,oneof" json:"actual_passing_data_class,omitempty"`
-	ActualPassingDataSource         *string                `protobuf:"bytes,23,opt,name=actual_passing_data_source,json=actualPassingDataSource,proto3,oneof" json:"actual_passing_data_source,omitempty"`
-	ActualPassingDataSourceSystem   *string                `protobuf:"bytes,24,opt,name=actual_passing_data_source_system,json=actualPassingDataSourceSystem,proto3,oneof" json:"actual_passing_data_source_system,omitempty"`
-	ActualDepartureTime             *string                `protobuf:"bytes,25,opt,name=actual_departure_time,json=actualDepartureTime,proto3,oneof" json:"actual_departure_time,omitempty"`
-	ActualDepartureDataClass        *string                `protobuf:"bytes,26,opt,name=actual_departure_data_class,json=actualDepartureDataClass,proto3,oneof" json:"actual_departure_data_class,omitempty"`
-	ActualDepartureDataSource       *string                `protobuf:"bytes,27,opt,name=actual_departure_data_source,json=actualDepartureDataSource,proto3,oneof" json:"actual_departure_data_source,omitempty"`
-	ActualDepartureDataSourceSystem *string                `protobuf:"bytes,28,opt,name=actual_departure_data_source_system,json=actualDepartureDataSourceSystem,proto3,oneof" json:"actual_departure_data_source_system,omitempty"`
-	LocationLateReason              *DisruptionReason      `protobuf:"bytes,29,opt,name=location_late_reason,json=locationLateReason,proto3,oneof" json:"location_late_reason,omitempty"`
-	LocationDisruptionRisk          *string                `protobuf:"bytes,30,opt,name=location_disruption_risk,json=locationDisruptionRisk,proto3,oneof" json:"location_disruption_risk,omitempty"`
-	LocationDisruptionRiskReason    *DisruptionReason      `protobuf:"bytes,31,opt,name=location_disruption_risk_reason,json=locationDisruptionRiskReason,proto3,oneof" json:"location_disruption_risk_reason,omitempty"`
-	AffectedBy                      *string                `protobuf:"bytes,32,opt,name=affected_by,json=affectedBy,proto3,oneof" json:"affected_by,omitempty"`
-	PlatformSuppressed              *bool                  `protobuf:"varint,33,opt,name=platform_suppressed,json=platformSuppressed,proto3,oneof" json:"platform_suppressed,omitempty"` // do not display platform information if true
-	PlatformSuppressedByCis         *bool                  `protobuf:"varint,34,opt,name=platform_suppressed_by_cis,json=platformSuppressedByCis,proto3,oneof" json:"platform_suppressed_by_cis,omitempty"`
-	PlatformDataSource              *PlatformDataSource    `protobuf:"varint,35,opt,name=platform_data_source,json=platformDataSource,proto3,enum=PlatformDataSource,oneof" json:"platform_data_source,omitempty"`
-	PlatformConfirmed               *bool                  `protobuf:"varint,36,opt,name=platform_confirmed,json=platformConfirmed,proto3,oneof" json:"platform_confirmed,omitempty"`
-	ServiceSuppressed               bool                   `protobuf:"varint,37,opt,name=service_suppressed,json=serviceSuppressed,proto3" json:"service_suppressed,omitempty"`
-	DetatchesFromFront              bool                   `protobuf:"varint,38,opt,name=detatches_from_front,json=detatchesFromFront,proto3" json:"detatches_from_front,omitempty"`
-	unknownFields                   protoimpl.UnknownFields
-	sizeCache                       protoimpl.SizeCache
+	state                             protoimpl.MessageState `protogen:"open.v1"`
+	IsReverseFormation                bool                   `protobuf:"varint,1,opt,name=is_reverse_formation,json=isReverseFormation,proto3" json:"is_reverse_formation,omitempty"`
+	ScheduleLateReason                *DisruptionReason      `protobuf:"bytes,2,opt,name=schedule_late_reason,json=scheduleLateReason,proto3,oneof" json:"schedule_late_reason,omitempty"`
+	EstimatedPublicArrivalTime        *string                `protobuf:"bytes,3,opt,name=estimated_public_arrival_time,json=estimatedPublicArrivalTime,proto3,oneof" json:"estimated_public_arrival_time,omitempty"`
+	EstimatedWorkingArrivalTime       *string                `protobuf:"bytes,4,opt,name=estimated_working_arrival_time,json=estimatedWorkingArrivalTime,proto3,oneof" json:"estimated_working_arrival_time,omitempty"`
+	EstimatedMinimumArrivalTime       *string                `protobuf:"bytes,5,opt,name=estimated_minimum_arrival_time,json=estimatedMinimumArrivalTime,proto3,oneof" json:"estimated_minimum_arrival_time,omitempty"`
+	ArrivalIsDelayed                  *bool                  `protobuf:"varint,6,opt,name=arrival_is_delayed,json=arrivalIsDelayed,proto3,oneof" json:"arrival_is_delayed,omitempty"`
+	ArrivalIsDelayedByUnknownAmount   *bool                  `protobuf:"varint,7,opt,name=arrival_is_delayed_by_unknown_amount,json=arrivalIsDelayedByUnknownAmount,proto3,oneof" json:"arrival_is_delayed_by_unknown_amount,omitempty"`
+	EstimatedPassingTime              *string                `protobuf:"bytes,8,opt,name=estimated_passing_time,json=estimatedPassingTime,proto3,oneof" json:"estimated_passing_time,omitempty"`
+	EstimatedMinimumPassingTime       *string                `protobuf:"bytes,9,opt,name=estimated_minimum_passing_time,json=estimatedMinimumPassingTime,proto3,oneof" json:"estimated_minimum_passing_time,omitempty"`
+	PassingIsDelayed                  *bool                  `protobuf:"varint,10,opt,name=passing_is_delayed,json=passingIsDelayed,proto3,oneof" json:"passing_is_delayed,omitempty"`
+	PassingIsDelayedByUnknownAmount   *bool                  `protobuf:"varint,11,opt,name=passing_is_delayed_by_unknown_amount,json=passingIsDelayedByUnknownAmount,proto3,oneof" json:"passing_is_delayed_by_unknown_amount,omitempty"`
+	EstimatedPublicDepartureTime      *string                `protobuf:"bytes,12,opt,name=estimated_public_departure_time,json=estimatedPublicDepartureTime,proto3,oneof" json:"estimated_public_departure_time,omitempty"`
+	EstimatedWorkingDepartureTime     *string                `protobuf:"bytes,13,opt,name=estimated_working_departure_time,json=estimatedWorkingDepartureTime,proto3,oneof" json:"estimated_working_departure_time,omitempty"`
+	EstimatedMinimumDepartureTime     *string                `protobuf:"bytes,14,opt,name=estimated_minimum_departure_time,json=estimatedMinimumDepartureTime,proto3,oneof" json:"estimated_minimum_departure_time,omitempty"`
+	DepartureIsDelayed                *bool                  `protobuf:"varint,15,opt,name=departure_is_delayed,json=departureIsDelayed,proto3,oneof" json:"departure_is_delayed,omitempty"`
+	DepartureIsDelayedByUnknownAmount *bool                  `protobuf:"varint,16,opt,name=departure_is_delayed_by_unknown_amount,json=departureIsDelayedByUnknownAmount,proto3,oneof" json:"departure_is_delayed_by_unknown_amount,omitempty"`
+	ActualArrivalTime                 *string                `protobuf:"bytes,17,opt,name=actual_arrival_time,json=actualArrivalTime,proto3,oneof" json:"actual_arrival_time,omitempty"`
+	ActualArrivalDataClass            *string                `protobuf:"bytes,18,opt,name=actual_arrival_data_class,json=actualArrivalDataClass,proto3,oneof" json:"actual_arrival_data_class,omitempty"`
+	ActualArrivalDataSource           *string                `protobuf:"bytes,19,opt,name=actual_arrival_data_source,json=actualArrivalDataSource,proto3,oneof" json:"actual_arrival_data_source,omitempty"`
+	ActualArrivalDataSourceSystem     *string                `protobuf:"bytes,20,opt,name=actual_arrival_data_source_system,json=actualArrivalDataSourceSystem,proto3,oneof" json:"actual_arrival_data_source_system,omitempty"`
+	ActualPassingTime                 *string                `protobuf:"bytes,21,opt,name=actual_passing_time,json=actualPassingTime,proto3,oneof" json:"actual_passing_time,omitempty"`
+	ActualPassingDataClass            *string                `protobuf:"bytes,22,opt,name=actual_passing_data_class,json=actualPassingDataClass,proto3,oneof" json:"actual_passing_data_class,omitempty"`
+	ActualPassingDataSource           *string                `protobuf:"bytes,23,opt,name=actual_passing_data_source,json=actualPassingDataSource,proto3,oneof" json:"actual_passing_data_source,omitempty"`
+	ActualPassingDataSourceSystem     *string                `protobuf:"bytes,24,opt,name=actual_passing_data_source_system,json=actualPassingDataSourceSystem,proto3,oneof" json:"actual_passing_data_source_system,omitempty"`
+	ActualDepartureTime               *string                `protobuf:"bytes,25,opt,name=actual_departure_time,json=actualDepartureTime,proto3,oneof" json:"actual_departure_time,omitempty"`
+	ActualDepartureDataClass          *string                `protobuf:"bytes,26,opt,name=actual_departure_data_class,json=actualDepartureDataClass,proto3,oneof" json:"actual_departure_data_class,omitempty"`
+	ActualDepartureDataSource         *string                `protobuf:"bytes,27,opt,name=actual_departure_data_source,json=actualDepartureDataSource,proto3,oneof" json:"actual_departure_data_source,omitempty"`
+	ActualDepartureDataSourceSystem   *string                `protobuf:"bytes,28,opt,name=actual_departure_data_source_system,json=actualDepartureDataSourceSystem,proto3,oneof" json:"actual_departure_data_source_system,omitempty"`
+	LocationLateReason                *DisruptionReason      `protobuf:"bytes,29,opt,name=location_late_reason,json=locationLateReason,proto3,oneof" json:"location_late_reason,omitempty"`
+	LocationDisruptionRisk            *string                `protobuf:"bytes,30,opt,name=location_disruption_risk,json=locationDisruptionRisk,proto3,oneof" json:"location_disruption_risk,omitempty"`
+	LocationDisruptionRiskReason      *DisruptionReason      `protobuf:"bytes,31,opt,name=location_disruption_risk_reason,json=locationDisruptionRiskReason,proto3,oneof" json:"location_disruption_risk_reason,omitempty"`
+	AffectedBy                        *string                `protobuf:"bytes,32,opt,name=affected_by,json=affectedBy,proto3,oneof" json:"affected_by,omitempty"`
+	PlatformIsSuppressed              *bool                  `protobuf:"varint,33,opt,name=platform_is_suppressed,json=platformIsSuppressed,proto3,oneof" json:"platform_is_suppressed,omitempty"` // do not display platform information if true
+	PlatformIsSuppressedByCis         *bool                  `protobuf:"varint,34,opt,name=platform_is_suppressed_by_cis,json=platformIsSuppressedByCis,proto3,oneof" json:"platform_is_suppressed_by_cis,omitempty"`
+	PlatformDataSource                *PlatformDataSource    `protobuf:"varint,35,opt,name=platform_data_source,json=platformDataSource,proto3,enum=PlatformDataSource,oneof" json:"platform_data_source,omitempty"`
+	PlatformIsConfirmed               *bool                  `protobuf:"varint,36,opt,name=platform_is_confirmed,json=platformIsConfirmed,proto3,oneof" json:"platform_is_confirmed,omitempty"`
+	ServiceIsSuppressed               bool                   `protobuf:"varint,37,opt,name=service_is_suppressed,json=serviceIsSuppressed,proto3" json:"service_is_suppressed,omitempty"`
+	ServiceDetatchesFromFront         bool                   `protobuf:"varint,38,opt,name=service_detatches_from_front,json=serviceDetatchesFromFront,proto3" json:"service_detatches_from_front,omitempty"`
+	unknownFields                     protoimpl.UnknownFields
+	sizeCache                         protoimpl.SizeCache
 }
 
 func (x *Forecast) Reset() {
@@ -1171,9 +1171,9 @@ func (*Forecast) Descriptor() ([]byte, []int) {
 	return file_search_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *Forecast) GetReverseFormation() bool {
+func (x *Forecast) GetIsReverseFormation() bool {
 	if x != nil {
-		return x.ReverseFormation
+		return x.IsReverseFormation
 	}
 	return false
 }
@@ -1206,16 +1206,16 @@ func (x *Forecast) GetEstimatedMinimumArrivalTime() string {
 	return ""
 }
 
-func (x *Forecast) GetArrivalDelayed() bool {
-	if x != nil && x.ArrivalDelayed != nil {
-		return *x.ArrivalDelayed
+func (x *Forecast) GetArrivalIsDelayed() bool {
+	if x != nil && x.ArrivalIsDelayed != nil {
+		return *x.ArrivalIsDelayed
 	}
 	return false
 }
 
-func (x *Forecast) GetArrivalDelayedByUnknownAmount() bool {
-	if x != nil && x.ArrivalDelayedByUnknownAmount != nil {
-		return *x.ArrivalDelayedByUnknownAmount
+func (x *Forecast) GetArrivalIsDelayedByUnknownAmount() bool {
+	if x != nil && x.ArrivalIsDelayedByUnknownAmount != nil {
+		return *x.ArrivalIsDelayedByUnknownAmount
 	}
 	return false
 }
@@ -1234,16 +1234,16 @@ func (x *Forecast) GetEstimatedMinimumPassingTime() string {
 	return ""
 }
 
-func (x *Forecast) GetPassingDelayed() bool {
-	if x != nil && x.PassingDelayed != nil {
-		return *x.PassingDelayed
+func (x *Forecast) GetPassingIsDelayed() bool {
+	if x != nil && x.PassingIsDelayed != nil {
+		return *x.PassingIsDelayed
 	}
 	return false
 }
 
-func (x *Forecast) GetPassingDelayedByUnknownAmount() bool {
-	if x != nil && x.PassingDelayedByUnknownAmount != nil {
-		return *x.PassingDelayedByUnknownAmount
+func (x *Forecast) GetPassingIsDelayedByUnknownAmount() bool {
+	if x != nil && x.PassingIsDelayedByUnknownAmount != nil {
+		return *x.PassingIsDelayedByUnknownAmount
 	}
 	return false
 }
@@ -1269,16 +1269,16 @@ func (x *Forecast) GetEstimatedMinimumDepartureTime() string {
 	return ""
 }
 
-func (x *Forecast) GetDepartureDelayed() bool {
-	if x != nil && x.DepartureDelayed != nil {
-		return *x.DepartureDelayed
+func (x *Forecast) GetDepartureIsDelayed() bool {
+	if x != nil && x.DepartureIsDelayed != nil {
+		return *x.DepartureIsDelayed
 	}
 	return false
 }
 
-func (x *Forecast) GetDepartureDelayedByUnknownAmount() bool {
-	if x != nil && x.DepartureDelayedByUnknownAmount != nil {
-		return *x.DepartureDelayedByUnknownAmount
+func (x *Forecast) GetDepartureIsDelayedByUnknownAmount() bool {
+	if x != nil && x.DepartureIsDelayedByUnknownAmount != nil {
+		return *x.DepartureIsDelayedByUnknownAmount
 	}
 	return false
 }
@@ -1395,16 +1395,16 @@ func (x *Forecast) GetAffectedBy() string {
 	return ""
 }
 
-func (x *Forecast) GetPlatformSuppressed() bool {
-	if x != nil && x.PlatformSuppressed != nil {
-		return *x.PlatformSuppressed
+func (x *Forecast) GetPlatformIsSuppressed() bool {
+	if x != nil && x.PlatformIsSuppressed != nil {
+		return *x.PlatformIsSuppressed
 	}
 	return false
 }
 
-func (x *Forecast) GetPlatformSuppressedByCis() bool {
-	if x != nil && x.PlatformSuppressedByCis != nil {
-		return *x.PlatformSuppressedByCis
+func (x *Forecast) GetPlatformIsSuppressedByCis() bool {
+	if x != nil && x.PlatformIsSuppressedByCis != nil {
+		return *x.PlatformIsSuppressedByCis
 	}
 	return false
 }
@@ -1416,23 +1416,23 @@ func (x *Forecast) GetPlatformDataSource() PlatformDataSource {
 	return PlatformDataSource_PLATFORM_DATA_SOURCE_UNKNOWN
 }
 
-func (x *Forecast) GetPlatformConfirmed() bool {
-	if x != nil && x.PlatformConfirmed != nil {
-		return *x.PlatformConfirmed
+func (x *Forecast) GetPlatformIsConfirmed() bool {
+	if x != nil && x.PlatformIsConfirmed != nil {
+		return *x.PlatformIsConfirmed
 	}
 	return false
 }
 
-func (x *Forecast) GetServiceSuppressed() bool {
+func (x *Forecast) GetServiceIsSuppressed() bool {
 	if x != nil {
-		return x.ServiceSuppressed
+		return x.ServiceIsSuppressed
 	}
 	return false
 }
 
-func (x *Forecast) GetDetatchesFromFront() bool {
+func (x *Forecast) GetServiceDetatchesFromFront() bool {
 	if x != nil {
-		return x.DetatchesFromFront
+		return x.ServiceDetatchesFromFront
 	}
 	return false
 }
@@ -1451,14 +1451,14 @@ const file_search_proto_rawDesc = "" +
 	"\tfrom_time\x18\x04 \x01(\tR\bfromTime\x12\x17\n" +
 	"\ato_time\x18\x05 \x01(\tR\x06toTimeB\x0e\n" +
 	"\f_location_idB\t\n" +
-	"\a_crs_id\"\x91\x03\n" +
+	"\a_crs_id\"\x96\x03\n" +
 	"\x0eSearchResponse\x12%\n" +
 	"\bschedule\x18\x01 \x01(\v2\t.ScheduleR\bschedule\x12>\n" +
 	"\x11schedule_location\x18\x02 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocation\x12*\n" +
 	"\bforecast\x18\x03 \x01(\v2\t.ForecastH\x00R\bforecast\x88\x01\x01\x12\x1f\n" +
 	"\bplatform\x18\x04 \x01(\tH\x01R\bplatform\x88\x01\x01\x12\x1b\n" +
-	"\x06length\x18\x05 \x01(\rH\x02R\x06length\x88\x01\x01\x12%\n" +
-	"\x0ecircular_route\x18\x06 \x01(\bR\rcircularRoute\x124\n" +
+	"\x06length\x18\x05 \x01(\rH\x02R\x06length\x88\x01\x01\x12*\n" +
+	"\x11is_circular_route\x18\x06 \x01(\bR\x0fisCircularRoute\x124\n" +
 	"\x0eprevious_route\x18\a \x01(\v2\r.ServiceRouteR\rpreviousRoute\x12,\n" +
 	"\n" +
 	"next_route\x18\b \x01(\v2\r.ServiceRouteR\tnextRouteB\v\n" +
@@ -1471,7 +1471,7 @@ const file_search_proto_rawDesc = "" +
 	"\treason_id\x18\x01 \x01(\rR\breasonId\x121\n" +
 	"\x12reason_location_id\x18\x02 \x01(\tH\x00R\x10reasonLocationId\x88\x01\x01\x125\n" +
 	"\x17reason_is_near_location\x18\x03 \x01(\bR\x14reasonIsNearLocationB\x15\n" +
-	"\x13_reason_location_id\"\x81\x06\n" +
+	"\x13_reason_location_id\"\x95\x06\n" +
 	"\bSchedule\x12\x1f\n" +
 	"\vschedule_id\x18\x01 \x01(\tR\n" +
 	"scheduleId\x12\x10\n" +
@@ -1480,19 +1480,19 @@ const file_search_proto_rawDesc = "" +
 	"\x11retail_service_id\x18\x04 \x01(\tH\x00R\x0fretailServiceId\x88\x01\x01\x12\x15\n" +
 	"\x06toc_id\x18\x05 \x01(\tR\x05tocId\x12/\n" +
 	"\fservice_type\x18\x06 \x01(\x0e2\f.ServiceTypeR\vserviceType\x122\n" +
-	"\rcategory_type\x18\a \x01(\x0e2\r.CategoryTypeR\fcategoryType\x12\x1c\n" +
-	"\tpassenger\x18\b \x01(\bR\tpassenger\x12\x16\n" +
-	"\x06active\x18\t \x01(\bR\x06active\x12\x1c\n" +
-	"\tchartered\x18\n" +
-	" \x01(\bR\tchartered\x12-\n" +
-	"\x12schedule_cancelled\x18\v \x01(\bR\x11scheduleCancelled\x12X\n" +
+	"\rcategory_type\x18\a \x01(\x0e2\r.CategoryTypeR\fcategoryType\x12!\n" +
+	"\fis_passenger\x18\b \x01(\bR\visPassenger\x12\x1b\n" +
+	"\tis_active\x18\t \x01(\bR\bisActive\x12!\n" +
+	"\fis_chartered\x18\n" +
+	" \x01(\bR\visChartered\x122\n" +
+	"\x15schedule_is_cancelled\x18\v \x01(\bR\x13scheduleIsCancelled\x12X\n" +
 	"\x1cschedule_cancellation_reason\x18\f \x01(\v2\x11.DisruptionReasonH\x01R\x1ascheduleCancellationReason\x88\x01\x01\x12M\n" +
 	"!schedule_diverted_via_location_id\x18\r \x01(\tH\x02R\x1dscheduleDivertedViaLocationId\x88\x01\x01\x12R\n" +
 	"\x19schedule_diversion_reason\x18\x0e \x01(\v2\x11.DisruptionReasonH\x03R\x17scheduleDiversionReason\x88\x01\x01B\x14\n" +
 	"\x12_retail_service_idB\x1f\n" +
 	"\x1d_schedule_cancellation_reasonB$\n" +
 	"\"_schedule_diverted_via_location_idB\x1c\n" +
-	"\x1a_schedule_diversion_reason\"\xf3\a\n" +
+	"\x1a_schedule_diversion_reason\"\xf8\a\n" +
 	"\x10ScheduleLocation\x12-\n" +
 	"\n" +
 	"activities\x18\x01 \x03(\x0e2\r.ActivityTypeR\n" +
@@ -1506,34 +1506,34 @@ const file_search_proto_rawDesc = "" +
 	"\x1dscheduled_public_arrival_time\x18\b \x01(\tH\x03R\x1ascheduledPublicArrivalTime\x88\x01\x01\x12J\n" +
 	"\x1fscheduled_public_departure_time\x18\t \x01(\tH\x04R\x1cscheduledPublicDepartureTime\x88\x01\x01\x12#\n" +
 	"\rrouting_delay\x18\n" +
-	" \x01(\rR\froutingDelay\x12-\n" +
-	"\x12location_cancelled\x18\v \x01(\bR\x11locationCancelled\x12X\n" +
+	" \x01(\rR\froutingDelay\x122\n" +
+	"\x15location_is_cancelled\x18\v \x01(\bR\x13locationIsCancelled\x12X\n" +
 	"\x1clocation_cancellation_reason\x18\f \x01(\v2\x11.DisruptionReasonH\x05R\x1alocationCancellationReason\x88\x01\x01B!\n" +
 	"\x1f_scheduled_working_arrival_timeB!\n" +
 	"\x1f_scheduled_working_passing_timeB#\n" +
 	"!_scheduled_working_departure_timeB \n" +
 	"\x1e_scheduled_public_arrival_timeB\"\n" +
 	" _scheduled_public_departure_timeB\x1f\n" +
-	"\x1d_location_cancellation_reason\"\xfb\x1b\n" +
-	"\bForecast\x12+\n" +
-	"\x11reverse_formation\x18\x01 \x01(\bR\x10reverseFormation\x12H\n" +
+	"\x1d_location_cancellation_reason\"\xdc\x1c\n" +
+	"\bForecast\x120\n" +
+	"\x14is_reverse_formation\x18\x01 \x01(\bR\x12isReverseFormation\x12H\n" +
 	"\x14schedule_late_reason\x18\x02 \x01(\v2\x11.DisruptionReasonH\x00R\x12scheduleLateReason\x88\x01\x01\x12F\n" +
 	"\x1destimated_public_arrival_time\x18\x03 \x01(\tH\x01R\x1aestimatedPublicArrivalTime\x88\x01\x01\x12H\n" +
 	"\x1eestimated_working_arrival_time\x18\x04 \x01(\tH\x02R\x1bestimatedWorkingArrivalTime\x88\x01\x01\x12H\n" +
-	"\x1eestimated_minimum_arrival_time\x18\x05 \x01(\tH\x03R\x1bestimatedMinimumArrivalTime\x88\x01\x01\x12,\n" +
-	"\x0farrival_delayed\x18\x06 \x01(\bH\x04R\x0earrivalDelayed\x88\x01\x01\x12M\n" +
-	"!arrival_delayed_by_unknown_amount\x18\a \x01(\bH\x05R\x1darrivalDelayedByUnknownAmount\x88\x01\x01\x129\n" +
+	"\x1eestimated_minimum_arrival_time\x18\x05 \x01(\tH\x03R\x1bestimatedMinimumArrivalTime\x88\x01\x01\x121\n" +
+	"\x12arrival_is_delayed\x18\x06 \x01(\bH\x04R\x10arrivalIsDelayed\x88\x01\x01\x12R\n" +
+	"$arrival_is_delayed_by_unknown_amount\x18\a \x01(\bH\x05R\x1farrivalIsDelayedByUnknownAmount\x88\x01\x01\x129\n" +
 	"\x16estimated_passing_time\x18\b \x01(\tH\x06R\x14estimatedPassingTime\x88\x01\x01\x12H\n" +
-	"\x1eestimated_minimum_passing_time\x18\t \x01(\tH\aR\x1bestimatedMinimumPassingTime\x88\x01\x01\x12,\n" +
-	"\x0fpassing_delayed\x18\n" +
-	" \x01(\bH\bR\x0epassingDelayed\x88\x01\x01\x12M\n" +
-	"!passing_delayed_by_unknown_amount\x18\v \x01(\bH\tR\x1dpassingDelayedByUnknownAmount\x88\x01\x01\x12J\n" +
+	"\x1eestimated_minimum_passing_time\x18\t \x01(\tH\aR\x1bestimatedMinimumPassingTime\x88\x01\x01\x121\n" +
+	"\x12passing_is_delayed\x18\n" +
+	" \x01(\bH\bR\x10passingIsDelayed\x88\x01\x01\x12R\n" +
+	"$passing_is_delayed_by_unknown_amount\x18\v \x01(\bH\tR\x1fpassingIsDelayedByUnknownAmount\x88\x01\x01\x12J\n" +
 	"\x1festimated_public_departure_time\x18\f \x01(\tH\n" +
 	"R\x1cestimatedPublicDepartureTime\x88\x01\x01\x12L\n" +
 	" estimated_working_departure_time\x18\r \x01(\tH\vR\x1destimatedWorkingDepartureTime\x88\x01\x01\x12L\n" +
-	" estimated_minimum_departure_time\x18\x0e \x01(\tH\fR\x1destimatedMinimumDepartureTime\x88\x01\x01\x120\n" +
-	"\x11departure_delayed\x18\x0f \x01(\bH\rR\x10departureDelayed\x88\x01\x01\x12Q\n" +
-	"#departure_delayed_by_unknown_amount\x18\x10 \x01(\bH\x0eR\x1fdepartureDelayedByUnknownAmount\x88\x01\x01\x123\n" +
+	" estimated_minimum_departure_time\x18\x0e \x01(\tH\fR\x1destimatedMinimumDepartureTime\x88\x01\x01\x125\n" +
+	"\x14departure_is_delayed\x18\x0f \x01(\bH\rR\x12departureIsDelayed\x88\x01\x01\x12V\n" +
+	"&departure_is_delayed_by_unknown_amount\x18\x10 \x01(\bH\x0eR!departureIsDelayedByUnknownAmount\x88\x01\x01\x123\n" +
 	"\x13actual_arrival_time\x18\x11 \x01(\tH\x0fR\x11actualArrivalTime\x88\x01\x01\x12>\n" +
 	"\x19actual_arrival_data_class\x18\x12 \x01(\tH\x10R\x16actualArrivalDataClass\x88\x01\x01\x12@\n" +
 	"\x1aactual_arrival_data_source\x18\x13 \x01(\tH\x11R\x17actualArrivalDataSource\x88\x01\x01\x12M\n" +
@@ -1550,28 +1550,28 @@ const file_search_proto_rawDesc = "" +
 	"\x18location_disruption_risk\x18\x1e \x01(\tH\x1cR\x16locationDisruptionRisk\x88\x01\x01\x12]\n" +
 	"\x1flocation_disruption_risk_reason\x18\x1f \x01(\v2\x11.DisruptionReasonH\x1dR\x1clocationDisruptionRiskReason\x88\x01\x01\x12$\n" +
 	"\vaffected_by\x18  \x01(\tH\x1eR\n" +
-	"affectedBy\x88\x01\x01\x124\n" +
-	"\x13platform_suppressed\x18! \x01(\bH\x1fR\x12platformSuppressed\x88\x01\x01\x12@\n" +
-	"\x1aplatform_suppressed_by_cis\x18\" \x01(\bH R\x17platformSuppressedByCis\x88\x01\x01\x12J\n" +
-	"\x14platform_data_source\x18# \x01(\x0e2\x13.PlatformDataSourceH!R\x12platformDataSource\x88\x01\x01\x122\n" +
-	"\x12platform_confirmed\x18$ \x01(\bH\"R\x11platformConfirmed\x88\x01\x01\x12-\n" +
-	"\x12service_suppressed\x18% \x01(\bR\x11serviceSuppressed\x120\n" +
-	"\x14detatches_from_front\x18& \x01(\bR\x12detatchesFromFrontB\x17\n" +
+	"affectedBy\x88\x01\x01\x129\n" +
+	"\x16platform_is_suppressed\x18! \x01(\bH\x1fR\x14platformIsSuppressed\x88\x01\x01\x12E\n" +
+	"\x1dplatform_is_suppressed_by_cis\x18\" \x01(\bH R\x19platformIsSuppressedByCis\x88\x01\x01\x12J\n" +
+	"\x14platform_data_source\x18# \x01(\x0e2\x13.PlatformDataSourceH!R\x12platformDataSource\x88\x01\x01\x127\n" +
+	"\x15platform_is_confirmed\x18$ \x01(\bH\"R\x13platformIsConfirmed\x88\x01\x01\x122\n" +
+	"\x15service_is_suppressed\x18% \x01(\bR\x13serviceIsSuppressed\x12?\n" +
+	"\x1cservice_detatches_from_front\x18& \x01(\bR\x19serviceDetatchesFromFrontB\x17\n" +
 	"\x15_schedule_late_reasonB \n" +
 	"\x1e_estimated_public_arrival_timeB!\n" +
 	"\x1f_estimated_working_arrival_timeB!\n" +
-	"\x1f_estimated_minimum_arrival_timeB\x12\n" +
-	"\x10_arrival_delayedB$\n" +
-	"\"_arrival_delayed_by_unknown_amountB\x19\n" +
+	"\x1f_estimated_minimum_arrival_timeB\x15\n" +
+	"\x13_arrival_is_delayedB'\n" +
+	"%_arrival_is_delayed_by_unknown_amountB\x19\n" +
 	"\x17_estimated_passing_timeB!\n" +
-	"\x1f_estimated_minimum_passing_timeB\x12\n" +
-	"\x10_passing_delayedB$\n" +
-	"\"_passing_delayed_by_unknown_amountB\"\n" +
+	"\x1f_estimated_minimum_passing_timeB\x15\n" +
+	"\x13_passing_is_delayedB'\n" +
+	"%_passing_is_delayed_by_unknown_amountB\"\n" +
 	" _estimated_public_departure_timeB#\n" +
 	"!_estimated_working_departure_timeB#\n" +
-	"!_estimated_minimum_departure_timeB\x14\n" +
-	"\x12_departure_delayedB&\n" +
-	"$_departure_delayed_by_unknown_amountB\x16\n" +
+	"!_estimated_minimum_departure_timeB\x17\n" +
+	"\x15_departure_is_delayedB)\n" +
+	"'_departure_is_delayed_by_unknown_amountB\x16\n" +
 	"\x14_actual_arrival_timeB\x1c\n" +
 	"\x1a_actual_arrival_data_classB\x1d\n" +
 	"\x1b_actual_arrival_data_sourceB$\n" +
@@ -1587,11 +1587,11 @@ const file_search_proto_rawDesc = "" +
 	"\x15_location_late_reasonB\x1b\n" +
 	"\x19_location_disruption_riskB\"\n" +
 	" _location_disruption_risk_reasonB\x0e\n" +
-	"\f_affected_byB\x16\n" +
-	"\x14_platform_suppressedB\x1d\n" +
-	"\x1b_platform_suppressed_by_cisB\x17\n" +
-	"\x15_platform_data_sourceB\x15\n" +
-	"\x13_platform_confirmed*\xd5\x02\n" +
+	"\f_affected_byB\x19\n" +
+	"\x17_platform_is_suppressedB \n" +
+	"\x1e_platform_is_suppressed_by_cisB\x17\n" +
+	"\x15_platform_data_sourceB\x18\n" +
+	"\x16_platform_is_confirmed*\xd5\x02\n" +
 	"\n" +
 	"SearchType\x12\x1b\n" +
 	"\x17SEARCH_TYPE_RETURN_NONE\x10\x00\x12!\n" +
