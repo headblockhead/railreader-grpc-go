@@ -24,7 +24,7 @@ const (
 type SearchType int32
 
 const (
-	SearchType_SEARCH_TYPE_RETURN_NONE                                SearchType = 0
+	SearchType_SEARCH_TYPE_RETURN_UNSPECIFIED                         SearchType = 0
 	SearchType_SEARCH_TYPE_RETURN_DEPARTURES                          SearchType = 1
 	SearchType_SEARCH_TYPE_RETURN_PASSING                             SearchType = 2
 	SearchType_SEARCH_TYPE_RETURN_PASSING_AND_DEPARTURES              SearchType = 3
@@ -37,7 +37,7 @@ const (
 // Enum value maps for SearchType.
 var (
 	SearchType_name = map[int32]string{
-		0: "SEARCH_TYPE_RETURN_NONE",
+		0: "SEARCH_TYPE_RETURN_UNSPECIFIED",
 		1: "SEARCH_TYPE_RETURN_DEPARTURES",
 		2: "SEARCH_TYPE_RETURN_PASSING",
 		3: "SEARCH_TYPE_RETURN_PASSING_AND_DEPARTURES",
@@ -47,7 +47,7 @@ var (
 		7: "SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING_AND_DEPARTURES",
 	}
 	SearchType_value = map[string]int32{
-		"SEARCH_TYPE_RETURN_NONE":                                0,
+		"SEARCH_TYPE_RETURN_UNSPECIFIED":                         0,
 		"SEARCH_TYPE_RETURN_DEPARTURES":                          1,
 		"SEARCH_TYPE_RETURN_PASSING":                             2,
 		"SEARCH_TYPE_RETURN_PASSING_AND_DEPARTURES":              3,
@@ -88,37 +88,37 @@ func (SearchType) EnumDescriptor() ([]byte, []int) {
 type LocationType int32
 
 const (
-	LocationType_LOCATION_TYPE_UNKNOWN                  LocationType = 0
-	LocationType_LOCATION_TYPE_ORIGIN                   LocationType = 1
-	LocationType_LOCATION_TYPE_OPERATIONAL_ORIGIN       LocationType = 2
-	LocationType_LOCATION_TYPE_INTERMEDIATE             LocationType = 3
-	LocationType_LOCATION_TYPE_OPERATIONAL_INTERMEDIATE LocationType = 4
-	LocationType_LOCATION_TYPE_INTERMEDIATE_PASSING     LocationType = 5
-	LocationType_LOCATION_TYPE_DESTINATION              LocationType = 6
-	LocationType_LOCATION_TYPE_OPERATIONAL_DESTINATION  LocationType = 7
+	LocationType_LOCATION_TYPE_SCHEDULE_UNKNOWN                  LocationType = 0
+	LocationType_LOCATION_TYPE_SCHEDULE_ORIGIN                   LocationType = 1
+	LocationType_LOCATION_TYPE_SCHEDULE_OPERATIONAL_ORIGIN       LocationType = 2
+	LocationType_LOCATION_TYPE_SCHEDULE_INTERMEDIATE             LocationType = 3
+	LocationType_LOCATION_TYPE_SCHEDULE_OPERATIONAL_INTERMEDIATE LocationType = 4
+	LocationType_LOCATION_TYPE_SCHEDULE_INTERMEDIATE_PASSING     LocationType = 5
+	LocationType_LOCATION_TYPE_SCHEDULE_DESTINATION              LocationType = 6
+	LocationType_LOCATION_TYPE_SCHEDULE_OPERATIONAL_DESTINATION  LocationType = 7
 )
 
 // Enum value maps for LocationType.
 var (
 	LocationType_name = map[int32]string{
-		0: "LOCATION_TYPE_UNKNOWN",
-		1: "LOCATION_TYPE_ORIGIN",
-		2: "LOCATION_TYPE_OPERATIONAL_ORIGIN",
-		3: "LOCATION_TYPE_INTERMEDIATE",
-		4: "LOCATION_TYPE_OPERATIONAL_INTERMEDIATE",
-		5: "LOCATION_TYPE_INTERMEDIATE_PASSING",
-		6: "LOCATION_TYPE_DESTINATION",
-		7: "LOCATION_TYPE_OPERATIONAL_DESTINATION",
+		0: "LOCATION_TYPE_SCHEDULE_UNKNOWN",
+		1: "LOCATION_TYPE_SCHEDULE_ORIGIN",
+		2: "LOCATION_TYPE_SCHEDULE_OPERATIONAL_ORIGIN",
+		3: "LOCATION_TYPE_SCHEDULE_INTERMEDIATE",
+		4: "LOCATION_TYPE_SCHEDULE_OPERATIONAL_INTERMEDIATE",
+		5: "LOCATION_TYPE_SCHEDULE_INTERMEDIATE_PASSING",
+		6: "LOCATION_TYPE_SCHEDULE_DESTINATION",
+		7: "LOCATION_TYPE_SCHEDULE_OPERATIONAL_DESTINATION",
 	}
 	LocationType_value = map[string]int32{
-		"LOCATION_TYPE_UNKNOWN":                  0,
-		"LOCATION_TYPE_ORIGIN":                   1,
-		"LOCATION_TYPE_OPERATIONAL_ORIGIN":       2,
-		"LOCATION_TYPE_INTERMEDIATE":             3,
-		"LOCATION_TYPE_OPERATIONAL_INTERMEDIATE": 4,
-		"LOCATION_TYPE_INTERMEDIATE_PASSING":     5,
-		"LOCATION_TYPE_DESTINATION":              6,
-		"LOCATION_TYPE_OPERATIONAL_DESTINATION":  7,
+		"LOCATION_TYPE_SCHEDULE_UNKNOWN":                  0,
+		"LOCATION_TYPE_SCHEDULE_ORIGIN":                   1,
+		"LOCATION_TYPE_SCHEDULE_OPERATIONAL_ORIGIN":       2,
+		"LOCATION_TYPE_SCHEDULE_INTERMEDIATE":             3,
+		"LOCATION_TYPE_SCHEDULE_OPERATIONAL_INTERMEDIATE": 4,
+		"LOCATION_TYPE_SCHEDULE_INTERMEDIATE_PASSING":     5,
+		"LOCATION_TYPE_SCHEDULE_DESTINATION":              6,
+		"LOCATION_TYPE_SCHEDULE_OPERATIONAL_DESTINATION":  7,
 	}
 )
 
@@ -246,7 +246,7 @@ func (x *SearchRequest) GetSearchType() SearchType {
 	if x != nil {
 		return x.SearchType
 	}
-	return SearchType_SEARCH_TYPE_RETURN_NONE
+	return SearchType_SEARCH_TYPE_RETURN_UNSPECIFIED
 }
 
 func (x *SearchRequest) GetLocationId() string {
@@ -732,7 +732,7 @@ func (x *ScheduleLocation) GetLocationType() LocationType {
 	if x != nil {
 		return x.LocationType
 	}
-	return LocationType_LOCATION_TYPE_UNKNOWN
+	return LocationType_LOCATION_TYPE_SCHEDULE_UNKNOWN
 }
 
 func (x *ScheduleLocation) GetScheduledWorkingArrivalTime() string {
@@ -1285,26 +1285,26 @@ const file_search_proto_rawDesc = "" +
 	"\x17_platform_is_suppressedB \n" +
 	"\x1e_platform_is_suppressed_by_cisB\x17\n" +
 	"\x15_platform_data_sourceB\x18\n" +
-	"\x16_platform_is_confirmed*\xd5\x02\n" +
+	"\x16_platform_is_confirmed*\xdc\x02\n" +
 	"\n" +
-	"SearchType\x12\x1b\n" +
-	"\x17SEARCH_TYPE_RETURN_NONE\x10\x00\x12!\n" +
+	"SearchType\x12\"\n" +
+	"\x1eSEARCH_TYPE_RETURN_UNSPECIFIED\x10\x00\x12!\n" +
 	"\x1dSEARCH_TYPE_RETURN_DEPARTURES\x10\x01\x12\x1e\n" +
 	"\x1aSEARCH_TYPE_RETURN_PASSING\x10\x02\x12-\n" +
 	")SEARCH_TYPE_RETURN_PASSING_AND_DEPARTURES\x10\x03\x12\x1f\n" +
 	"\x1bSEARCH_TYPE_RETURN_ARRIVALS\x10\x04\x12.\n" +
 	"*SEARCH_TYPE_RETURN_ARRIVALS_AND_DEPARTURES\x10\x05\x12+\n" +
 	"'SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING\x10\x06\x12:\n" +
-	"6SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING_AND_DEPARTURES\x10\a*\xa7\x02\n" +
-	"\fLocationType\x12\x19\n" +
-	"\x15LOCATION_TYPE_UNKNOWN\x10\x00\x12\x18\n" +
-	"\x14LOCATION_TYPE_ORIGIN\x10\x01\x12$\n" +
-	" LOCATION_TYPE_OPERATIONAL_ORIGIN\x10\x02\x12\x1e\n" +
-	"\x1aLOCATION_TYPE_INTERMEDIATE\x10\x03\x12*\n" +
-	"&LOCATION_TYPE_OPERATIONAL_INTERMEDIATE\x10\x04\x12&\n" +
-	"\"LOCATION_TYPE_INTERMEDIATE_PASSING\x10\x05\x12\x1d\n" +
-	"\x19LOCATION_TYPE_DESTINATION\x10\x06\x12)\n" +
-	"%LOCATION_TYPE_OPERATIONAL_DESTINATION\x10\a*\x9d\x01\n" +
+	"6SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING_AND_DEPARTURES\x10\a*\xef\x02\n" +
+	"\fLocationType\x12\"\n" +
+	"\x1eLOCATION_TYPE_SCHEDULE_UNKNOWN\x10\x00\x12!\n" +
+	"\x1dLOCATION_TYPE_SCHEDULE_ORIGIN\x10\x01\x12-\n" +
+	")LOCATION_TYPE_SCHEDULE_OPERATIONAL_ORIGIN\x10\x02\x12'\n" +
+	"#LOCATION_TYPE_SCHEDULE_INTERMEDIATE\x10\x03\x123\n" +
+	"/LOCATION_TYPE_SCHEDULE_OPERATIONAL_INTERMEDIATE\x10\x04\x12/\n" +
+	"+LOCATION_TYPE_SCHEDULE_INTERMEDIATE_PASSING\x10\x05\x12&\n" +
+	"\"LOCATION_TYPE_SCHEDULE_DESTINATION\x10\x06\x122\n" +
+	".LOCATION_TYPE_SCHEDULE_OPERATIONAL_DESTINATION\x10\a*\x9d\x01\n" +
 	"\x12PlatformDataSource\x12 \n" +
 	"\x1cPLATFORM_DATA_SOURCE_UNKNOWN\x10\x00\x12 \n" +
 	"\x1cPLATFORM_DATA_SOURCE_PLANNED\x10\x01\x12\"\n" +
