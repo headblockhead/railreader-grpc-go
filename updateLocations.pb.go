@@ -21,12 +21,11 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// To get changes to the locations list from the start of availiable data, call without including a from_reference_file_id.
 type UpdateLocationsRequest struct {
-	state               protoimpl.MessageState `protogen:"open.v1"`
-	FromReferenceFileId *string                `protobuf:"bytes,1,opt,name=from_reference_file_id,json=fromReferenceFileId,proto3,oneof" json:"from_reference_file_id,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"open.v1"`
+	CurrentReferenceFileId *string                `protobuf:"bytes,1,opt,name=current_reference_file_id,json=currentReferenceFileId,proto3,oneof" json:"current_reference_file_id,omitempty"` // If not specified, all updates will be returned.
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *UpdateLocationsRequest) Reset() {
@@ -59,19 +58,19 @@ func (*UpdateLocationsRequest) Descriptor() ([]byte, []int) {
 	return file_updateLocations_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *UpdateLocationsRequest) GetFromReferenceFileId() string {
-	if x != nil && x.FromReferenceFileId != nil {
-		return *x.FromReferenceFileId
+func (x *UpdateLocationsRequest) GetCurrentReferenceFileId() string {
+	if x != nil && x.CurrentReferenceFileId != nil {
+		return *x.CurrentReferenceFileId
 	}
 	return ""
 }
 
 type UpdateLocationsResponse struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	ToReferenceFileId string                 `protobuf:"bytes,1,opt,name=to_reference_file_id,json=toReferenceFileId,proto3" json:"to_reference_file_id,omitempty"` // The lastest reference_file_id equivalent you will have after applying all updates.
-	Updates           []*LocationUpdate      `protobuf:"bytes,2,rep,name=updates,proto3" json:"updates,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	Updates            []*LocationUpdate      `protobuf:"bytes,1,rep,name=updates,proto3" json:"updates,omitempty"`                                                     // All (if any) updates between the current_reference_file_id in UpdateLocationsRequest and the new_reference_file_id in this response.
+	NewReferenceFileId string                 `protobuf:"bytes,2,opt,name=new_reference_file_id,json=newReferenceFileId,proto3" json:"new_reference_file_id,omitempty"` // The lastest reference_file_id equivalent you will have after applying all updates.
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *UpdateLocationsResponse) Reset() {
@@ -104,13 +103,6 @@ func (*UpdateLocationsResponse) Descriptor() ([]byte, []int) {
 	return file_updateLocations_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *UpdateLocationsResponse) GetToReferenceFileId() string {
-	if x != nil {
-		return x.ToReferenceFileId
-	}
-	return ""
-}
-
 func (x *UpdateLocationsResponse) GetUpdates() []*LocationUpdate {
 	if x != nil {
 		return x.Updates
@@ -118,14 +110,23 @@ func (x *UpdateLocationsResponse) GetUpdates() []*LocationUpdate {
 	return nil
 }
 
+func (x *UpdateLocationsResponse) GetNewReferenceFileId() string {
+	if x != nil {
+		return x.NewReferenceFileId
+	}
+	return ""
+}
+
+// An update made to a location at a point in time.
+// Provides the new state for a given location_id, and the reference_file_id at which this change occurred.
 type LocationUpdate struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	ReferenceFileId string                 `protobuf:"bytes,6,opt,name=reference_file_id,json=referenceFileId,proto3" json:"reference_file_id,omitempty"` // The reference_file_id at which this change occurred.
-	LocationId      string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
-	IsDeleted       bool                   `protobuf:"varint,5,opt,name=is_deleted,json=isDeleted,proto3" json:"is_deleted,omitempty"`
-	CrsId           *string                `protobuf:"bytes,2,opt,name=crs_id,json=crsId,proto3,oneof" json:"crs_id,omitempty"`
-	TocId           *string                `protobuf:"bytes,3,opt,name=toc_id,json=tocId,proto3,oneof" json:"toc_id,omitempty"`
-	Name            string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	LocationId      string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`                  // The location_id affected
+	ReferenceFileId string                 `protobuf:"bytes,2,opt,name=reference_file_id,json=referenceFileId,proto3" json:"reference_file_id,omitempty"` // The reference_file_id at which this change occurred.
+	IsDeleted       bool                   `protobuf:"varint,3,opt,name=is_deleted,json=isDeleted,proto3" json:"is_deleted,omitempty"`
+	CrsId           *string                `protobuf:"bytes,4,opt,name=crs_id,json=crsId,proto3,oneof" json:"crs_id,omitempty"`
+	TocId           *string                `protobuf:"bytes,5,opt,name=toc_id,json=tocId,proto3,oneof" json:"toc_id,omitempty"`
+	Name            string                 `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -160,16 +161,16 @@ func (*LocationUpdate) Descriptor() ([]byte, []int) {
 	return file_updateLocations_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *LocationUpdate) GetReferenceFileId() string {
+func (x *LocationUpdate) GetLocationId() string {
 	if x != nil {
-		return x.ReferenceFileId
+		return x.LocationId
 	}
 	return ""
 }
 
-func (x *LocationUpdate) GetLocationId() string {
+func (x *LocationUpdate) GetReferenceFileId() string {
 	if x != nil {
-		return x.LocationId
+		return x.ReferenceFileId
 	}
 	return ""
 }
@@ -206,22 +207,22 @@ var File_updateLocations_proto protoreflect.FileDescriptor
 
 const file_updateLocations_proto_rawDesc = "" +
 	"\n" +
-	"\x15updateLocations.proto\"m\n" +
-	"\x16UpdateLocationsRequest\x128\n" +
-	"\x16from_reference_file_id\x18\x01 \x01(\tH\x00R\x13fromReferenceFileId\x88\x01\x01B\x19\n" +
-	"\x17_from_reference_file_id\"u\n" +
-	"\x17UpdateLocationsResponse\x12/\n" +
-	"\x14to_reference_file_id\x18\x01 \x01(\tR\x11toReferenceFileId\x12)\n" +
-	"\aupdates\x18\x02 \x03(\v2\x0f.LocationUpdateR\aupdates\"\xde\x01\n" +
-	"\x0eLocationUpdate\x12*\n" +
-	"\x11reference_file_id\x18\x06 \x01(\tR\x0freferenceFileId\x12\x1f\n" +
+	"\x15updateLocations.proto\"v\n" +
+	"\x16UpdateLocationsRequest\x12>\n" +
+	"\x19current_reference_file_id\x18\x01 \x01(\tH\x00R\x16currentReferenceFileId\x88\x01\x01B\x1c\n" +
+	"\x1a_current_reference_file_id\"w\n" +
+	"\x17UpdateLocationsResponse\x12)\n" +
+	"\aupdates\x18\x01 \x03(\v2\x0f.LocationUpdateR\aupdates\x121\n" +
+	"\x15new_reference_file_id\x18\x02 \x01(\tR\x12newReferenceFileId\"\xde\x01\n" +
+	"\x0eLocationUpdate\x12\x1f\n" +
 	"\vlocation_id\x18\x01 \x01(\tR\n" +
-	"locationId\x12\x1d\n" +
+	"locationId\x12*\n" +
+	"\x11reference_file_id\x18\x02 \x01(\tR\x0freferenceFileId\x12\x1d\n" +
 	"\n" +
-	"is_deleted\x18\x05 \x01(\bR\tisDeleted\x12\x1a\n" +
-	"\x06crs_id\x18\x02 \x01(\tH\x00R\x05crsId\x88\x01\x01\x12\x1a\n" +
-	"\x06toc_id\x18\x03 \x01(\tH\x01R\x05tocId\x88\x01\x01\x12\x12\n" +
-	"\x04name\x18\x04 \x01(\tR\x04nameB\t\n" +
+	"is_deleted\x18\x03 \x01(\bR\tisDeleted\x12\x1a\n" +
+	"\x06crs_id\x18\x04 \x01(\tH\x00R\x05crsId\x88\x01\x01\x12\x1a\n" +
+	"\x06toc_id\x18\x05 \x01(\tH\x01R\x05tocId\x88\x01\x01\x12\x12\n" +
+	"\x04name\x18\x06 \x01(\tR\x04nameB\t\n" +
 	"\a_crs_idB\t\n" +
 	"\a_toc_idB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 

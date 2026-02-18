@@ -21,193 +21,128 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type SearchType int32
+type ScheduleLocation_LocationType int32
 
 const (
-	SearchType_SEARCH_TYPE_RETURN_UNSPECIFIED                         SearchType = 0
-	SearchType_SEARCH_TYPE_RETURN_DEPARTURES                          SearchType = 1
-	SearchType_SEARCH_TYPE_RETURN_PASSING                             SearchType = 2
-	SearchType_SEARCH_TYPE_RETURN_PASSING_AND_DEPARTURES              SearchType = 3
-	SearchType_SEARCH_TYPE_RETURN_ARRIVALS                            SearchType = 4
-	SearchType_SEARCH_TYPE_RETURN_ARRIVALS_AND_DEPARTURES             SearchType = 5
-	SearchType_SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING                SearchType = 6
-	SearchType_SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING_AND_DEPARTURES SearchType = 7
+	ScheduleLocation_LOCATION_TYPE_LOCATION_UNKNOWN                  ScheduleLocation_LocationType = 0
+	ScheduleLocation_LOCATION_TYPE_LOCATION_ORIGIN                   ScheduleLocation_LocationType = 1
+	ScheduleLocation_LOCATION_TYPE_LOCATION_OPERATIONAL_ORIGIN       ScheduleLocation_LocationType = 2
+	ScheduleLocation_LOCATION_TYPE_LOCATION_INTERMEDIATE             ScheduleLocation_LocationType = 3
+	ScheduleLocation_LOCATION_TYPE_LOCATION_OPERATIONAL_INTERMEDIATE ScheduleLocation_LocationType = 4
+	ScheduleLocation_LOCATION_TYPE_LOCATION_INTERMEDIATE_PASSING     ScheduleLocation_LocationType = 5
+	ScheduleLocation_LOCATION_TYPE_LOCATION_DESTINATION              ScheduleLocation_LocationType = 6
+	ScheduleLocation_LOCATION_TYPE_LOCATION_OPERATIONAL_DESTINATION  ScheduleLocation_LocationType = 7
 )
 
-// Enum value maps for SearchType.
+// Enum value maps for ScheduleLocation_LocationType.
 var (
-	SearchType_name = map[int32]string{
-		0: "SEARCH_TYPE_RETURN_UNSPECIFIED",
-		1: "SEARCH_TYPE_RETURN_DEPARTURES",
-		2: "SEARCH_TYPE_RETURN_PASSING",
-		3: "SEARCH_TYPE_RETURN_PASSING_AND_DEPARTURES",
-		4: "SEARCH_TYPE_RETURN_ARRIVALS",
-		5: "SEARCH_TYPE_RETURN_ARRIVALS_AND_DEPARTURES",
-		6: "SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING",
-		7: "SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING_AND_DEPARTURES",
+	ScheduleLocation_LocationType_name = map[int32]string{
+		0: "LOCATION_TYPE_LOCATION_UNKNOWN",
+		1: "LOCATION_TYPE_LOCATION_ORIGIN",
+		2: "LOCATION_TYPE_LOCATION_OPERATIONAL_ORIGIN",
+		3: "LOCATION_TYPE_LOCATION_INTERMEDIATE",
+		4: "LOCATION_TYPE_LOCATION_OPERATIONAL_INTERMEDIATE",
+		5: "LOCATION_TYPE_LOCATION_INTERMEDIATE_PASSING",
+		6: "LOCATION_TYPE_LOCATION_DESTINATION",
+		7: "LOCATION_TYPE_LOCATION_OPERATIONAL_DESTINATION",
 	}
-	SearchType_value = map[string]int32{
-		"SEARCH_TYPE_RETURN_UNSPECIFIED":                         0,
-		"SEARCH_TYPE_RETURN_DEPARTURES":                          1,
-		"SEARCH_TYPE_RETURN_PASSING":                             2,
-		"SEARCH_TYPE_RETURN_PASSING_AND_DEPARTURES":              3,
-		"SEARCH_TYPE_RETURN_ARRIVALS":                            4,
-		"SEARCH_TYPE_RETURN_ARRIVALS_AND_DEPARTURES":             5,
-		"SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING":                6,
-		"SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING_AND_DEPARTURES": 7,
+	ScheduleLocation_LocationType_value = map[string]int32{
+		"LOCATION_TYPE_LOCATION_UNKNOWN":                  0,
+		"LOCATION_TYPE_LOCATION_ORIGIN":                   1,
+		"LOCATION_TYPE_LOCATION_OPERATIONAL_ORIGIN":       2,
+		"LOCATION_TYPE_LOCATION_INTERMEDIATE":             3,
+		"LOCATION_TYPE_LOCATION_OPERATIONAL_INTERMEDIATE": 4,
+		"LOCATION_TYPE_LOCATION_INTERMEDIATE_PASSING":     5,
+		"LOCATION_TYPE_LOCATION_DESTINATION":              6,
+		"LOCATION_TYPE_LOCATION_OPERATIONAL_DESTINATION":  7,
 	}
 )
 
-func (x SearchType) Enum() *SearchType {
-	p := new(SearchType)
+func (x ScheduleLocation_LocationType) Enum() *ScheduleLocation_LocationType {
+	p := new(ScheduleLocation_LocationType)
 	*p = x
 	return p
 }
 
-func (x SearchType) String() string {
+func (x ScheduleLocation_LocationType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (SearchType) Descriptor() protoreflect.EnumDescriptor {
+func (ScheduleLocation_LocationType) Descriptor() protoreflect.EnumDescriptor {
 	return file_search_proto_enumTypes[0].Descriptor()
 }
 
-func (SearchType) Type() protoreflect.EnumType {
+func (ScheduleLocation_LocationType) Type() protoreflect.EnumType {
 	return &file_search_proto_enumTypes[0]
 }
 
-func (x SearchType) Number() protoreflect.EnumNumber {
+func (x ScheduleLocation_LocationType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use SearchType.Descriptor instead.
-func (SearchType) EnumDescriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use ScheduleLocation_LocationType.Descriptor instead.
+func (ScheduleLocation_LocationType) EnumDescriptor() ([]byte, []int) {
+	return file_search_proto_rawDescGZIP(), []int{5, 0}
 }
 
-type LocationType int32
+type Forecast_PlatformDataSource int32
 
 const (
-	LocationType_LOCATION_TYPE_SCHEDULE_UNKNOWN                  LocationType = 0
-	LocationType_LOCATION_TYPE_SCHEDULE_ORIGIN                   LocationType = 1
-	LocationType_LOCATION_TYPE_SCHEDULE_OPERATIONAL_ORIGIN       LocationType = 2
-	LocationType_LOCATION_TYPE_SCHEDULE_INTERMEDIATE             LocationType = 3
-	LocationType_LOCATION_TYPE_SCHEDULE_OPERATIONAL_INTERMEDIATE LocationType = 4
-	LocationType_LOCATION_TYPE_SCHEDULE_INTERMEDIATE_PASSING     LocationType = 5
-	LocationType_LOCATION_TYPE_SCHEDULE_DESTINATION              LocationType = 6
-	LocationType_LOCATION_TYPE_SCHEDULE_OPERATIONAL_DESTINATION  LocationType = 7
+	Forecast_PLATFORM_DATA_SOURCE_PLATFORM_UNKNOWN   Forecast_PlatformDataSource = 0
+	Forecast_PLATFORM_DATA_SOURCE_PLATFORM_PLANNED   Forecast_PlatformDataSource = 1
+	Forecast_PLATFORM_DATA_SOURCE_PLATFORM_AUTOMATIC Forecast_PlatformDataSource = 2
+	Forecast_PLATFORM_DATA_SOURCE_PLATFORM_MANUAL    Forecast_PlatformDataSource = 3
 )
 
-// Enum value maps for LocationType.
+// Enum value maps for Forecast_PlatformDataSource.
 var (
-	LocationType_name = map[int32]string{
-		0: "LOCATION_TYPE_SCHEDULE_UNKNOWN",
-		1: "LOCATION_TYPE_SCHEDULE_ORIGIN",
-		2: "LOCATION_TYPE_SCHEDULE_OPERATIONAL_ORIGIN",
-		3: "LOCATION_TYPE_SCHEDULE_INTERMEDIATE",
-		4: "LOCATION_TYPE_SCHEDULE_OPERATIONAL_INTERMEDIATE",
-		5: "LOCATION_TYPE_SCHEDULE_INTERMEDIATE_PASSING",
-		6: "LOCATION_TYPE_SCHEDULE_DESTINATION",
-		7: "LOCATION_TYPE_SCHEDULE_OPERATIONAL_DESTINATION",
+	Forecast_PlatformDataSource_name = map[int32]string{
+		0: "PLATFORM_DATA_SOURCE_PLATFORM_UNKNOWN",
+		1: "PLATFORM_DATA_SOURCE_PLATFORM_PLANNED",
+		2: "PLATFORM_DATA_SOURCE_PLATFORM_AUTOMATIC",
+		3: "PLATFORM_DATA_SOURCE_PLATFORM_MANUAL",
 	}
-	LocationType_value = map[string]int32{
-		"LOCATION_TYPE_SCHEDULE_UNKNOWN":                  0,
-		"LOCATION_TYPE_SCHEDULE_ORIGIN":                   1,
-		"LOCATION_TYPE_SCHEDULE_OPERATIONAL_ORIGIN":       2,
-		"LOCATION_TYPE_SCHEDULE_INTERMEDIATE":             3,
-		"LOCATION_TYPE_SCHEDULE_OPERATIONAL_INTERMEDIATE": 4,
-		"LOCATION_TYPE_SCHEDULE_INTERMEDIATE_PASSING":     5,
-		"LOCATION_TYPE_SCHEDULE_DESTINATION":              6,
-		"LOCATION_TYPE_SCHEDULE_OPERATIONAL_DESTINATION":  7,
+	Forecast_PlatformDataSource_value = map[string]int32{
+		"PLATFORM_DATA_SOURCE_PLATFORM_UNKNOWN":   0,
+		"PLATFORM_DATA_SOURCE_PLATFORM_PLANNED":   1,
+		"PLATFORM_DATA_SOURCE_PLATFORM_AUTOMATIC": 2,
+		"PLATFORM_DATA_SOURCE_PLATFORM_MANUAL":    3,
 	}
 )
 
-func (x LocationType) Enum() *LocationType {
-	p := new(LocationType)
+func (x Forecast_PlatformDataSource) Enum() *Forecast_PlatformDataSource {
+	p := new(Forecast_PlatformDataSource)
 	*p = x
 	return p
 }
 
-func (x LocationType) String() string {
+func (x Forecast_PlatformDataSource) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (LocationType) Descriptor() protoreflect.EnumDescriptor {
+func (Forecast_PlatformDataSource) Descriptor() protoreflect.EnumDescriptor {
 	return file_search_proto_enumTypes[1].Descriptor()
 }
 
-func (LocationType) Type() protoreflect.EnumType {
+func (Forecast_PlatformDataSource) Type() protoreflect.EnumType {
 	return &file_search_proto_enumTypes[1]
 }
 
-func (x LocationType) Number() protoreflect.EnumNumber {
+func (x Forecast_PlatformDataSource) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use LocationType.Descriptor instead.
-func (LocationType) EnumDescriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{1}
+// Deprecated: Use Forecast_PlatformDataSource.Descriptor instead.
+func (Forecast_PlatformDataSource) EnumDescriptor() ([]byte, []int) {
+	return file_search_proto_rawDescGZIP(), []int{6, 0}
 }
 
-type PlatformDataSource int32
-
-const (
-	PlatformDataSource_PLATFORM_DATA_SOURCE_UNKNOWN   PlatformDataSource = 0
-	PlatformDataSource_PLATFORM_DATA_SOURCE_PLANNED   PlatformDataSource = 1
-	PlatformDataSource_PLATFORM_DATA_SOURCE_AUTOMATIC PlatformDataSource = 2
-	PlatformDataSource_PLATFORM_DATA_SOURCE_MANUAL    PlatformDataSource = 3
-)
-
-// Enum value maps for PlatformDataSource.
-var (
-	PlatformDataSource_name = map[int32]string{
-		0: "PLATFORM_DATA_SOURCE_UNKNOWN",
-		1: "PLATFORM_DATA_SOURCE_PLANNED",
-		2: "PLATFORM_DATA_SOURCE_AUTOMATIC",
-		3: "PLATFORM_DATA_SOURCE_MANUAL",
-	}
-	PlatformDataSource_value = map[string]int32{
-		"PLATFORM_DATA_SOURCE_UNKNOWN":   0,
-		"PLATFORM_DATA_SOURCE_PLANNED":   1,
-		"PLATFORM_DATA_SOURCE_AUTOMATIC": 2,
-		"PLATFORM_DATA_SOURCE_MANUAL":    3,
-	}
-)
-
-func (x PlatformDataSource) Enum() *PlatformDataSource {
-	p := new(PlatformDataSource)
-	*p = x
-	return p
-}
-
-func (x PlatformDataSource) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (PlatformDataSource) Descriptor() protoreflect.EnumDescriptor {
-	return file_search_proto_enumTypes[2].Descriptor()
-}
-
-func (PlatformDataSource) Type() protoreflect.EnumType {
-	return &file_search_proto_enumTypes[2]
-}
-
-func (x PlatformDataSource) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use PlatformDataSource.Descriptor instead.
-func (PlatformDataSource) EnumDescriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{2}
-}
-
+// From and To times are inclusive, and may return services scheduled up to 2 hours before and after the provided times to allow for services that are running early or late to be shown in the results.
 type SearchRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	SearchType    SearchType             `protobuf:"varint,1,opt,name=search_type,json=searchType,proto3,enum=SearchType" json:"search_type,omitempty"`
-	LocationId    *string                `protobuf:"bytes,2,opt,name=location_id,json=locationId,proto3,oneof" json:"location_id,omitempty"`
-	CrsId         *string                `protobuf:"bytes,3,opt,name=crs_id,json=crsId,proto3,oneof" json:"crs_id,omitempty"`
-	FromTime      string                 `protobuf:"bytes,4,opt,name=from_time,json=fromTime,proto3" json:"from_time,omitempty"`
-	ToTime        string                 `protobuf:"bytes,5,opt,name=to_time,json=toTime,proto3" json:"to_time,omitempty"`
+	LocationId    []string               `protobuf:"bytes,1,rep,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
+	FromTime      string                 `protobuf:"bytes,2,opt,name=from_time,json=fromTime,proto3" json:"from_time,omitempty"`
+	ToTime        string                 `protobuf:"bytes,3,opt,name=to_time,json=toTime,proto3" json:"to_time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -242,25 +177,11 @@ func (*SearchRequest) Descriptor() ([]byte, []int) {
 	return file_search_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *SearchRequest) GetSearchType() SearchType {
+func (x *SearchRequest) GetLocationId() []string {
 	if x != nil {
-		return x.SearchType
+		return x.LocationId
 	}
-	return SearchType_SEARCH_TYPE_RETURN_UNSPECIFIED
-}
-
-func (x *SearchRequest) GetLocationId() string {
-	if x != nil && x.LocationId != nil {
-		return *x.LocationId
-	}
-	return ""
-}
-
-func (x *SearchRequest) GetCrsId() string {
-	if x != nil && x.CrsId != nil {
-		return *x.CrsId
-	}
-	return ""
+	return nil
 }
 
 func (x *SearchRequest) GetFromTime() string {
@@ -281,12 +202,12 @@ type SearchResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Schedule         *Schedule              `protobuf:"bytes,1,opt,name=schedule,proto3" json:"schedule,omitempty"`
 	ScheduleLocation *ScheduleLocation      `protobuf:"bytes,2,opt,name=schedule_location,json=scheduleLocation,proto3" json:"schedule_location,omitempty"`
-	Forecast         *Forecast              `protobuf:"bytes,3,opt,name=forecast,proto3,oneof" json:"forecast,omitempty"`
-	Platform         *string                `protobuf:"bytes,4,opt,name=platform,proto3,oneof" json:"platform,omitempty"` // can be sourced either from darwin.schedule_locations or darwin.forecast_locations
-	Length           *uint32                `protobuf:"varint,5,opt,name=length,proto3,oneof" json:"length,omitempty"`    // number of coaches, can be sourced either from darwin.formation_coaches or darwin.forecast_locations
-	IsCircularRoute  bool                   `protobuf:"varint,6,opt,name=is_circular_route,json=isCircularRoute,proto3" json:"is_circular_route,omitempty"`
-	PreviousRoute    *ServiceRoute          `protobuf:"bytes,7,opt,name=previous_route,json=previousRoute,proto3" json:"previous_route,omitempty"`
-	NextRoute        *ServiceRoute          `protobuf:"bytes,8,opt,name=next_route,json=nextRoute,proto3" json:"next_route,omitempty"`
+	Forecast         *Forecast              `protobuf:"bytes,3,opt,name=forecast,proto3,oneof" json:"forecast,omitempty"`                                   // TODO
+	Platform         *string                `protobuf:"bytes,4,opt,name=platform,proto3,oneof" json:"platform,omitempty"`                                   // TODO
+	Length           *uint32                `protobuf:"varint,5,opt,name=length,proto3,oneof" json:"length,omitempty"`                                      // TODO
+	IsCircularRoute  bool                   `protobuf:"varint,6,opt,name=is_circular_route,json=isCircularRoute,proto3" json:"is_circular_route,omitempty"` // TODO
+	PreviousRoute    *ServiceRoute          `protobuf:"bytes,7,opt,name=previous_route,json=previousRoute,proto3" json:"previous_route,omitempty"`          // TODO
+	NextRoute        *ServiceRoute          `protobuf:"bytes,8,opt,name=next_route,json=nextRoute,proto3" json:"next_route,omitempty"`                      // TODO
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -449,68 +370,6 @@ func (*ServiceRouteLocation) Descriptor() ([]byte, []int) {
 	return file_search_proto_rawDescGZIP(), []int{3}
 }
 
-type DisruptionReason struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	ReasonId         uint32                 `protobuf:"varint,1,opt,name=reason_id,json=reasonId,proto3" json:"reason_id,omitempty"`
-	ReasonLocationId *string                `protobuf:"bytes,2,opt,name=reason_location_id,json=reasonLocationId,proto3,oneof" json:"reason_location_id,omitempty"`
-	// When true, the provided reason_id is 'near to' the provided reason_location_id.
-	// When false, the reason_id is 'at' the reason_location_id.
-	ReasonIsNearLocation bool `protobuf:"varint,3,opt,name=reason_is_near_location,json=reasonIsNearLocation,proto3" json:"reason_is_near_location,omitempty"`
-	unknownFields        protoimpl.UnknownFields
-	sizeCache            protoimpl.SizeCache
-}
-
-func (x *DisruptionReason) Reset() {
-	*x = DisruptionReason{}
-	mi := &file_search_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DisruptionReason) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DisruptionReason) ProtoMessage() {}
-
-func (x *DisruptionReason) ProtoReflect() protoreflect.Message {
-	mi := &file_search_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DisruptionReason.ProtoReflect.Descriptor instead.
-func (*DisruptionReason) Descriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *DisruptionReason) GetReasonId() uint32 {
-	if x != nil {
-		return x.ReasonId
-	}
-	return 0
-}
-
-func (x *DisruptionReason) GetReasonLocationId() string {
-	if x != nil && x.ReasonLocationId != nil {
-		return *x.ReasonLocationId
-	}
-	return ""
-}
-
-func (x *DisruptionReason) GetReasonIsNearLocation() bool {
-	if x != nil {
-		return x.ReasonIsNearLocation
-	}
-	return false
-}
-
 type Schedule struct {
 	state                         protoimpl.MessageState `protogen:"open.v1"`
 	ScheduleId                    string                 `protobuf:"bytes,1,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
@@ -533,7 +392,7 @@ type Schedule struct {
 
 func (x *Schedule) Reset() {
 	*x = Schedule{}
-	mi := &file_search_proto_msgTypes[5]
+	mi := &file_search_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -545,7 +404,7 @@ func (x *Schedule) String() string {
 func (*Schedule) ProtoMessage() {}
 
 func (x *Schedule) ProtoReflect() protoreflect.Message {
-	mi := &file_search_proto_msgTypes[5]
+	mi := &file_search_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -558,7 +417,7 @@ func (x *Schedule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Schedule.ProtoReflect.Descriptor instead.
 func (*Schedule) Descriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{5}
+	return file_search_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Schedule) GetScheduleId() string {
@@ -600,14 +459,14 @@ func (x *Schedule) GetServiceType() ServiceType {
 	if x != nil {
 		return x.ServiceType
 	}
-	return ServiceType_SERVICE_TYPE_UNKNOWN
+	return ServiceType_SERVICE_TYPE_SERVICE_UNKNOWN
 }
 
 func (x *Schedule) GetCategoryType() CategoryType {
 	if x != nil {
 		return x.CategoryType
 	}
-	return CategoryType_CATEGORY_TYPE_UNKNOWN
+	return CategoryType_CATEGORY_TYPE_CATEGORY_UNKNOWN
 }
 
 func (x *Schedule) GetIsPassenger() bool {
@@ -659,27 +518,31 @@ func (x *Schedule) GetScheduleDiversionReason() *DisruptionReason {
 	return nil
 }
 
+// 'Working' times are used internally by staff
+// 'Public' times are used for display to passengers
+// Working and Public timetables may differ, typically to allow services to experience very minor (30 to 60s) delays without appearing late to the public.
+// There is no scheduled_public_passing_time because locations through which a service passes without stopping do not need to display any times to the public.
 type ScheduleLocation struct {
-	state                         protoimpl.MessageState `protogen:"open.v1"`
-	Activities                    []ActivityType         `protobuf:"varint,1,rep,packed,name=activities,proto3,enum=ActivityType" json:"activities,omitempty"`
-	PlannedActivities             []ActivityType         `protobuf:"varint,2,rep,packed,name=planned_activities,json=plannedActivities,proto3,enum=ActivityType" json:"planned_activities,omitempty"`
-	LocationIsAffectedByDiversion bool                   `protobuf:"varint,3,opt,name=location_is_affected_by_diversion,json=locationIsAffectedByDiversion,proto3" json:"location_is_affected_by_diversion,omitempty"`
-	LocationType                  LocationType           `protobuf:"varint,4,opt,name=location_type,json=locationType,proto3,enum=LocationType" json:"location_type,omitempty"`
-	ScheduledWorkingArrivalTime   *string                `protobuf:"bytes,5,opt,name=scheduled_working_arrival_time,json=scheduledWorkingArrivalTime,proto3,oneof" json:"scheduled_working_arrival_time,omitempty"`
-	ScheduledWorkingPassingTime   *string                `protobuf:"bytes,6,opt,name=scheduled_working_passing_time,json=scheduledWorkingPassingTime,proto3,oneof" json:"scheduled_working_passing_time,omitempty"`
-	ScheduledWorkingDepartureTime *string                `protobuf:"bytes,7,opt,name=scheduled_working_departure_time,json=scheduledWorkingDepartureTime,proto3,oneof" json:"scheduled_working_departure_time,omitempty"`
-	ScheduledPublicArrivalTime    *string                `protobuf:"bytes,8,opt,name=scheduled_public_arrival_time,json=scheduledPublicArrivalTime,proto3,oneof" json:"scheduled_public_arrival_time,omitempty"`
-	ScheduledPublicDepartureTime  *string                `protobuf:"bytes,9,opt,name=scheduled_public_departure_time,json=scheduledPublicDepartureTime,proto3,oneof" json:"scheduled_public_departure_time,omitempty"`
-	RoutingDelay                  uint32                 `protobuf:"varint,10,opt,name=routing_delay,json=routingDelay,proto3" json:"routing_delay,omitempty"` // in minutes
-	LocationIsCancelled           bool                   `protobuf:"varint,11,opt,name=location_is_cancelled,json=locationIsCancelled,proto3" json:"location_is_cancelled,omitempty"`
-	LocationCancellationReason    *DisruptionReason      `protobuf:"bytes,12,opt,name=location_cancellation_reason,json=locationCancellationReason,proto3,oneof" json:"location_cancellation_reason,omitempty"`
+	state                         protoimpl.MessageState        `protogen:"open.v1"`
+	Activities                    []ActivityType                `protobuf:"varint,1,rep,packed,name=activities,proto3,enum=ActivityType" json:"activities,omitempty"`
+	PlannedActivities             []ActivityType                `protobuf:"varint,2,rep,packed,name=planned_activities,json=plannedActivities,proto3,enum=ActivityType" json:"planned_activities,omitempty"`
+	LocationIsAffectedByDiversion bool                          `protobuf:"varint,3,opt,name=location_is_affected_by_diversion,json=locationIsAffectedByDiversion,proto3" json:"location_is_affected_by_diversion,omitempty"`
+	LocationType                  ScheduleLocation_LocationType `protobuf:"varint,4,opt,name=location_type,json=locationType,proto3,enum=ScheduleLocation_LocationType" json:"location_type,omitempty"`
+	ScheduledWorkingArrivalTime   *string                       `protobuf:"bytes,5,opt,name=scheduled_working_arrival_time,json=scheduledWorkingArrivalTime,proto3,oneof" json:"scheduled_working_arrival_time,omitempty"`
+	ScheduledWorkingPassingTime   *string                       `protobuf:"bytes,6,opt,name=scheduled_working_passing_time,json=scheduledWorkingPassingTime,proto3,oneof" json:"scheduled_working_passing_time,omitempty"`
+	ScheduledWorkingDepartureTime *string                       `protobuf:"bytes,7,opt,name=scheduled_working_departure_time,json=scheduledWorkingDepartureTime,proto3,oneof" json:"scheduled_working_departure_time,omitempty"`
+	ScheduledPublicArrivalTime    *string                       `protobuf:"bytes,8,opt,name=scheduled_public_arrival_time,json=scheduledPublicArrivalTime,proto3,oneof" json:"scheduled_public_arrival_time,omitempty"`
+	ScheduledPublicDepartureTime  *string                       `protobuf:"bytes,9,opt,name=scheduled_public_departure_time,json=scheduledPublicDepartureTime,proto3,oneof" json:"scheduled_public_departure_time,omitempty"`
+	RoutingDelay                  uint32                        `protobuf:"varint,10,opt,name=routing_delay,json=routingDelay,proto3" json:"routing_delay,omitempty"` // in minutes
+	LocationIsCancelled           bool                          `protobuf:"varint,11,opt,name=location_is_cancelled,json=locationIsCancelled,proto3" json:"location_is_cancelled,omitempty"`
+	LocationCancellationReason    *DisruptionReason             `protobuf:"bytes,12,opt,name=location_cancellation_reason,json=locationCancellationReason,proto3,oneof" json:"location_cancellation_reason,omitempty"`
 	unknownFields                 protoimpl.UnknownFields
 	sizeCache                     protoimpl.SizeCache
 }
 
 func (x *ScheduleLocation) Reset() {
 	*x = ScheduleLocation{}
-	mi := &file_search_proto_msgTypes[6]
+	mi := &file_search_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -691,7 +554,7 @@ func (x *ScheduleLocation) String() string {
 func (*ScheduleLocation) ProtoMessage() {}
 
 func (x *ScheduleLocation) ProtoReflect() protoreflect.Message {
-	mi := &file_search_proto_msgTypes[6]
+	mi := &file_search_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -704,7 +567,7 @@ func (x *ScheduleLocation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScheduleLocation.ProtoReflect.Descriptor instead.
 func (*ScheduleLocation) Descriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{6}
+	return file_search_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ScheduleLocation) GetActivities() []ActivityType {
@@ -728,11 +591,11 @@ func (x *ScheduleLocation) GetLocationIsAffectedByDiversion() bool {
 	return false
 }
 
-func (x *ScheduleLocation) GetLocationType() LocationType {
+func (x *ScheduleLocation) GetLocationType() ScheduleLocation_LocationType {
 	if x != nil {
 		return x.LocationType
 	}
-	return LocationType_LOCATION_TYPE_SCHEDULE_UNKNOWN
+	return ScheduleLocation_LOCATION_TYPE_LOCATION_UNKNOWN
 }
 
 func (x *ScheduleLocation) GetScheduledWorkingArrivalTime() string {
@@ -791,53 +654,56 @@ func (x *ScheduleLocation) GetLocationCancellationReason() *DisruptionReason {
 	return nil
 }
 
+// estimated_public_*_time and estimated_working_*_time are Darwin's estimations of the most likely times.
+// estimated_minimum_*_time is Darwin's estimation of the first possible times.
+// actual_*_time are time reports from the physical train
 type Forecast struct {
-	state                             protoimpl.MessageState `protogen:"open.v1"`
-	IsReverseFormation                bool                   `protobuf:"varint,1,opt,name=is_reverse_formation,json=isReverseFormation,proto3" json:"is_reverse_formation,omitempty"`
-	ScheduleLateReason                *DisruptionReason      `protobuf:"bytes,2,opt,name=schedule_late_reason,json=scheduleLateReason,proto3,oneof" json:"schedule_late_reason,omitempty"`
-	EstimatedPublicArrivalTime        *string                `protobuf:"bytes,3,opt,name=estimated_public_arrival_time,json=estimatedPublicArrivalTime,proto3,oneof" json:"estimated_public_arrival_time,omitempty"`
-	EstimatedWorkingArrivalTime       *string                `protobuf:"bytes,4,opt,name=estimated_working_arrival_time,json=estimatedWorkingArrivalTime,proto3,oneof" json:"estimated_working_arrival_time,omitempty"`
-	EstimatedMinimumArrivalTime       *string                `protobuf:"bytes,5,opt,name=estimated_minimum_arrival_time,json=estimatedMinimumArrivalTime,proto3,oneof" json:"estimated_minimum_arrival_time,omitempty"`
-	ArrivalIsDelayed                  *bool                  `protobuf:"varint,6,opt,name=arrival_is_delayed,json=arrivalIsDelayed,proto3,oneof" json:"arrival_is_delayed,omitempty"`
-	ArrivalIsDelayedByUnknownAmount   *bool                  `protobuf:"varint,7,opt,name=arrival_is_delayed_by_unknown_amount,json=arrivalIsDelayedByUnknownAmount,proto3,oneof" json:"arrival_is_delayed_by_unknown_amount,omitempty"`
-	EstimatedPassingTime              *string                `protobuf:"bytes,8,opt,name=estimated_passing_time,json=estimatedPassingTime,proto3,oneof" json:"estimated_passing_time,omitempty"`
-	EstimatedMinimumPassingTime       *string                `protobuf:"bytes,9,opt,name=estimated_minimum_passing_time,json=estimatedMinimumPassingTime,proto3,oneof" json:"estimated_minimum_passing_time,omitempty"`
-	PassingIsDelayed                  *bool                  `protobuf:"varint,10,opt,name=passing_is_delayed,json=passingIsDelayed,proto3,oneof" json:"passing_is_delayed,omitempty"`
-	PassingIsDelayedByUnknownAmount   *bool                  `protobuf:"varint,11,opt,name=passing_is_delayed_by_unknown_amount,json=passingIsDelayedByUnknownAmount,proto3,oneof" json:"passing_is_delayed_by_unknown_amount,omitempty"`
-	EstimatedPublicDepartureTime      *string                `protobuf:"bytes,12,opt,name=estimated_public_departure_time,json=estimatedPublicDepartureTime,proto3,oneof" json:"estimated_public_departure_time,omitempty"`
-	EstimatedWorkingDepartureTime     *string                `protobuf:"bytes,13,opt,name=estimated_working_departure_time,json=estimatedWorkingDepartureTime,proto3,oneof" json:"estimated_working_departure_time,omitempty"`
-	EstimatedMinimumDepartureTime     *string                `protobuf:"bytes,14,opt,name=estimated_minimum_departure_time,json=estimatedMinimumDepartureTime,proto3,oneof" json:"estimated_minimum_departure_time,omitempty"`
-	DepartureIsDelayed                *bool                  `protobuf:"varint,15,opt,name=departure_is_delayed,json=departureIsDelayed,proto3,oneof" json:"departure_is_delayed,omitempty"`
-	DepartureIsDelayedByUnknownAmount *bool                  `protobuf:"varint,16,opt,name=departure_is_delayed_by_unknown_amount,json=departureIsDelayedByUnknownAmount,proto3,oneof" json:"departure_is_delayed_by_unknown_amount,omitempty"`
-	ActualArrivalTime                 *string                `protobuf:"bytes,17,opt,name=actual_arrival_time,json=actualArrivalTime,proto3,oneof" json:"actual_arrival_time,omitempty"`
-	ActualArrivalDataClass            *string                `protobuf:"bytes,18,opt,name=actual_arrival_data_class,json=actualArrivalDataClass,proto3,oneof" json:"actual_arrival_data_class,omitempty"`
-	ActualArrivalDataSource           *string                `protobuf:"bytes,19,opt,name=actual_arrival_data_source,json=actualArrivalDataSource,proto3,oneof" json:"actual_arrival_data_source,omitempty"`
-	ActualArrivalDataSourceSystem     *string                `protobuf:"bytes,20,opt,name=actual_arrival_data_source_system,json=actualArrivalDataSourceSystem,proto3,oneof" json:"actual_arrival_data_source_system,omitempty"`
-	ActualPassingTime                 *string                `protobuf:"bytes,21,opt,name=actual_passing_time,json=actualPassingTime,proto3,oneof" json:"actual_passing_time,omitempty"`
-	ActualPassingDataClass            *string                `protobuf:"bytes,22,opt,name=actual_passing_data_class,json=actualPassingDataClass,proto3,oneof" json:"actual_passing_data_class,omitempty"`
-	ActualPassingDataSource           *string                `protobuf:"bytes,23,opt,name=actual_passing_data_source,json=actualPassingDataSource,proto3,oneof" json:"actual_passing_data_source,omitempty"`
-	ActualPassingDataSourceSystem     *string                `protobuf:"bytes,24,opt,name=actual_passing_data_source_system,json=actualPassingDataSourceSystem,proto3,oneof" json:"actual_passing_data_source_system,omitempty"`
-	ActualDepartureTime               *string                `protobuf:"bytes,25,opt,name=actual_departure_time,json=actualDepartureTime,proto3,oneof" json:"actual_departure_time,omitempty"`
-	ActualDepartureDataClass          *string                `protobuf:"bytes,26,opt,name=actual_departure_data_class,json=actualDepartureDataClass,proto3,oneof" json:"actual_departure_data_class,omitempty"`
-	ActualDepartureDataSource         *string                `protobuf:"bytes,27,opt,name=actual_departure_data_source,json=actualDepartureDataSource,proto3,oneof" json:"actual_departure_data_source,omitempty"`
-	ActualDepartureDataSourceSystem   *string                `protobuf:"bytes,28,opt,name=actual_departure_data_source_system,json=actualDepartureDataSourceSystem,proto3,oneof" json:"actual_departure_data_source_system,omitempty"`
-	LocationLateReason                *DisruptionReason      `protobuf:"bytes,29,opt,name=location_late_reason,json=locationLateReason,proto3,oneof" json:"location_late_reason,omitempty"`
-	LocationDisruptionRisk            *string                `protobuf:"bytes,30,opt,name=location_disruption_risk,json=locationDisruptionRisk,proto3,oneof" json:"location_disruption_risk,omitempty"`
-	LocationDisruptionRiskReason      *DisruptionReason      `protobuf:"bytes,31,opt,name=location_disruption_risk_reason,json=locationDisruptionRiskReason,proto3,oneof" json:"location_disruption_risk_reason,omitempty"`
-	AffectedBy                        *string                `protobuf:"bytes,32,opt,name=affected_by,json=affectedBy,proto3,oneof" json:"affected_by,omitempty"`
-	PlatformIsSuppressed              *bool                  `protobuf:"varint,33,opt,name=platform_is_suppressed,json=platformIsSuppressed,proto3,oneof" json:"platform_is_suppressed,omitempty"` // do not display platform information if true
-	PlatformIsSuppressedByCis         *bool                  `protobuf:"varint,34,opt,name=platform_is_suppressed_by_cis,json=platformIsSuppressedByCis,proto3,oneof" json:"platform_is_suppressed_by_cis,omitempty"`
-	PlatformDataSource                *PlatformDataSource    `protobuf:"varint,35,opt,name=platform_data_source,json=platformDataSource,proto3,enum=PlatformDataSource,oneof" json:"platform_data_source,omitempty"`
-	PlatformIsConfirmed               *bool                  `protobuf:"varint,36,opt,name=platform_is_confirmed,json=platformIsConfirmed,proto3,oneof" json:"platform_is_confirmed,omitempty"`
-	ServiceIsSuppressed               bool                   `protobuf:"varint,37,opt,name=service_is_suppressed,json=serviceIsSuppressed,proto3" json:"service_is_suppressed,omitempty"`
-	ServiceDetatchesFromFront         bool                   `protobuf:"varint,38,opt,name=service_detatches_from_front,json=serviceDetatchesFromFront,proto3" json:"service_detatches_from_front,omitempty"`
+	state                             protoimpl.MessageState       `protogen:"open.v1"`
+	IsReverseFormation                bool                         `protobuf:"varint,1,opt,name=is_reverse_formation,json=isReverseFormation,proto3" json:"is_reverse_formation,omitempty"`
+	ScheduleLateReason                *DisruptionReason            `protobuf:"bytes,2,opt,name=schedule_late_reason,json=scheduleLateReason,proto3,oneof" json:"schedule_late_reason,omitempty"`
+	EstimatedPublicArrivalTime        *string                      `protobuf:"bytes,3,opt,name=estimated_public_arrival_time,json=estimatedPublicArrivalTime,proto3,oneof" json:"estimated_public_arrival_time,omitempty"`
+	EstimatedWorkingArrivalTime       *string                      `protobuf:"bytes,4,opt,name=estimated_working_arrival_time,json=estimatedWorkingArrivalTime,proto3,oneof" json:"estimated_working_arrival_time,omitempty"`
+	EstimatedMinimumArrivalTime       *string                      `protobuf:"bytes,5,opt,name=estimated_minimum_arrival_time,json=estimatedMinimumArrivalTime,proto3,oneof" json:"estimated_minimum_arrival_time,omitempty"`
+	ArrivalIsDelayed                  *bool                        `protobuf:"varint,6,opt,name=arrival_is_delayed,json=arrivalIsDelayed,proto3,oneof" json:"arrival_is_delayed,omitempty"`
+	ArrivalIsDelayedByUnknownAmount   *bool                        `protobuf:"varint,7,opt,name=arrival_is_delayed_by_unknown_amount,json=arrivalIsDelayedByUnknownAmount,proto3,oneof" json:"arrival_is_delayed_by_unknown_amount,omitempty"`
+	EstimatedPassingTime              *string                      `protobuf:"bytes,8,opt,name=estimated_passing_time,json=estimatedPassingTime,proto3,oneof" json:"estimated_passing_time,omitempty"`
+	EstimatedMinimumPassingTime       *string                      `protobuf:"bytes,9,opt,name=estimated_minimum_passing_time,json=estimatedMinimumPassingTime,proto3,oneof" json:"estimated_minimum_passing_time,omitempty"`
+	PassingIsDelayed                  *bool                        `protobuf:"varint,10,opt,name=passing_is_delayed,json=passingIsDelayed,proto3,oneof" json:"passing_is_delayed,omitempty"`
+	PassingIsDelayedByUnknownAmount   *bool                        `protobuf:"varint,11,opt,name=passing_is_delayed_by_unknown_amount,json=passingIsDelayedByUnknownAmount,proto3,oneof" json:"passing_is_delayed_by_unknown_amount,omitempty"`
+	EstimatedPublicDepartureTime      *string                      `protobuf:"bytes,12,opt,name=estimated_public_departure_time,json=estimatedPublicDepartureTime,proto3,oneof" json:"estimated_public_departure_time,omitempty"`
+	EstimatedWorkingDepartureTime     *string                      `protobuf:"bytes,13,opt,name=estimated_working_departure_time,json=estimatedWorkingDepartureTime,proto3,oneof" json:"estimated_working_departure_time,omitempty"`
+	EstimatedMinimumDepartureTime     *string                      `protobuf:"bytes,14,opt,name=estimated_minimum_departure_time,json=estimatedMinimumDepartureTime,proto3,oneof" json:"estimated_minimum_departure_time,omitempty"`
+	DepartureIsDelayed                *bool                        `protobuf:"varint,15,opt,name=departure_is_delayed,json=departureIsDelayed,proto3,oneof" json:"departure_is_delayed,omitempty"`
+	DepartureIsDelayedByUnknownAmount *bool                        `protobuf:"varint,16,opt,name=departure_is_delayed_by_unknown_amount,json=departureIsDelayedByUnknownAmount,proto3,oneof" json:"departure_is_delayed_by_unknown_amount,omitempty"`
+	ActualArrivalTime                 *string                      `protobuf:"bytes,17,opt,name=actual_arrival_time,json=actualArrivalTime,proto3,oneof" json:"actual_arrival_time,omitempty"`
+	ActualArrivalDataClass            *string                      `protobuf:"bytes,18,opt,name=actual_arrival_data_class,json=actualArrivalDataClass,proto3,oneof" json:"actual_arrival_data_class,omitempty"`
+	ActualArrivalDataSource           *string                      `protobuf:"bytes,19,opt,name=actual_arrival_data_source,json=actualArrivalDataSource,proto3,oneof" json:"actual_arrival_data_source,omitempty"`
+	ActualArrivalDataSourceSystem     *string                      `protobuf:"bytes,20,opt,name=actual_arrival_data_source_system,json=actualArrivalDataSourceSystem,proto3,oneof" json:"actual_arrival_data_source_system,omitempty"`
+	ActualPassingTime                 *string                      `protobuf:"bytes,21,opt,name=actual_passing_time,json=actualPassingTime,proto3,oneof" json:"actual_passing_time,omitempty"`
+	ActualPassingDataClass            *string                      `protobuf:"bytes,22,opt,name=actual_passing_data_class,json=actualPassingDataClass,proto3,oneof" json:"actual_passing_data_class,omitempty"`
+	ActualPassingDataSource           *string                      `protobuf:"bytes,23,opt,name=actual_passing_data_source,json=actualPassingDataSource,proto3,oneof" json:"actual_passing_data_source,omitempty"`
+	ActualPassingDataSourceSystem     *string                      `protobuf:"bytes,24,opt,name=actual_passing_data_source_system,json=actualPassingDataSourceSystem,proto3,oneof" json:"actual_passing_data_source_system,omitempty"`
+	ActualDepartureTime               *string                      `protobuf:"bytes,25,opt,name=actual_departure_time,json=actualDepartureTime,proto3,oneof" json:"actual_departure_time,omitempty"`
+	ActualDepartureDataClass          *string                      `protobuf:"bytes,26,opt,name=actual_departure_data_class,json=actualDepartureDataClass,proto3,oneof" json:"actual_departure_data_class,omitempty"`
+	ActualDepartureDataSource         *string                      `protobuf:"bytes,27,opt,name=actual_departure_data_source,json=actualDepartureDataSource,proto3,oneof" json:"actual_departure_data_source,omitempty"`
+	ActualDepartureDataSourceSystem   *string                      `protobuf:"bytes,28,opt,name=actual_departure_data_source_system,json=actualDepartureDataSourceSystem,proto3,oneof" json:"actual_departure_data_source_system,omitempty"`
+	LocationLateReason                *DisruptionReason            `protobuf:"bytes,29,opt,name=location_late_reason,json=locationLateReason,proto3,oneof" json:"location_late_reason,omitempty"`
+	LocationDisruptionRisk            *string                      `protobuf:"bytes,30,opt,name=location_disruption_risk,json=locationDisruptionRisk,proto3,oneof" json:"location_disruption_risk,omitempty"`
+	LocationDisruptionRiskReason      *DisruptionReason            `protobuf:"bytes,31,opt,name=location_disruption_risk_reason,json=locationDisruptionRiskReason,proto3,oneof" json:"location_disruption_risk_reason,omitempty"`
+	AffectedBy                        *string                      `protobuf:"bytes,32,opt,name=affected_by,json=affectedBy,proto3,oneof" json:"affected_by,omitempty"`
+	PlatformIsSuppressed              *bool                        `protobuf:"varint,33,opt,name=platform_is_suppressed,json=platformIsSuppressed,proto3,oneof" json:"platform_is_suppressed,omitempty"` // do not display platform information if true
+	PlatformIsSuppressedByCis         *bool                        `protobuf:"varint,34,opt,name=platform_is_suppressed_by_cis,json=platformIsSuppressedByCis,proto3,oneof" json:"platform_is_suppressed_by_cis,omitempty"`
+	PlatformDataSource                *Forecast_PlatformDataSource `protobuf:"varint,35,opt,name=platform_data_source,json=platformDataSource,proto3,enum=Forecast_PlatformDataSource,oneof" json:"platform_data_source,omitempty"`
+	PlatformIsConfirmed               *bool                        `protobuf:"varint,36,opt,name=platform_is_confirmed,json=platformIsConfirmed,proto3,oneof" json:"platform_is_confirmed,omitempty"`
+	ServiceIsSuppressed               bool                         `protobuf:"varint,37,opt,name=service_is_suppressed,json=serviceIsSuppressed,proto3" json:"service_is_suppressed,omitempty"`
+	ServiceDetatchesFromFront         bool                         `protobuf:"varint,38,opt,name=service_detatches_from_front,json=serviceDetatchesFromFront,proto3" json:"service_detatches_from_front,omitempty"`
 	unknownFields                     protoimpl.UnknownFields
 	sizeCache                         protoimpl.SizeCache
 }
 
 func (x *Forecast) Reset() {
 	*x = Forecast{}
-	mi := &file_search_proto_msgTypes[7]
+	mi := &file_search_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -849,7 +715,7 @@ func (x *Forecast) String() string {
 func (*Forecast) ProtoMessage() {}
 
 func (x *Forecast) ProtoReflect() protoreflect.Message {
-	mi := &file_search_proto_msgTypes[7]
+	mi := &file_search_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -862,7 +728,7 @@ func (x *Forecast) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Forecast.ProtoReflect.Descriptor instead.
 func (*Forecast) Descriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{7}
+	return file_search_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *Forecast) GetIsReverseFormation() bool {
@@ -1103,11 +969,11 @@ func (x *Forecast) GetPlatformIsSuppressedByCis() bool {
 	return false
 }
 
-func (x *Forecast) GetPlatformDataSource() PlatformDataSource {
+func (x *Forecast) GetPlatformDataSource() Forecast_PlatformDataSource {
 	if x != nil && x.PlatformDataSource != nil {
 		return *x.PlatformDataSource
 	}
-	return PlatformDataSource_PLATFORM_DATA_SOURCE_UNKNOWN
+	return Forecast_PLATFORM_DATA_SOURCE_PLATFORM_UNKNOWN
 }
 
 func (x *Forecast) GetPlatformIsConfirmed() bool {
@@ -1131,21 +997,78 @@ func (x *Forecast) GetServiceDetatchesFromFront() bool {
 	return false
 }
 
+type DisruptionReason struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	ReasonId         uint32                 `protobuf:"varint,1,opt,name=reason_id,json=reasonId,proto3" json:"reason_id,omitempty"`
+	ReasonLocationId *string                `protobuf:"bytes,2,opt,name=reason_location_id,json=reasonLocationId,proto3,oneof" json:"reason_location_id,omitempty"`
+	// When true, the provided reason_id is 'near to' the provided reason_location_id.
+	// When false, the reason_id is 'at' the reason_location_id.
+	ReasonIsNearLocation bool `protobuf:"varint,3,opt,name=reason_is_near_location,json=reasonIsNearLocation,proto3" json:"reason_is_near_location,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *DisruptionReason) Reset() {
+	*x = DisruptionReason{}
+	mi := &file_search_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DisruptionReason) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DisruptionReason) ProtoMessage() {}
+
+func (x *DisruptionReason) ProtoReflect() protoreflect.Message {
+	mi := &file_search_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DisruptionReason.ProtoReflect.Descriptor instead.
+func (*DisruptionReason) Descriptor() ([]byte, []int) {
+	return file_search_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *DisruptionReason) GetReasonId() uint32 {
+	if x != nil {
+		return x.ReasonId
+	}
+	return 0
+}
+
+func (x *DisruptionReason) GetReasonLocationId() string {
+	if x != nil && x.ReasonLocationId != nil {
+		return *x.ReasonLocationId
+	}
+	return ""
+}
+
+func (x *DisruptionReason) GetReasonIsNearLocation() bool {
+	if x != nil {
+		return x.ReasonIsNearLocation
+	}
+	return false
+}
+
 var File_search_proto protoreflect.FileDescriptor
 
 const file_search_proto_rawDesc = "" +
 	"\n" +
-	"\fsearch.proto\x1a\x0frailtypes.proto\"\xd0\x01\n" +
-	"\rSearchRequest\x12,\n" +
-	"\vsearch_type\x18\x01 \x01(\x0e2\v.SearchTypeR\n" +
-	"searchType\x12$\n" +
-	"\vlocation_id\x18\x02 \x01(\tH\x00R\n" +
-	"locationId\x88\x01\x01\x12\x1a\n" +
-	"\x06crs_id\x18\x03 \x01(\tH\x01R\x05crsId\x88\x01\x01\x12\x1b\n" +
-	"\tfrom_time\x18\x04 \x01(\tR\bfromTime\x12\x17\n" +
-	"\ato_time\x18\x05 \x01(\tR\x06toTimeB\x0e\n" +
-	"\f_location_idB\t\n" +
-	"\a_crs_id\"\x96\x03\n" +
+	"\fsearch.proto\x1a\x0frailtypes.proto\"f\n" +
+	"\rSearchRequest\x12\x1f\n" +
+	"\vlocation_id\x18\x01 \x03(\tR\n" +
+	"locationId\x12\x1b\n" +
+	"\tfrom_time\x18\x02 \x01(\tR\bfromTime\x12\x17\n" +
+	"\ato_time\x18\x03 \x01(\tR\x06toTime\"\x96\x03\n" +
 	"\x0eSearchResponse\x12%\n" +
 	"\bschedule\x18\x01 \x01(\v2\t.ScheduleR\bschedule\x12>\n" +
 	"\x11schedule_location\x18\x02 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocation\x12*\n" +
@@ -1160,12 +1083,7 @@ const file_search_proto_rawDesc = "" +
 	"\t_platformB\t\n" +
 	"\a_length\"\x0e\n" +
 	"\fServiceRoute\"\x16\n" +
-	"\x14ServiceRouteLocation\"\xb0\x01\n" +
-	"\x10DisruptionReason\x12\x1b\n" +
-	"\treason_id\x18\x01 \x01(\rR\breasonId\x121\n" +
-	"\x12reason_location_id\x18\x02 \x01(\tH\x00R\x10reasonLocationId\x88\x01\x01\x125\n" +
-	"\x17reason_is_near_location\x18\x03 \x01(\bR\x14reasonIsNearLocationB\x15\n" +
-	"\x13_reason_location_id\"\x95\x06\n" +
+	"\x14ServiceRouteLocation\"\x95\x06\n" +
 	"\bSchedule\x12\x1f\n" +
 	"\vschedule_id\x18\x01 \x01(\tR\n" +
 	"scheduleId\x12\x10\n" +
@@ -1186,14 +1104,15 @@ const file_search_proto_rawDesc = "" +
 	"\x12_retail_service_idB\x1f\n" +
 	"\x1d_schedule_cancellation_reasonB$\n" +
 	"\"_schedule_diverted_via_location_idB\x1c\n" +
-	"\x1a_schedule_diversion_reason\"\xf8\a\n" +
+	"\x1a_schedule_diversion_reason\"\xfb\n" +
+	"\n" +
 	"\x10ScheduleLocation\x12-\n" +
 	"\n" +
 	"activities\x18\x01 \x03(\x0e2\r.ActivityTypeR\n" +
 	"activities\x12<\n" +
 	"\x12planned_activities\x18\x02 \x03(\x0e2\r.ActivityTypeR\x11plannedActivities\x12H\n" +
-	"!location_is_affected_by_diversion\x18\x03 \x01(\bR\x1dlocationIsAffectedByDiversion\x122\n" +
-	"\rlocation_type\x18\x04 \x01(\x0e2\r.LocationTypeR\flocationType\x12H\n" +
+	"!location_is_affected_by_diversion\x18\x03 \x01(\bR\x1dlocationIsAffectedByDiversion\x12C\n" +
+	"\rlocation_type\x18\x04 \x01(\x0e2\x1e.ScheduleLocation.LocationTypeR\flocationType\x12H\n" +
 	"\x1escheduled_working_arrival_time\x18\x05 \x01(\tH\x00R\x1bscheduledWorkingArrivalTime\x88\x01\x01\x12H\n" +
 	"\x1escheduled_working_passing_time\x18\x06 \x01(\tH\x01R\x1bscheduledWorkingPassingTime\x88\x01\x01\x12L\n" +
 	" scheduled_working_departure_time\x18\a \x01(\tH\x02R\x1dscheduledWorkingDepartureTime\x88\x01\x01\x12F\n" +
@@ -1202,13 +1121,22 @@ const file_search_proto_rawDesc = "" +
 	"\rrouting_delay\x18\n" +
 	" \x01(\rR\froutingDelay\x122\n" +
 	"\x15location_is_cancelled\x18\v \x01(\bR\x13locationIsCancelled\x12X\n" +
-	"\x1clocation_cancellation_reason\x18\f \x01(\v2\x11.DisruptionReasonH\x05R\x1alocationCancellationReason\x88\x01\x01B!\n" +
+	"\x1clocation_cancellation_reason\x18\f \x01(\v2\x11.DisruptionReasonH\x05R\x1alocationCancellationReason\x88\x01\x01\"\xef\x02\n" +
+	"\fLocationType\x12\"\n" +
+	"\x1eLOCATION_TYPE_LOCATION_UNKNOWN\x10\x00\x12!\n" +
+	"\x1dLOCATION_TYPE_LOCATION_ORIGIN\x10\x01\x12-\n" +
+	")LOCATION_TYPE_LOCATION_OPERATIONAL_ORIGIN\x10\x02\x12'\n" +
+	"#LOCATION_TYPE_LOCATION_INTERMEDIATE\x10\x03\x123\n" +
+	"/LOCATION_TYPE_LOCATION_OPERATIONAL_INTERMEDIATE\x10\x04\x12/\n" +
+	"+LOCATION_TYPE_LOCATION_INTERMEDIATE_PASSING\x10\x05\x12&\n" +
+	"\"LOCATION_TYPE_LOCATION_DESTINATION\x10\x06\x122\n" +
+	".LOCATION_TYPE_LOCATION_OPERATIONAL_DESTINATION\x10\aB!\n" +
 	"\x1f_scheduled_working_arrival_timeB!\n" +
 	"\x1f_scheduled_working_passing_timeB#\n" +
 	"!_scheduled_working_departure_timeB \n" +
 	"\x1e_scheduled_public_arrival_timeB\"\n" +
 	" _scheduled_public_departure_timeB\x1f\n" +
-	"\x1d_location_cancellation_reason\"\xdc\x1c\n" +
+	"\x1d_location_cancellation_reason\"\xa9\x1e\n" +
 	"\bForecast\x120\n" +
 	"\x14is_reverse_formation\x18\x01 \x01(\bR\x12isReverseFormation\x12H\n" +
 	"\x14schedule_late_reason\x18\x02 \x01(\v2\x11.DisruptionReasonH\x00R\x12scheduleLateReason\x88\x01\x01\x12F\n" +
@@ -1246,11 +1174,16 @@ const file_search_proto_rawDesc = "" +
 	"\vaffected_by\x18  \x01(\tH\x1eR\n" +
 	"affectedBy\x88\x01\x01\x129\n" +
 	"\x16platform_is_suppressed\x18! \x01(\bH\x1fR\x14platformIsSuppressed\x88\x01\x01\x12E\n" +
-	"\x1dplatform_is_suppressed_by_cis\x18\" \x01(\bH R\x19platformIsSuppressedByCis\x88\x01\x01\x12J\n" +
-	"\x14platform_data_source\x18# \x01(\x0e2\x13.PlatformDataSourceH!R\x12platformDataSource\x88\x01\x01\x127\n" +
+	"\x1dplatform_is_suppressed_by_cis\x18\" \x01(\bH R\x19platformIsSuppressedByCis\x88\x01\x01\x12S\n" +
+	"\x14platform_data_source\x18# \x01(\x0e2\x1c.Forecast.PlatformDataSourceH!R\x12platformDataSource\x88\x01\x01\x127\n" +
 	"\x15platform_is_confirmed\x18$ \x01(\bH\"R\x13platformIsConfirmed\x88\x01\x01\x122\n" +
 	"\x15service_is_suppressed\x18% \x01(\bR\x13serviceIsSuppressed\x12?\n" +
-	"\x1cservice_detatches_from_front\x18& \x01(\bR\x19serviceDetatchesFromFrontB\x17\n" +
+	"\x1cservice_detatches_from_front\x18& \x01(\bR\x19serviceDetatchesFromFront\"\xc1\x01\n" +
+	"\x12PlatformDataSource\x12)\n" +
+	"%PLATFORM_DATA_SOURCE_PLATFORM_UNKNOWN\x10\x00\x12)\n" +
+	"%PLATFORM_DATA_SOURCE_PLATFORM_PLANNED\x10\x01\x12+\n" +
+	"'PLATFORM_DATA_SOURCE_PLATFORM_AUTOMATIC\x10\x02\x12(\n" +
+	"$PLATFORM_DATA_SOURCE_PLATFORM_MANUAL\x10\x03B\x17\n" +
 	"\x15_schedule_late_reasonB \n" +
 	"\x1e_estimated_public_arrival_timeB!\n" +
 	"\x1f_estimated_working_arrival_timeB!\n" +
@@ -1285,31 +1218,12 @@ const file_search_proto_rawDesc = "" +
 	"\x17_platform_is_suppressedB \n" +
 	"\x1e_platform_is_suppressed_by_cisB\x17\n" +
 	"\x15_platform_data_sourceB\x18\n" +
-	"\x16_platform_is_confirmed*\xdc\x02\n" +
-	"\n" +
-	"SearchType\x12\"\n" +
-	"\x1eSEARCH_TYPE_RETURN_UNSPECIFIED\x10\x00\x12!\n" +
-	"\x1dSEARCH_TYPE_RETURN_DEPARTURES\x10\x01\x12\x1e\n" +
-	"\x1aSEARCH_TYPE_RETURN_PASSING\x10\x02\x12-\n" +
-	")SEARCH_TYPE_RETURN_PASSING_AND_DEPARTURES\x10\x03\x12\x1f\n" +
-	"\x1bSEARCH_TYPE_RETURN_ARRIVALS\x10\x04\x12.\n" +
-	"*SEARCH_TYPE_RETURN_ARRIVALS_AND_DEPARTURES\x10\x05\x12+\n" +
-	"'SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING\x10\x06\x12:\n" +
-	"6SEARCH_TYPE_RETURN_ARRIVALS_AND_PASSING_AND_DEPARTURES\x10\a*\xef\x02\n" +
-	"\fLocationType\x12\"\n" +
-	"\x1eLOCATION_TYPE_SCHEDULE_UNKNOWN\x10\x00\x12!\n" +
-	"\x1dLOCATION_TYPE_SCHEDULE_ORIGIN\x10\x01\x12-\n" +
-	")LOCATION_TYPE_SCHEDULE_OPERATIONAL_ORIGIN\x10\x02\x12'\n" +
-	"#LOCATION_TYPE_SCHEDULE_INTERMEDIATE\x10\x03\x123\n" +
-	"/LOCATION_TYPE_SCHEDULE_OPERATIONAL_INTERMEDIATE\x10\x04\x12/\n" +
-	"+LOCATION_TYPE_SCHEDULE_INTERMEDIATE_PASSING\x10\x05\x12&\n" +
-	"\"LOCATION_TYPE_SCHEDULE_DESTINATION\x10\x06\x122\n" +
-	".LOCATION_TYPE_SCHEDULE_OPERATIONAL_DESTINATION\x10\a*\x9d\x01\n" +
-	"\x12PlatformDataSource\x12 \n" +
-	"\x1cPLATFORM_DATA_SOURCE_UNKNOWN\x10\x00\x12 \n" +
-	"\x1cPLATFORM_DATA_SOURCE_PLANNED\x10\x01\x12\"\n" +
-	"\x1ePLATFORM_DATA_SOURCE_AUTOMATIC\x10\x02\x12\x1f\n" +
-	"\x1bPLATFORM_DATA_SOURCE_MANUAL\x10\x03B*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x16_platform_is_confirmed\"\xb0\x01\n" +
+	"\x10DisruptionReason\x12\x1b\n" +
+	"\treason_id\x18\x01 \x01(\rR\breasonId\x121\n" +
+	"\x12reason_location_id\x18\x02 \x01(\tH\x00R\x10reasonLocationId\x88\x01\x01\x125\n" +
+	"\x17reason_is_near_location\x18\x03 \x01(\bR\x14reasonIsNearLocationB\x15\n" +
+	"\x13_reason_location_idB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
 	file_search_proto_rawDescOnce sync.Once
@@ -1323,48 +1237,46 @@ func file_search_proto_rawDescGZIP() []byte {
 	return file_search_proto_rawDescData
 }
 
-var file_search_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_search_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_search_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_search_proto_goTypes = []any{
-	(SearchType)(0),              // 0: SearchType
-	(LocationType)(0),            // 1: LocationType
-	(PlatformDataSource)(0),      // 2: PlatformDataSource
-	(*SearchRequest)(nil),        // 3: SearchRequest
-	(*SearchResponse)(nil),       // 4: SearchResponse
-	(*ServiceRoute)(nil),         // 5: ServiceRoute
-	(*ServiceRouteLocation)(nil), // 6: ServiceRouteLocation
-	(*DisruptionReason)(nil),     // 7: DisruptionReason
-	(*Schedule)(nil),             // 8: Schedule
-	(*ScheduleLocation)(nil),     // 9: ScheduleLocation
-	(*Forecast)(nil),             // 10: Forecast
-	(ServiceType)(0),             // 11: ServiceType
-	(CategoryType)(0),            // 12: CategoryType
-	(ActivityType)(0),            // 13: ActivityType
+	(ScheduleLocation_LocationType)(0), // 0: ScheduleLocation.LocationType
+	(Forecast_PlatformDataSource)(0),   // 1: Forecast.PlatformDataSource
+	(*SearchRequest)(nil),              // 2: SearchRequest
+	(*SearchResponse)(nil),             // 3: SearchResponse
+	(*ServiceRoute)(nil),               // 4: ServiceRoute
+	(*ServiceRouteLocation)(nil),       // 5: ServiceRouteLocation
+	(*Schedule)(nil),                   // 6: Schedule
+	(*ScheduleLocation)(nil),           // 7: ScheduleLocation
+	(*Forecast)(nil),                   // 8: Forecast
+	(*DisruptionReason)(nil),           // 9: DisruptionReason
+	(ServiceType)(0),                   // 10: ServiceType
+	(CategoryType)(0),                  // 11: CategoryType
+	(ActivityType)(0),                  // 12: ActivityType
 }
 var file_search_proto_depIdxs = []int32{
-	0,  // 0: SearchRequest.search_type:type_name -> SearchType
-	8,  // 1: SearchResponse.schedule:type_name -> Schedule
-	9,  // 2: SearchResponse.schedule_location:type_name -> ScheduleLocation
-	10, // 3: SearchResponse.forecast:type_name -> Forecast
-	5,  // 4: SearchResponse.previous_route:type_name -> ServiceRoute
-	5,  // 5: SearchResponse.next_route:type_name -> ServiceRoute
-	11, // 6: Schedule.service_type:type_name -> ServiceType
-	12, // 7: Schedule.category_type:type_name -> CategoryType
-	7,  // 8: Schedule.schedule_cancellation_reason:type_name -> DisruptionReason
-	7,  // 9: Schedule.schedule_diversion_reason:type_name -> DisruptionReason
-	13, // 10: ScheduleLocation.activities:type_name -> ActivityType
-	13, // 11: ScheduleLocation.planned_activities:type_name -> ActivityType
-	1,  // 12: ScheduleLocation.location_type:type_name -> LocationType
-	7,  // 13: ScheduleLocation.location_cancellation_reason:type_name -> DisruptionReason
-	7,  // 14: Forecast.schedule_late_reason:type_name -> DisruptionReason
-	7,  // 15: Forecast.location_late_reason:type_name -> DisruptionReason
-	7,  // 16: Forecast.location_disruption_risk_reason:type_name -> DisruptionReason
-	2,  // 17: Forecast.platform_data_source:type_name -> PlatformDataSource
-	18, // [18:18] is the sub-list for method output_type
-	18, // [18:18] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	6,  // 0: SearchResponse.schedule:type_name -> Schedule
+	7,  // 1: SearchResponse.schedule_location:type_name -> ScheduleLocation
+	8,  // 2: SearchResponse.forecast:type_name -> Forecast
+	4,  // 3: SearchResponse.previous_route:type_name -> ServiceRoute
+	4,  // 4: SearchResponse.next_route:type_name -> ServiceRoute
+	10, // 5: Schedule.service_type:type_name -> ServiceType
+	11, // 6: Schedule.category_type:type_name -> CategoryType
+	9,  // 7: Schedule.schedule_cancellation_reason:type_name -> DisruptionReason
+	9,  // 8: Schedule.schedule_diversion_reason:type_name -> DisruptionReason
+	12, // 9: ScheduleLocation.activities:type_name -> ActivityType
+	12, // 10: ScheduleLocation.planned_activities:type_name -> ActivityType
+	0,  // 11: ScheduleLocation.location_type:type_name -> ScheduleLocation.LocationType
+	9,  // 12: ScheduleLocation.location_cancellation_reason:type_name -> DisruptionReason
+	9,  // 13: Forecast.schedule_late_reason:type_name -> DisruptionReason
+	9,  // 14: Forecast.location_late_reason:type_name -> DisruptionReason
+	9,  // 15: Forecast.location_disruption_risk_reason:type_name -> DisruptionReason
+	1,  // 16: Forecast.platform_data_source:type_name -> Forecast.PlatformDataSource
+	17, // [17:17] is the sub-list for method output_type
+	17, // [17:17] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_search_proto_init() }
@@ -1373,7 +1285,6 @@ func file_search_proto_init() {
 		return
 	}
 	file_railtypes_proto_init()
-	file_search_proto_msgTypes[0].OneofWrappers = []any{}
 	file_search_proto_msgTypes[1].OneofWrappers = []any{}
 	file_search_proto_msgTypes[4].OneofWrappers = []any{}
 	file_search_proto_msgTypes[5].OneofWrappers = []any{}
@@ -1384,7 +1295,7 @@ func file_search_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_search_proto_rawDesc), len(file_search_proto_rawDesc)),
-			NumEnums:      3,
+			NumEnums:      2,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
