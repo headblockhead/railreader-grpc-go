@@ -140,7 +140,7 @@ func (Forecast_PlatformDataSource) EnumDescriptor() ([]byte, []int) {
 // From and To times are inclusive, and may return services scheduled up to 2 hours before and after the provided times to allow for services that are running early or late to be shown in the results.
 type SearchRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	LocationId    []string               `protobuf:"bytes,1,rep,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
+	LocationIds   []string               `protobuf:"bytes,1,rep,name=location_ids,json=locationIds,proto3" json:"location_ids,omitempty"`
 	FromTime      string                 `protobuf:"bytes,2,opt,name=from_time,json=fromTime,proto3" json:"from_time,omitempty"`
 	ToTime        string                 `protobuf:"bytes,3,opt,name=to_time,json=toTime,proto3" json:"to_time,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -177,9 +177,9 @@ func (*SearchRequest) Descriptor() ([]byte, []int) {
 	return file_search_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *SearchRequest) GetLocationId() []string {
+func (x *SearchRequest) GetLocationIds() []string {
 	if x != nil {
-		return x.LocationId
+		return x.LocationIds
 	}
 	return nil
 }
@@ -200,14 +200,15 @@ func (x *SearchRequest) GetToTime() string {
 
 type SearchResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	Schedule         *Schedule              `protobuf:"bytes,1,opt,name=schedule,proto3" json:"schedule,omitempty"`
-	ScheduleLocation *ScheduleLocation      `protobuf:"bytes,2,opt,name=schedule_location,json=scheduleLocation,proto3" json:"schedule_location,omitempty"`
-	Forecast         *Forecast              `protobuf:"bytes,3,opt,name=forecast,proto3,oneof" json:"forecast,omitempty"`                                   // TODO
-	Platform         *string                `protobuf:"bytes,4,opt,name=platform,proto3,oneof" json:"platform,omitempty"`                                   // TODO
-	Length           *uint32                `protobuf:"varint,5,opt,name=length,proto3,oneof" json:"length,omitempty"`                                      // TODO
-	IsCircularRoute  bool                   `protobuf:"varint,6,opt,name=is_circular_route,json=isCircularRoute,proto3" json:"is_circular_route,omitempty"` // TODO
-	PreviousRoute    *ServiceRoute          `protobuf:"bytes,7,opt,name=previous_route,json=previousRoute,proto3" json:"previous_route,omitempty"`          // TODO
-	NextRoute        *ServiceRoute          `protobuf:"bytes,8,opt,name=next_route,json=nextRoute,proto3" json:"next_route,omitempty"`                      // TODO
+	LocationId       string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
+	Schedule         *Schedule              `protobuf:"bytes,2,opt,name=schedule,proto3" json:"schedule,omitempty"`
+	ScheduleLocation *ScheduleLocation      `protobuf:"bytes,3,opt,name=schedule_location,json=scheduleLocation,proto3" json:"schedule_location,omitempty"`
+	Forecast         *Forecast              `protobuf:"bytes,4,opt,name=forecast,proto3,oneof" json:"forecast,omitempty"`                                    // TODO
+	Platform         *string                `protobuf:"bytes,10,opt,name=platform,proto3,oneof" json:"platform,omitempty"`                                   // TODO
+	Length           *uint32                `protobuf:"varint,11,opt,name=length,proto3,oneof" json:"length,omitempty"`                                      // TODO
+	IsCircularRoute  bool                   `protobuf:"varint,12,opt,name=is_circular_route,json=isCircularRoute,proto3" json:"is_circular_route,omitempty"` // TODO
+	PreviousRoute    *ServiceRoute          `protobuf:"bytes,13,opt,name=previous_route,json=previousRoute,proto3" json:"previous_route,omitempty"`          // TODO
+	NextRoute        *ServiceRoute          `protobuf:"bytes,14,opt,name=next_route,json=nextRoute,proto3" json:"next_route,omitempty"`                      // TODO
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -240,6 +241,13 @@ func (x *SearchResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use SearchResponse.ProtoReflect.Descriptor instead.
 func (*SearchResponse) Descriptor() ([]byte, []int) {
 	return file_search_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *SearchResponse) GetLocationId() string {
+	if x != nil {
+		return x.LocationId
+	}
+	return ""
 }
 
 func (x *SearchResponse) GetSchedule() *Schedule {
@@ -1063,25 +1071,28 @@ var File_search_proto protoreflect.FileDescriptor
 
 const file_search_proto_rawDesc = "" +
 	"\n" +
-	"\fsearch.proto\x1a\x0frailtypes.proto\"f\n" +
-	"\rSearchRequest\x12\x1f\n" +
-	"\vlocation_id\x18\x01 \x03(\tR\n" +
-	"locationId\x12\x1b\n" +
+	"\fsearch.proto\x1a\x0frailtypes.proto\"h\n" +
+	"\rSearchRequest\x12!\n" +
+	"\flocation_ids\x18\x01 \x03(\tR\vlocationIds\x12\x1b\n" +
 	"\tfrom_time\x18\x02 \x01(\tR\bfromTime\x12\x17\n" +
-	"\ato_time\x18\x03 \x01(\tR\x06toTime\"\x96\x03\n" +
-	"\x0eSearchResponse\x12%\n" +
-	"\bschedule\x18\x01 \x01(\v2\t.ScheduleR\bschedule\x12>\n" +
-	"\x11schedule_location\x18\x02 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocation\x12*\n" +
-	"\bforecast\x18\x03 \x01(\v2\t.ForecastH\x00R\bforecast\x88\x01\x01\x12\x1f\n" +
-	"\bplatform\x18\x04 \x01(\tH\x01R\bplatform\x88\x01\x01\x12\x1b\n" +
-	"\x06length\x18\x05 \x01(\rH\x02R\x06length\x88\x01\x01\x12*\n" +
-	"\x11is_circular_route\x18\x06 \x01(\bR\x0fisCircularRoute\x124\n" +
-	"\x0eprevious_route\x18\a \x01(\v2\r.ServiceRouteR\rpreviousRoute\x12,\n" +
+	"\ato_time\x18\x03 \x01(\tR\x06toTime\"\xbd\x03\n" +
+	"\x0eSearchResponse\x12\x1f\n" +
+	"\vlocation_id\x18\x01 \x01(\tR\n" +
+	"locationId\x12%\n" +
+	"\bschedule\x18\x02 \x01(\v2\t.ScheduleR\bschedule\x12>\n" +
+	"\x11schedule_location\x18\x03 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocation\x12*\n" +
+	"\bforecast\x18\x04 \x01(\v2\t.ForecastH\x00R\bforecast\x88\x01\x01\x12\x1f\n" +
+	"\bplatform\x18\n" +
+	" \x01(\tH\x01R\bplatform\x88\x01\x01\x12\x1b\n" +
+	"\x06length\x18\v \x01(\rH\x02R\x06length\x88\x01\x01\x12*\n" +
+	"\x11is_circular_route\x18\f \x01(\bR\x0fisCircularRoute\x124\n" +
+	"\x0eprevious_route\x18\r \x01(\v2\r.ServiceRouteR\rpreviousRoute\x12,\n" +
 	"\n" +
-	"next_route\x18\b \x01(\v2\r.ServiceRouteR\tnextRouteB\v\n" +
+	"next_route\x18\x0e \x01(\v2\r.ServiceRouteR\tnextRouteB\v\n" +
 	"\t_forecastB\v\n" +
 	"\t_platformB\t\n" +
-	"\a_length\"\x0e\n" +
+	"\a_lengthJ\x04\b\x05\x10\n" +
+	"\"\x0e\n" +
 	"\fServiceRoute\"\x16\n" +
 	"\x14ServiceRouteLocation\"\x95\x06\n" +
 	"\bSchedule\x12\x1f\n" +
