@@ -82,7 +82,7 @@ func (x ScheduleLocation_LocationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ScheduleLocation_LocationType.Descriptor instead.
 func (ScheduleLocation_LocationType) EnumDescriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{5, 0}
+	return file_search_proto_rawDescGZIP(), []int{4, 0}
 }
 
 type Forecast_PlatformDataSource int32
@@ -134,7 +134,7 @@ func (x Forecast_PlatformDataSource) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Forecast_PlatformDataSource.Descriptor instead.
 func (Forecast_PlatformDataSource) EnumDescriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{6, 0}
+	return file_search_proto_rawDescGZIP(), []int{5, 0}
 }
 
 // From and To times are inclusive, and may return services scheduled up to 2 hours before and after the provided times to allow for services that are running early or late to be shown in the results.
@@ -199,18 +199,17 @@ func (x *SearchRequest) GetToTime() string {
 }
 
 type SearchResponse struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	LocationId       string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
-	Schedule         *Schedule              `protobuf:"bytes,2,opt,name=schedule,proto3" json:"schedule,omitempty"`
-	ScheduleLocation *ScheduleLocation      `protobuf:"bytes,3,opt,name=schedule_location,json=scheduleLocation,proto3" json:"schedule_location,omitempty"`
-	Forecast         *Forecast              `protobuf:"bytes,4,opt,name=forecast,proto3,oneof" json:"forecast,omitempty"`                                    // TODO
-	Platform         *string                `protobuf:"bytes,10,opt,name=platform,proto3,oneof" json:"platform,omitempty"`                                   // TODO
-	Length           *uint32                `protobuf:"varint,11,opt,name=length,proto3,oneof" json:"length,omitempty"`                                      // TODO
-	IsCircularRoute  bool                   `protobuf:"varint,12,opt,name=is_circular_route,json=isCircularRoute,proto3" json:"is_circular_route,omitempty"` // TODO
-	PreviousRoute    *ServiceRoute          `protobuf:"bytes,13,opt,name=previous_route,json=previousRoute,proto3" json:"previous_route,omitempty"`          // TODO
-	NextRoute        *ServiceRoute          `protobuf:"bytes,14,opt,name=next_route,json=nextRoute,proto3" json:"next_route,omitempty"`                      // TODO
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state                 protoimpl.MessageState `protogen:"open.v1"`
+	LocationId            string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
+	Schedule              *Schedule              `protobuf:"bytes,2,opt,name=schedule,proto3" json:"schedule,omitempty"`
+	ScheduleLocation      *ScheduleLocation      `protobuf:"bytes,3,opt,name=schedule_location,json=scheduleLocation,proto3" json:"schedule_location,omitempty"`
+	Forecast              *Forecast              `protobuf:"bytes,4,opt,name=forecast,proto3,oneof" json:"forecast,omitempty"`
+	GenerousArrivalTime   string                 `protobuf:"bytes,7,opt,name=generous_arrival_time,json=generousArrivalTime,proto3" json:"generous_arrival_time,omitempty"`
+	GenerousPassingTime   string                 `protobuf:"bytes,8,opt,name=generous_passing_time,json=generousPassingTime,proto3" json:"generous_passing_time,omitempty"`
+	GenerousDepartureTime string                 `protobuf:"bytes,9,opt,name=generous_departure_time,json=generousDepartureTime,proto3" json:"generous_departure_time,omitempty"`
+	Platform              *string                `protobuf:"bytes,10,opt,name=platform,proto3,oneof" json:"platform,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *SearchResponse) Reset() {
@@ -271,6 +270,27 @@ func (x *SearchResponse) GetForecast() *Forecast {
 	return nil
 }
 
+func (x *SearchResponse) GetGenerousArrivalTime() string {
+	if x != nil {
+		return x.GenerousArrivalTime
+	}
+	return ""
+}
+
+func (x *SearchResponse) GetGenerousPassingTime() string {
+	if x != nil {
+		return x.GenerousPassingTime
+	}
+	return ""
+}
+
+func (x *SearchResponse) GetGenerousDepartureTime() string {
+	if x != nil {
+		return x.GenerousDepartureTime
+	}
+	return ""
+}
+
 func (x *SearchResponse) GetPlatform() string {
 	if x != nil && x.Platform != nil {
 		return *x.Platform
@@ -278,104 +298,66 @@ func (x *SearchResponse) GetPlatform() string {
 	return ""
 }
 
-func (x *SearchResponse) GetLength() uint32 {
-	if x != nil && x.Length != nil {
-		return *x.Length
+type DisruptionReason struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	ReasonId         uint32                 `protobuf:"varint,1,opt,name=reason_id,json=reasonId,proto3" json:"reason_id,omitempty"`
+	ReasonLocationId *string                `protobuf:"bytes,2,opt,name=reason_location_id,json=reasonLocationId,proto3,oneof" json:"reason_location_id,omitempty"`
+	// When true, the provided reason_id is 'near to' the provided reason_location_id.
+	// When false, the reason_id is 'at' the reason_location_id.
+	ReasonIsNearLocation bool `protobuf:"varint,3,opt,name=reason_is_near_location,json=reasonIsNearLocation,proto3" json:"reason_is_near_location,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *DisruptionReason) Reset() {
+	*x = DisruptionReason{}
+	mi := &file_search_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DisruptionReason) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DisruptionReason) ProtoMessage() {}
+
+func (x *DisruptionReason) ProtoReflect() protoreflect.Message {
+	mi := &file_search_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DisruptionReason.ProtoReflect.Descriptor instead.
+func (*DisruptionReason) Descriptor() ([]byte, []int) {
+	return file_search_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *DisruptionReason) GetReasonId() uint32 {
+	if x != nil {
+		return x.ReasonId
 	}
 	return 0
 }
 
-func (x *SearchResponse) GetIsCircularRoute() bool {
+func (x *DisruptionReason) GetReasonLocationId() string {
+	if x != nil && x.ReasonLocationId != nil {
+		return *x.ReasonLocationId
+	}
+	return ""
+}
+
+func (x *DisruptionReason) GetReasonIsNearLocation() bool {
 	if x != nil {
-		return x.IsCircularRoute
+		return x.ReasonIsNearLocation
 	}
 	return false
-}
-
-func (x *SearchResponse) GetPreviousRoute() *ServiceRoute {
-	if x != nil {
-		return x.PreviousRoute
-	}
-	return nil
-}
-
-func (x *SearchResponse) GetNextRoute() *ServiceRoute {
-	if x != nil {
-		return x.NextRoute
-	}
-	return nil
-}
-
-type ServiceRoute struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ServiceRoute) Reset() {
-	*x = ServiceRoute{}
-	mi := &file_search_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ServiceRoute) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ServiceRoute) ProtoMessage() {}
-
-func (x *ServiceRoute) ProtoReflect() protoreflect.Message {
-	mi := &file_search_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ServiceRoute.ProtoReflect.Descriptor instead.
-func (*ServiceRoute) Descriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{2}
-}
-
-type ServiceRouteLocation struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ServiceRouteLocation) Reset() {
-	*x = ServiceRouteLocation{}
-	mi := &file_search_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ServiceRouteLocation) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ServiceRouteLocation) ProtoMessage() {}
-
-func (x *ServiceRouteLocation) ProtoReflect() protoreflect.Message {
-	mi := &file_search_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ServiceRouteLocation.ProtoReflect.Descriptor instead.
-func (*ServiceRouteLocation) Descriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{3}
 }
 
 type Schedule struct {
@@ -400,7 +382,7 @@ type Schedule struct {
 
 func (x *Schedule) Reset() {
 	*x = Schedule{}
-	mi := &file_search_proto_msgTypes[4]
+	mi := &file_search_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -412,7 +394,7 @@ func (x *Schedule) String() string {
 func (*Schedule) ProtoMessage() {}
 
 func (x *Schedule) ProtoReflect() protoreflect.Message {
-	mi := &file_search_proto_msgTypes[4]
+	mi := &file_search_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -425,7 +407,7 @@ func (x *Schedule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Schedule.ProtoReflect.Descriptor instead.
 func (*Schedule) Descriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{4}
+	return file_search_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Schedule) GetScheduleId() string {
@@ -550,7 +532,7 @@ type ScheduleLocation struct {
 
 func (x *ScheduleLocation) Reset() {
 	*x = ScheduleLocation{}
-	mi := &file_search_proto_msgTypes[5]
+	mi := &file_search_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -562,7 +544,7 @@ func (x *ScheduleLocation) String() string {
 func (*ScheduleLocation) ProtoMessage() {}
 
 func (x *ScheduleLocation) ProtoReflect() protoreflect.Message {
-	mi := &file_search_proto_msgTypes[5]
+	mi := &file_search_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -575,7 +557,7 @@ func (x *ScheduleLocation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScheduleLocation.ProtoReflect.Descriptor instead.
 func (*ScheduleLocation) Descriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{5}
+	return file_search_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ScheduleLocation) GetActivities() []ActivityType {
@@ -711,7 +693,7 @@ type Forecast struct {
 
 func (x *Forecast) Reset() {
 	*x = Forecast{}
-	mi := &file_search_proto_msgTypes[6]
+	mi := &file_search_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -723,7 +705,7 @@ func (x *Forecast) String() string {
 func (*Forecast) ProtoMessage() {}
 
 func (x *Forecast) ProtoReflect() protoreflect.Message {
-	mi := &file_search_proto_msgTypes[6]
+	mi := &file_search_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -736,7 +718,7 @@ func (x *Forecast) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Forecast.ProtoReflect.Descriptor instead.
 func (*Forecast) Descriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{6}
+	return file_search_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Forecast) GetIsReverseFormation() bool {
@@ -1005,68 +987,6 @@ func (x *Forecast) GetServiceDetatchesFromFront() bool {
 	return false
 }
 
-type DisruptionReason struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	ReasonId         uint32                 `protobuf:"varint,1,opt,name=reason_id,json=reasonId,proto3" json:"reason_id,omitempty"`
-	ReasonLocationId *string                `protobuf:"bytes,2,opt,name=reason_location_id,json=reasonLocationId,proto3,oneof" json:"reason_location_id,omitempty"`
-	// When true, the provided reason_id is 'near to' the provided reason_location_id.
-	// When false, the reason_id is 'at' the reason_location_id.
-	ReasonIsNearLocation bool `protobuf:"varint,3,opt,name=reason_is_near_location,json=reasonIsNearLocation,proto3" json:"reason_is_near_location,omitempty"`
-	unknownFields        protoimpl.UnknownFields
-	sizeCache            protoimpl.SizeCache
-}
-
-func (x *DisruptionReason) Reset() {
-	*x = DisruptionReason{}
-	mi := &file_search_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DisruptionReason) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DisruptionReason) ProtoMessage() {}
-
-func (x *DisruptionReason) ProtoReflect() protoreflect.Message {
-	mi := &file_search_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DisruptionReason.ProtoReflect.Descriptor instead.
-func (*DisruptionReason) Descriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *DisruptionReason) GetReasonId() uint32 {
-	if x != nil {
-		return x.ReasonId
-	}
-	return 0
-}
-
-func (x *DisruptionReason) GetReasonLocationId() string {
-	if x != nil && x.ReasonLocationId != nil {
-		return *x.ReasonLocationId
-	}
-	return ""
-}
-
-func (x *DisruptionReason) GetReasonIsNearLocation() bool {
-	if x != nil {
-		return x.ReasonIsNearLocation
-	}
-	return false
-}
-
 var File_search_proto protoreflect.FileDescriptor
 
 const file_search_proto_rawDesc = "" +
@@ -1075,26 +995,25 @@ const file_search_proto_rawDesc = "" +
 	"\rSearchRequest\x12!\n" +
 	"\flocation_ids\x18\x01 \x03(\tR\vlocationIds\x12\x1b\n" +
 	"\tfrom_time\x18\x02 \x01(\tR\bfromTime\x12\x17\n" +
-	"\ato_time\x18\x03 \x01(\tR\x06toTime\"\xbd\x03\n" +
+	"\ato_time\x18\x03 \x01(\tR\x06toTime\"\xa5\x03\n" +
 	"\x0eSearchResponse\x12\x1f\n" +
 	"\vlocation_id\x18\x01 \x01(\tR\n" +
 	"locationId\x12%\n" +
 	"\bschedule\x18\x02 \x01(\v2\t.ScheduleR\bschedule\x12>\n" +
 	"\x11schedule_location\x18\x03 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocation\x12*\n" +
-	"\bforecast\x18\x04 \x01(\v2\t.ForecastH\x00R\bforecast\x88\x01\x01\x12\x1f\n" +
+	"\bforecast\x18\x04 \x01(\v2\t.ForecastH\x00R\bforecast\x88\x01\x01\x122\n" +
+	"\x15generous_arrival_time\x18\a \x01(\tR\x13generousArrivalTime\x122\n" +
+	"\x15generous_passing_time\x18\b \x01(\tR\x13generousPassingTime\x126\n" +
+	"\x17generous_departure_time\x18\t \x01(\tR\x15generousDepartureTime\x12\x1f\n" +
 	"\bplatform\x18\n" +
-	" \x01(\tH\x01R\bplatform\x88\x01\x01\x12\x1b\n" +
-	"\x06length\x18\v \x01(\rH\x02R\x06length\x88\x01\x01\x12*\n" +
-	"\x11is_circular_route\x18\f \x01(\bR\x0fisCircularRoute\x124\n" +
-	"\x0eprevious_route\x18\r \x01(\v2\r.ServiceRouteR\rpreviousRoute\x12,\n" +
-	"\n" +
-	"next_route\x18\x0e \x01(\v2\r.ServiceRouteR\tnextRouteB\v\n" +
+	" \x01(\tH\x01R\bplatform\x88\x01\x01B\v\n" +
 	"\t_forecastB\v\n" +
-	"\t_platformB\t\n" +
-	"\a_lengthJ\x04\b\x05\x10\n" +
-	"\"\x0e\n" +
-	"\fServiceRoute\"\x16\n" +
-	"\x14ServiceRouteLocation\"\x95\x06\n" +
+	"\t_platformJ\x04\b\x05\x10\a\"\xb0\x01\n" +
+	"\x10DisruptionReason\x12\x1b\n" +
+	"\treason_id\x18\x01 \x01(\rR\breasonId\x121\n" +
+	"\x12reason_location_id\x18\x02 \x01(\tH\x00R\x10reasonLocationId\x88\x01\x01\x125\n" +
+	"\x17reason_is_near_location\x18\x03 \x01(\bR\x14reasonIsNearLocationB\x15\n" +
+	"\x13_reason_location_id\"\x95\x06\n" +
 	"\bSchedule\x12\x1f\n" +
 	"\vschedule_id\x18\x01 \x01(\tR\n" +
 	"scheduleId\x12\x10\n" +
@@ -1229,12 +1148,7 @@ const file_search_proto_rawDesc = "" +
 	"\x17_platform_is_suppressedB \n" +
 	"\x1e_platform_is_suppressed_by_cisB\x17\n" +
 	"\x15_platform_data_sourceB\x18\n" +
-	"\x16_platform_is_confirmed\"\xb0\x01\n" +
-	"\x10DisruptionReason\x12\x1b\n" +
-	"\treason_id\x18\x01 \x01(\rR\breasonId\x121\n" +
-	"\x12reason_location_id\x18\x02 \x01(\tH\x00R\x10reasonLocationId\x88\x01\x01\x125\n" +
-	"\x17reason_is_near_location\x18\x03 \x01(\bR\x14reasonIsNearLocationB\x15\n" +
-	"\x13_reason_location_idB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x16_platform_is_confirmedB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
 	file_search_proto_rawDescOnce sync.Once
@@ -1249,45 +1163,41 @@ func file_search_proto_rawDescGZIP() []byte {
 }
 
 var file_search_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_search_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_search_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_search_proto_goTypes = []any{
 	(ScheduleLocation_LocationType)(0), // 0: ScheduleLocation.LocationType
 	(Forecast_PlatformDataSource)(0),   // 1: Forecast.PlatformDataSource
 	(*SearchRequest)(nil),              // 2: SearchRequest
 	(*SearchResponse)(nil),             // 3: SearchResponse
-	(*ServiceRoute)(nil),               // 4: ServiceRoute
-	(*ServiceRouteLocation)(nil),       // 5: ServiceRouteLocation
-	(*Schedule)(nil),                   // 6: Schedule
-	(*ScheduleLocation)(nil),           // 7: ScheduleLocation
-	(*Forecast)(nil),                   // 8: Forecast
-	(*DisruptionReason)(nil),           // 9: DisruptionReason
-	(ServiceType)(0),                   // 10: ServiceType
-	(CategoryType)(0),                  // 11: CategoryType
-	(ActivityType)(0),                  // 12: ActivityType
+	(*DisruptionReason)(nil),           // 4: DisruptionReason
+	(*Schedule)(nil),                   // 5: Schedule
+	(*ScheduleLocation)(nil),           // 6: ScheduleLocation
+	(*Forecast)(nil),                   // 7: Forecast
+	(ServiceType)(0),                   // 8: ServiceType
+	(CategoryType)(0),                  // 9: CategoryType
+	(ActivityType)(0),                  // 10: ActivityType
 }
 var file_search_proto_depIdxs = []int32{
-	6,  // 0: SearchResponse.schedule:type_name -> Schedule
-	7,  // 1: SearchResponse.schedule_location:type_name -> ScheduleLocation
-	8,  // 2: SearchResponse.forecast:type_name -> Forecast
-	4,  // 3: SearchResponse.previous_route:type_name -> ServiceRoute
-	4,  // 4: SearchResponse.next_route:type_name -> ServiceRoute
-	10, // 5: Schedule.service_type:type_name -> ServiceType
-	11, // 6: Schedule.category_type:type_name -> CategoryType
-	9,  // 7: Schedule.schedule_cancellation_reason:type_name -> DisruptionReason
-	9,  // 8: Schedule.schedule_diversion_reason:type_name -> DisruptionReason
-	12, // 9: ScheduleLocation.activities:type_name -> ActivityType
-	12, // 10: ScheduleLocation.planned_activities:type_name -> ActivityType
-	0,  // 11: ScheduleLocation.location_type:type_name -> ScheduleLocation.LocationType
-	9,  // 12: ScheduleLocation.location_cancellation_reason:type_name -> DisruptionReason
-	9,  // 13: Forecast.schedule_late_reason:type_name -> DisruptionReason
-	9,  // 14: Forecast.location_late_reason:type_name -> DisruptionReason
-	9,  // 15: Forecast.location_disruption_risk_reason:type_name -> DisruptionReason
-	1,  // 16: Forecast.platform_data_source:type_name -> Forecast.PlatformDataSource
-	17, // [17:17] is the sub-list for method output_type
-	17, // [17:17] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	5,  // 0: SearchResponse.schedule:type_name -> Schedule
+	6,  // 1: SearchResponse.schedule_location:type_name -> ScheduleLocation
+	7,  // 2: SearchResponse.forecast:type_name -> Forecast
+	8,  // 3: Schedule.service_type:type_name -> ServiceType
+	9,  // 4: Schedule.category_type:type_name -> CategoryType
+	4,  // 5: Schedule.schedule_cancellation_reason:type_name -> DisruptionReason
+	4,  // 6: Schedule.schedule_diversion_reason:type_name -> DisruptionReason
+	10, // 7: ScheduleLocation.activities:type_name -> ActivityType
+	10, // 8: ScheduleLocation.planned_activities:type_name -> ActivityType
+	0,  // 9: ScheduleLocation.location_type:type_name -> ScheduleLocation.LocationType
+	4,  // 10: ScheduleLocation.location_cancellation_reason:type_name -> DisruptionReason
+	4,  // 11: Forecast.schedule_late_reason:type_name -> DisruptionReason
+	4,  // 12: Forecast.location_late_reason:type_name -> DisruptionReason
+	4,  // 13: Forecast.location_disruption_risk_reason:type_name -> DisruptionReason
+	1,  // 14: Forecast.platform_data_source:type_name -> Forecast.PlatformDataSource
+	15, // [15:15] is the sub-list for method output_type
+	15, // [15:15] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_search_proto_init() }
@@ -1297,17 +1207,17 @@ func file_search_proto_init() {
 	}
 	file_railtypes_proto_init()
 	file_search_proto_msgTypes[1].OneofWrappers = []any{}
+	file_search_proto_msgTypes[2].OneofWrappers = []any{}
+	file_search_proto_msgTypes[3].OneofWrappers = []any{}
 	file_search_proto_msgTypes[4].OneofWrappers = []any{}
 	file_search_proto_msgTypes[5].OneofWrappers = []any{}
-	file_search_proto_msgTypes[6].OneofWrappers = []any{}
-	file_search_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_search_proto_rawDesc), len(file_search_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   8,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
