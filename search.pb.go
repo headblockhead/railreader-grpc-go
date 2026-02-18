@@ -204,9 +204,9 @@ type SearchResponse struct {
 	Schedule              *Schedule              `protobuf:"bytes,2,opt,name=schedule,proto3" json:"schedule,omitempty"`
 	ScheduleLocation      *ScheduleLocation      `protobuf:"bytes,3,opt,name=schedule_location,json=scheduleLocation,proto3" json:"schedule_location,omitempty"`
 	Forecast              *Forecast              `protobuf:"bytes,4,opt,name=forecast,proto3,oneof" json:"forecast,omitempty"`
-	GenerousArrivalTime   string                 `protobuf:"bytes,7,opt,name=generous_arrival_time,json=generousArrivalTime,proto3" json:"generous_arrival_time,omitempty"`
-	GenerousPassingTime   string                 `protobuf:"bytes,8,opt,name=generous_passing_time,json=generousPassingTime,proto3" json:"generous_passing_time,omitempty"`
-	GenerousDepartureTime string                 `protobuf:"bytes,9,opt,name=generous_departure_time,json=generousDepartureTime,proto3" json:"generous_departure_time,omitempty"`
+	GenerousArrivalTime   *string                `protobuf:"bytes,7,opt,name=generous_arrival_time,json=generousArrivalTime,proto3,oneof" json:"generous_arrival_time,omitempty"`
+	GenerousPassingTime   *string                `protobuf:"bytes,8,opt,name=generous_passing_time,json=generousPassingTime,proto3,oneof" json:"generous_passing_time,omitempty"`
+	GenerousDepartureTime *string                `protobuf:"bytes,9,opt,name=generous_departure_time,json=generousDepartureTime,proto3,oneof" json:"generous_departure_time,omitempty"`
 	Platform              *string                `protobuf:"bytes,10,opt,name=platform,proto3,oneof" json:"platform,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
@@ -271,22 +271,22 @@ func (x *SearchResponse) GetForecast() *Forecast {
 }
 
 func (x *SearchResponse) GetGenerousArrivalTime() string {
-	if x != nil {
-		return x.GenerousArrivalTime
+	if x != nil && x.GenerousArrivalTime != nil {
+		return *x.GenerousArrivalTime
 	}
 	return ""
 }
 
 func (x *SearchResponse) GetGenerousPassingTime() string {
-	if x != nil {
-		return x.GenerousPassingTime
+	if x != nil && x.GenerousPassingTime != nil {
+		return *x.GenerousPassingTime
 	}
 	return ""
 }
 
 func (x *SearchResponse) GetGenerousDepartureTime() string {
-	if x != nil {
-		return x.GenerousDepartureTime
+	if x != nil && x.GenerousDepartureTime != nil {
+		return *x.GenerousDepartureTime
 	}
 	return ""
 }
@@ -995,19 +995,22 @@ const file_search_proto_rawDesc = "" +
 	"\rSearchRequest\x12!\n" +
 	"\flocation_ids\x18\x01 \x03(\tR\vlocationIds\x12\x1b\n" +
 	"\tfrom_time\x18\x02 \x01(\tR\bfromTime\x12\x17\n" +
-	"\ato_time\x18\x03 \x01(\tR\x06toTime\"\xa5\x03\n" +
+	"\ato_time\x18\x03 \x01(\tR\x06toTime\"\x84\x04\n" +
 	"\x0eSearchResponse\x12\x1f\n" +
 	"\vlocation_id\x18\x01 \x01(\tR\n" +
 	"locationId\x12%\n" +
 	"\bschedule\x18\x02 \x01(\v2\t.ScheduleR\bschedule\x12>\n" +
 	"\x11schedule_location\x18\x03 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocation\x12*\n" +
-	"\bforecast\x18\x04 \x01(\v2\t.ForecastH\x00R\bforecast\x88\x01\x01\x122\n" +
-	"\x15generous_arrival_time\x18\a \x01(\tR\x13generousArrivalTime\x122\n" +
-	"\x15generous_passing_time\x18\b \x01(\tR\x13generousPassingTime\x126\n" +
-	"\x17generous_departure_time\x18\t \x01(\tR\x15generousDepartureTime\x12\x1f\n" +
+	"\bforecast\x18\x04 \x01(\v2\t.ForecastH\x00R\bforecast\x88\x01\x01\x127\n" +
+	"\x15generous_arrival_time\x18\a \x01(\tH\x01R\x13generousArrivalTime\x88\x01\x01\x127\n" +
+	"\x15generous_passing_time\x18\b \x01(\tH\x02R\x13generousPassingTime\x88\x01\x01\x12;\n" +
+	"\x17generous_departure_time\x18\t \x01(\tH\x03R\x15generousDepartureTime\x88\x01\x01\x12\x1f\n" +
 	"\bplatform\x18\n" +
-	" \x01(\tH\x01R\bplatform\x88\x01\x01B\v\n" +
-	"\t_forecastB\v\n" +
+	" \x01(\tH\x04R\bplatform\x88\x01\x01B\v\n" +
+	"\t_forecastB\x18\n" +
+	"\x16_generous_arrival_timeB\x18\n" +
+	"\x16_generous_passing_timeB\x1a\n" +
+	"\x18_generous_departure_timeB\v\n" +
 	"\t_platformJ\x04\b\x05\x10\a\"\xb0\x01\n" +
 	"\x10DisruptionReason\x12\x1b\n" +
 	"\treason_id\x18\x01 \x01(\rR\breasonId\x121\n" +
