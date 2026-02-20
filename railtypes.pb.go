@@ -21,6 +21,70 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type LocationType int32
+
+const (
+	LocationType_LOCATION_TYPE_LOCATION_UNKNOWN                  LocationType = 0
+	LocationType_LOCATION_TYPE_LOCATION_ORIGIN                   LocationType = 1
+	LocationType_LOCATION_TYPE_LOCATION_OPERATIONAL_ORIGIN       LocationType = 2
+	LocationType_LOCATION_TYPE_LOCATION_INTERMEDIATE             LocationType = 3
+	LocationType_LOCATION_TYPE_LOCATION_OPERATIONAL_INTERMEDIATE LocationType = 4
+	LocationType_LOCATION_TYPE_LOCATION_INTERMEDIATE_PASSING     LocationType = 5
+	LocationType_LOCATION_TYPE_LOCATION_DESTINATION              LocationType = 6
+	LocationType_LOCATION_TYPE_LOCATION_OPERATIONAL_DESTINATION  LocationType = 7
+)
+
+// Enum value maps for LocationType.
+var (
+	LocationType_name = map[int32]string{
+		0: "LOCATION_TYPE_LOCATION_UNKNOWN",
+		1: "LOCATION_TYPE_LOCATION_ORIGIN",
+		2: "LOCATION_TYPE_LOCATION_OPERATIONAL_ORIGIN",
+		3: "LOCATION_TYPE_LOCATION_INTERMEDIATE",
+		4: "LOCATION_TYPE_LOCATION_OPERATIONAL_INTERMEDIATE",
+		5: "LOCATION_TYPE_LOCATION_INTERMEDIATE_PASSING",
+		6: "LOCATION_TYPE_LOCATION_DESTINATION",
+		7: "LOCATION_TYPE_LOCATION_OPERATIONAL_DESTINATION",
+	}
+	LocationType_value = map[string]int32{
+		"LOCATION_TYPE_LOCATION_UNKNOWN":                  0,
+		"LOCATION_TYPE_LOCATION_ORIGIN":                   1,
+		"LOCATION_TYPE_LOCATION_OPERATIONAL_ORIGIN":       2,
+		"LOCATION_TYPE_LOCATION_INTERMEDIATE":             3,
+		"LOCATION_TYPE_LOCATION_OPERATIONAL_INTERMEDIATE": 4,
+		"LOCATION_TYPE_LOCATION_INTERMEDIATE_PASSING":     5,
+		"LOCATION_TYPE_LOCATION_DESTINATION":              6,
+		"LOCATION_TYPE_LOCATION_OPERATIONAL_DESTINATION":  7,
+	}
+)
+
+func (x LocationType) Enum() *LocationType {
+	p := new(LocationType)
+	*p = x
+	return p
+}
+
+func (x LocationType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (LocationType) Descriptor() protoreflect.EnumDescriptor {
+	return file_railtypes_proto_enumTypes[0].Descriptor()
+}
+
+func (LocationType) Type() protoreflect.EnumType {
+	return &file_railtypes_proto_enumTypes[0]
+}
+
+func (x LocationType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use LocationType.Descriptor instead.
+func (LocationType) EnumDescriptor() ([]byte, []int) {
+	return file_railtypes_proto_rawDescGZIP(), []int{0}
+}
+
 type ServiceType int32
 
 const (
@@ -66,11 +130,11 @@ func (x ServiceType) String() string {
 }
 
 func (ServiceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_railtypes_proto_enumTypes[0].Descriptor()
+	return file_railtypes_proto_enumTypes[1].Descriptor()
 }
 
 func (ServiceType) Type() protoreflect.EnumType {
-	return &file_railtypes_proto_enumTypes[0]
+	return &file_railtypes_proto_enumTypes[1]
 }
 
 func (x ServiceType) Number() protoreflect.EnumNumber {
@@ -79,7 +143,7 @@ func (x ServiceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ServiceType.Descriptor instead.
 func (ServiceType) EnumDescriptor() ([]byte, []int) {
-	return file_railtypes_proto_rawDescGZIP(), []int{0}
+	return file_railtypes_proto_rawDescGZIP(), []int{1}
 }
 
 type CategoryType int32
@@ -163,11 +227,11 @@ func (x CategoryType) String() string {
 }
 
 func (CategoryType) Descriptor() protoreflect.EnumDescriptor {
-	return file_railtypes_proto_enumTypes[1].Descriptor()
+	return file_railtypes_proto_enumTypes[2].Descriptor()
 }
 
 func (CategoryType) Type() protoreflect.EnumType {
-	return &file_railtypes_proto_enumTypes[1]
+	return &file_railtypes_proto_enumTypes[2]
 }
 
 func (x CategoryType) Number() protoreflect.EnumNumber {
@@ -176,7 +240,7 @@ func (x CategoryType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use CategoryType.Descriptor instead.
 func (CategoryType) EnumDescriptor() ([]byte, []int) {
-	return file_railtypes_proto_rawDescGZIP(), []int{1}
+	return file_railtypes_proto_rawDescGZIP(), []int{2}
 }
 
 type ActivityType int32
@@ -311,11 +375,11 @@ func (x ActivityType) String() string {
 }
 
 func (ActivityType) Descriptor() protoreflect.EnumDescriptor {
-	return file_railtypes_proto_enumTypes[2].Descriptor()
+	return file_railtypes_proto_enumTypes[3].Descriptor()
 }
 
 func (ActivityType) Type() protoreflect.EnumType {
-	return &file_railtypes_proto_enumTypes[2]
+	return &file_railtypes_proto_enumTypes[3]
 }
 
 func (x ActivityType) Number() protoreflect.EnumNumber {
@@ -324,14 +388,23 @@ func (x ActivityType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ActivityType.Descriptor instead.
 func (ActivityType) EnumDescriptor() ([]byte, []int) {
-	return file_railtypes_proto_rawDescGZIP(), []int{2}
+	return file_railtypes_proto_rawDescGZIP(), []int{3}
 }
 
 var File_railtypes_proto protoreflect.FileDescriptor
 
 const file_railtypes_proto_rawDesc = "" +
 	"\n" +
-	"\x0frailtypes.proto*\xa2\x02\n" +
+	"\x0frailtypes.proto*\xef\x02\n" +
+	"\fLocationType\x12\"\n" +
+	"\x1eLOCATION_TYPE_LOCATION_UNKNOWN\x10\x00\x12!\n" +
+	"\x1dLOCATION_TYPE_LOCATION_ORIGIN\x10\x01\x12-\n" +
+	")LOCATION_TYPE_LOCATION_OPERATIONAL_ORIGIN\x10\x02\x12'\n" +
+	"#LOCATION_TYPE_LOCATION_INTERMEDIATE\x10\x03\x123\n" +
+	"/LOCATION_TYPE_LOCATION_OPERATIONAL_INTERMEDIATE\x10\x04\x12/\n" +
+	"+LOCATION_TYPE_LOCATION_INTERMEDIATE_PASSING\x10\x05\x12&\n" +
+	"\"LOCATION_TYPE_LOCATION_DESTINATION\x10\x06\x122\n" +
+	".LOCATION_TYPE_LOCATION_OPERATIONAL_DESTINATION\x10\a*\xa2\x02\n" +
 	"\vServiceType\x12 \n" +
 	"\x1cSERVICE_TYPE_SERVICE_UNKNOWN\x10\x00\x12\x1e\n" +
 	"\x1aSERVICE_TYPE_SERVICE_TRAIN\x10\x01\x121\n" +
@@ -412,11 +485,12 @@ func file_railtypes_proto_rawDescGZIP() []byte {
 	return file_railtypes_proto_rawDescData
 }
 
-var file_railtypes_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_railtypes_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
 var file_railtypes_proto_goTypes = []any{
-	(ServiceType)(0),  // 0: ServiceType
-	(CategoryType)(0), // 1: CategoryType
-	(ActivityType)(0), // 2: ActivityType
+	(LocationType)(0), // 0: LocationType
+	(ServiceType)(0),  // 1: ServiceType
+	(CategoryType)(0), // 2: CategoryType
+	(ActivityType)(0), // 3: ActivityType
 }
 var file_railtypes_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -436,7 +510,7 @@ func file_railtypes_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_railtypes_proto_rawDesc), len(file_railtypes_proto_rawDesc)),
-			NumEnums:      3,
+			NumEnums:      4,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   0,

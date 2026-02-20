@@ -21,70 +21,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ScheduleLocation_LocationType int32
-
-const (
-	ScheduleLocation_LOCATION_TYPE_LOCATION_UNKNOWN                  ScheduleLocation_LocationType = 0
-	ScheduleLocation_LOCATION_TYPE_LOCATION_ORIGIN                   ScheduleLocation_LocationType = 1
-	ScheduleLocation_LOCATION_TYPE_LOCATION_OPERATIONAL_ORIGIN       ScheduleLocation_LocationType = 2
-	ScheduleLocation_LOCATION_TYPE_LOCATION_INTERMEDIATE             ScheduleLocation_LocationType = 3
-	ScheduleLocation_LOCATION_TYPE_LOCATION_OPERATIONAL_INTERMEDIATE ScheduleLocation_LocationType = 4
-	ScheduleLocation_LOCATION_TYPE_LOCATION_INTERMEDIATE_PASSING     ScheduleLocation_LocationType = 5
-	ScheduleLocation_LOCATION_TYPE_LOCATION_DESTINATION              ScheduleLocation_LocationType = 6
-	ScheduleLocation_LOCATION_TYPE_LOCATION_OPERATIONAL_DESTINATION  ScheduleLocation_LocationType = 7
-)
-
-// Enum value maps for ScheduleLocation_LocationType.
-var (
-	ScheduleLocation_LocationType_name = map[int32]string{
-		0: "LOCATION_TYPE_LOCATION_UNKNOWN",
-		1: "LOCATION_TYPE_LOCATION_ORIGIN",
-		2: "LOCATION_TYPE_LOCATION_OPERATIONAL_ORIGIN",
-		3: "LOCATION_TYPE_LOCATION_INTERMEDIATE",
-		4: "LOCATION_TYPE_LOCATION_OPERATIONAL_INTERMEDIATE",
-		5: "LOCATION_TYPE_LOCATION_INTERMEDIATE_PASSING",
-		6: "LOCATION_TYPE_LOCATION_DESTINATION",
-		7: "LOCATION_TYPE_LOCATION_OPERATIONAL_DESTINATION",
-	}
-	ScheduleLocation_LocationType_value = map[string]int32{
-		"LOCATION_TYPE_LOCATION_UNKNOWN":                  0,
-		"LOCATION_TYPE_LOCATION_ORIGIN":                   1,
-		"LOCATION_TYPE_LOCATION_OPERATIONAL_ORIGIN":       2,
-		"LOCATION_TYPE_LOCATION_INTERMEDIATE":             3,
-		"LOCATION_TYPE_LOCATION_OPERATIONAL_INTERMEDIATE": 4,
-		"LOCATION_TYPE_LOCATION_INTERMEDIATE_PASSING":     5,
-		"LOCATION_TYPE_LOCATION_DESTINATION":              6,
-		"LOCATION_TYPE_LOCATION_OPERATIONAL_DESTINATION":  7,
-	}
-)
-
-func (x ScheduleLocation_LocationType) Enum() *ScheduleLocation_LocationType {
-	p := new(ScheduleLocation_LocationType)
-	*p = x
-	return p
-}
-
-func (x ScheduleLocation_LocationType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (ScheduleLocation_LocationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_describeAt_proto_enumTypes[0].Descriptor()
-}
-
-func (ScheduleLocation_LocationType) Type() protoreflect.EnumType {
-	return &file_describeAt_proto_enumTypes[0]
-}
-
-func (x ScheduleLocation_LocationType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use ScheduleLocation_LocationType.Descriptor instead.
-func (ScheduleLocation_LocationType) EnumDescriptor() ([]byte, []int) {
-	return file_describeAt_proto_rawDescGZIP(), []int{4, 0}
-}
-
 type Forecast_PlatformDataSource int32
 
 const (
@@ -121,11 +57,11 @@ func (x Forecast_PlatformDataSource) String() string {
 }
 
 func (Forecast_PlatformDataSource) Descriptor() protoreflect.EnumDescriptor {
-	return file_describeAt_proto_enumTypes[1].Descriptor()
+	return file_describeAt_proto_enumTypes[0].Descriptor()
 }
 
 func (Forecast_PlatformDataSource) Type() protoreflect.EnumType {
-	return &file_describeAt_proto_enumTypes[1]
+	return &file_describeAt_proto_enumTypes[0]
 }
 
 func (x Forecast_PlatformDataSource) Number() protoreflect.EnumNumber {
@@ -504,19 +440,19 @@ func (x *Schedule) GetScheduleDiversionReason() *DisruptionReason {
 // Working and Public timetables may differ, typically to allow services to experience very minor (30 to 60s) delays without appearing late to the public.
 // There is no scheduled_public_passing_time because locations through which a service passes without stopping do not need to display any times to the public.
 type ScheduleLocation struct {
-	state                         protoimpl.MessageState        `protogen:"open.v1"`
-	Activities                    []ActivityType                `protobuf:"varint,1,rep,packed,name=activities,proto3,enum=ActivityType" json:"activities,omitempty"`
-	PlannedActivities             []ActivityType                `protobuf:"varint,2,rep,packed,name=planned_activities,json=plannedActivities,proto3,enum=ActivityType" json:"planned_activities,omitempty"`
-	LocationIsAffectedByDiversion bool                          `protobuf:"varint,3,opt,name=location_is_affected_by_diversion,json=locationIsAffectedByDiversion,proto3" json:"location_is_affected_by_diversion,omitempty"`
-	LocationType                  ScheduleLocation_LocationType `protobuf:"varint,4,opt,name=location_type,json=locationType,proto3,enum=ScheduleLocation_LocationType" json:"location_type,omitempty"`
-	ScheduledWorkingArrivalTime   *string                       `protobuf:"bytes,5,opt,name=scheduled_working_arrival_time,json=scheduledWorkingArrivalTime,proto3,oneof" json:"scheduled_working_arrival_time,omitempty"`
-	ScheduledWorkingPassingTime   *string                       `protobuf:"bytes,6,opt,name=scheduled_working_passing_time,json=scheduledWorkingPassingTime,proto3,oneof" json:"scheduled_working_passing_time,omitempty"`
-	ScheduledWorkingDepartureTime *string                       `protobuf:"bytes,7,opt,name=scheduled_working_departure_time,json=scheduledWorkingDepartureTime,proto3,oneof" json:"scheduled_working_departure_time,omitempty"`
-	ScheduledPublicArrivalTime    *string                       `protobuf:"bytes,8,opt,name=scheduled_public_arrival_time,json=scheduledPublicArrivalTime,proto3,oneof" json:"scheduled_public_arrival_time,omitempty"`
-	ScheduledPublicDepartureTime  *string                       `protobuf:"bytes,9,opt,name=scheduled_public_departure_time,json=scheduledPublicDepartureTime,proto3,oneof" json:"scheduled_public_departure_time,omitempty"`
-	RoutingDelay                  uint32                        `protobuf:"varint,10,opt,name=routing_delay,json=routingDelay,proto3" json:"routing_delay,omitempty"` // in minutes
-	LocationIsCancelled           bool                          `protobuf:"varint,11,opt,name=location_is_cancelled,json=locationIsCancelled,proto3" json:"location_is_cancelled,omitempty"`
-	LocationCancellationReason    *DisruptionReason             `protobuf:"bytes,12,opt,name=location_cancellation_reason,json=locationCancellationReason,proto3,oneof" json:"location_cancellation_reason,omitempty"`
+	state                         protoimpl.MessageState `protogen:"open.v1"`
+	Activities                    []ActivityType         `protobuf:"varint,1,rep,packed,name=activities,proto3,enum=ActivityType" json:"activities,omitempty"`
+	PlannedActivities             []ActivityType         `protobuf:"varint,2,rep,packed,name=planned_activities,json=plannedActivities,proto3,enum=ActivityType" json:"planned_activities,omitempty"`
+	LocationIsAffectedByDiversion bool                   `protobuf:"varint,3,opt,name=location_is_affected_by_diversion,json=locationIsAffectedByDiversion,proto3" json:"location_is_affected_by_diversion,omitempty"`
+	LocationType                  LocationType           `protobuf:"varint,4,opt,name=location_type,json=locationType,proto3,enum=LocationType" json:"location_type,omitempty"`
+	ScheduledWorkingArrivalTime   *string                `protobuf:"bytes,5,opt,name=scheduled_working_arrival_time,json=scheduledWorkingArrivalTime,proto3,oneof" json:"scheduled_working_arrival_time,omitempty"`
+	ScheduledWorkingPassingTime   *string                `protobuf:"bytes,6,opt,name=scheduled_working_passing_time,json=scheduledWorkingPassingTime,proto3,oneof" json:"scheduled_working_passing_time,omitempty"`
+	ScheduledWorkingDepartureTime *string                `protobuf:"bytes,7,opt,name=scheduled_working_departure_time,json=scheduledWorkingDepartureTime,proto3,oneof" json:"scheduled_working_departure_time,omitempty"`
+	ScheduledPublicArrivalTime    *string                `protobuf:"bytes,8,opt,name=scheduled_public_arrival_time,json=scheduledPublicArrivalTime,proto3,oneof" json:"scheduled_public_arrival_time,omitempty"`
+	ScheduledPublicDepartureTime  *string                `protobuf:"bytes,9,opt,name=scheduled_public_departure_time,json=scheduledPublicDepartureTime,proto3,oneof" json:"scheduled_public_departure_time,omitempty"`
+	RoutingDelay                  uint32                 `protobuf:"varint,10,opt,name=routing_delay,json=routingDelay,proto3" json:"routing_delay,omitempty"` // in minutes
+	LocationIsCancelled           bool                   `protobuf:"varint,11,opt,name=location_is_cancelled,json=locationIsCancelled,proto3" json:"location_is_cancelled,omitempty"`
+	LocationCancellationReason    *DisruptionReason      `protobuf:"bytes,12,opt,name=location_cancellation_reason,json=locationCancellationReason,proto3,oneof" json:"location_cancellation_reason,omitempty"`
 	unknownFields                 protoimpl.UnknownFields
 	sizeCache                     protoimpl.SizeCache
 }
@@ -572,11 +508,11 @@ func (x *ScheduleLocation) GetLocationIsAffectedByDiversion() bool {
 	return false
 }
 
-func (x *ScheduleLocation) GetLocationType() ScheduleLocation_LocationType {
+func (x *ScheduleLocation) GetLocationType() LocationType {
 	if x != nil {
 		return x.LocationType
 	}
-	return ScheduleLocation_LOCATION_TYPE_LOCATION_UNKNOWN
+	return LocationType_LOCATION_TYPE_LOCATION_UNKNOWN
 }
 
 func (x *ScheduleLocation) GetScheduledWorkingArrivalTime() string {
@@ -1029,15 +965,14 @@ const file_describeAt_proto_rawDesc = "" +
 	"\x12_retail_service_idB\x1f\n" +
 	"\x1d_schedule_cancellation_reasonB$\n" +
 	"\"_schedule_diverted_via_location_idB\x1c\n" +
-	"\x1a_schedule_diversion_reason\"\xfb\n" +
-	"\n" +
+	"\x1a_schedule_diversion_reason\"\xf8\a\n" +
 	"\x10ScheduleLocation\x12-\n" +
 	"\n" +
 	"activities\x18\x01 \x03(\x0e2\r.ActivityTypeR\n" +
 	"activities\x12<\n" +
 	"\x12planned_activities\x18\x02 \x03(\x0e2\r.ActivityTypeR\x11plannedActivities\x12H\n" +
-	"!location_is_affected_by_diversion\x18\x03 \x01(\bR\x1dlocationIsAffectedByDiversion\x12C\n" +
-	"\rlocation_type\x18\x04 \x01(\x0e2\x1e.ScheduleLocation.LocationTypeR\flocationType\x12H\n" +
+	"!location_is_affected_by_diversion\x18\x03 \x01(\bR\x1dlocationIsAffectedByDiversion\x122\n" +
+	"\rlocation_type\x18\x04 \x01(\x0e2\r.LocationTypeR\flocationType\x12H\n" +
 	"\x1escheduled_working_arrival_time\x18\x05 \x01(\tH\x00R\x1bscheduledWorkingArrivalTime\x88\x01\x01\x12H\n" +
 	"\x1escheduled_working_passing_time\x18\x06 \x01(\tH\x01R\x1bscheduledWorkingPassingTime\x88\x01\x01\x12L\n" +
 	" scheduled_working_departure_time\x18\a \x01(\tH\x02R\x1dscheduledWorkingDepartureTime\x88\x01\x01\x12F\n" +
@@ -1046,16 +981,7 @@ const file_describeAt_proto_rawDesc = "" +
 	"\rrouting_delay\x18\n" +
 	" \x01(\rR\froutingDelay\x122\n" +
 	"\x15location_is_cancelled\x18\v \x01(\bR\x13locationIsCancelled\x12X\n" +
-	"\x1clocation_cancellation_reason\x18\f \x01(\v2\x11.DisruptionReasonH\x05R\x1alocationCancellationReason\x88\x01\x01\"\xef\x02\n" +
-	"\fLocationType\x12\"\n" +
-	"\x1eLOCATION_TYPE_LOCATION_UNKNOWN\x10\x00\x12!\n" +
-	"\x1dLOCATION_TYPE_LOCATION_ORIGIN\x10\x01\x12-\n" +
-	")LOCATION_TYPE_LOCATION_OPERATIONAL_ORIGIN\x10\x02\x12'\n" +
-	"#LOCATION_TYPE_LOCATION_INTERMEDIATE\x10\x03\x123\n" +
-	"/LOCATION_TYPE_LOCATION_OPERATIONAL_INTERMEDIATE\x10\x04\x12/\n" +
-	"+LOCATION_TYPE_LOCATION_INTERMEDIATE_PASSING\x10\x05\x12&\n" +
-	"\"LOCATION_TYPE_LOCATION_DESTINATION\x10\x06\x122\n" +
-	".LOCATION_TYPE_LOCATION_OPERATIONAL_DESTINATION\x10\aB!\n" +
+	"\x1clocation_cancellation_reason\x18\f \x01(\v2\x11.DisruptionReasonH\x05R\x1alocationCancellationReason\x88\x01\x01B!\n" +
 	"\x1f_scheduled_working_arrival_timeB!\n" +
 	"\x1f_scheduled_working_passing_timeB#\n" +
 	"!_scheduled_working_departure_timeB \n" +
@@ -1157,37 +1083,37 @@ func file_describeAt_proto_rawDescGZIP() []byte {
 	return file_describeAt_proto_rawDescData
 }
 
-var file_describeAt_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_describeAt_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_describeAt_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_describeAt_proto_goTypes = []any{
-	(ScheduleLocation_LocationType)(0), // 0: ScheduleLocation.LocationType
-	(Forecast_PlatformDataSource)(0),   // 1: Forecast.PlatformDataSource
-	(*DescribeAtRequest)(nil),          // 2: DescribeAtRequest
-	(*DescribeAtResponse)(nil),         // 3: DescribeAtResponse
-	(*DisruptionReason)(nil),           // 4: DisruptionReason
-	(*Schedule)(nil),                   // 5: Schedule
-	(*ScheduleLocation)(nil),           // 6: ScheduleLocation
-	(*Forecast)(nil),                   // 7: Forecast
-	(ServiceType)(0),                   // 8: ServiceType
-	(CategoryType)(0),                  // 9: CategoryType
-	(ActivityType)(0),                  // 10: ActivityType
+	(Forecast_PlatformDataSource)(0), // 0: Forecast.PlatformDataSource
+	(*DescribeAtRequest)(nil),        // 1: DescribeAtRequest
+	(*DescribeAtResponse)(nil),       // 2: DescribeAtResponse
+	(*DisruptionReason)(nil),         // 3: DisruptionReason
+	(*Schedule)(nil),                 // 4: Schedule
+	(*ScheduleLocation)(nil),         // 5: ScheduleLocation
+	(*Forecast)(nil),                 // 6: Forecast
+	(ServiceType)(0),                 // 7: ServiceType
+	(CategoryType)(0),                // 8: CategoryType
+	(ActivityType)(0),                // 9: ActivityType
+	(LocationType)(0),                // 10: LocationType
 }
 var file_describeAt_proto_depIdxs = []int32{
-	5,  // 0: DescribeAtResponse.schedule:type_name -> Schedule
-	6,  // 1: DescribeAtResponse.schedule_location:type_name -> ScheduleLocation
-	7,  // 2: DescribeAtResponse.forecast:type_name -> Forecast
-	8,  // 3: Schedule.service_type:type_name -> ServiceType
-	9,  // 4: Schedule.category_type:type_name -> CategoryType
-	4,  // 5: Schedule.schedule_cancellation_reason:type_name -> DisruptionReason
-	4,  // 6: Schedule.schedule_diversion_reason:type_name -> DisruptionReason
-	10, // 7: ScheduleLocation.activities:type_name -> ActivityType
-	10, // 8: ScheduleLocation.planned_activities:type_name -> ActivityType
-	0,  // 9: ScheduleLocation.location_type:type_name -> ScheduleLocation.LocationType
-	4,  // 10: ScheduleLocation.location_cancellation_reason:type_name -> DisruptionReason
-	4,  // 11: Forecast.schedule_late_reason:type_name -> DisruptionReason
-	4,  // 12: Forecast.location_late_reason:type_name -> DisruptionReason
-	4,  // 13: Forecast.location_disruption_risk_reason:type_name -> DisruptionReason
-	1,  // 14: Forecast.platform_data_source:type_name -> Forecast.PlatformDataSource
+	4,  // 0: DescribeAtResponse.schedule:type_name -> Schedule
+	5,  // 1: DescribeAtResponse.schedule_location:type_name -> ScheduleLocation
+	6,  // 2: DescribeAtResponse.forecast:type_name -> Forecast
+	7,  // 3: Schedule.service_type:type_name -> ServiceType
+	8,  // 4: Schedule.category_type:type_name -> CategoryType
+	3,  // 5: Schedule.schedule_cancellation_reason:type_name -> DisruptionReason
+	3,  // 6: Schedule.schedule_diversion_reason:type_name -> DisruptionReason
+	9,  // 7: ScheduleLocation.activities:type_name -> ActivityType
+	9,  // 8: ScheduleLocation.planned_activities:type_name -> ActivityType
+	10, // 9: ScheduleLocation.location_type:type_name -> LocationType
+	3,  // 10: ScheduleLocation.location_cancellation_reason:type_name -> DisruptionReason
+	3,  // 11: Forecast.schedule_late_reason:type_name -> DisruptionReason
+	3,  // 12: Forecast.location_late_reason:type_name -> DisruptionReason
+	3,  // 13: Forecast.location_disruption_risk_reason:type_name -> DisruptionReason
+	0,  // 14: Forecast.platform_data_source:type_name -> Forecast.PlatformDataSource
 	15, // [15:15] is the sub-list for method output_type
 	15, // [15:15] is the sub-list for method input_type
 	15, // [15:15] is the sub-list for extension type_name
@@ -1211,7 +1137,7 @@ func file_describeAt_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_describeAt_proto_rawDesc), len(file_describeAt_proto_rawDesc)),
-			NumEnums:      2,
+			NumEnums:      1,
 			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,

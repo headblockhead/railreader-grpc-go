@@ -23,12 +23,17 @@ const (
 
 // From and To times are inclusive, and may return services scheduled up to 2 hours before and after the provided times to allow for services that are running early or late to be shown in the results.
 type SearchRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	LocationIds   []string               `protobuf:"bytes,1,rep,name=location_ids,json=locationIds,proto3" json:"location_ids,omitempty"`
-	FromTime      string                 `protobuf:"bytes,2,opt,name=from_time,json=fromTime,proto3" json:"from_time,omitempty"`
-	ToTime        string                 `protobuf:"bytes,3,opt,name=to_time,json=toTime,proto3" json:"to_time,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                       protoimpl.MessageState `protogen:"open.v1"`
+	LocationIds                 []string               `protobuf:"bytes,1,rep,name=location_ids,json=locationIds,proto3" json:"location_ids,omitempty"`
+	FromTime                    string                 `protobuf:"bytes,2,opt,name=from_time,json=fromTime,proto3" json:"from_time,omitempty"`
+	ToTime                      string                 `protobuf:"bytes,3,opt,name=to_time,json=toTime,proto3" json:"to_time,omitempty"`
+	ExcludeNonPassengerServices bool                   `protobuf:"varint,4,opt,name=exclude_non_passenger_services,json=excludeNonPassengerServices,proto3" json:"exclude_non_passenger_services,omitempty"`
+	ExcludeNonActiveServices    bool                   `protobuf:"varint,5,opt,name=exclude_non_active_services,json=excludeNonActiveServices,proto3" json:"exclude_non_active_services,omitempty"` // REMINDER: see darwin.deactivations
+	ExcludeCharteredServices    bool                   `protobuf:"varint,6,opt,name=exclude_chartered_services,json=excludeCharteredServices,proto3" json:"exclude_chartered_services,omitempty"`
+	IncludeOnlyLocationTypes    []LocationType         `protobuf:"varint,7,rep,packed,name=include_only_location_types,json=includeOnlyLocationTypes,proto3,enum=LocationType" json:"include_only_location_types,omitempty"`
+	IncludeOnlyPlatform         string                 `protobuf:"bytes,8,opt,name=include_only_platform,json=includeOnlyPlatform,proto3" json:"include_only_platform,omitempty"`
+	unknownFields               protoimpl.UnknownFields
+	sizeCache                   protoimpl.SizeCache
 }
 
 func (x *SearchRequest) Reset() {
@@ -78,6 +83,41 @@ func (x *SearchRequest) GetFromTime() string {
 func (x *SearchRequest) GetToTime() string {
 	if x != nil {
 		return x.ToTime
+	}
+	return ""
+}
+
+func (x *SearchRequest) GetExcludeNonPassengerServices() bool {
+	if x != nil {
+		return x.ExcludeNonPassengerServices
+	}
+	return false
+}
+
+func (x *SearchRequest) GetExcludeNonActiveServices() bool {
+	if x != nil {
+		return x.ExcludeNonActiveServices
+	}
+	return false
+}
+
+func (x *SearchRequest) GetExcludeCharteredServices() bool {
+	if x != nil {
+		return x.ExcludeCharteredServices
+	}
+	return false
+}
+
+func (x *SearchRequest) GetIncludeOnlyLocationTypes() []LocationType {
+	if x != nil {
+		return x.IncludeOnlyLocationTypes
+	}
+	return nil
+}
+
+func (x *SearchRequest) GetIncludeOnlyPlatform() string {
+	if x != nil {
+		return x.IncludeOnlyPlatform
 	}
 	return ""
 }
@@ -139,11 +179,16 @@ var File_search_proto protoreflect.FileDescriptor
 
 const file_search_proto_rawDesc = "" +
 	"\n" +
-	"\fsearch.proto\"h\n" +
+	"\fsearch.proto\x1a\x0frailtypes.proto\"\xac\x03\n" +
 	"\rSearchRequest\x12!\n" +
 	"\flocation_ids\x18\x01 \x03(\tR\vlocationIds\x12\x1b\n" +
 	"\tfrom_time\x18\x02 \x01(\tR\bfromTime\x12\x17\n" +
-	"\ato_time\x18\x03 \x01(\tR\x06toTime\"R\n" +
+	"\ato_time\x18\x03 \x01(\tR\x06toTime\x12C\n" +
+	"\x1eexclude_non_passenger_services\x18\x04 \x01(\bR\x1bexcludeNonPassengerServices\x12=\n" +
+	"\x1bexclude_non_active_services\x18\x05 \x01(\bR\x18excludeNonActiveServices\x12<\n" +
+	"\x1aexclude_chartered_services\x18\x06 \x01(\bR\x18excludeCharteredServices\x12L\n" +
+	"\x1binclude_only_location_types\x18\a \x03(\x0e2\r.LocationTypeR\x18includeOnlyLocationTypes\x122\n" +
+	"\x15include_only_platform\x18\b \x01(\tR\x13includeOnlyPlatform\"R\n" +
 	"\x0eSearchResponse\x12\x1f\n" +
 	"\vlocation_id\x18\x01 \x01(\tR\n" +
 	"locationId\x12\x1f\n" +
@@ -166,13 +211,15 @@ var file_search_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_search_proto_goTypes = []any{
 	(*SearchRequest)(nil),  // 0: SearchRequest
 	(*SearchResponse)(nil), // 1: SearchResponse
+	(LocationType)(0),      // 2: LocationType
 }
 var file_search_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	2, // 0: SearchRequest.include_only_location_types:type_name -> LocationType
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_search_proto_init() }
@@ -180,6 +227,7 @@ func file_search_proto_init() {
 	if File_search_proto != nil {
 		return
 	}
+	file_railtypes_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
