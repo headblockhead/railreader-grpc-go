@@ -21,7 +21,6 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	RailReader_UpdateLocations_FullMethodName = "/RailReader/UpdateLocations"
 	RailReader_Search_FullMethodName          = "/RailReader/Search"
-	RailReader_DescribeAt_FullMethodName      = "/RailReader/DescribeAt"
 )
 
 // RailReaderClient is the client API for RailReader service.
@@ -30,7 +29,6 @@ const (
 type RailReaderClient interface {
 	UpdateLocations(ctx context.Context, in *UpdateLocationsRequest, opts ...grpc.CallOption) (*UpdateLocationsResponse, error)
 	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SearchResponse], error)
-	DescribeAt(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[DescribeAtRequest, DescribeAtResponse], error)
 }
 
 type railReaderClient struct {
@@ -70,26 +68,12 @@ func (c *railReaderClient) Search(ctx context.Context, in *SearchRequest, opts .
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type RailReader_SearchClient = grpc.ServerStreamingClient[SearchResponse]
 
-func (c *railReaderClient) DescribeAt(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[DescribeAtRequest, DescribeAtResponse], error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &RailReader_ServiceDesc.Streams[1], RailReader_DescribeAt_FullMethodName, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &grpc.GenericClientStream[DescribeAtRequest, DescribeAtResponse]{ClientStream: stream}
-	return x, nil
-}
-
-// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RailReader_DescribeAtClient = grpc.BidiStreamingClient[DescribeAtRequest, DescribeAtResponse]
-
 // RailReaderServer is the server API for RailReader service.
 // All implementations must embed UnimplementedRailReaderServer
 // for forward compatibility.
 type RailReaderServer interface {
 	UpdateLocations(context.Context, *UpdateLocationsRequest) (*UpdateLocationsResponse, error)
 	Search(*SearchRequest, grpc.ServerStreamingServer[SearchResponse]) error
-	DescribeAt(grpc.BidiStreamingServer[DescribeAtRequest, DescribeAtResponse]) error
 	mustEmbedUnimplementedRailReaderServer()
 }
 
@@ -105,9 +89,6 @@ func (UnimplementedRailReaderServer) UpdateLocations(context.Context, *UpdateLoc
 }
 func (UnimplementedRailReaderServer) Search(*SearchRequest, grpc.ServerStreamingServer[SearchResponse]) error {
 	return status.Error(codes.Unimplemented, "method Search not implemented")
-}
-func (UnimplementedRailReaderServer) DescribeAt(grpc.BidiStreamingServer[DescribeAtRequest, DescribeAtResponse]) error {
-	return status.Error(codes.Unimplemented, "method DescribeAt not implemented")
 }
 func (UnimplementedRailReaderServer) mustEmbedUnimplementedRailReaderServer() {}
 func (UnimplementedRailReaderServer) testEmbeddedByValue()                    {}
@@ -159,13 +140,6 @@ func _RailReader_Search_Handler(srv interface{}, stream grpc.ServerStream) error
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type RailReader_SearchServer = grpc.ServerStreamingServer[SearchResponse]
 
-func _RailReader_DescribeAt_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(RailReaderServer).DescribeAt(&grpc.GenericServerStream[DescribeAtRequest, DescribeAtResponse]{ServerStream: stream})
-}
-
-// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RailReader_DescribeAtServer = grpc.BidiStreamingServer[DescribeAtRequest, DescribeAtResponse]
-
 // RailReader_ServiceDesc is the grpc.ServiceDesc for RailReader service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -183,12 +157,6 @@ var RailReader_ServiceDesc = grpc.ServiceDesc{
 			StreamName:    "Search",
 			Handler:       _RailReader_Search_Handler,
 			ServerStreams: true,
-		},
-		{
-			StreamName:    "DescribeAt",
-			Handler:       _RailReader_DescribeAt_Handler,
-			ServerStreams: true,
-			ClientStreams: true,
 		},
 	},
 	Metadata: "railreader.proto",

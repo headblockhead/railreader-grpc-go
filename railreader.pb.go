@@ -24,31 +24,25 @@ var File_railreader_proto protoreflect.FileDescriptor
 
 const file_railreader_proto_rawDesc = "" +
 	"\n" +
-	"\x10railreader.proto\x1a\x15updateLocations.proto\x1a\fsearch.proto\x1a\x10describeAt.proto2\xc0\x01\n" +
+	"\x10railreader.proto\x1a\x15updateLocations.proto\x1a\fsearch.proto2\x83\x01\n" +
 	"\n" +
 	"RailReader\x12F\n" +
 	"\x0fUpdateLocations\x12\x17.UpdateLocationsRequest\x1a\x18.UpdateLocationsResponse\"\x00\x12-\n" +
-	"\x06Search\x12\x0e.SearchRequest\x1a\x0f.SearchResponse\"\x000\x01\x12;\n" +
-	"\n" +
-	"DescribeAt\x12\x12.DescribeAtRequest\x1a\x13.DescribeAtResponse\"\x00(\x010\x01B*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x06Search\x12\x0e.SearchRequest\x1a\x0f.SearchResponse\"\x000\x01B*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var file_railreader_proto_goTypes = []any{
 	(*UpdateLocationsRequest)(nil),  // 0: UpdateLocationsRequest
 	(*SearchRequest)(nil),           // 1: SearchRequest
-	(*DescribeAtRequest)(nil),       // 2: DescribeAtRequest
-	(*UpdateLocationsResponse)(nil), // 3: UpdateLocationsResponse
-	(*SearchResponse)(nil),          // 4: SearchResponse
-	(*DescribeAtResponse)(nil),      // 5: DescribeAtResponse
+	(*UpdateLocationsResponse)(nil), // 2: UpdateLocationsResponse
+	(*SearchResponse)(nil),          // 3: SearchResponse
 }
 var file_railreader_proto_depIdxs = []int32{
 	0, // 0: RailReader.UpdateLocations:input_type -> UpdateLocationsRequest
 	1, // 1: RailReader.Search:input_type -> SearchRequest
-	2, // 2: RailReader.DescribeAt:input_type -> DescribeAtRequest
-	3, // 3: RailReader.UpdateLocations:output_type -> UpdateLocationsResponse
-	4, // 4: RailReader.Search:output_type -> SearchResponse
-	5, // 5: RailReader.DescribeAt:output_type -> DescribeAtResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	2, // 2: RailReader.UpdateLocations:output_type -> UpdateLocationsResponse
+	3, // 3: RailReader.Search:output_type -> SearchResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -61,7 +55,6 @@ func file_railreader_proto_init() {
 	}
 	file_updateLocations_proto_init()
 	file_search_proto_init()
-	file_describeAt_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
