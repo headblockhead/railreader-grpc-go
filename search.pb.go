@@ -21,15 +21,14 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// From and To times are inclusive, and may return services scheduled up to 2 hours before and after the provided times to allow for services that are running early or late to be shown in the results.
 type SearchRequest struct {
 	state                       protoimpl.MessageState `protogen:"open.v1"`
-	LocationId                  string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
-	FromTime                    string                 `protobuf:"bytes,2,opt,name=from_time,json=fromTime,proto3" json:"from_time,omitempty"`
-	ToTime                      string                 `protobuf:"bytes,3,opt,name=to_time,json=toTime,proto3" json:"to_time,omitempty"`
-	ExcludeNonPassengerServices bool                   `protobuf:"varint,4,opt,name=exclude_non_passenger_services,json=excludeNonPassengerServices,proto3" json:"exclude_non_passenger_services,omitempty"` // If true, only passenger services will be included. If false or unspecified, all services will be included.
-	ExcludeNonActiveServices    bool                   `protobuf:"varint,5,opt,name=exclude_non_active_services,json=excludeNonActiveServices,proto3" json:"exclude_non_active_services,omitempty"`          // If true, only active services will be included. If false or unspecified, all services will be included.
-	ExcludeCharteredServices    bool                   `protobuf:"varint,6,opt,name=exclude_chartered_services,json=excludeCharteredServices,proto3" json:"exclude_chartered_services,omitempty"`            // If true, only non-chartered services will be included. If false or unspecified, all services will be included.
+	LocationId                  string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`                                                         // Only services scheduled at or through this location will be returned.
+	FromTime                    string                 `protobuf:"bytes,2,opt,name=from_time,json=fromTime,proto3" json:"from_time,omitempty"`                                                               // Services scheduled up to 2 hours before the from_time may be included if they are delayed.
+	ToTime                      string                 `protobuf:"bytes,3,opt,name=to_time,json=toTime,proto3" json:"to_time,omitempty"`                                                                     // Services scheduled up to 2 hours after the to_time may be included if they are early.
+	IncludeNonPassengerServices bool                   `protobuf:"varint,4,opt,name=include_non_passenger_services,json=includeNonPassengerServices,proto3" json:"include_non_passenger_services,omitempty"` // If true, all services will be included. If false or unspecified, only passenger services will be included.
+	ExcludeNonActiveServices    bool                   `protobuf:"varint,5,opt,name=exclude_non_active_services,json=excludeNonActiveServices,proto3" json:"exclude_non_active_services,omitempty"`          // If true, only active services will be included. Be warned: this excludes most historical data. If false or unspecified, all services will be included.
+	IncludeCharteredServices    bool                   `protobuf:"varint,6,opt,name=include_chartered_services,json=includeCharteredServices,proto3" json:"include_chartered_services,omitempty"`            // If true, all services will be included. If false or unspecified, only non-chartered services will be included.
 	FilterLocationTypes         []LocationType         `protobuf:"varint,7,rep,packed,name=filter_location_types,json=filterLocationTypes,proto3,enum=LocationType" json:"filter_location_types,omitempty"`  // Filters results to include locations only of types listed. If none are given, all location types will be included.
 	unknownFields               protoimpl.UnknownFields
 	sizeCache                   protoimpl.SizeCache
@@ -86,9 +85,9 @@ func (x *SearchRequest) GetToTime() string {
 	return ""
 }
 
-func (x *SearchRequest) GetExcludeNonPassengerServices() bool {
+func (x *SearchRequest) GetIncludeNonPassengerServices() bool {
 	if x != nil {
-		return x.ExcludeNonPassengerServices
+		return x.IncludeNonPassengerServices
 	}
 	return false
 }
@@ -100,9 +99,9 @@ func (x *SearchRequest) GetExcludeNonActiveServices() bool {
 	return false
 }
 
-func (x *SearchRequest) GetExcludeCharteredServices() bool {
+func (x *SearchRequest) GetIncludeCharteredServices() bool {
 	if x != nil {
-		return x.ExcludeCharteredServices
+		return x.IncludeCharteredServices
 	}
 	return false
 }
@@ -114,10 +113,9 @@ func (x *SearchRequest) GetFilterLocationTypes() []LocationType {
 	return nil
 }
 
-// The details in a SearchResponse can be used in a DescribeAtRequest to get full details.
 type SearchResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ScheduleId    string                 `protobuf:"bytes,1,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
+	ScheduleId    string                 `protobuf:"bytes,1,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"` // This can be used in a DescribeAtRequest to get full details about the service.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -169,9 +167,9 @@ const file_search_proto_rawDesc = "" +
 	"locationId\x12\x1b\n" +
 	"\tfrom_time\x18\x02 \x01(\tR\bfromTime\x12\x17\n" +
 	"\ato_time\x18\x03 \x01(\tR\x06toTime\x12C\n" +
-	"\x1eexclude_non_passenger_services\x18\x04 \x01(\bR\x1bexcludeNonPassengerServices\x12=\n" +
+	"\x1einclude_non_passenger_services\x18\x04 \x01(\bR\x1bincludeNonPassengerServices\x12=\n" +
 	"\x1bexclude_non_active_services\x18\x05 \x01(\bR\x18excludeNonActiveServices\x12<\n" +
-	"\x1aexclude_chartered_services\x18\x06 \x01(\bR\x18excludeCharteredServices\x12A\n" +
+	"\x1ainclude_chartered_services\x18\x06 \x01(\bR\x18includeCharteredServices\x12A\n" +
 	"\x15filter_location_types\x18\a \x03(\x0e2\r.LocationTypeR\x13filterLocationTypes\"1\n" +
 	"\x0eSearchResponse\x12\x1f\n" +
 	"\vschedule_id\x18\x01 \x01(\tR\n" +
