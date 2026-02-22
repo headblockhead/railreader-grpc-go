@@ -105,27 +105,27 @@ func (x *SearchRequest) GetIncludeCharteredServices() bool {
 	return false
 }
 
-type ScheduleLocationUUID struct {
+type SearchResponse struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	ScheduleLocationUuid string                 `protobuf:"bytes,1,opt,name=schedule_location_uuid,json=scheduleLocationUuid,proto3" json:"schedule_location_uuid,omitempty"` // This can be used in a DescribeAtRequest to get full details about the service.
+	ScheduleLocationUuid []string               `protobuf:"bytes,1,rep,name=schedule_location_uuid,json=scheduleLocationUuid,proto3" json:"schedule_location_uuid,omitempty"` // These can be used in a DescribeAtRequest to get full details about the services.
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
 
-func (x *ScheduleLocationUUID) Reset() {
-	*x = ScheduleLocationUUID{}
+func (x *SearchResponse) Reset() {
+	*x = SearchResponse{}
 	mi := &file_search_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ScheduleLocationUUID) String() string {
+func (x *SearchResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ScheduleLocationUUID) ProtoMessage() {}
+func (*SearchResponse) ProtoMessage() {}
 
-func (x *ScheduleLocationUUID) ProtoReflect() protoreflect.Message {
+func (x *SearchResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_search_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -137,16 +137,16 @@ func (x *ScheduleLocationUUID) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ScheduleLocationUUID.ProtoReflect.Descriptor instead.
-func (*ScheduleLocationUUID) Descriptor() ([]byte, []int) {
+// Deprecated: Use SearchResponse.ProtoReflect.Descriptor instead.
+func (*SearchResponse) Descriptor() ([]byte, []int) {
 	return file_search_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ScheduleLocationUUID) GetScheduleLocationUuid() string {
+func (x *SearchResponse) GetScheduleLocationUuid() []string {
 	if x != nil {
 		return x.ScheduleLocationUuid
 	}
-	return ""
+	return nil
 }
 
 var File_search_proto protoreflect.FileDescriptor
@@ -161,9 +161,9 @@ const file_search_proto_rawDesc = "" +
 	"\ato_time\x18\x03 \x01(\tR\x06toTime\x12C\n" +
 	"\x1einclude_non_passenger_services\x18\x04 \x01(\bR\x1bincludeNonPassengerServices\x12=\n" +
 	"\x1bexclude_non_active_services\x18\x05 \x01(\bR\x18excludeNonActiveServices\x12<\n" +
-	"\x1ainclude_chartered_services\x18\x06 \x01(\bR\x18includeCharteredServices\"L\n" +
-	"\x14ScheduleLocationUUID\x124\n" +
-	"\x16schedule_location_uuid\x18\x01 \x01(\tR\x14scheduleLocationUuidB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x1ainclude_chartered_services\x18\x06 \x01(\bR\x18includeCharteredServices\"F\n" +
+	"\x0eSearchResponse\x124\n" +
+	"\x16schedule_location_uuid\x18\x01 \x03(\tR\x14scheduleLocationUuidB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
 	file_search_proto_rawDescOnce sync.Once
@@ -179,8 +179,8 @@ func file_search_proto_rawDescGZIP() []byte {
 
 var file_search_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_search_proto_goTypes = []any{
-	(*SearchRequest)(nil),        // 0: SearchRequest
-	(*ScheduleLocationUUID)(nil), // 1: ScheduleLocationUUID
+	(*SearchRequest)(nil),  // 0: SearchRequest
+	(*SearchResponse)(nil), // 1: SearchResponse
 }
 var file_search_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

@@ -24,11 +24,11 @@ var File_railreader_proto protoreflect.FileDescriptor
 
 const file_railreader_proto_rawDesc = "" +
 	"\n" +
-	"\x10railreader.proto\x1a\x1egetLatestLocationUpdates.proto\x1a\fsearch.proto\x1a+describeServiceByScheduleLocationUUID.proto\x1a\x18serviceDescription.proto2\x92\x02\n" +
+	"\x10railreader.proto\x1a\x1egetLatestLocationUpdates.proto\x1a\fsearch.proto\x1a+describeServiceByScheduleLocationUUID.proto\x1a\x18serviceDescription.proto2\x8a\x02\n" +
 	"\n" +
 	"RailReader\x12[\n" +
-	"\x18GetLatestLocationUpdates\x12\x1d.LatestLocationUpdatesRequest\x1a\x1e.LatestLocationUpdatesResponse\"\x00\x123\n" +
-	"\x06Search\x12\x0e.SearchRequest\x1a\x15.ScheduleLocationUUID\"\x000\x01\x12r\n" +
+	"\x18GetLatestLocationUpdates\x12\x1d.LatestLocationUpdatesRequest\x1a\x1e.LatestLocationUpdatesResponse\"\x00\x12+\n" +
+	"\x06Search\x12\x0e.SearchRequest\x1a\x0f.SearchResponse\"\x00\x12r\n" +
 	"&DescribeServicesByScheduleLocationUUID\x12-.DescribeServiceByScheduleLocationUUIDRequest\x1a\x13.ServiceDescription\"\x00(\x010\x01B*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var file_railreader_proto_goTypes = []any{
@@ -36,7 +36,7 @@ var file_railreader_proto_goTypes = []any{
 	(*SearchRequest)(nil),                                // 1: SearchRequest
 	(*DescribeServiceByScheduleLocationUUIDRequest)(nil), // 2: DescribeServiceByScheduleLocationUUIDRequest
 	(*LatestLocationUpdatesResponse)(nil),                // 3: LatestLocationUpdatesResponse
-	(*ScheduleLocationUUID)(nil),                         // 4: ScheduleLocationUUID
+	(*SearchResponse)(nil),                               // 4: SearchResponse
 	(*ServiceDescription)(nil),                           // 5: ServiceDescription
 }
 var file_railreader_proto_depIdxs = []int32{
@@ -44,7 +44,7 @@ var file_railreader_proto_depIdxs = []int32{
 	1, // 1: RailReader.Search:input_type -> SearchRequest
 	2, // 2: RailReader.DescribeServicesByScheduleLocationUUID:input_type -> DescribeServiceByScheduleLocationUUIDRequest
 	3, // 3: RailReader.GetLatestLocationUpdates:output_type -> LatestLocationUpdatesResponse
-	4, // 4: RailReader.Search:output_type -> ScheduleLocationUUID
+	4, // 4: RailReader.Search:output_type -> SearchResponse
 	5, // 5: RailReader.DescribeServicesByScheduleLocationUUID:output_type -> ServiceDescription
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
