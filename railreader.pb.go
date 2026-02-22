@@ -24,7 +24,7 @@ var File_railreader_proto protoreflect.FileDescriptor
 
 const file_railreader_proto_rawDesc = "" +
 	"\n" +
-	"\x10railreader.proto\x1a\x1egetLatestLocationUpdates.proto\x1a\x1flistSchedulesAtLocationID.proto\x1a,describeScheduleByScheduleLocationUUID.proto2\xba\x02\n" +
+	"\x10railreader.proto\x1a\x1egetLatestLocationUpdates.proto\x1a\x1flistSchedulesAtLocationID.proto\x1a,describeScheduleByScheduleLocationUUID.proto\x1a\x18serviceDescription.proto2\xba\x02\n" +
 	"\n" +
 	"RailReader\x12[\n" +
 	"\x18GetLatestLocationUpdates\x12\x1d.LatestLocationUpdatesRequest\x1a\x1e.LatestLocationUpdatesResponse\"\x00\x12Y\n" +
@@ -61,6 +61,7 @@ func file_railreader_proto_init() {
 	file_getLatestLocationUpdates_proto_init()
 	file_listSchedulesAtLocationID_proto_init()
 	file_describeScheduleByScheduleLocationUUID_proto_init()
+	file_serviceDescription_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
