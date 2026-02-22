@@ -29,7 +29,6 @@ type SearchRequest struct {
 	IncludeNonPassengerServices bool                   `protobuf:"varint,4,opt,name=include_non_passenger_services,json=includeNonPassengerServices,proto3" json:"include_non_passenger_services,omitempty"` // If true, all services will be included. If false or unspecified, only passenger services will be included.
 	ExcludeNonActiveServices    bool                   `protobuf:"varint,5,opt,name=exclude_non_active_services,json=excludeNonActiveServices,proto3" json:"exclude_non_active_services,omitempty"`          // If true, only active services will be included. Be warned: this excludes most historical data. If false or unspecified, all services will be included.
 	IncludeCharteredServices    bool                   `protobuf:"varint,6,opt,name=include_chartered_services,json=includeCharteredServices,proto3" json:"include_chartered_services,omitempty"`            // If true, all services will be included. If false or unspecified, only non-chartered services will be included.
-	FilterLocationTypes         []LocationType         `protobuf:"varint,7,rep,packed,name=filter_location_types,json=filterLocationTypes,proto3,enum=LocationType" json:"filter_location_types,omitempty"`  // Filters results to include locations only of types listed. If none are given, all location types will be included.
 	unknownFields               protoimpl.UnknownFields
 	sizeCache                   protoimpl.SizeCache
 }
@@ -106,13 +105,6 @@ func (x *SearchRequest) GetIncludeCharteredServices() bool {
 	return false
 }
 
-func (x *SearchRequest) GetFilterLocationTypes() []LocationType {
-	if x != nil {
-		return x.FilterLocationTypes
-	}
-	return nil
-}
-
 type SearchResponse struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	ScheduleLocationUuid string                 `protobuf:"bytes,1,opt,name=schedule_location_uuid,json=scheduleLocationUuid,proto3" json:"schedule_location_uuid,omitempty"` // This can be used in a DescribeAtRequest to get full details about the service.
@@ -161,7 +153,7 @@ var File_search_proto protoreflect.FileDescriptor
 
 const file_search_proto_rawDesc = "" +
 	"\n" +
-	"\fsearch.proto\x1a\x0frailtypes.proto\"\xeb\x02\n" +
+	"\fsearch.proto\x1a\x0frailtypes.proto\"\xa8\x02\n" +
 	"\rSearchRequest\x12\x1f\n" +
 	"\vlocation_id\x18\x01 \x01(\tR\n" +
 	"locationId\x12\x1b\n" +
@@ -169,8 +161,7 @@ const file_search_proto_rawDesc = "" +
 	"\ato_time\x18\x03 \x01(\tR\x06toTime\x12C\n" +
 	"\x1einclude_non_passenger_services\x18\x04 \x01(\bR\x1bincludeNonPassengerServices\x12=\n" +
 	"\x1bexclude_non_active_services\x18\x05 \x01(\bR\x18excludeNonActiveServices\x12<\n" +
-	"\x1ainclude_chartered_services\x18\x06 \x01(\bR\x18includeCharteredServices\x12A\n" +
-	"\x15filter_location_types\x18\a \x03(\x0e2\r.LocationTypeR\x13filterLocationTypes\"F\n" +
+	"\x1ainclude_chartered_services\x18\x06 \x01(\bR\x18includeCharteredServices\"F\n" +
 	"\x0eSearchResponse\x124\n" +
 	"\x16schedule_location_uuid\x18\x01 \x01(\tR\x14scheduleLocationUuidB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
@@ -190,15 +181,13 @@ var file_search_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_search_proto_goTypes = []any{
 	(*SearchRequest)(nil),  // 0: SearchRequest
 	(*SearchResponse)(nil), // 1: SearchResponse
-	(LocationType)(0),      // 2: LocationType
 }
 var file_search_proto_depIdxs = []int32{
-	2, // 0: SearchRequest.filter_location_types:type_name -> LocationType
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0, // [0:0] is the sub-list for method output_type
+	0, // [0:0] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_search_proto_init() }
