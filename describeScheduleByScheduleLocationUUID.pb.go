@@ -348,6 +348,7 @@ func (x *Schedule) GetDiversionReason() *DisruptionReason {
 type ScheduleLocation struct {
 	state                      protoimpl.MessageState `protogen:"open.v1"`
 	Uuid                       string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	LocationId                 string                 `protobuf:"bytes,4,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
 	Activities                 []ActivityType         `protobuf:"varint,5,rep,packed,name=activities,proto3,enum=ActivityType" json:"activities,omitempty"`
 	PlannedActivities          []ActivityType         `protobuf:"varint,6,rep,packed,name=planned_activities,json=plannedActivities,proto3,enum=ActivityType" json:"planned_activities,omitempty"`
 	IsAffectedByDiversion      bool                   `protobuf:"varint,8,opt,name=is_affected_by_diversion,json=isAffectedByDiversion,proto3" json:"is_affected_by_diversion,omitempty"`
@@ -397,6 +398,13 @@ func (*ScheduleLocation) Descriptor() ([]byte, []int) {
 func (x *ScheduleLocation) GetUuid() string {
 	if x != nil {
 		return x.Uuid
+	}
+	return ""
+}
+
+func (x *ScheduleLocation) GetLocationId() string {
+	if x != nil {
+		return x.LocationId
 	}
 	return ""
 }
@@ -927,9 +935,11 @@ const file_describeScheduleByScheduleLocationUUID_proto_rawDesc = "" +
 	"\x12_retail_service_idB\x16\n" +
 	"\x14_cancellation_reasonB\x1b\n" +
 	"\x19_diverted_via_location_idB\x13\n" +
-	"\x11_diversion_reasonJ\x04\b\x01\x10\x04J\x04\b\x06\x10\bJ\x04\b\x0f\x10\x10\"\xe0\x06\n" +
+	"\x11_diversion_reasonJ\x04\b\x01\x10\x04J\x04\b\x06\x10\bJ\x04\b\x0f\x10\x10\"\x81\a\n" +
 	"\x10ScheduleLocation\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12-\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1f\n" +
+	"\vlocation_id\x18\x04 \x01(\tR\n" +
+	"locationId\x12-\n" +
 	"\n" +
 	"activities\x18\x05 \x03(\x0e2\r.ActivityTypeR\n" +
 	"activities\x12<\n" +
@@ -950,7 +960,7 @@ const file_describeScheduleByScheduleLocationUUID_proto_rawDesc = "" +
 	"\x17_working_departure_timeB\x16\n" +
 	"\x14_public_arrival_timeB\x18\n" +
 	"\x16_public_departure_timeB\x1f\n" +
-	"\x1d_location_cancellation_reasonJ\x04\b\x02\x10\x05J\x04\b\a\x10\bJ\x04\b\x10\x10\x11J\x04\b\x13\x10\x14\"\xa9\x1e\n" +
+	"\x1d_location_cancellation_reasonJ\x04\b\x02\x10\x04J\x04\b\a\x10\bJ\x04\b\x10\x10\x11J\x04\b\x13\x10\x14\"\xa9\x1e\n" +
 	"\bForecast\x120\n" +
 	"\x14is_reverse_formation\x18\x01 \x01(\bR\x12isReverseFormation\x12H\n" +
 	"\x14schedule_late_reason\x18\x02 \x01(\v2\x11.DisruptionReasonH\x00R\x12scheduleLateReason\x88\x01\x01\x12F\n" +
