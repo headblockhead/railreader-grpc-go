@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v3.21.12
-// source: describeAt.proto
+// source: describeScheduleByScheduleLocationUUID.proto
 
 package railreader_grpc
 
@@ -57,11 +57,11 @@ func (x Forecast_PlatformDataSource) String() string {
 }
 
 func (Forecast_PlatformDataSource) Descriptor() protoreflect.EnumDescriptor {
-	return file_describeAt_proto_enumTypes[0].Descriptor()
+	return file_describeScheduleByScheduleLocationUUID_proto_enumTypes[0].Descriptor()
 }
 
 func (Forecast_PlatformDataSource) Type() protoreflect.EnumType {
-	return &file_describeAt_proto_enumTypes[0]
+	return &file_describeScheduleByScheduleLocationUUID_proto_enumTypes[0]
 }
 
 func (x Forecast_PlatformDataSource) Number() protoreflect.EnumNumber {
@@ -70,31 +70,31 @@ func (x Forecast_PlatformDataSource) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Forecast_PlatformDataSource.Descriptor instead.
 func (Forecast_PlatformDataSource) EnumDescriptor() ([]byte, []int) {
-	return file_describeAt_proto_rawDescGZIP(), []int{5, 0}
+	return file_describeScheduleByScheduleLocationUUID_proto_rawDescGZIP(), []int{4, 0}
 }
 
-type DescribeAtRequest struct {
+type DescribeScheduleByScheduleLocationUUIDRequest struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	ScheduleLocationUuid string                 `protobuf:"bytes,1,opt,name=schedule_location_uuid,json=scheduleLocationUuid,proto3" json:"schedule_location_uuid,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
 
-func (x *DescribeAtRequest) Reset() {
-	*x = DescribeAtRequest{}
-	mi := &file_describeAt_proto_msgTypes[0]
+func (x *DescribeScheduleByScheduleLocationUUIDRequest) Reset() {
+	*x = DescribeScheduleByScheduleLocationUUIDRequest{}
+	mi := &file_describeScheduleByScheduleLocationUUID_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DescribeAtRequest) String() string {
+func (x *DescribeScheduleByScheduleLocationUUIDRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DescribeAtRequest) ProtoMessage() {}
+func (*DescribeScheduleByScheduleLocationUUIDRequest) ProtoMessage() {}
 
-func (x *DescribeAtRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_describeAt_proto_msgTypes[0]
+func (x *DescribeScheduleByScheduleLocationUUIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_describeScheduleByScheduleLocationUUID_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -105,47 +105,44 @@ func (x *DescribeAtRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DescribeAtRequest.ProtoReflect.Descriptor instead.
-func (*DescribeAtRequest) Descriptor() ([]byte, []int) {
-	return file_describeAt_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use DescribeScheduleByScheduleLocationUUIDRequest.ProtoReflect.Descriptor instead.
+func (*DescribeScheduleByScheduleLocationUUIDRequest) Descriptor() ([]byte, []int) {
+	return file_describeScheduleByScheduleLocationUUID_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *DescribeAtRequest) GetScheduleLocationUuid() string {
+func (x *DescribeScheduleByScheduleLocationUUIDRequest) GetScheduleLocationUuid() string {
 	if x != nil {
 		return x.ScheduleLocationUuid
 	}
 	return ""
 }
 
-type DescribeAtResponse struct {
+type ServiceDescription struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
-	LocationId            string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
-	Schedule              *Schedule              `protobuf:"bytes,2,opt,name=schedule,proto3" json:"schedule,omitempty"`
-	ScheduleLocation      *ScheduleLocation      `protobuf:"bytes,3,opt,name=schedule_location,json=scheduleLocation,proto3" json:"schedule_location,omitempty"`
-	Forecast              *Forecast              `protobuf:"bytes,4,opt,name=forecast,proto3,oneof" json:"forecast,omitempty"`
-	GenerousArrivalTime   *string                `protobuf:"bytes,7,opt,name=generous_arrival_time,json=generousArrivalTime,proto3,oneof" json:"generous_arrival_time,omitempty"`
-	GenerousPassingTime   *string                `protobuf:"bytes,8,opt,name=generous_passing_time,json=generousPassingTime,proto3,oneof" json:"generous_passing_time,omitempty"`
-	GenerousDepartureTime *string                `protobuf:"bytes,9,opt,name=generous_departure_time,json=generousDepartureTime,proto3,oneof" json:"generous_departure_time,omitempty"`
-	Platform              *string                `protobuf:"bytes,10,opt,name=platform,proto3,oneof" json:"platform,omitempty"`
+	Schedule              *Schedule              `protobuf:"bytes,1,opt,name=schedule,proto3" json:"schedule,omitempty"`
+	ScheduleLocation      *ScheduleLocation      `protobuf:"bytes,2,opt,name=schedule_location,json=scheduleLocation,proto3" json:"schedule_location,omitempty"`
+	GenerousArrivalTime   *string                `protobuf:"bytes,13,opt,name=generous_arrival_time,json=generousArrivalTime,proto3,oneof" json:"generous_arrival_time,omitempty"`
+	GenerousPassingTime   *string                `protobuf:"bytes,14,opt,name=generous_passing_time,json=generousPassingTime,proto3,oneof" json:"generous_passing_time,omitempty"`
+	GenerousDepartureTime *string                `protobuf:"bytes,15,opt,name=generous_departure_time,json=generousDepartureTime,proto3,oneof" json:"generous_departure_time,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
 
-func (x *DescribeAtResponse) Reset() {
-	*x = DescribeAtResponse{}
-	mi := &file_describeAt_proto_msgTypes[1]
+func (x *ServiceDescription) Reset() {
+	*x = ServiceDescription{}
+	mi := &file_describeScheduleByScheduleLocationUUID_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DescribeAtResponse) String() string {
+func (x *ServiceDescription) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DescribeAtResponse) ProtoMessage() {}
+func (*ServiceDescription) ProtoMessage() {}
 
-func (x *DescribeAtResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_describeAt_proto_msgTypes[1]
+func (x *ServiceDescription) ProtoReflect() protoreflect.Message {
+	mi := &file_describeScheduleByScheduleLocationUUID_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -156,152 +153,69 @@ func (x *DescribeAtResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DescribeAtResponse.ProtoReflect.Descriptor instead.
-func (*DescribeAtResponse) Descriptor() ([]byte, []int) {
-	return file_describeAt_proto_rawDescGZIP(), []int{1}
+// Deprecated: Use ServiceDescription.ProtoReflect.Descriptor instead.
+func (*ServiceDescription) Descriptor() ([]byte, []int) {
+	return file_describeScheduleByScheduleLocationUUID_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *DescribeAtResponse) GetLocationId() string {
-	if x != nil {
-		return x.LocationId
-	}
-	return ""
-}
-
-func (x *DescribeAtResponse) GetSchedule() *Schedule {
+func (x *ServiceDescription) GetSchedule() *Schedule {
 	if x != nil {
 		return x.Schedule
 	}
 	return nil
 }
 
-func (x *DescribeAtResponse) GetScheduleLocation() *ScheduleLocation {
+func (x *ServiceDescription) GetScheduleLocation() *ScheduleLocation {
 	if x != nil {
 		return x.ScheduleLocation
 	}
 	return nil
 }
 
-func (x *DescribeAtResponse) GetForecast() *Forecast {
-	if x != nil {
-		return x.Forecast
-	}
-	return nil
-}
-
-func (x *DescribeAtResponse) GetGenerousArrivalTime() string {
+func (x *ServiceDescription) GetGenerousArrivalTime() string {
 	if x != nil && x.GenerousArrivalTime != nil {
 		return *x.GenerousArrivalTime
 	}
 	return ""
 }
 
-func (x *DescribeAtResponse) GetGenerousPassingTime() string {
+func (x *ServiceDescription) GetGenerousPassingTime() string {
 	if x != nil && x.GenerousPassingTime != nil {
 		return *x.GenerousPassingTime
 	}
 	return ""
 }
 
-func (x *DescribeAtResponse) GetGenerousDepartureTime() string {
+func (x *ServiceDescription) GetGenerousDepartureTime() string {
 	if x != nil && x.GenerousDepartureTime != nil {
 		return *x.GenerousDepartureTime
 	}
 	return ""
 }
 
-func (x *DescribeAtResponse) GetPlatform() string {
-	if x != nil && x.Platform != nil {
-		return *x.Platform
-	}
-	return ""
-}
-
-type DisruptionReason struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	ReasonId         uint32                 `protobuf:"varint,1,opt,name=reason_id,json=reasonId,proto3" json:"reason_id,omitempty"`
-	ReasonLocationId *string                `protobuf:"bytes,2,opt,name=reason_location_id,json=reasonLocationId,proto3,oneof" json:"reason_location_id,omitempty"`
-	// When true, the provided reason_id is 'near to' the provided reason_location_id.
-	// When false, the reason_id is 'at' the reason_location_id.
-	ReasonIsNearLocation bool `protobuf:"varint,3,opt,name=reason_is_near_location,json=reasonIsNearLocation,proto3" json:"reason_is_near_location,omitempty"`
-	unknownFields        protoimpl.UnknownFields
-	sizeCache            protoimpl.SizeCache
-}
-
-func (x *DisruptionReason) Reset() {
-	*x = DisruptionReason{}
-	mi := &file_describeAt_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DisruptionReason) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DisruptionReason) ProtoMessage() {}
-
-func (x *DisruptionReason) ProtoReflect() protoreflect.Message {
-	mi := &file_describeAt_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DisruptionReason.ProtoReflect.Descriptor instead.
-func (*DisruptionReason) Descriptor() ([]byte, []int) {
-	return file_describeAt_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *DisruptionReason) GetReasonId() uint32 {
-	if x != nil {
-		return x.ReasonId
-	}
-	return 0
-}
-
-func (x *DisruptionReason) GetReasonLocationId() string {
-	if x != nil && x.ReasonLocationId != nil {
-		return *x.ReasonLocationId
-	}
-	return ""
-}
-
-func (x *DisruptionReason) GetReasonIsNearLocation() bool {
-	if x != nil {
-		return x.ReasonIsNearLocation
-	}
-	return false
-}
-
 type Schedule struct {
-	state                         protoimpl.MessageState `protogen:"open.v1"`
-	ScheduleId                    string                 `protobuf:"bytes,1,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
-	Uid                           string                 `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`
-	Headcode                      string                 `protobuf:"bytes,3,opt,name=headcode,proto3" json:"headcode,omitempty"`
-	RetailServiceId               *string                `protobuf:"bytes,4,opt,name=retail_service_id,json=retailServiceId,proto3,oneof" json:"retail_service_id,omitempty"`
-	TocId                         string                 `protobuf:"bytes,5,opt,name=toc_id,json=tocId,proto3" json:"toc_id,omitempty"`
-	ServiceType                   ServiceType            `protobuf:"varint,6,opt,name=service_type,json=serviceType,proto3,enum=ServiceType" json:"service_type,omitempty"`
-	CategoryType                  CategoryType           `protobuf:"varint,7,opt,name=category_type,json=categoryType,proto3,enum=CategoryType" json:"category_type,omitempty"`
-	IsPassenger                   bool                   `protobuf:"varint,8,opt,name=is_passenger,json=isPassenger,proto3" json:"is_passenger,omitempty"`
-	IsActive                      bool                   `protobuf:"varint,9,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	IsChartered                   bool                   `protobuf:"varint,10,opt,name=is_chartered,json=isChartered,proto3" json:"is_chartered,omitempty"`
-	ScheduleIsCancelled           bool                   `protobuf:"varint,11,opt,name=schedule_is_cancelled,json=scheduleIsCancelled,proto3" json:"schedule_is_cancelled,omitempty"`
-	ScheduleCancellationReason    *DisruptionReason      `protobuf:"bytes,12,opt,name=schedule_cancellation_reason,json=scheduleCancellationReason,proto3,oneof" json:"schedule_cancellation_reason,omitempty"`
-	ScheduleDivertedViaLocationId *string                `protobuf:"bytes,13,opt,name=schedule_diverted_via_location_id,json=scheduleDivertedViaLocationId,proto3,oneof" json:"schedule_diverted_via_location_id,omitempty"`
-	ScheduleDiversionReason       *DisruptionReason      `protobuf:"bytes,14,opt,name=schedule_diversion_reason,json=scheduleDiversionReason,proto3,oneof" json:"schedule_diversion_reason,omitempty"`
-	unknownFields                 protoimpl.UnknownFields
-	sizeCache                     protoimpl.SizeCache
+	state                 protoimpl.MessageState `protogen:"open.v1"`
+	ScheduleId            string                 `protobuf:"bytes,4,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
+	Uid                   string                 `protobuf:"bytes,5,opt,name=uid,proto3" json:"uid,omitempty"`
+	Headcode              string                 `protobuf:"bytes,8,opt,name=headcode,proto3" json:"headcode,omitempty"`
+	RetailServiceId       *string                `protobuf:"bytes,9,opt,name=retail_service_id,json=retailServiceId,proto3,oneof" json:"retail_service_id,omitempty"`
+	TocId                 string                 `protobuf:"bytes,10,opt,name=toc_id,json=tocId,proto3" json:"toc_id,omitempty"`
+	Service               ServiceType            `protobuf:"varint,11,opt,name=service,proto3,enum=ServiceType" json:"service,omitempty"`
+	Category              CategoryType           `protobuf:"varint,12,opt,name=category,proto3,enum=CategoryType" json:"category,omitempty"`
+	IsPassengerService    bool                   `protobuf:"varint,13,opt,name=is_passenger_service,json=isPassengerService,proto3" json:"is_passenger_service,omitempty"`
+	IsActive              bool                   `protobuf:"varint,14,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	IsCharter             bool                   `protobuf:"varint,16,opt,name=is_charter,json=isCharter,proto3" json:"is_charter,omitempty"`
+	IsCancelled           bool                   `protobuf:"varint,17,opt,name=is_cancelled,json=isCancelled,proto3" json:"is_cancelled,omitempty"`
+	CancellationReason    *DisruptionReason      `protobuf:"bytes,18,opt,name=cancellation_reason,json=cancellationReason,proto3,oneof" json:"cancellation_reason,omitempty"`
+	DivertedViaLocationId *string                `protobuf:"bytes,19,opt,name=diverted_via_location_id,json=divertedViaLocationId,proto3,oneof" json:"diverted_via_location_id,omitempty"`
+	DiversionReason       *DisruptionReason      `protobuf:"bytes,20,opt,name=diversion_reason,json=diversionReason,proto3,oneof" json:"diversion_reason,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *Schedule) Reset() {
 	*x = Schedule{}
-	mi := &file_describeAt_proto_msgTypes[3]
+	mi := &file_describeScheduleByScheduleLocationUUID_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -313,7 +227,7 @@ func (x *Schedule) String() string {
 func (*Schedule) ProtoMessage() {}
 
 func (x *Schedule) ProtoReflect() protoreflect.Message {
-	mi := &file_describeAt_proto_msgTypes[3]
+	mi := &file_describeScheduleByScheduleLocationUUID_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -326,7 +240,7 @@ func (x *Schedule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Schedule.ProtoReflect.Descriptor instead.
 func (*Schedule) Descriptor() ([]byte, []int) {
-	return file_describeAt_proto_rawDescGZIP(), []int{3}
+	return file_describeScheduleByScheduleLocationUUID_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Schedule) GetScheduleId() string {
@@ -364,23 +278,23 @@ func (x *Schedule) GetTocId() string {
 	return ""
 }
 
-func (x *Schedule) GetServiceType() ServiceType {
+func (x *Schedule) GetService() ServiceType {
 	if x != nil {
-		return x.ServiceType
+		return x.Service
 	}
 	return ServiceType_SERVICE_TYPE_SERVICE_UNKNOWN
 }
 
-func (x *Schedule) GetCategoryType() CategoryType {
+func (x *Schedule) GetCategory() CategoryType {
 	if x != nil {
-		return x.CategoryType
+		return x.Category
 	}
 	return CategoryType_CATEGORY_TYPE_CATEGORY_UNKNOWN
 }
 
-func (x *Schedule) GetIsPassenger() bool {
+func (x *Schedule) GetIsPassengerService() bool {
 	if x != nil {
-		return x.IsPassenger
+		return x.IsPassengerService
 	}
 	return false
 }
@@ -392,37 +306,37 @@ func (x *Schedule) GetIsActive() bool {
 	return false
 }
 
-func (x *Schedule) GetIsChartered() bool {
+func (x *Schedule) GetIsCharter() bool {
 	if x != nil {
-		return x.IsChartered
+		return x.IsCharter
 	}
 	return false
 }
 
-func (x *Schedule) GetScheduleIsCancelled() bool {
+func (x *Schedule) GetIsCancelled() bool {
 	if x != nil {
-		return x.ScheduleIsCancelled
+		return x.IsCancelled
 	}
 	return false
 }
 
-func (x *Schedule) GetScheduleCancellationReason() *DisruptionReason {
+func (x *Schedule) GetCancellationReason() *DisruptionReason {
 	if x != nil {
-		return x.ScheduleCancellationReason
+		return x.CancellationReason
 	}
 	return nil
 }
 
-func (x *Schedule) GetScheduleDivertedViaLocationId() string {
-	if x != nil && x.ScheduleDivertedViaLocationId != nil {
-		return *x.ScheduleDivertedViaLocationId
+func (x *Schedule) GetDivertedViaLocationId() string {
+	if x != nil && x.DivertedViaLocationId != nil {
+		return *x.DivertedViaLocationId
 	}
 	return ""
 }
 
-func (x *Schedule) GetScheduleDiversionReason() *DisruptionReason {
+func (x *Schedule) GetDiversionReason() *DisruptionReason {
 	if x != nil {
-		return x.ScheduleDiversionReason
+		return x.DiversionReason
 	}
 	return nil
 }
@@ -432,26 +346,27 @@ func (x *Schedule) GetScheduleDiversionReason() *DisruptionReason {
 // Working and Public timetables may differ, typically to allow services to experience very minor (30 to 60s) delays without appearing late to the public.
 // There is no scheduled_public_passing_time because locations through which a service passes without stopping do not need to display any times to the public.
 type ScheduleLocation struct {
-	state                         protoimpl.MessageState `protogen:"open.v1"`
-	Activities                    []ActivityType         `protobuf:"varint,1,rep,packed,name=activities,proto3,enum=ActivityType" json:"activities,omitempty"`
-	PlannedActivities             []ActivityType         `protobuf:"varint,2,rep,packed,name=planned_activities,json=plannedActivities,proto3,enum=ActivityType" json:"planned_activities,omitempty"`
-	LocationIsAffectedByDiversion bool                   `protobuf:"varint,3,opt,name=location_is_affected_by_diversion,json=locationIsAffectedByDiversion,proto3" json:"location_is_affected_by_diversion,omitempty"`
-	LocationType                  LocationType           `protobuf:"varint,4,opt,name=location_type,json=locationType,proto3,enum=LocationType" json:"location_type,omitempty"`
-	ScheduledWorkingArrivalTime   *string                `protobuf:"bytes,5,opt,name=scheduled_working_arrival_time,json=scheduledWorkingArrivalTime,proto3,oneof" json:"scheduled_working_arrival_time,omitempty"`
-	ScheduledWorkingPassingTime   *string                `protobuf:"bytes,6,opt,name=scheduled_working_passing_time,json=scheduledWorkingPassingTime,proto3,oneof" json:"scheduled_working_passing_time,omitempty"`
-	ScheduledWorkingDepartureTime *string                `protobuf:"bytes,7,opt,name=scheduled_working_departure_time,json=scheduledWorkingDepartureTime,proto3,oneof" json:"scheduled_working_departure_time,omitempty"`
-	ScheduledPublicArrivalTime    *string                `protobuf:"bytes,8,opt,name=scheduled_public_arrival_time,json=scheduledPublicArrivalTime,proto3,oneof" json:"scheduled_public_arrival_time,omitempty"`
-	ScheduledPublicDepartureTime  *string                `protobuf:"bytes,9,opt,name=scheduled_public_departure_time,json=scheduledPublicDepartureTime,proto3,oneof" json:"scheduled_public_departure_time,omitempty"`
-	RoutingDelay                  uint32                 `protobuf:"varint,10,opt,name=routing_delay,json=routingDelay,proto3" json:"routing_delay,omitempty"` // in minutes
-	LocationIsCancelled           bool                   `protobuf:"varint,11,opt,name=location_is_cancelled,json=locationIsCancelled,proto3" json:"location_is_cancelled,omitempty"`
-	LocationCancellationReason    *DisruptionReason      `protobuf:"bytes,12,opt,name=location_cancellation_reason,json=locationCancellationReason,proto3,oneof" json:"location_cancellation_reason,omitempty"`
-	unknownFields                 protoimpl.UnknownFields
-	sizeCache                     protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"open.v1"`
+	Uuid                       string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Activities                 []ActivityType         `protobuf:"varint,5,rep,packed,name=activities,proto3,enum=ActivityType" json:"activities,omitempty"`
+	PlannedActivities          []ActivityType         `protobuf:"varint,6,rep,packed,name=planned_activities,json=plannedActivities,proto3,enum=ActivityType" json:"planned_activities,omitempty"`
+	IsAffectedByDiversion      bool                   `protobuf:"varint,8,opt,name=is_affected_by_diversion,json=isAffectedByDiversion,proto3" json:"is_affected_by_diversion,omitempty"`
+	Type                       LocationType           `protobuf:"varint,9,opt,name=type,proto3,enum=LocationType" json:"type,omitempty"`
+	WorkingArrivalTime         *string                `protobuf:"bytes,10,opt,name=working_arrival_time,json=workingArrivalTime,proto3,oneof" json:"working_arrival_time,omitempty"`
+	WorkingPassingTime         *string                `protobuf:"bytes,11,opt,name=working_passing_time,json=workingPassingTime,proto3,oneof" json:"working_passing_time,omitempty"`
+	WorkingDepartureTime       *string                `protobuf:"bytes,12,opt,name=working_departure_time,json=workingDepartureTime,proto3,oneof" json:"working_departure_time,omitempty"`
+	PublicArrivalTime          *string                `protobuf:"bytes,13,opt,name=public_arrival_time,json=publicArrivalTime,proto3,oneof" json:"public_arrival_time,omitempty"`
+	PublicDepartureTime        *string                `protobuf:"bytes,14,opt,name=public_departure_time,json=publicDepartureTime,proto3,oneof" json:"public_departure_time,omitempty"`
+	RoutingDelay               uint32                 `protobuf:"varint,15,opt,name=routing_delay,json=routingDelay,proto3" json:"routing_delay,omitempty"` // in minutes
+	IsCancelled                bool                   `protobuf:"varint,17,opt,name=is_cancelled,json=isCancelled,proto3" json:"is_cancelled,omitempty"`
+	LocationCancellationReason *DisruptionReason      `protobuf:"bytes,18,opt,name=location_cancellation_reason,json=locationCancellationReason,proto3,oneof" json:"location_cancellation_reason,omitempty"`
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *ScheduleLocation) Reset() {
 	*x = ScheduleLocation{}
-	mi := &file_describeAt_proto_msgTypes[4]
+	mi := &file_describeScheduleByScheduleLocationUUID_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -463,7 +378,7 @@ func (x *ScheduleLocation) String() string {
 func (*ScheduleLocation) ProtoMessage() {}
 
 func (x *ScheduleLocation) ProtoReflect() protoreflect.Message {
-	mi := &file_describeAt_proto_msgTypes[4]
+	mi := &file_describeScheduleByScheduleLocationUUID_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -476,7 +391,14 @@ func (x *ScheduleLocation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScheduleLocation.ProtoReflect.Descriptor instead.
 func (*ScheduleLocation) Descriptor() ([]byte, []int) {
-	return file_describeAt_proto_rawDescGZIP(), []int{4}
+	return file_describeScheduleByScheduleLocationUUID_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ScheduleLocation) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
 }
 
 func (x *ScheduleLocation) GetActivities() []ActivityType {
@@ -493,51 +415,51 @@ func (x *ScheduleLocation) GetPlannedActivities() []ActivityType {
 	return nil
 }
 
-func (x *ScheduleLocation) GetLocationIsAffectedByDiversion() bool {
+func (x *ScheduleLocation) GetIsAffectedByDiversion() bool {
 	if x != nil {
-		return x.LocationIsAffectedByDiversion
+		return x.IsAffectedByDiversion
 	}
 	return false
 }
 
-func (x *ScheduleLocation) GetLocationType() LocationType {
+func (x *ScheduleLocation) GetType() LocationType {
 	if x != nil {
-		return x.LocationType
+		return x.Type
 	}
 	return LocationType_LOCATION_TYPE_LOCATION_UNKNOWN
 }
 
-func (x *ScheduleLocation) GetScheduledWorkingArrivalTime() string {
-	if x != nil && x.ScheduledWorkingArrivalTime != nil {
-		return *x.ScheduledWorkingArrivalTime
+func (x *ScheduleLocation) GetWorkingArrivalTime() string {
+	if x != nil && x.WorkingArrivalTime != nil {
+		return *x.WorkingArrivalTime
 	}
 	return ""
 }
 
-func (x *ScheduleLocation) GetScheduledWorkingPassingTime() string {
-	if x != nil && x.ScheduledWorkingPassingTime != nil {
-		return *x.ScheduledWorkingPassingTime
+func (x *ScheduleLocation) GetWorkingPassingTime() string {
+	if x != nil && x.WorkingPassingTime != nil {
+		return *x.WorkingPassingTime
 	}
 	return ""
 }
 
-func (x *ScheduleLocation) GetScheduledWorkingDepartureTime() string {
-	if x != nil && x.ScheduledWorkingDepartureTime != nil {
-		return *x.ScheduledWorkingDepartureTime
+func (x *ScheduleLocation) GetWorkingDepartureTime() string {
+	if x != nil && x.WorkingDepartureTime != nil {
+		return *x.WorkingDepartureTime
 	}
 	return ""
 }
 
-func (x *ScheduleLocation) GetScheduledPublicArrivalTime() string {
-	if x != nil && x.ScheduledPublicArrivalTime != nil {
-		return *x.ScheduledPublicArrivalTime
+func (x *ScheduleLocation) GetPublicArrivalTime() string {
+	if x != nil && x.PublicArrivalTime != nil {
+		return *x.PublicArrivalTime
 	}
 	return ""
 }
 
-func (x *ScheduleLocation) GetScheduledPublicDepartureTime() string {
-	if x != nil && x.ScheduledPublicDepartureTime != nil {
-		return *x.ScheduledPublicDepartureTime
+func (x *ScheduleLocation) GetPublicDepartureTime() string {
+	if x != nil && x.PublicDepartureTime != nil {
+		return *x.PublicDepartureTime
 	}
 	return ""
 }
@@ -549,9 +471,9 @@ func (x *ScheduleLocation) GetRoutingDelay() uint32 {
 	return 0
 }
 
-func (x *ScheduleLocation) GetLocationIsCancelled() bool {
+func (x *ScheduleLocation) GetIsCancelled() bool {
 	if x != nil {
-		return x.LocationIsCancelled
+		return x.IsCancelled
 	}
 	return false
 }
@@ -612,7 +534,7 @@ type Forecast struct {
 
 func (x *Forecast) Reset() {
 	*x = Forecast{}
-	mi := &file_describeAt_proto_msgTypes[5]
+	mi := &file_describeScheduleByScheduleLocationUUID_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -624,7 +546,7 @@ func (x *Forecast) String() string {
 func (*Forecast) ProtoMessage() {}
 
 func (x *Forecast) ProtoReflect() protoreflect.Message {
-	mi := &file_describeAt_proto_msgTypes[5]
+	mi := &file_describeScheduleByScheduleLocationUUID_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -637,7 +559,7 @@ func (x *Forecast) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Forecast.ProtoReflect.Descriptor instead.
 func (*Forecast) Descriptor() ([]byte, []int) {
-	return file_describeAt_proto_rawDescGZIP(), []int{5}
+	return file_describeScheduleByScheduleLocationUUID_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Forecast) GetIsReverseFormation() bool {
@@ -906,77 +828,129 @@ func (x *Forecast) GetServiceDetatchesFromFront() bool {
 	return false
 }
 
-var File_describeAt_proto protoreflect.FileDescriptor
+type DisruptionReason struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	ReasonId         uint32                 `protobuf:"varint,1,opt,name=reason_id,json=reasonId,proto3" json:"reason_id,omitempty"`
+	ReasonLocationId *string                `protobuf:"bytes,2,opt,name=reason_location_id,json=reasonLocationId,proto3,oneof" json:"reason_location_id,omitempty"`
+	// When true, the provided reason_id is 'near to' the provided reason_location_id.
+	// When false, the reason_id is 'at' the reason_location_id.
+	ReasonIsNearLocation bool `protobuf:"varint,3,opt,name=reason_is_near_location,json=reasonIsNearLocation,proto3" json:"reason_is_near_location,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
 
-const file_describeAt_proto_rawDesc = "" +
+func (x *DisruptionReason) Reset() {
+	*x = DisruptionReason{}
+	mi := &file_describeScheduleByScheduleLocationUUID_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DisruptionReason) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DisruptionReason) ProtoMessage() {}
+
+func (x *DisruptionReason) ProtoReflect() protoreflect.Message {
+	mi := &file_describeScheduleByScheduleLocationUUID_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DisruptionReason.ProtoReflect.Descriptor instead.
+func (*DisruptionReason) Descriptor() ([]byte, []int) {
+	return file_describeScheduleByScheduleLocationUUID_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *DisruptionReason) GetReasonId() uint32 {
+	if x != nil {
+		return x.ReasonId
+	}
+	return 0
+}
+
+func (x *DisruptionReason) GetReasonLocationId() string {
+	if x != nil && x.ReasonLocationId != nil {
+		return *x.ReasonLocationId
+	}
+	return ""
+}
+
+func (x *DisruptionReason) GetReasonIsNearLocation() bool {
+	if x != nil {
+		return x.ReasonIsNearLocation
+	}
+	return false
+}
+
+var File_describeScheduleByScheduleLocationUUID_proto protoreflect.FileDescriptor
+
+const file_describeScheduleByScheduleLocationUUID_proto_rawDesc = "" +
 	"\n" +
-	"\x10describeAt.proto\x1a\x0frailtypes.proto\"I\n" +
-	"\x11DescribeAtRequest\x124\n" +
-	"\x16schedule_location_uuid\x18\x01 \x01(\tR\x14scheduleLocationUuid\"\x88\x04\n" +
-	"\x12DescribeAtResponse\x12\x1f\n" +
-	"\vlocation_id\x18\x01 \x01(\tR\n" +
-	"locationId\x12%\n" +
-	"\bschedule\x18\x02 \x01(\v2\t.ScheduleR\bschedule\x12>\n" +
-	"\x11schedule_location\x18\x03 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocation\x12*\n" +
-	"\bforecast\x18\x04 \x01(\v2\t.ForecastH\x00R\bforecast\x88\x01\x01\x127\n" +
-	"\x15generous_arrival_time\x18\a \x01(\tH\x01R\x13generousArrivalTime\x88\x01\x01\x127\n" +
-	"\x15generous_passing_time\x18\b \x01(\tH\x02R\x13generousPassingTime\x88\x01\x01\x12;\n" +
-	"\x17generous_departure_time\x18\t \x01(\tH\x03R\x15generousDepartureTime\x88\x01\x01\x12\x1f\n" +
-	"\bplatform\x18\n" +
-	" \x01(\tH\x04R\bplatform\x88\x01\x01B\v\n" +
-	"\t_forecastB\x18\n" +
+	",describeScheduleByScheduleLocationUUID.proto\x1a\x0frailtypes.proto\"e\n" +
+	"-DescribeScheduleByScheduleLocationUUIDRequest\x124\n" +
+	"\x16schedule_location_uuid\x18\x01 \x01(\tR\x14scheduleLocationUuid\"\x80\x03\n" +
+	"\x12ServiceDescription\x12%\n" +
+	"\bschedule\x18\x01 \x01(\v2\t.ScheduleR\bschedule\x12>\n" +
+	"\x11schedule_location\x18\x02 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocation\x127\n" +
+	"\x15generous_arrival_time\x18\r \x01(\tH\x00R\x13generousArrivalTime\x88\x01\x01\x127\n" +
+	"\x15generous_passing_time\x18\x0e \x01(\tH\x01R\x13generousPassingTime\x88\x01\x01\x12;\n" +
+	"\x17generous_departure_time\x18\x0f \x01(\tH\x02R\x15generousDepartureTime\x88\x01\x01B\x18\n" +
 	"\x16_generous_arrival_timeB\x18\n" +
 	"\x16_generous_passing_timeB\x1a\n" +
-	"\x18_generous_departure_timeB\v\n" +
-	"\t_platformJ\x04\b\x05\x10\a\"\xb0\x01\n" +
-	"\x10DisruptionReason\x12\x1b\n" +
-	"\treason_id\x18\x01 \x01(\rR\breasonId\x121\n" +
-	"\x12reason_location_id\x18\x02 \x01(\tH\x00R\x10reasonLocationId\x88\x01\x01\x125\n" +
-	"\x17reason_is_near_location\x18\x03 \x01(\bR\x14reasonIsNearLocationB\x15\n" +
-	"\x13_reason_location_id\"\x95\x06\n" +
+	"\x18_generous_departure_timeJ\x04\b\x03\x10\r\"\xc1\x05\n" +
 	"\bSchedule\x12\x1f\n" +
-	"\vschedule_id\x18\x01 \x01(\tR\n" +
+	"\vschedule_id\x18\x04 \x01(\tR\n" +
 	"scheduleId\x12\x10\n" +
-	"\x03uid\x18\x02 \x01(\tR\x03uid\x12\x1a\n" +
-	"\bheadcode\x18\x03 \x01(\tR\bheadcode\x12/\n" +
-	"\x11retail_service_id\x18\x04 \x01(\tH\x00R\x0fretailServiceId\x88\x01\x01\x12\x15\n" +
-	"\x06toc_id\x18\x05 \x01(\tR\x05tocId\x12/\n" +
-	"\fservice_type\x18\x06 \x01(\x0e2\f.ServiceTypeR\vserviceType\x122\n" +
-	"\rcategory_type\x18\a \x01(\x0e2\r.CategoryTypeR\fcategoryType\x12!\n" +
-	"\fis_passenger\x18\b \x01(\bR\visPassenger\x12\x1b\n" +
-	"\tis_active\x18\t \x01(\bR\bisActive\x12!\n" +
-	"\fis_chartered\x18\n" +
-	" \x01(\bR\visChartered\x122\n" +
-	"\x15schedule_is_cancelled\x18\v \x01(\bR\x13scheduleIsCancelled\x12X\n" +
-	"\x1cschedule_cancellation_reason\x18\f \x01(\v2\x11.DisruptionReasonH\x01R\x1ascheduleCancellationReason\x88\x01\x01\x12M\n" +
-	"!schedule_diverted_via_location_id\x18\r \x01(\tH\x02R\x1dscheduleDivertedViaLocationId\x88\x01\x01\x12R\n" +
-	"\x19schedule_diversion_reason\x18\x0e \x01(\v2\x11.DisruptionReasonH\x03R\x17scheduleDiversionReason\x88\x01\x01B\x14\n" +
-	"\x12_retail_service_idB\x1f\n" +
-	"\x1d_schedule_cancellation_reasonB$\n" +
-	"\"_schedule_diverted_via_location_idB\x1c\n" +
-	"\x1a_schedule_diversion_reason\"\xf8\a\n" +
-	"\x10ScheduleLocation\x12-\n" +
+	"\x03uid\x18\x05 \x01(\tR\x03uid\x12\x1a\n" +
+	"\bheadcode\x18\b \x01(\tR\bheadcode\x12/\n" +
+	"\x11retail_service_id\x18\t \x01(\tH\x00R\x0fretailServiceId\x88\x01\x01\x12\x15\n" +
+	"\x06toc_id\x18\n" +
+	" \x01(\tR\x05tocId\x12&\n" +
+	"\aservice\x18\v \x01(\x0e2\f.ServiceTypeR\aservice\x12)\n" +
+	"\bcategory\x18\f \x01(\x0e2\r.CategoryTypeR\bcategory\x120\n" +
+	"\x14is_passenger_service\x18\r \x01(\bR\x12isPassengerService\x12\x1b\n" +
+	"\tis_active\x18\x0e \x01(\bR\bisActive\x12\x1d\n" +
 	"\n" +
-	"activities\x18\x01 \x03(\x0e2\r.ActivityTypeR\n" +
+	"is_charter\x18\x10 \x01(\bR\tisCharter\x12!\n" +
+	"\fis_cancelled\x18\x11 \x01(\bR\visCancelled\x12G\n" +
+	"\x13cancellation_reason\x18\x12 \x01(\v2\x11.DisruptionReasonH\x01R\x12cancellationReason\x88\x01\x01\x12<\n" +
+	"\x18diverted_via_location_id\x18\x13 \x01(\tH\x02R\x15divertedViaLocationId\x88\x01\x01\x12A\n" +
+	"\x10diversion_reason\x18\x14 \x01(\v2\x11.DisruptionReasonH\x03R\x0fdiversionReason\x88\x01\x01B\x14\n" +
+	"\x12_retail_service_idB\x16\n" +
+	"\x14_cancellation_reasonB\x1b\n" +
+	"\x19_diverted_via_location_idB\x13\n" +
+	"\x11_diversion_reasonJ\x04\b\x01\x10\x04J\x04\b\x06\x10\bJ\x04\b\x0f\x10\x10\"\xe0\x06\n" +
+	"\x10ScheduleLocation\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12-\n" +
+	"\n" +
+	"activities\x18\x05 \x03(\x0e2\r.ActivityTypeR\n" +
 	"activities\x12<\n" +
-	"\x12planned_activities\x18\x02 \x03(\x0e2\r.ActivityTypeR\x11plannedActivities\x12H\n" +
-	"!location_is_affected_by_diversion\x18\x03 \x01(\bR\x1dlocationIsAffectedByDiversion\x122\n" +
-	"\rlocation_type\x18\x04 \x01(\x0e2\r.LocationTypeR\flocationType\x12H\n" +
-	"\x1escheduled_working_arrival_time\x18\x05 \x01(\tH\x00R\x1bscheduledWorkingArrivalTime\x88\x01\x01\x12H\n" +
-	"\x1escheduled_working_passing_time\x18\x06 \x01(\tH\x01R\x1bscheduledWorkingPassingTime\x88\x01\x01\x12L\n" +
-	" scheduled_working_departure_time\x18\a \x01(\tH\x02R\x1dscheduledWorkingDepartureTime\x88\x01\x01\x12F\n" +
-	"\x1dscheduled_public_arrival_time\x18\b \x01(\tH\x03R\x1ascheduledPublicArrivalTime\x88\x01\x01\x12J\n" +
-	"\x1fscheduled_public_departure_time\x18\t \x01(\tH\x04R\x1cscheduledPublicDepartureTime\x88\x01\x01\x12#\n" +
-	"\rrouting_delay\x18\n" +
-	" \x01(\rR\froutingDelay\x122\n" +
-	"\x15location_is_cancelled\x18\v \x01(\bR\x13locationIsCancelled\x12X\n" +
-	"\x1clocation_cancellation_reason\x18\f \x01(\v2\x11.DisruptionReasonH\x05R\x1alocationCancellationReason\x88\x01\x01B!\n" +
-	"\x1f_scheduled_working_arrival_timeB!\n" +
-	"\x1f_scheduled_working_passing_timeB#\n" +
-	"!_scheduled_working_departure_timeB \n" +
-	"\x1e_scheduled_public_arrival_timeB\"\n" +
-	" _scheduled_public_departure_timeB\x1f\n" +
-	"\x1d_location_cancellation_reason\"\xa9\x1e\n" +
+	"\x12planned_activities\x18\x06 \x03(\x0e2\r.ActivityTypeR\x11plannedActivities\x127\n" +
+	"\x18is_affected_by_diversion\x18\b \x01(\bR\x15isAffectedByDiversion\x12!\n" +
+	"\x04type\x18\t \x01(\x0e2\r.LocationTypeR\x04type\x125\n" +
+	"\x14working_arrival_time\x18\n" +
+	" \x01(\tH\x00R\x12workingArrivalTime\x88\x01\x01\x125\n" +
+	"\x14working_passing_time\x18\v \x01(\tH\x01R\x12workingPassingTime\x88\x01\x01\x129\n" +
+	"\x16working_departure_time\x18\f \x01(\tH\x02R\x14workingDepartureTime\x88\x01\x01\x123\n" +
+	"\x13public_arrival_time\x18\r \x01(\tH\x03R\x11publicArrivalTime\x88\x01\x01\x127\n" +
+	"\x15public_departure_time\x18\x0e \x01(\tH\x04R\x13publicDepartureTime\x88\x01\x01\x12#\n" +
+	"\rrouting_delay\x18\x0f \x01(\rR\froutingDelay\x12!\n" +
+	"\fis_cancelled\x18\x11 \x01(\bR\visCancelled\x12X\n" +
+	"\x1clocation_cancellation_reason\x18\x12 \x01(\v2\x11.DisruptionReasonH\x05R\x1alocationCancellationReason\x88\x01\x01B\x17\n" +
+	"\x15_working_arrival_timeB\x17\n" +
+	"\x15_working_passing_timeB\x19\n" +
+	"\x17_working_departure_timeB\x16\n" +
+	"\x14_public_arrival_timeB\x18\n" +
+	"\x16_public_departure_timeB\x1f\n" +
+	"\x1d_location_cancellation_reasonJ\x04\b\x02\x10\x05J\x04\b\a\x10\bJ\x04\b\x10\x10\x11J\x04\b\x13\x10\x14\"\xa9\x1e\n" +
 	"\bForecast\x120\n" +
 	"\x14is_reverse_formation\x18\x01 \x01(\bR\x12isReverseFormation\x12H\n" +
 	"\x14schedule_late_reason\x18\x02 \x01(\v2\x11.DisruptionReasonH\x00R\x12scheduleLateReason\x88\x01\x01\x12F\n" +
@@ -1058,85 +1032,89 @@ const file_describeAt_proto_rawDesc = "" +
 	"\x17_platform_is_suppressedB \n" +
 	"\x1e_platform_is_suppressed_by_cisB\x17\n" +
 	"\x15_platform_data_sourceB\x18\n" +
-	"\x16_platform_is_confirmedB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x16_platform_is_confirmed\"\xb0\x01\n" +
+	"\x10DisruptionReason\x12\x1b\n" +
+	"\treason_id\x18\x01 \x01(\rR\breasonId\x121\n" +
+	"\x12reason_location_id\x18\x02 \x01(\tH\x00R\x10reasonLocationId\x88\x01\x01\x125\n" +
+	"\x17reason_is_near_location\x18\x03 \x01(\bR\x14reasonIsNearLocationB\x15\n" +
+	"\x13_reason_location_idB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
-	file_describeAt_proto_rawDescOnce sync.Once
-	file_describeAt_proto_rawDescData []byte
+	file_describeScheduleByScheduleLocationUUID_proto_rawDescOnce sync.Once
+	file_describeScheduleByScheduleLocationUUID_proto_rawDescData []byte
 )
 
-func file_describeAt_proto_rawDescGZIP() []byte {
-	file_describeAt_proto_rawDescOnce.Do(func() {
-		file_describeAt_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_describeAt_proto_rawDesc), len(file_describeAt_proto_rawDesc)))
+func file_describeScheduleByScheduleLocationUUID_proto_rawDescGZIP() []byte {
+	file_describeScheduleByScheduleLocationUUID_proto_rawDescOnce.Do(func() {
+		file_describeScheduleByScheduleLocationUUID_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_describeScheduleByScheduleLocationUUID_proto_rawDesc), len(file_describeScheduleByScheduleLocationUUID_proto_rawDesc)))
 	})
-	return file_describeAt_proto_rawDescData
+	return file_describeScheduleByScheduleLocationUUID_proto_rawDescData
 }
 
-var file_describeAt_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_describeAt_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
-var file_describeAt_proto_goTypes = []any{
-	(Forecast_PlatformDataSource)(0), // 0: Forecast.PlatformDataSource
-	(*DescribeAtRequest)(nil),        // 1: DescribeAtRequest
-	(*DescribeAtResponse)(nil),       // 2: DescribeAtResponse
-	(*DisruptionReason)(nil),         // 3: DisruptionReason
-	(*Schedule)(nil),                 // 4: Schedule
-	(*ScheduleLocation)(nil),         // 5: ScheduleLocation
-	(*Forecast)(nil),                 // 6: Forecast
-	(ServiceType)(0),                 // 7: ServiceType
-	(CategoryType)(0),                // 8: CategoryType
-	(ActivityType)(0),                // 9: ActivityType
-	(LocationType)(0),                // 10: LocationType
+var file_describeScheduleByScheduleLocationUUID_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_describeScheduleByScheduleLocationUUID_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_describeScheduleByScheduleLocationUUID_proto_goTypes = []any{
+	(Forecast_PlatformDataSource)(0),                      // 0: Forecast.PlatformDataSource
+	(*DescribeScheduleByScheduleLocationUUIDRequest)(nil), // 1: DescribeScheduleByScheduleLocationUUIDRequest
+	(*ServiceDescription)(nil),                            // 2: ServiceDescription
+	(*Schedule)(nil),                                      // 3: Schedule
+	(*ScheduleLocation)(nil),                              // 4: ScheduleLocation
+	(*Forecast)(nil),                                      // 5: Forecast
+	(*DisruptionReason)(nil),                              // 6: DisruptionReason
+	(ServiceType)(0),                                      // 7: ServiceType
+	(CategoryType)(0),                                     // 8: CategoryType
+	(ActivityType)(0),                                     // 9: ActivityType
+	(LocationType)(0),                                     // 10: LocationType
 }
-var file_describeAt_proto_depIdxs = []int32{
-	4,  // 0: DescribeAtResponse.schedule:type_name -> Schedule
-	5,  // 1: DescribeAtResponse.schedule_location:type_name -> ScheduleLocation
-	6,  // 2: DescribeAtResponse.forecast:type_name -> Forecast
-	7,  // 3: Schedule.service_type:type_name -> ServiceType
-	8,  // 4: Schedule.category_type:type_name -> CategoryType
-	3,  // 5: Schedule.schedule_cancellation_reason:type_name -> DisruptionReason
-	3,  // 6: Schedule.schedule_diversion_reason:type_name -> DisruptionReason
-	9,  // 7: ScheduleLocation.activities:type_name -> ActivityType
-	9,  // 8: ScheduleLocation.planned_activities:type_name -> ActivityType
-	10, // 9: ScheduleLocation.location_type:type_name -> LocationType
-	3,  // 10: ScheduleLocation.location_cancellation_reason:type_name -> DisruptionReason
-	3,  // 11: Forecast.schedule_late_reason:type_name -> DisruptionReason
-	3,  // 12: Forecast.location_late_reason:type_name -> DisruptionReason
-	3,  // 13: Forecast.location_disruption_risk_reason:type_name -> DisruptionReason
-	0,  // 14: Forecast.platform_data_source:type_name -> Forecast.PlatformDataSource
-	15, // [15:15] is the sub-list for method output_type
-	15, // [15:15] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+var file_describeScheduleByScheduleLocationUUID_proto_depIdxs = []int32{
+	3,  // 0: ServiceDescription.schedule:type_name -> Schedule
+	4,  // 1: ServiceDescription.schedule_location:type_name -> ScheduleLocation
+	7,  // 2: Schedule.service:type_name -> ServiceType
+	8,  // 3: Schedule.category:type_name -> CategoryType
+	6,  // 4: Schedule.cancellation_reason:type_name -> DisruptionReason
+	6,  // 5: Schedule.diversion_reason:type_name -> DisruptionReason
+	9,  // 6: ScheduleLocation.activities:type_name -> ActivityType
+	9,  // 7: ScheduleLocation.planned_activities:type_name -> ActivityType
+	10, // 8: ScheduleLocation.type:type_name -> LocationType
+	6,  // 9: ScheduleLocation.location_cancellation_reason:type_name -> DisruptionReason
+	6,  // 10: Forecast.schedule_late_reason:type_name -> DisruptionReason
+	6,  // 11: Forecast.location_late_reason:type_name -> DisruptionReason
+	6,  // 12: Forecast.location_disruption_risk_reason:type_name -> DisruptionReason
+	0,  // 13: Forecast.platform_data_source:type_name -> Forecast.PlatformDataSource
+	14, // [14:14] is the sub-list for method output_type
+	14, // [14:14] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
-func init() { file_describeAt_proto_init() }
-func file_describeAt_proto_init() {
-	if File_describeAt_proto != nil {
+func init() { file_describeScheduleByScheduleLocationUUID_proto_init() }
+func file_describeScheduleByScheduleLocationUUID_proto_init() {
+	if File_describeScheduleByScheduleLocationUUID_proto != nil {
 		return
 	}
 	file_railtypes_proto_init()
-	file_describeAt_proto_msgTypes[1].OneofWrappers = []any{}
-	file_describeAt_proto_msgTypes[2].OneofWrappers = []any{}
-	file_describeAt_proto_msgTypes[3].OneofWrappers = []any{}
-	file_describeAt_proto_msgTypes[4].OneofWrappers = []any{}
-	file_describeAt_proto_msgTypes[5].OneofWrappers = []any{}
+	file_describeScheduleByScheduleLocationUUID_proto_msgTypes[1].OneofWrappers = []any{}
+	file_describeScheduleByScheduleLocationUUID_proto_msgTypes[2].OneofWrappers = []any{}
+	file_describeScheduleByScheduleLocationUUID_proto_msgTypes[3].OneofWrappers = []any{}
+	file_describeScheduleByScheduleLocationUUID_proto_msgTypes[4].OneofWrappers = []any{}
+	file_describeScheduleByScheduleLocationUUID_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_describeAt_proto_rawDesc), len(file_describeAt_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_describeScheduleByScheduleLocationUUID_proto_rawDesc), len(file_describeScheduleByScheduleLocationUUID_proto_rawDesc)),
 			NumEnums:      1,
 			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_describeAt_proto_goTypes,
-		DependencyIndexes: file_describeAt_proto_depIdxs,
-		EnumInfos:         file_describeAt_proto_enumTypes,
-		MessageInfos:      file_describeAt_proto_msgTypes,
+		GoTypes:           file_describeScheduleByScheduleLocationUUID_proto_goTypes,
+		DependencyIndexes: file_describeScheduleByScheduleLocationUUID_proto_depIdxs,
+		EnumInfos:         file_describeScheduleByScheduleLocationUUID_proto_enumTypes,
+		MessageInfos:      file_describeScheduleByScheduleLocationUUID_proto_msgTypes,
 	}.Build()
-	File_describeAt_proto = out.File
-	file_describeAt_proto_goTypes = nil
-	file_describeAt_proto_depIdxs = nil
+	File_describeScheduleByScheduleLocationUUID_proto = out.File
+	file_describeScheduleByScheduleLocationUUID_proto_goTypes = nil
+	file_describeScheduleByScheduleLocationUUID_proto_depIdxs = nil
 }

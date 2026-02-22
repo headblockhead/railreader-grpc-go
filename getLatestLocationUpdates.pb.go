@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v3.21.12
-// source: updateLocations.proto
+// source: getLatestLocationUpdates.proto
 
 package railreader_grpc
 
@@ -21,28 +21,28 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type UpdateLocationsRequest struct {
+type LatestLocationUpdatesRequest struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
 	CurrentReferenceFileId *string                `protobuf:"bytes,1,opt,name=current_reference_file_id,json=currentReferenceFileId,proto3,oneof" json:"current_reference_file_id,omitempty"` // If not specified, all updates will be returned.
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
 
-func (x *UpdateLocationsRequest) Reset() {
-	*x = UpdateLocationsRequest{}
-	mi := &file_updateLocations_proto_msgTypes[0]
+func (x *LatestLocationUpdatesRequest) Reset() {
+	*x = LatestLocationUpdatesRequest{}
+	mi := &file_getLatestLocationUpdates_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateLocationsRequest) String() string {
+func (x *LatestLocationUpdatesRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateLocationsRequest) ProtoMessage() {}
+func (*LatestLocationUpdatesRequest) ProtoMessage() {}
 
-func (x *UpdateLocationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_updateLocations_proto_msgTypes[0]
+func (x *LatestLocationUpdatesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_getLatestLocationUpdates_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -53,19 +53,19 @@ func (x *UpdateLocationsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateLocationsRequest.ProtoReflect.Descriptor instead.
-func (*UpdateLocationsRequest) Descriptor() ([]byte, []int) {
-	return file_updateLocations_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use LatestLocationUpdatesRequest.ProtoReflect.Descriptor instead.
+func (*LatestLocationUpdatesRequest) Descriptor() ([]byte, []int) {
+	return file_getLatestLocationUpdates_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *UpdateLocationsRequest) GetCurrentReferenceFileId() string {
+func (x *LatestLocationUpdatesRequest) GetCurrentReferenceFileId() string {
 	if x != nil && x.CurrentReferenceFileId != nil {
 		return *x.CurrentReferenceFileId
 	}
 	return ""
 }
 
-type UpdateLocationsResponse struct {
+type LatestLocationUpdatesResponse struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	Updates            []*LocationUpdate      `protobuf:"bytes,1,rep,name=updates,proto3" json:"updates,omitempty"`                                                     // All (if any) updates between the current_reference_file_id in UpdateLocationsRequest and the new_reference_file_id in this response.
 	NewReferenceFileId string                 `protobuf:"bytes,2,opt,name=new_reference_file_id,json=newReferenceFileId,proto3" json:"new_reference_file_id,omitempty"` // The lastest reference_file_id equivalent you will have after applying all updates.
@@ -73,21 +73,21 @@ type UpdateLocationsResponse struct {
 	sizeCache          protoimpl.SizeCache
 }
 
-func (x *UpdateLocationsResponse) Reset() {
-	*x = UpdateLocationsResponse{}
-	mi := &file_updateLocations_proto_msgTypes[1]
+func (x *LatestLocationUpdatesResponse) Reset() {
+	*x = LatestLocationUpdatesResponse{}
+	mi := &file_getLatestLocationUpdates_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateLocationsResponse) String() string {
+func (x *LatestLocationUpdatesResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateLocationsResponse) ProtoMessage() {}
+func (*LatestLocationUpdatesResponse) ProtoMessage() {}
 
-func (x *UpdateLocationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_updateLocations_proto_msgTypes[1]
+func (x *LatestLocationUpdatesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_getLatestLocationUpdates_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -98,19 +98,19 @@ func (x *UpdateLocationsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateLocationsResponse.ProtoReflect.Descriptor instead.
-func (*UpdateLocationsResponse) Descriptor() ([]byte, []int) {
-	return file_updateLocations_proto_rawDescGZIP(), []int{1}
+// Deprecated: Use LatestLocationUpdatesResponse.ProtoReflect.Descriptor instead.
+func (*LatestLocationUpdatesResponse) Descriptor() ([]byte, []int) {
+	return file_getLatestLocationUpdates_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *UpdateLocationsResponse) GetUpdates() []*LocationUpdate {
+func (x *LatestLocationUpdatesResponse) GetUpdates() []*LocationUpdate {
 	if x != nil {
 		return x.Updates
 	}
 	return nil
 }
 
-func (x *UpdateLocationsResponse) GetNewReferenceFileId() string {
+func (x *LatestLocationUpdatesResponse) GetNewReferenceFileId() string {
 	if x != nil {
 		return x.NewReferenceFileId
 	}
@@ -133,7 +133,7 @@ type LocationUpdate struct {
 
 func (x *LocationUpdate) Reset() {
 	*x = LocationUpdate{}
-	mi := &file_updateLocations_proto_msgTypes[2]
+	mi := &file_getLatestLocationUpdates_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -145,7 +145,7 @@ func (x *LocationUpdate) String() string {
 func (*LocationUpdate) ProtoMessage() {}
 
 func (x *LocationUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_updateLocations_proto_msgTypes[2]
+	mi := &file_getLatestLocationUpdates_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -158,7 +158,7 @@ func (x *LocationUpdate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LocationUpdate.ProtoReflect.Descriptor instead.
 func (*LocationUpdate) Descriptor() ([]byte, []int) {
-	return file_updateLocations_proto_rawDescGZIP(), []int{2}
+	return file_getLatestLocationUpdates_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *LocationUpdate) GetLocationId() string {
@@ -203,15 +203,15 @@ func (x *LocationUpdate) GetName() string {
 	return ""
 }
 
-var File_updateLocations_proto protoreflect.FileDescriptor
+var File_getLatestLocationUpdates_proto protoreflect.FileDescriptor
 
-const file_updateLocations_proto_rawDesc = "" +
+const file_getLatestLocationUpdates_proto_rawDesc = "" +
 	"\n" +
-	"\x15updateLocations.proto\"v\n" +
-	"\x16UpdateLocationsRequest\x12>\n" +
+	"\x1egetLatestLocationUpdates.proto\"|\n" +
+	"\x1cLatestLocationUpdatesRequest\x12>\n" +
 	"\x19current_reference_file_id\x18\x01 \x01(\tH\x00R\x16currentReferenceFileId\x88\x01\x01B\x1c\n" +
-	"\x1a_current_reference_file_id\"w\n" +
-	"\x17UpdateLocationsResponse\x12)\n" +
+	"\x1a_current_reference_file_id\"}\n" +
+	"\x1dLatestLocationUpdatesResponse\x12)\n" +
 	"\aupdates\x18\x01 \x03(\v2\x0f.LocationUpdateR\aupdates\x121\n" +
 	"\x15new_reference_file_id\x18\x02 \x01(\tR\x12newReferenceFileId\"\xde\x01\n" +
 	"\x0eLocationUpdate\x12\x1f\n" +
@@ -227,25 +227,25 @@ const file_updateLocations_proto_rawDesc = "" +
 	"\a_toc_idB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
-	file_updateLocations_proto_rawDescOnce sync.Once
-	file_updateLocations_proto_rawDescData []byte
+	file_getLatestLocationUpdates_proto_rawDescOnce sync.Once
+	file_getLatestLocationUpdates_proto_rawDescData []byte
 )
 
-func file_updateLocations_proto_rawDescGZIP() []byte {
-	file_updateLocations_proto_rawDescOnce.Do(func() {
-		file_updateLocations_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_updateLocations_proto_rawDesc), len(file_updateLocations_proto_rawDesc)))
+func file_getLatestLocationUpdates_proto_rawDescGZIP() []byte {
+	file_getLatestLocationUpdates_proto_rawDescOnce.Do(func() {
+		file_getLatestLocationUpdates_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_getLatestLocationUpdates_proto_rawDesc), len(file_getLatestLocationUpdates_proto_rawDesc)))
 	})
-	return file_updateLocations_proto_rawDescData
+	return file_getLatestLocationUpdates_proto_rawDescData
 }
 
-var file_updateLocations_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_updateLocations_proto_goTypes = []any{
-	(*UpdateLocationsRequest)(nil),  // 0: UpdateLocationsRequest
-	(*UpdateLocationsResponse)(nil), // 1: UpdateLocationsResponse
-	(*LocationUpdate)(nil),          // 2: LocationUpdate
+var file_getLatestLocationUpdates_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_getLatestLocationUpdates_proto_goTypes = []any{
+	(*LatestLocationUpdatesRequest)(nil),  // 0: LatestLocationUpdatesRequest
+	(*LatestLocationUpdatesResponse)(nil), // 1: LatestLocationUpdatesResponse
+	(*LocationUpdate)(nil),                // 2: LocationUpdate
 }
-var file_updateLocations_proto_depIdxs = []int32{
-	2, // 0: UpdateLocationsResponse.updates:type_name -> LocationUpdate
+var file_getLatestLocationUpdates_proto_depIdxs = []int32{
+	2, // 0: LatestLocationUpdatesResponse.updates:type_name -> LocationUpdate
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -253,28 +253,28 @@ var file_updateLocations_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_updateLocations_proto_init() }
-func file_updateLocations_proto_init() {
-	if File_updateLocations_proto != nil {
+func init() { file_getLatestLocationUpdates_proto_init() }
+func file_getLatestLocationUpdates_proto_init() {
+	if File_getLatestLocationUpdates_proto != nil {
 		return
 	}
-	file_updateLocations_proto_msgTypes[0].OneofWrappers = []any{}
-	file_updateLocations_proto_msgTypes[2].OneofWrappers = []any{}
+	file_getLatestLocationUpdates_proto_msgTypes[0].OneofWrappers = []any{}
+	file_getLatestLocationUpdates_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_updateLocations_proto_rawDesc), len(file_updateLocations_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_getLatestLocationUpdates_proto_rawDesc), len(file_getLatestLocationUpdates_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_updateLocations_proto_goTypes,
-		DependencyIndexes: file_updateLocations_proto_depIdxs,
-		MessageInfos:      file_updateLocations_proto_msgTypes,
+		GoTypes:           file_getLatestLocationUpdates_proto_goTypes,
+		DependencyIndexes: file_getLatestLocationUpdates_proto_depIdxs,
+		MessageInfos:      file_getLatestLocationUpdates_proto_msgTypes,
 	}.Build()
-	File_updateLocations_proto = out.File
-	file_updateLocations_proto_goTypes = nil
-	file_updateLocations_proto_depIdxs = nil
+	File_getLatestLocationUpdates_proto = out.File
+	file_getLatestLocationUpdates_proto_goTypes = nil
+	file_getLatestLocationUpdates_proto_depIdxs = nil
 }
