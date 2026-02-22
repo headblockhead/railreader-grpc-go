@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RailReader_GetLatestLocationUpdates_FullMethodName                = "/RailReader/GetLatestLocationUpdates"
-	RailReader_ListSchedulesAtLocationID_FullMethodName               = "/RailReader/ListSchedulesAtLocationID"
-	RailReader_DescribeSchedulesByScheduleLocationUUID_FullMethodName = "/RailReader/DescribeSchedulesByScheduleLocationUUID"
+	RailReader_GetLatestLocationUpdates_FullMethodName               = "/RailReader/GetLatestLocationUpdates"
+	RailReader_Search_FullMethodName                                 = "/RailReader/Search"
+	RailReader_DescribeServicesByScheduleLocationUUID_FullMethodName = "/RailReader/DescribeServicesByScheduleLocationUUID"
 )
 
 // RailReaderClient is the client API for RailReader service.
@@ -29,8 +29,8 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RailReaderClient interface {
 	GetLatestLocationUpdates(ctx context.Context, in *LatestLocationUpdatesRequest, opts ...grpc.CallOption) (*LatestLocationUpdatesResponse, error)
-	ListSchedulesAtLocationID(ctx context.Context, in *ListSchedulesAtLocationIDRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ScheduleLocationUUID], error)
-	DescribeSchedulesByScheduleLocationUUID(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[DescribeScheduleByScheduleLocationUUIDRequest, ServiceDescription], error)
+	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ScheduleLocationUUID], error)
+	DescribeServicesByScheduleLocationUUID(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[DescribeServiceByScheduleLocationUUIDRequest, ServiceDescription], error)
 }
 
 type railReaderClient struct {
@@ -51,13 +51,13 @@ func (c *railReaderClient) GetLatestLocationUpdates(ctx context.Context, in *Lat
 	return out, nil
 }
 
-func (c *railReaderClient) ListSchedulesAtLocationID(ctx context.Context, in *ListSchedulesAtLocationIDRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ScheduleLocationUUID], error) {
+func (c *railReaderClient) Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ScheduleLocationUUID], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &RailReader_ServiceDesc.Streams[0], RailReader_ListSchedulesAtLocationID_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &RailReader_ServiceDesc.Streams[0], RailReader_Search_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[ListSchedulesAtLocationIDRequest, ScheduleLocationUUID]{ClientStream: stream}
+	x := &grpc.GenericClientStream[SearchRequest, ScheduleLocationUUID]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -68,28 +68,28 @@ func (c *railReaderClient) ListSchedulesAtLocationID(ctx context.Context, in *Li
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RailReader_ListSchedulesAtLocationIDClient = grpc.ServerStreamingClient[ScheduleLocationUUID]
+type RailReader_SearchClient = grpc.ServerStreamingClient[ScheduleLocationUUID]
 
-func (c *railReaderClient) DescribeSchedulesByScheduleLocationUUID(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[DescribeScheduleByScheduleLocationUUIDRequest, ServiceDescription], error) {
+func (c *railReaderClient) DescribeServicesByScheduleLocationUUID(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[DescribeServiceByScheduleLocationUUIDRequest, ServiceDescription], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &RailReader_ServiceDesc.Streams[1], RailReader_DescribeSchedulesByScheduleLocationUUID_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &RailReader_ServiceDesc.Streams[1], RailReader_DescribeServicesByScheduleLocationUUID_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[DescribeScheduleByScheduleLocationUUIDRequest, ServiceDescription]{ClientStream: stream}
+	x := &grpc.GenericClientStream[DescribeServiceByScheduleLocationUUIDRequest, ServiceDescription]{ClientStream: stream}
 	return x, nil
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RailReader_DescribeSchedulesByScheduleLocationUUIDClient = grpc.BidiStreamingClient[DescribeScheduleByScheduleLocationUUIDRequest, ServiceDescription]
+type RailReader_DescribeServicesByScheduleLocationUUIDClient = grpc.BidiStreamingClient[DescribeServiceByScheduleLocationUUIDRequest, ServiceDescription]
 
 // RailReaderServer is the server API for RailReader service.
 // All implementations must embed UnimplementedRailReaderServer
 // for forward compatibility.
 type RailReaderServer interface {
 	GetLatestLocationUpdates(context.Context, *LatestLocationUpdatesRequest) (*LatestLocationUpdatesResponse, error)
-	ListSchedulesAtLocationID(*ListSchedulesAtLocationIDRequest, grpc.ServerStreamingServer[ScheduleLocationUUID]) error
-	DescribeSchedulesByScheduleLocationUUID(grpc.BidiStreamingServer[DescribeScheduleByScheduleLocationUUIDRequest, ServiceDescription]) error
+	Search(*SearchRequest, grpc.ServerStreamingServer[ScheduleLocationUUID]) error
+	DescribeServicesByScheduleLocationUUID(grpc.BidiStreamingServer[DescribeServiceByScheduleLocationUUIDRequest, ServiceDescription]) error
 	mustEmbedUnimplementedRailReaderServer()
 }
 
@@ -103,11 +103,11 @@ type UnimplementedRailReaderServer struct{}
 func (UnimplementedRailReaderServer) GetLatestLocationUpdates(context.Context, *LatestLocationUpdatesRequest) (*LatestLocationUpdatesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetLatestLocationUpdates not implemented")
 }
-func (UnimplementedRailReaderServer) ListSchedulesAtLocationID(*ListSchedulesAtLocationIDRequest, grpc.ServerStreamingServer[ScheduleLocationUUID]) error {
-	return status.Error(codes.Unimplemented, "method ListSchedulesAtLocationID not implemented")
+func (UnimplementedRailReaderServer) Search(*SearchRequest, grpc.ServerStreamingServer[ScheduleLocationUUID]) error {
+	return status.Error(codes.Unimplemented, "method Search not implemented")
 }
-func (UnimplementedRailReaderServer) DescribeSchedulesByScheduleLocationUUID(grpc.BidiStreamingServer[DescribeScheduleByScheduleLocationUUIDRequest, ServiceDescription]) error {
-	return status.Error(codes.Unimplemented, "method DescribeSchedulesByScheduleLocationUUID not implemented")
+func (UnimplementedRailReaderServer) DescribeServicesByScheduleLocationUUID(grpc.BidiStreamingServer[DescribeServiceByScheduleLocationUUIDRequest, ServiceDescription]) error {
+	return status.Error(codes.Unimplemented, "method DescribeServicesByScheduleLocationUUID not implemented")
 }
 func (UnimplementedRailReaderServer) mustEmbedUnimplementedRailReaderServer() {}
 func (UnimplementedRailReaderServer) testEmbeddedByValue()                    {}
@@ -148,23 +148,23 @@ func _RailReader_GetLatestLocationUpdates_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RailReader_ListSchedulesAtLocationID_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(ListSchedulesAtLocationIDRequest)
+func _RailReader_Search_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(SearchRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(RailReaderServer).ListSchedulesAtLocationID(m, &grpc.GenericServerStream[ListSchedulesAtLocationIDRequest, ScheduleLocationUUID]{ServerStream: stream})
+	return srv.(RailReaderServer).Search(m, &grpc.GenericServerStream[SearchRequest, ScheduleLocationUUID]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RailReader_ListSchedulesAtLocationIDServer = grpc.ServerStreamingServer[ScheduleLocationUUID]
+type RailReader_SearchServer = grpc.ServerStreamingServer[ScheduleLocationUUID]
 
-func _RailReader_DescribeSchedulesByScheduleLocationUUID_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(RailReaderServer).DescribeSchedulesByScheduleLocationUUID(&grpc.GenericServerStream[DescribeScheduleByScheduleLocationUUIDRequest, ServiceDescription]{ServerStream: stream})
+func _RailReader_DescribeServicesByScheduleLocationUUID_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(RailReaderServer).DescribeServicesByScheduleLocationUUID(&grpc.GenericServerStream[DescribeServiceByScheduleLocationUUIDRequest, ServiceDescription]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RailReader_DescribeSchedulesByScheduleLocationUUIDServer = grpc.BidiStreamingServer[DescribeScheduleByScheduleLocationUUIDRequest, ServiceDescription]
+type RailReader_DescribeServicesByScheduleLocationUUIDServer = grpc.BidiStreamingServer[DescribeServiceByScheduleLocationUUIDRequest, ServiceDescription]
 
 // RailReader_ServiceDesc is the grpc.ServiceDesc for RailReader service.
 // It's only intended for direct use with grpc.RegisterService,
@@ -180,13 +180,13 @@ var RailReader_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "ListSchedulesAtLocationID",
-			Handler:       _RailReader_ListSchedulesAtLocationID_Handler,
+			StreamName:    "Search",
+			Handler:       _RailReader_Search_Handler,
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "DescribeSchedulesByScheduleLocationUUID",
-			Handler:       _RailReader_DescribeSchedulesByScheduleLocationUUID_Handler,
+			StreamName:    "DescribeServicesByScheduleLocationUUID",
+			Handler:       _RailReader_DescribeServicesByScheduleLocationUUID_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},

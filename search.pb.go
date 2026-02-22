@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v3.21.12
-// source: listSchedulesAtLocationID.proto
+// source: search.proto
 
 package railreader_grpc
 
@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ListSchedulesAtLocationIDRequest struct {
+type SearchRequest struct {
 	state                       protoimpl.MessageState `protogen:"open.v1"`
 	LocationId                  string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`                                                         // Only services scheduled at or through this location will be returned.
 	FromTime                    string                 `protobuf:"bytes,2,opt,name=from_time,json=fromTime,proto3" json:"from_time,omitempty"`                                                               // Services scheduled up to 2 hours before the from_time may be included if they are delayed.
@@ -33,21 +33,21 @@ type ListSchedulesAtLocationIDRequest struct {
 	sizeCache                   protoimpl.SizeCache
 }
 
-func (x *ListSchedulesAtLocationIDRequest) Reset() {
-	*x = ListSchedulesAtLocationIDRequest{}
-	mi := &file_listSchedulesAtLocationID_proto_msgTypes[0]
+func (x *SearchRequest) Reset() {
+	*x = SearchRequest{}
+	mi := &file_search_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListSchedulesAtLocationIDRequest) String() string {
+func (x *SearchRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListSchedulesAtLocationIDRequest) ProtoMessage() {}
+func (*SearchRequest) ProtoMessage() {}
 
-func (x *ListSchedulesAtLocationIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_listSchedulesAtLocationID_proto_msgTypes[0]
+func (x *SearchRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_search_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,47 +58,47 @@ func (x *ListSchedulesAtLocationIDRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListSchedulesAtLocationIDRequest.ProtoReflect.Descriptor instead.
-func (*ListSchedulesAtLocationIDRequest) Descriptor() ([]byte, []int) {
-	return file_listSchedulesAtLocationID_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use SearchRequest.ProtoReflect.Descriptor instead.
+func (*SearchRequest) Descriptor() ([]byte, []int) {
+	return file_search_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ListSchedulesAtLocationIDRequest) GetLocationId() string {
+func (x *SearchRequest) GetLocationId() string {
 	if x != nil {
 		return x.LocationId
 	}
 	return ""
 }
 
-func (x *ListSchedulesAtLocationIDRequest) GetFromTime() string {
+func (x *SearchRequest) GetFromTime() string {
 	if x != nil {
 		return x.FromTime
 	}
 	return ""
 }
 
-func (x *ListSchedulesAtLocationIDRequest) GetToTime() string {
+func (x *SearchRequest) GetToTime() string {
 	if x != nil {
 		return x.ToTime
 	}
 	return ""
 }
 
-func (x *ListSchedulesAtLocationIDRequest) GetIncludeNonPassengerServices() bool {
+func (x *SearchRequest) GetIncludeNonPassengerServices() bool {
 	if x != nil {
 		return x.IncludeNonPassengerServices
 	}
 	return false
 }
 
-func (x *ListSchedulesAtLocationIDRequest) GetExcludeNonActiveServices() bool {
+func (x *SearchRequest) GetExcludeNonActiveServices() bool {
 	if x != nil {
 		return x.ExcludeNonActiveServices
 	}
 	return false
 }
 
-func (x *ListSchedulesAtLocationIDRequest) GetIncludeCharteredServices() bool {
+func (x *SearchRequest) GetIncludeCharteredServices() bool {
 	if x != nil {
 		return x.IncludeCharteredServices
 	}
@@ -114,7 +114,7 @@ type ScheduleLocationUUID struct {
 
 func (x *ScheduleLocationUUID) Reset() {
 	*x = ScheduleLocationUUID{}
-	mi := &file_listSchedulesAtLocationID_proto_msgTypes[1]
+	mi := &file_search_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -126,7 +126,7 @@ func (x *ScheduleLocationUUID) String() string {
 func (*ScheduleLocationUUID) ProtoMessage() {}
 
 func (x *ScheduleLocationUUID) ProtoReflect() protoreflect.Message {
-	mi := &file_listSchedulesAtLocationID_proto_msgTypes[1]
+	mi := &file_search_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -139,7 +139,7 @@ func (x *ScheduleLocationUUID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScheduleLocationUUID.ProtoReflect.Descriptor instead.
 func (*ScheduleLocationUUID) Descriptor() ([]byte, []int) {
-	return file_listSchedulesAtLocationID_proto_rawDescGZIP(), []int{1}
+	return file_search_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ScheduleLocationUUID) GetScheduleLocationUuid() string {
@@ -149,12 +149,12 @@ func (x *ScheduleLocationUUID) GetScheduleLocationUuid() string {
 	return ""
 }
 
-var File_listSchedulesAtLocationID_proto protoreflect.FileDescriptor
+var File_search_proto protoreflect.FileDescriptor
 
-const file_listSchedulesAtLocationID_proto_rawDesc = "" +
+const file_search_proto_rawDesc = "" +
 	"\n" +
-	"\x1flistSchedulesAtLocationID.proto\x1a\x0frailtypes.proto\"\xbb\x02\n" +
-	" ListSchedulesAtLocationIDRequest\x12\x1f\n" +
+	"\fsearch.proto\x1a\x0frailtypes.proto\"\xa8\x02\n" +
+	"\rSearchRequest\x12\x1f\n" +
 	"\vlocation_id\x18\x01 \x01(\tR\n" +
 	"locationId\x12\x1b\n" +
 	"\tfrom_time\x18\x02 \x01(\tR\bfromTime\x12\x17\n" +
@@ -166,23 +166,23 @@ const file_listSchedulesAtLocationID_proto_rawDesc = "" +
 	"\x16schedule_location_uuid\x18\x01 \x01(\tR\x14scheduleLocationUuidB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
-	file_listSchedulesAtLocationID_proto_rawDescOnce sync.Once
-	file_listSchedulesAtLocationID_proto_rawDescData []byte
+	file_search_proto_rawDescOnce sync.Once
+	file_search_proto_rawDescData []byte
 )
 
-func file_listSchedulesAtLocationID_proto_rawDescGZIP() []byte {
-	file_listSchedulesAtLocationID_proto_rawDescOnce.Do(func() {
-		file_listSchedulesAtLocationID_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_listSchedulesAtLocationID_proto_rawDesc), len(file_listSchedulesAtLocationID_proto_rawDesc)))
+func file_search_proto_rawDescGZIP() []byte {
+	file_search_proto_rawDescOnce.Do(func() {
+		file_search_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_search_proto_rawDesc), len(file_search_proto_rawDesc)))
 	})
-	return file_listSchedulesAtLocationID_proto_rawDescData
+	return file_search_proto_rawDescData
 }
 
-var file_listSchedulesAtLocationID_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_listSchedulesAtLocationID_proto_goTypes = []any{
-	(*ListSchedulesAtLocationIDRequest)(nil), // 0: ListSchedulesAtLocationIDRequest
-	(*ScheduleLocationUUID)(nil),             // 1: ScheduleLocationUUID
+var file_search_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_search_proto_goTypes = []any{
+	(*SearchRequest)(nil),        // 0: SearchRequest
+	(*ScheduleLocationUUID)(nil), // 1: ScheduleLocationUUID
 }
-var file_listSchedulesAtLocationID_proto_depIdxs = []int32{
+var file_search_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -190,9 +190,9 @@ var file_listSchedulesAtLocationID_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_listSchedulesAtLocationID_proto_init() }
-func file_listSchedulesAtLocationID_proto_init() {
-	if File_listSchedulesAtLocationID_proto != nil {
+func init() { file_search_proto_init() }
+func file_search_proto_init() {
+	if File_search_proto != nil {
 		return
 	}
 	file_railtypes_proto_init()
@@ -200,17 +200,17 @@ func file_listSchedulesAtLocationID_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_listSchedulesAtLocationID_proto_rawDesc), len(file_listSchedulesAtLocationID_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_search_proto_rawDesc), len(file_search_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_listSchedulesAtLocationID_proto_goTypes,
-		DependencyIndexes: file_listSchedulesAtLocationID_proto_depIdxs,
-		MessageInfos:      file_listSchedulesAtLocationID_proto_msgTypes,
+		GoTypes:           file_search_proto_goTypes,
+		DependencyIndexes: file_search_proto_depIdxs,
+		MessageInfos:      file_search_proto_msgTypes,
 	}.Build()
-	File_listSchedulesAtLocationID_proto = out.File
-	file_listSchedulesAtLocationID_proto_goTypes = nil
-	file_listSchedulesAtLocationID_proto_depIdxs = nil
+	File_search_proto = out.File
+	file_search_proto_goTypes = nil
+	file_search_proto_depIdxs = nil
 }
