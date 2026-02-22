@@ -114,10 +114,10 @@ func (x *SearchRequest) GetFilterLocationTypes() []LocationType {
 }
 
 type SearchResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ScheduleId    string                 `protobuf:"bytes,1,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"` // This can be used in a DescribeAtRequest to get full details about the service.
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	ScheduleLocationUuid string                 `protobuf:"bytes,1,opt,name=schedule_location_uuid,json=scheduleLocationUuid,proto3" json:"schedule_location_uuid,omitempty"` // This can be used in a DescribeAtRequest to get full details about the service.
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *SearchResponse) Reset() {
@@ -150,9 +150,9 @@ func (*SearchResponse) Descriptor() ([]byte, []int) {
 	return file_search_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *SearchResponse) GetScheduleId() string {
+func (x *SearchResponse) GetScheduleLocationUuid() string {
 	if x != nil {
-		return x.ScheduleId
+		return x.ScheduleLocationUuid
 	}
 	return ""
 }
@@ -170,10 +170,9 @@ const file_search_proto_rawDesc = "" +
 	"\x1einclude_non_passenger_services\x18\x04 \x01(\bR\x1bincludeNonPassengerServices\x12=\n" +
 	"\x1bexclude_non_active_services\x18\x05 \x01(\bR\x18excludeNonActiveServices\x12<\n" +
 	"\x1ainclude_chartered_services\x18\x06 \x01(\bR\x18includeCharteredServices\x12A\n" +
-	"\x15filter_location_types\x18\a \x03(\x0e2\r.LocationTypeR\x13filterLocationTypes\"1\n" +
-	"\x0eSearchResponse\x12\x1f\n" +
-	"\vschedule_id\x18\x01 \x01(\tR\n" +
-	"scheduleIdB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x15filter_location_types\x18\a \x03(\x0e2\r.LocationTypeR\x13filterLocationTypes\"F\n" +
+	"\x0eSearchResponse\x124\n" +
+	"\x16schedule_location_uuid\x18\x01 \x01(\tR\x14scheduleLocationUuidB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
 	file_search_proto_rawDescOnce sync.Once

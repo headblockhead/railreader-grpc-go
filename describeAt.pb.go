@@ -74,11 +74,10 @@ func (Forecast_PlatformDataSource) EnumDescriptor() ([]byte, []int) {
 }
 
 type DescribeAtRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	LocationId    string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
-	ScheduleId    string                 `protobuf:"bytes,2,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	ScheduleLocationUuid string                 `protobuf:"bytes,1,opt,name=schedule_location_uuid,json=scheduleLocationUuid,proto3" json:"schedule_location_uuid,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *DescribeAtRequest) Reset() {
@@ -111,16 +110,9 @@ func (*DescribeAtRequest) Descriptor() ([]byte, []int) {
 	return file_describeAt_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *DescribeAtRequest) GetLocationId() string {
+func (x *DescribeAtRequest) GetScheduleLocationUuid() string {
 	if x != nil {
-		return x.LocationId
-	}
-	return ""
-}
-
-func (x *DescribeAtRequest) GetScheduleId() string {
-	if x != nil {
-		return x.ScheduleId
+		return x.ScheduleLocationUuid
 	}
 	return ""
 }
@@ -918,12 +910,9 @@ var File_describeAt_proto protoreflect.FileDescriptor
 
 const file_describeAt_proto_rawDesc = "" +
 	"\n" +
-	"\x10describeAt.proto\x1a\x0frailtypes.proto\"U\n" +
-	"\x11DescribeAtRequest\x12\x1f\n" +
-	"\vlocation_id\x18\x01 \x01(\tR\n" +
-	"locationId\x12\x1f\n" +
-	"\vschedule_id\x18\x02 \x01(\tR\n" +
-	"scheduleId\"\x88\x04\n" +
+	"\x10describeAt.proto\x1a\x0frailtypes.proto\"I\n" +
+	"\x11DescribeAtRequest\x124\n" +
+	"\x16schedule_location_uuid\x18\x01 \x01(\tR\x14scheduleLocationUuid\"\x88\x04\n" +
 	"\x12DescribeAtResponse\x12\x1f\n" +
 	"\vlocation_id\x18\x01 \x01(\tR\n" +
 	"locationId\x12%\n" +
