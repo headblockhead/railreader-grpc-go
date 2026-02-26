@@ -74,12 +74,13 @@ func (Forecast_PlatformDataSource) EnumDescriptor() ([]byte, []int) {
 }
 
 type ServiceDescription struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Schedules     []*Schedule            `protobuf:"bytes,1,rep,name=schedules,proto3" json:"schedules,omitempty"`
-	Formations    []*Formation           `protobuf:"bytes,2,rep,name=formations,proto3" json:"formations,omitempty"`
-	Route         []*RouteLocation       `protobuf:"bytes,3,rep,name=route,proto3" json:"route,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                         protoimpl.MessageState `protogen:"open.v1"`
+	Schedules                     []*Schedule            `protobuf:"bytes,1,rep,name=schedules,proto3" json:"schedules,omitempty"`
+	Formations                    []*Formation           `protobuf:"bytes,2,rep,name=formations,proto3" json:"formations,omitempty"`
+	Route                         []*RouteLocation       `protobuf:"bytes,3,rep,name=route,proto3" json:"route,omitempty"`
+	RequestedScheduleLocationUuid string                 `protobuf:"bytes,4,opt,name=requested_schedule_location_uuid,json=requestedScheduleLocationUuid,proto3" json:"requested_schedule_location_uuid,omitempty"`
+	unknownFields                 protoimpl.UnknownFields
+	sizeCache                     protoimpl.SizeCache
 }
 
 func (x *ServiceDescription) Reset() {
@@ -131,6 +132,13 @@ func (x *ServiceDescription) GetRoute() []*RouteLocation {
 		return x.Route
 	}
 	return nil
+}
+
+func (x *ServiceDescription) GetRequestedScheduleLocationUuid() string {
+	if x != nil {
+		return x.RequestedScheduleLocationUuid
+	}
+	return ""
 }
 
 type DisruptionReason struct {
@@ -986,14 +994,15 @@ var File_serviceDescription_proto protoreflect.FileDescriptor
 
 const file_serviceDescription_proto_rawDesc = "" +
 	"\n" +
-	"\x18serviceDescription.proto\x1a\x0frailtypes.proto\"\x95\x01\n" +
+	"\x18serviceDescription.proto\x1a\x0frailtypes.proto\"\xde\x01\n" +
 	"\x12ServiceDescription\x12'\n" +
 	"\tschedules\x18\x01 \x03(\v2\t.ScheduleR\tschedules\x12*\n" +
 	"\n" +
 	"formations\x18\x02 \x03(\v2\n" +
 	".FormationR\n" +
 	"formations\x12$\n" +
-	"\x05route\x18\x03 \x03(\v2\x0e.RouteLocationR\x05routeJ\x04\b\x04\x10\x10\"\xb0\x01\n" +
+	"\x05route\x18\x03 \x03(\v2\x0e.RouteLocationR\x05route\x12G\n" +
+	" requested_schedule_location_uuid\x18\x04 \x01(\tR\x1drequestedScheduleLocationUuidJ\x04\b\x05\x10\x10\"\xb0\x01\n" +
 	"\x10DisruptionReason\x12\x1b\n" +
 	"\treason_id\x18\x01 \x01(\rR\breasonId\x121\n" +
 	"\x12reason_location_id\x18\x02 \x01(\tH\x00R\x10reasonLocationId\x88\x01\x01\x125\n" +
