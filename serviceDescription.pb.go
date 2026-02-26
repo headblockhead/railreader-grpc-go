@@ -519,6 +519,7 @@ type ScheduleLocation struct {
 	state                      protoimpl.MessageState `protogen:"open.v1"`
 	Uuid                       string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	ScheduleUuid               string                 `protobuf:"bytes,2,opt,name=schedule_uuid,json=scheduleUuid,proto3" json:"schedule_uuid,omitempty"`
+	ScheduleOrder              uint32                 `protobuf:"varint,3,opt,name=schedule_order,json=scheduleOrder,proto3" json:"schedule_order,omitempty"`
 	LocationId                 string                 `protobuf:"bytes,4,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
 	Activities                 []ActivityType         `protobuf:"varint,5,rep,packed,name=activities,proto3,enum=ActivityType" json:"activities,omitempty"`
 	PlannedActivities          []ActivityType         `protobuf:"varint,6,rep,packed,name=planned_activities,json=plannedActivities,proto3,enum=ActivityType" json:"planned_activities,omitempty"`
@@ -531,6 +532,7 @@ type ScheduleLocation struct {
 	PublicArrivalTime          *string                `protobuf:"bytes,13,opt,name=public_arrival_time,json=publicArrivalTime,proto3,oneof" json:"public_arrival_time,omitempty"`
 	PublicDepartureTime        *string                `protobuf:"bytes,14,opt,name=public_departure_time,json=publicDepartureTime,proto3,oneof" json:"public_departure_time,omitempty"`
 	RoutingDelay               uint32                 `protobuf:"varint,15,opt,name=routing_delay,json=routingDelay,proto3" json:"routing_delay,omitempty"` // in minutes
+	FalseDestinationLocationId *string                `protobuf:"bytes,16,opt,name=false_destination_location_id,json=falseDestinationLocationId,proto3,oneof" json:"false_destination_location_id,omitempty"`
 	IsCancelled                bool                   `protobuf:"varint,17,opt,name=is_cancelled,json=isCancelled,proto3" json:"is_cancelled,omitempty"`
 	LocationCancellationReason *DisruptionReason      `protobuf:"bytes,18,opt,name=location_cancellation_reason,json=locationCancellationReason,proto3,oneof" json:"location_cancellation_reason,omitempty"`
 	unknownFields              protoimpl.UnknownFields
@@ -579,6 +581,13 @@ func (x *ScheduleLocation) GetScheduleUuid() string {
 		return x.ScheduleUuid
 	}
 	return ""
+}
+
+func (x *ScheduleLocation) GetScheduleOrder() uint32 {
+	if x != nil {
+		return x.ScheduleOrder
+	}
+	return 0
 }
 
 func (x *ScheduleLocation) GetLocationId() string {
@@ -663,6 +672,13 @@ func (x *ScheduleLocation) GetRoutingDelay() uint32 {
 		return x.RoutingDelay
 	}
 	return 0
+}
+
+func (x *ScheduleLocation) GetFalseDestinationLocationId() string {
+	if x != nil && x.FalseDestinationLocationId != nil {
+		return *x.FalseDestinationLocationId
+	}
+	return ""
 }
 
 func (x *ScheduleLocation) GetIsCancelled() bool {
@@ -1222,10 +1238,11 @@ const file_serviceDescription_proto_rawDesc = "" +
 	"\x16_generous_arrival_timeB\x18\n" +
 	"\x16_generous_passing_timeB\x1a\n" +
 	"\x18_generous_departure_timeJ\x04\b\x03\x10\x05J\x04\b\n" +
-	"\x10\r\"\xd9\a\n" +
+	"\x10\r\"\xde\b\n" +
 	"\x10ScheduleLocation\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12#\n" +
-	"\rschedule_uuid\x18\x02 \x01(\tR\fscheduleUuid\x12\x1f\n" +
+	"\rschedule_uuid\x18\x02 \x01(\tR\fscheduleUuid\x12%\n" +
+	"\x0eschedule_order\x18\x03 \x01(\rR\rscheduleOrder\x12\x1f\n" +
 	"\vlocation_id\x18\x04 \x01(\tR\n" +
 	"locationId\x12-\n" +
 	"\n" +
@@ -1241,16 +1258,18 @@ const file_serviceDescription_proto_rawDesc = "" +
 	"\x16working_departure_time\x18\f \x01(\tH\x03R\x14workingDepartureTime\x88\x01\x01\x123\n" +
 	"\x13public_arrival_time\x18\r \x01(\tH\x04R\x11publicArrivalTime\x88\x01\x01\x127\n" +
 	"\x15public_departure_time\x18\x0e \x01(\tH\x05R\x13publicDepartureTime\x88\x01\x01\x12#\n" +
-	"\rrouting_delay\x18\x0f \x01(\rR\froutingDelay\x12!\n" +
+	"\rrouting_delay\x18\x0f \x01(\rR\froutingDelay\x12F\n" +
+	"\x1dfalse_destination_location_id\x18\x10 \x01(\tH\x06R\x1afalseDestinationLocationId\x88\x01\x01\x12!\n" +
 	"\fis_cancelled\x18\x11 \x01(\bR\visCancelled\x12X\n" +
-	"\x1clocation_cancellation_reason\x18\x12 \x01(\v2\x11.DisruptionReasonH\x06R\x1alocationCancellationReason\x88\x01\x01B\x0f\n" +
+	"\x1clocation_cancellation_reason\x18\x12 \x01(\v2\x11.DisruptionReasonH\aR\x1alocationCancellationReason\x88\x01\x01B\x0f\n" +
 	"\r_formation_idB\x17\n" +
 	"\x15_working_arrival_timeB\x17\n" +
 	"\x15_working_passing_timeB\x19\n" +
 	"\x17_working_departure_timeB\x16\n" +
 	"\x14_public_arrival_timeB\x18\n" +
-	"\x16_public_departure_timeB\x1f\n" +
-	"\x1d_location_cancellation_reasonJ\x04\b\x03\x10\x04J\x04\b\x10\x10\x11J\x04\b\x13\x10\x14\"\x12\n" +
+	"\x16_public_departure_timeB \n" +
+	"\x1e_false_destination_location_idB\x1f\n" +
+	"\x1d_location_cancellation_reasonJ\x04\b\x13\x10\x14\"\x12\n" +
 	"\x10ForecastLocation\"\x12\n" +
 	"\x10FormationLoading\"\x10\n" +
 	"\x0eServiceLoading\"\r\n" +
