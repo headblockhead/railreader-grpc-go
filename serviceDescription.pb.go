@@ -70,17 +70,16 @@ func (x Forecast_PlatformDataSource) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Forecast_PlatformDataSource.Descriptor instead.
 func (Forecast_PlatformDataSource) EnumDescriptor() ([]byte, []int) {
-	return file_serviceDescription_proto_rawDescGZIP(), []int{10, 0}
+	return file_serviceDescription_proto_rawDescGZIP(), []int{6, 0}
 }
 
 type ServiceDescription struct {
-	state                         protoimpl.MessageState `protogen:"open.v1"`
-	Schedules                     []*Schedule            `protobuf:"bytes,1,rep,name=schedules,proto3" json:"schedules,omitempty"`
-	Formations                    []*Formation           `protobuf:"bytes,2,rep,name=formations,proto3" json:"formations,omitempty"`
-	Route                         []*RouteLocation       `protobuf:"bytes,3,rep,name=route,proto3" json:"route,omitempty"`
-	RequestedScheduleLocationUuid string                 `protobuf:"bytes,4,opt,name=requested_schedule_location_uuid,json=requestedScheduleLocationUuid,proto3" json:"requested_schedule_location_uuid,omitempty"`
-	unknownFields                 protoimpl.UnknownFields
-	sizeCache                     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Schedules     []*Schedule            `protobuf:"bytes,1,rep,name=schedules,proto3" json:"schedules,omitempty"`
+	Formations    []*Formation           `protobuf:"bytes,2,rep,name=formations,proto3" json:"formations,omitempty"`
+	Route         []*RouteLocation       `protobuf:"bytes,3,rep,name=route,proto3" json:"route,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ServiceDescription) Reset() {
@@ -132,13 +131,6 @@ func (x *ServiceDescription) GetRoute() []*RouteLocation {
 		return x.Route
 	}
 	return nil
-}
-
-func (x *ServiceDescription) GetRequestedScheduleLocationUuid() string {
-	if x != nil {
-		return x.RequestedScheduleLocationUuid
-	}
-	return ""
 }
 
 type DisruptionReason struct {
@@ -400,13 +392,6 @@ type RouteLocation struct {
 	NextScheduleLocationUuids     []string               `protobuf:"bytes,1,rep,name=next_schedule_location_uuids,json=nextScheduleLocationUuids,proto3" json:"next_schedule_location_uuids,omitempty"`
 	PreviousScheduleLocationUuids []string               `protobuf:"bytes,2,rep,name=previous_schedule_location_uuids,json=previousScheduleLocationUuids,proto3" json:"previous_schedule_location_uuids,omitempty"`
 	ScheduleLocation              *ScheduleLocation      `protobuf:"bytes,5,opt,name=schedule_location,json=scheduleLocation,proto3" json:"schedule_location,omitempty"`
-	Forecast                      *ForecastLocation      `protobuf:"bytes,6,opt,name=forecast,proto3" json:"forecast,omitempty"`
-	FormationLoading              *FormationLoading      `protobuf:"bytes,7,opt,name=formation_loading,json=formationLoading,proto3" json:"formation_loading,omitempty"`
-	ServiceLoading                *ServiceLoading        `protobuf:"bytes,8,opt,name=service_loading,json=serviceLoading,proto3" json:"service_loading,omitempty"`
-	TrainAlerts                   *TrainAlerts           `protobuf:"bytes,9,opt,name=train_alerts,json=trainAlerts,proto3" json:"train_alerts,omitempty"`
-	GenerousArrivalTime           *string                `protobuf:"bytes,13,opt,name=generous_arrival_time,json=generousArrivalTime,proto3,oneof" json:"generous_arrival_time,omitempty"`
-	GenerousPassingTime           *string                `protobuf:"bytes,14,opt,name=generous_passing_time,json=generousPassingTime,proto3,oneof" json:"generous_passing_time,omitempty"`
-	GenerousDepartureTime         *string                `protobuf:"bytes,15,opt,name=generous_departure_time,json=generousDepartureTime,proto3,oneof" json:"generous_departure_time,omitempty"`
 	unknownFields                 protoimpl.UnknownFields
 	sizeCache                     protoimpl.SizeCache
 }
@@ -462,55 +447,6 @@ func (x *RouteLocation) GetScheduleLocation() *ScheduleLocation {
 	return nil
 }
 
-func (x *RouteLocation) GetForecast() *ForecastLocation {
-	if x != nil {
-		return x.Forecast
-	}
-	return nil
-}
-
-func (x *RouteLocation) GetFormationLoading() *FormationLoading {
-	if x != nil {
-		return x.FormationLoading
-	}
-	return nil
-}
-
-func (x *RouteLocation) GetServiceLoading() *ServiceLoading {
-	if x != nil {
-		return x.ServiceLoading
-	}
-	return nil
-}
-
-func (x *RouteLocation) GetTrainAlerts() *TrainAlerts {
-	if x != nil {
-		return x.TrainAlerts
-	}
-	return nil
-}
-
-func (x *RouteLocation) GetGenerousArrivalTime() string {
-	if x != nil && x.GenerousArrivalTime != nil {
-		return *x.GenerousArrivalTime
-	}
-	return ""
-}
-
-func (x *RouteLocation) GetGenerousPassingTime() string {
-	if x != nil && x.GenerousPassingTime != nil {
-		return *x.GenerousPassingTime
-	}
-	return ""
-}
-
-func (x *RouteLocation) GetGenerousDepartureTime() string {
-	if x != nil && x.GenerousDepartureTime != nil {
-		return *x.GenerousDepartureTime
-	}
-	return ""
-}
-
 // 'Working' times are used internally by staff
 // 'Public' times are used for display to passengers
 // Working and Public timetables may differ, typically to allow services to experience very minor (30 to 60s) delays without appearing late to the public.
@@ -535,6 +471,7 @@ type ScheduleLocation struct {
 	FalseDestinationLocationId *string                `protobuf:"bytes,16,opt,name=false_destination_location_id,json=falseDestinationLocationId,proto3,oneof" json:"false_destination_location_id,omitempty"`
 	IsCancelled                bool                   `protobuf:"varint,17,opt,name=is_cancelled,json=isCancelled,proto3" json:"is_cancelled,omitempty"`
 	LocationCancellationReason *DisruptionReason      `protobuf:"bytes,18,opt,name=location_cancellation_reason,json=locationCancellationReason,proto3,oneof" json:"location_cancellation_reason,omitempty"`
+	TimetabledPlatform         *string                `protobuf:"bytes,19,opt,name=timetabled_platform,json=timetabledPlatform,proto3,oneof" json:"timetabled_platform,omitempty"`
 	unknownFields              protoimpl.UnknownFields
 	sizeCache                  protoimpl.SizeCache
 }
@@ -695,148 +632,11 @@ func (x *ScheduleLocation) GetLocationCancellationReason() *DisruptionReason {
 	return nil
 }
 
-type ForecastLocation struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ForecastLocation) Reset() {
-	*x = ForecastLocation{}
-	mi := &file_serviceDescription_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ForecastLocation) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ForecastLocation) ProtoMessage() {}
-
-func (x *ForecastLocation) ProtoReflect() protoreflect.Message {
-	mi := &file_serviceDescription_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
+func (x *ScheduleLocation) GetTimetabledPlatform() string {
+	if x != nil && x.TimetabledPlatform != nil {
+		return *x.TimetabledPlatform
 	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ForecastLocation.ProtoReflect.Descriptor instead.
-func (*ForecastLocation) Descriptor() ([]byte, []int) {
-	return file_serviceDescription_proto_rawDescGZIP(), []int{6}
-}
-
-type FormationLoading struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *FormationLoading) Reset() {
-	*x = FormationLoading{}
-	mi := &file_serviceDescription_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *FormationLoading) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FormationLoading) ProtoMessage() {}
-
-func (x *FormationLoading) ProtoReflect() protoreflect.Message {
-	mi := &file_serviceDescription_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FormationLoading.ProtoReflect.Descriptor instead.
-func (*FormationLoading) Descriptor() ([]byte, []int) {
-	return file_serviceDescription_proto_rawDescGZIP(), []int{7}
-}
-
-type ServiceLoading struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ServiceLoading) Reset() {
-	*x = ServiceLoading{}
-	mi := &file_serviceDescription_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ServiceLoading) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ServiceLoading) ProtoMessage() {}
-
-func (x *ServiceLoading) ProtoReflect() protoreflect.Message {
-	mi := &file_serviceDescription_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ServiceLoading.ProtoReflect.Descriptor instead.
-func (*ServiceLoading) Descriptor() ([]byte, []int) {
-	return file_serviceDescription_proto_rawDescGZIP(), []int{8}
-}
-
-type TrainAlerts struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TrainAlerts) Reset() {
-	*x = TrainAlerts{}
-	mi := &file_serviceDescription_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TrainAlerts) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TrainAlerts) ProtoMessage() {}
-
-func (x *TrainAlerts) ProtoReflect() protoreflect.Message {
-	mi := &file_serviceDescription_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TrainAlerts.ProtoReflect.Descriptor instead.
-func (*TrainAlerts) Descriptor() ([]byte, []int) {
-	return file_serviceDescription_proto_rawDescGZIP(), []int{9}
+	return ""
 }
 
 // estimated_public_*_time and estimated_working_*_time are Darwin's estimations of the most likely times.
@@ -888,7 +688,7 @@ type Forecast struct {
 
 func (x *Forecast) Reset() {
 	*x = Forecast{}
-	mi := &file_serviceDescription_proto_msgTypes[10]
+	mi := &file_serviceDescription_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -900,7 +700,7 @@ func (x *Forecast) String() string {
 func (*Forecast) ProtoMessage() {}
 
 func (x *Forecast) ProtoReflect() protoreflect.Message {
-	mi := &file_serviceDescription_proto_msgTypes[10]
+	mi := &file_serviceDescription_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -913,7 +713,7 @@ func (x *Forecast) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Forecast.ProtoReflect.Descriptor instead.
 func (*Forecast) Descriptor() ([]byte, []int) {
-	return file_serviceDescription_proto_rawDescGZIP(), []int{10}
+	return file_serviceDescription_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *Forecast) GetIsReverseFormation() bool {
@@ -1186,15 +986,14 @@ var File_serviceDescription_proto protoreflect.FileDescriptor
 
 const file_serviceDescription_proto_rawDesc = "" +
 	"\n" +
-	"\x18serviceDescription.proto\x1a\x0frailtypes.proto\"\xde\x01\n" +
+	"\x18serviceDescription.proto\x1a\x0frailtypes.proto\"\x95\x01\n" +
 	"\x12ServiceDescription\x12'\n" +
 	"\tschedules\x18\x01 \x03(\v2\t.ScheduleR\tschedules\x12*\n" +
 	"\n" +
 	"formations\x18\x02 \x03(\v2\n" +
 	".FormationR\n" +
 	"formations\x12$\n" +
-	"\x05route\x18\x03 \x03(\v2\x0e.RouteLocationR\x05route\x12G\n" +
-	" requested_schedule_location_uuid\x18\x04 \x01(\tR\x1drequestedScheduleLocationUuidJ\x04\b\x05\x10\x10\"\xb0\x01\n" +
+	"\x05route\x18\x03 \x03(\v2\x0e.RouteLocationR\x05routeJ\x04\b\x04\x10\x10\"\xb0\x01\n" +
 	"\x10DisruptionReason\x12\x1b\n" +
 	"\treason_id\x18\x01 \x01(\rR\breasonId\x121\n" +
 	"\x12reason_location_id\x18\x02 \x01(\tH\x00R\x10reasonLocationId\x88\x01\x01\x125\n" +
@@ -1223,22 +1022,13 @@ const file_serviceDescription_proto_rawDesc = "" +
 	"\x14_cancellation_reasonB\x1b\n" +
 	"\x19_diverted_via_location_idB\x13\n" +
 	"\x11_diversion_reasonJ\x04\b\x02\x10\x04J\x04\b\x06\x10\bJ\x04\b\x0f\x10\x10\"\v\n" +
-	"\tFormation\"\xbe\x05\n" +
+	"\tFormation\"\xeb\x01\n" +
 	"\rRouteLocation\x12?\n" +
 	"\x1cnext_schedule_location_uuids\x18\x01 \x03(\tR\x19nextScheduleLocationUuids\x12G\n" +
 	" previous_schedule_location_uuids\x18\x02 \x03(\tR\x1dpreviousScheduleLocationUuids\x12>\n" +
-	"\x11schedule_location\x18\x05 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocation\x12-\n" +
-	"\bforecast\x18\x06 \x01(\v2\x11.ForecastLocationR\bforecast\x12>\n" +
-	"\x11formation_loading\x18\a \x01(\v2\x11.FormationLoadingR\x10formationLoading\x128\n" +
-	"\x0fservice_loading\x18\b \x01(\v2\x0f.ServiceLoadingR\x0eserviceLoading\x12/\n" +
-	"\ftrain_alerts\x18\t \x01(\v2\f.TrainAlertsR\vtrainAlerts\x127\n" +
-	"\x15generous_arrival_time\x18\r \x01(\tH\x00R\x13generousArrivalTime\x88\x01\x01\x127\n" +
-	"\x15generous_passing_time\x18\x0e \x01(\tH\x01R\x13generousPassingTime\x88\x01\x01\x12;\n" +
-	"\x17generous_departure_time\x18\x0f \x01(\tH\x02R\x15generousDepartureTime\x88\x01\x01B\x18\n" +
-	"\x16_generous_arrival_timeB\x18\n" +
-	"\x16_generous_passing_timeB\x1a\n" +
-	"\x18_generous_departure_timeJ\x04\b\x03\x10\x05J\x04\b\n" +
-	"\x10\r\"\xde\b\n" +
+	"\x11schedule_location\x18\x05 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocationJ\x04\b\x03\x10\x05J\x04\b\x06\x10\n" +
+	"J\x04\b\n" +
+	"\x10\x10\"\xa6\t\n" +
 	"\x10ScheduleLocation\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12#\n" +
 	"\rschedule_uuid\x18\x02 \x01(\tR\fscheduleUuid\x12%\n" +
@@ -1261,7 +1051,8 @@ const file_serviceDescription_proto_rawDesc = "" +
 	"\rrouting_delay\x18\x0f \x01(\rR\froutingDelay\x12F\n" +
 	"\x1dfalse_destination_location_id\x18\x10 \x01(\tH\x06R\x1afalseDestinationLocationId\x88\x01\x01\x12!\n" +
 	"\fis_cancelled\x18\x11 \x01(\bR\visCancelled\x12X\n" +
-	"\x1clocation_cancellation_reason\x18\x12 \x01(\v2\x11.DisruptionReasonH\aR\x1alocationCancellationReason\x88\x01\x01B\x0f\n" +
+	"\x1clocation_cancellation_reason\x18\x12 \x01(\v2\x11.DisruptionReasonH\aR\x1alocationCancellationReason\x88\x01\x01\x124\n" +
+	"\x13timetabled_platform\x18\x13 \x01(\tH\bR\x12timetabledPlatform\x88\x01\x01B\x0f\n" +
 	"\r_formation_idB\x17\n" +
 	"\x15_working_arrival_timeB\x17\n" +
 	"\x15_working_passing_timeB\x19\n" +
@@ -1269,11 +1060,8 @@ const file_serviceDescription_proto_rawDesc = "" +
 	"\x14_public_arrival_timeB\x18\n" +
 	"\x16_public_departure_timeB \n" +
 	"\x1e_false_destination_location_idB\x1f\n" +
-	"\x1d_location_cancellation_reasonJ\x04\b\x13\x10\x14\"\x12\n" +
-	"\x10ForecastLocation\"\x12\n" +
-	"\x10FormationLoading\"\x10\n" +
-	"\x0eServiceLoading\"\r\n" +
-	"\vTrainAlerts\"\xa9\x1e\n" +
+	"\x1d_location_cancellation_reasonB\x16\n" +
+	"\x14_timetabled_platform\"\xa9\x1e\n" +
 	"\bForecast\x120\n" +
 	"\x14is_reverse_formation\x18\x01 \x01(\bR\x12isReverseFormation\x12H\n" +
 	"\x14schedule_late_reason\x18\x02 \x01(\v2\x11.DisruptionReasonH\x00R\x12scheduleLateReason\x88\x01\x01\x12F\n" +
@@ -1370,7 +1158,7 @@ func file_serviceDescription_proto_rawDescGZIP() []byte {
 }
 
 var file_serviceDescription_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_serviceDescription_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_serviceDescription_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_serviceDescription_proto_goTypes = []any{
 	(Forecast_PlatformDataSource)(0), // 0: Forecast.PlatformDataSource
 	(*ServiceDescription)(nil),       // 1: ServiceDescription
@@ -1379,42 +1167,34 @@ var file_serviceDescription_proto_goTypes = []any{
 	(*Formation)(nil),                // 4: Formation
 	(*RouteLocation)(nil),            // 5: RouteLocation
 	(*ScheduleLocation)(nil),         // 6: ScheduleLocation
-	(*ForecastLocation)(nil),         // 7: ForecastLocation
-	(*FormationLoading)(nil),         // 8: FormationLoading
-	(*ServiceLoading)(nil),           // 9: ServiceLoading
-	(*TrainAlerts)(nil),              // 10: TrainAlerts
-	(*Forecast)(nil),                 // 11: Forecast
-	(ServiceType)(0),                 // 12: ServiceType
-	(CategoryType)(0),                // 13: CategoryType
-	(ActivityType)(0),                // 14: ActivityType
-	(LocationType)(0),                // 15: LocationType
+	(*Forecast)(nil),                 // 7: Forecast
+	(ServiceType)(0),                 // 8: ServiceType
+	(CategoryType)(0),                // 9: CategoryType
+	(ActivityType)(0),                // 10: ActivityType
+	(LocationType)(0),                // 11: LocationType
 }
 var file_serviceDescription_proto_depIdxs = []int32{
 	3,  // 0: ServiceDescription.schedules:type_name -> Schedule
 	4,  // 1: ServiceDescription.formations:type_name -> Formation
 	5,  // 2: ServiceDescription.route:type_name -> RouteLocation
-	12, // 3: Schedule.service:type_name -> ServiceType
-	13, // 4: Schedule.category:type_name -> CategoryType
+	8,  // 3: Schedule.service:type_name -> ServiceType
+	9,  // 4: Schedule.category:type_name -> CategoryType
 	2,  // 5: Schedule.cancellation_reason:type_name -> DisruptionReason
 	2,  // 6: Schedule.diversion_reason:type_name -> DisruptionReason
 	6,  // 7: RouteLocation.schedule_location:type_name -> ScheduleLocation
-	7,  // 8: RouteLocation.forecast:type_name -> ForecastLocation
-	8,  // 9: RouteLocation.formation_loading:type_name -> FormationLoading
-	9,  // 10: RouteLocation.service_loading:type_name -> ServiceLoading
-	10, // 11: RouteLocation.train_alerts:type_name -> TrainAlerts
-	14, // 12: ScheduleLocation.activities:type_name -> ActivityType
-	14, // 13: ScheduleLocation.planned_activities:type_name -> ActivityType
-	15, // 14: ScheduleLocation.type:type_name -> LocationType
-	2,  // 15: ScheduleLocation.location_cancellation_reason:type_name -> DisruptionReason
-	2,  // 16: Forecast.schedule_late_reason:type_name -> DisruptionReason
-	2,  // 17: Forecast.location_late_reason:type_name -> DisruptionReason
-	2,  // 18: Forecast.location_disruption_risk_reason:type_name -> DisruptionReason
-	0,  // 19: Forecast.platform_data_source:type_name -> Forecast.PlatformDataSource
-	20, // [20:20] is the sub-list for method output_type
-	20, // [20:20] is the sub-list for method input_type
-	20, // [20:20] is the sub-list for extension type_name
-	20, // [20:20] is the sub-list for extension extendee
-	0,  // [0:20] is the sub-list for field type_name
+	10, // 8: ScheduleLocation.activities:type_name -> ActivityType
+	10, // 9: ScheduleLocation.planned_activities:type_name -> ActivityType
+	11, // 10: ScheduleLocation.type:type_name -> LocationType
+	2,  // 11: ScheduleLocation.location_cancellation_reason:type_name -> DisruptionReason
+	2,  // 12: Forecast.schedule_late_reason:type_name -> DisruptionReason
+	2,  // 13: Forecast.location_late_reason:type_name -> DisruptionReason
+	2,  // 14: Forecast.location_disruption_risk_reason:type_name -> DisruptionReason
+	0,  // 15: Forecast.platform_data_source:type_name -> Forecast.PlatformDataSource
+	16, // [16:16] is the sub-list for method output_type
+	16, // [16:16] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_serviceDescription_proto_init() }
@@ -1425,16 +1205,15 @@ func file_serviceDescription_proto_init() {
 	file_railtypes_proto_init()
 	file_serviceDescription_proto_msgTypes[1].OneofWrappers = []any{}
 	file_serviceDescription_proto_msgTypes[2].OneofWrappers = []any{}
-	file_serviceDescription_proto_msgTypes[4].OneofWrappers = []any{}
 	file_serviceDescription_proto_msgTypes[5].OneofWrappers = []any{}
-	file_serviceDescription_proto_msgTypes[10].OneofWrappers = []any{}
+	file_serviceDescription_proto_msgTypes[6].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_serviceDescription_proto_rawDesc), len(file_serviceDescription_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   11,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
