@@ -400,6 +400,9 @@ type RouteLocation struct {
 	NextScheduleLocationUuids     []string               `protobuf:"bytes,1,rep,name=next_schedule_location_uuids,json=nextScheduleLocationUuids,proto3" json:"next_schedule_location_uuids,omitempty"`
 	PreviousScheduleLocationUuids []string               `protobuf:"bytes,2,rep,name=previous_schedule_location_uuids,json=previousScheduleLocationUuids,proto3" json:"previous_schedule_location_uuids,omitempty"`
 	ScheduleLocation              *ScheduleLocation      `protobuf:"bytes,5,opt,name=schedule_location,json=scheduleLocation,proto3" json:"schedule_location,omitempty"`
+	GenerousArrivalTime           *string                `protobuf:"bytes,13,opt,name=generous_arrival_time,json=generousArrivalTime,proto3,oneof" json:"generous_arrival_time,omitempty"`
+	GenerousPassingTime           *string                `protobuf:"bytes,14,opt,name=generous_passing_time,json=generousPassingTime,proto3,oneof" json:"generous_passing_time,omitempty"`
+	GenerousDepartureTime         *string                `protobuf:"bytes,15,opt,name=generous_departure_time,json=generousDepartureTime,proto3,oneof" json:"generous_departure_time,omitempty"`
 	unknownFields                 protoimpl.UnknownFields
 	sizeCache                     protoimpl.SizeCache
 }
@@ -453,6 +456,27 @@ func (x *RouteLocation) GetScheduleLocation() *ScheduleLocation {
 		return x.ScheduleLocation
 	}
 	return nil
+}
+
+func (x *RouteLocation) GetGenerousArrivalTime() string {
+	if x != nil && x.GenerousArrivalTime != nil {
+		return *x.GenerousArrivalTime
+	}
+	return ""
+}
+
+func (x *RouteLocation) GetGenerousPassingTime() string {
+	if x != nil && x.GenerousPassingTime != nil {
+		return *x.GenerousPassingTime
+	}
+	return ""
+}
+
+func (x *RouteLocation) GetGenerousDepartureTime() string {
+	if x != nil && x.GenerousDepartureTime != nil {
+		return *x.GenerousDepartureTime
+	}
+	return ""
 }
 
 // 'Working' times are used internally by staff
@@ -1031,13 +1055,19 @@ const file_serviceDescription_proto_rawDesc = "" +
 	"\x14_cancellation_reasonB\x1b\n" +
 	"\x19_diverted_via_location_idB\x13\n" +
 	"\x11_diversion_reasonJ\x04\b\x02\x10\x04J\x04\b\x06\x10\bJ\x04\b\x0f\x10\x10\"\v\n" +
-	"\tFormation\"\xeb\x01\n" +
+	"\tFormation\"\xea\x03\n" +
 	"\rRouteLocation\x12?\n" +
 	"\x1cnext_schedule_location_uuids\x18\x01 \x03(\tR\x19nextScheduleLocationUuids\x12G\n" +
 	" previous_schedule_location_uuids\x18\x02 \x03(\tR\x1dpreviousScheduleLocationUuids\x12>\n" +
-	"\x11schedule_location\x18\x05 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocationJ\x04\b\x03\x10\x05J\x04\b\x06\x10\n" +
+	"\x11schedule_location\x18\x05 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocation\x127\n" +
+	"\x15generous_arrival_time\x18\r \x01(\tH\x00R\x13generousArrivalTime\x88\x01\x01\x127\n" +
+	"\x15generous_passing_time\x18\x0e \x01(\tH\x01R\x13generousPassingTime\x88\x01\x01\x12;\n" +
+	"\x17generous_departure_time\x18\x0f \x01(\tH\x02R\x15generousDepartureTime\x88\x01\x01B\x18\n" +
+	"\x16_generous_arrival_timeB\x18\n" +
+	"\x16_generous_passing_timeB\x1a\n" +
+	"\x18_generous_departure_timeJ\x04\b\x03\x10\x05J\x04\b\x06\x10\n" +
 	"J\x04\b\n" +
-	"\x10\x10\"\xa6\t\n" +
+	"\x10\r\"\xa6\t\n" +
 	"\x10ScheduleLocation\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12#\n" +
 	"\rschedule_uuid\x18\x02 \x01(\tR\fscheduleUuid\x12%\n" +
@@ -1214,6 +1244,7 @@ func file_serviceDescription_proto_init() {
 	file_railtypes_proto_init()
 	file_serviceDescription_proto_msgTypes[1].OneofWrappers = []any{}
 	file_serviceDescription_proto_msgTypes[2].OneofWrappers = []any{}
+	file_serviceDescription_proto_msgTypes[4].OneofWrappers = []any{}
 	file_serviceDescription_proto_msgTypes[5].OneofWrappers = []any{}
 	file_serviceDescription_proto_msgTypes[6].OneofWrappers = []any{}
 	type x struct{}
