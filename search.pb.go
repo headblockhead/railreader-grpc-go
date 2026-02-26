@@ -107,7 +107,7 @@ func (x *SearchRequest) GetIncludeCharteredServices() bool {
 
 type SearchResponse struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	ScheduleLocationUuid []string               `protobuf:"bytes,1,rep,name=schedule_location_uuid,json=scheduleLocationUuid,proto3" json:"schedule_location_uuid,omitempty"` // These can be used in a DescribeAtRequest to get full details about the services.
+	ScheduleLocationUuid []string               `protobuf:"bytes,1,rep,name=schedule_location_uuid,json=scheduleLocationUuid,proto3" json:"schedule_location_uuid,omitempty"` // These can be used in a DescribeServiceByScheduleLocationUUIDRequest to get full details about the services.
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
