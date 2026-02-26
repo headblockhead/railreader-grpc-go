@@ -396,18 +396,19 @@ func (*Formation) Descriptor() ([]byte, []int) {
 }
 
 type RouteLocation struct {
-	state                             protoimpl.MessageState `protogen:"open.v1"`
-	NeighbouringScheduleLocationUuids []string               `protobuf:"bytes,1,rep,name=neighbouring_schedule_location_uuids,json=neighbouringScheduleLocationUuids,proto3" json:"neighbouring_schedule_location_uuids,omitempty"`
-	ScheduleLocation                  *ScheduleLocation      `protobuf:"bytes,2,opt,name=schedule_location,json=scheduleLocation,proto3" json:"schedule_location,omitempty"`
-	Forecast                          *ForecastLocation      `protobuf:"bytes,3,opt,name=forecast,proto3" json:"forecast,omitempty"`
-	FormationLoading                  *FormationLoading      `protobuf:"bytes,4,opt,name=formation_loading,json=formationLoading,proto3" json:"formation_loading,omitempty"`
-	ServiceLoading                    *ServiceLoading        `protobuf:"bytes,5,opt,name=service_loading,json=serviceLoading,proto3" json:"service_loading,omitempty"`
-	TrainAlerts                       *TrainAlerts           `protobuf:"bytes,6,opt,name=train_alerts,json=trainAlerts,proto3" json:"train_alerts,omitempty"`
-	GenerousArrivalTime               *string                `protobuf:"bytes,13,opt,name=generous_arrival_time,json=generousArrivalTime,proto3,oneof" json:"generous_arrival_time,omitempty"`
-	GenerousPassingTime               *string                `protobuf:"bytes,14,opt,name=generous_passing_time,json=generousPassingTime,proto3,oneof" json:"generous_passing_time,omitempty"`
-	GenerousDepartureTime             *string                `protobuf:"bytes,15,opt,name=generous_departure_time,json=generousDepartureTime,proto3,oneof" json:"generous_departure_time,omitempty"`
-	unknownFields                     protoimpl.UnknownFields
-	sizeCache                         protoimpl.SizeCache
+	state                         protoimpl.MessageState `protogen:"open.v1"`
+	NextScheduleLocationUuids     []string               `protobuf:"bytes,1,rep,name=next_schedule_location_uuids,json=nextScheduleLocationUuids,proto3" json:"next_schedule_location_uuids,omitempty"`
+	PreviousScheduleLocationUuids []string               `protobuf:"bytes,2,rep,name=previous_schedule_location_uuids,json=previousScheduleLocationUuids,proto3" json:"previous_schedule_location_uuids,omitempty"`
+	ScheduleLocation              *ScheduleLocation      `protobuf:"bytes,5,opt,name=schedule_location,json=scheduleLocation,proto3" json:"schedule_location,omitempty"`
+	Forecast                      *ForecastLocation      `protobuf:"bytes,6,opt,name=forecast,proto3" json:"forecast,omitempty"`
+	FormationLoading              *FormationLoading      `protobuf:"bytes,7,opt,name=formation_loading,json=formationLoading,proto3" json:"formation_loading,omitempty"`
+	ServiceLoading                *ServiceLoading        `protobuf:"bytes,8,opt,name=service_loading,json=serviceLoading,proto3" json:"service_loading,omitempty"`
+	TrainAlerts                   *TrainAlerts           `protobuf:"bytes,9,opt,name=train_alerts,json=trainAlerts,proto3" json:"train_alerts,omitempty"`
+	GenerousArrivalTime           *string                `protobuf:"bytes,13,opt,name=generous_arrival_time,json=generousArrivalTime,proto3,oneof" json:"generous_arrival_time,omitempty"`
+	GenerousPassingTime           *string                `protobuf:"bytes,14,opt,name=generous_passing_time,json=generousPassingTime,proto3,oneof" json:"generous_passing_time,omitempty"`
+	GenerousDepartureTime         *string                `protobuf:"bytes,15,opt,name=generous_departure_time,json=generousDepartureTime,proto3,oneof" json:"generous_departure_time,omitempty"`
+	unknownFields                 protoimpl.UnknownFields
+	sizeCache                     protoimpl.SizeCache
 }
 
 func (x *RouteLocation) Reset() {
@@ -440,9 +441,16 @@ func (*RouteLocation) Descriptor() ([]byte, []int) {
 	return file_serviceDescription_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *RouteLocation) GetNeighbouringScheduleLocationUuids() []string {
+func (x *RouteLocation) GetNextScheduleLocationUuids() []string {
 	if x != nil {
-		return x.NeighbouringScheduleLocationUuids
+		return x.NextScheduleLocationUuids
+	}
+	return nil
+}
+
+func (x *RouteLocation) GetPreviousScheduleLocationUuids() []string {
+	if x != nil {
+		return x.PreviousScheduleLocationUuids
 	}
 	return nil
 }
@@ -1199,20 +1207,22 @@ const file_serviceDescription_proto_rawDesc = "" +
 	"\x14_cancellation_reasonB\x1b\n" +
 	"\x19_diverted_via_location_idB\x13\n" +
 	"\x11_diversion_reasonJ\x04\b\x02\x10\x04J\x04\b\x06\x10\bJ\x04\b\x0f\x10\x10\"\v\n" +
-	"\tFormation\"\xff\x04\n" +
-	"\rRouteLocation\x12O\n" +
-	"$neighbouring_schedule_location_uuids\x18\x01 \x03(\tR!neighbouringScheduleLocationUuids\x12>\n" +
-	"\x11schedule_location\x18\x02 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocation\x12-\n" +
-	"\bforecast\x18\x03 \x01(\v2\x11.ForecastLocationR\bforecast\x12>\n" +
-	"\x11formation_loading\x18\x04 \x01(\v2\x11.FormationLoadingR\x10formationLoading\x128\n" +
-	"\x0fservice_loading\x18\x05 \x01(\v2\x0f.ServiceLoadingR\x0eserviceLoading\x12/\n" +
-	"\ftrain_alerts\x18\x06 \x01(\v2\f.TrainAlertsR\vtrainAlerts\x127\n" +
+	"\tFormation\"\xbe\x05\n" +
+	"\rRouteLocation\x12?\n" +
+	"\x1cnext_schedule_location_uuids\x18\x01 \x03(\tR\x19nextScheduleLocationUuids\x12G\n" +
+	" previous_schedule_location_uuids\x18\x02 \x03(\tR\x1dpreviousScheduleLocationUuids\x12>\n" +
+	"\x11schedule_location\x18\x05 \x01(\v2\x11.ScheduleLocationR\x10scheduleLocation\x12-\n" +
+	"\bforecast\x18\x06 \x01(\v2\x11.ForecastLocationR\bforecast\x12>\n" +
+	"\x11formation_loading\x18\a \x01(\v2\x11.FormationLoadingR\x10formationLoading\x128\n" +
+	"\x0fservice_loading\x18\b \x01(\v2\x0f.ServiceLoadingR\x0eserviceLoading\x12/\n" +
+	"\ftrain_alerts\x18\t \x01(\v2\f.TrainAlertsR\vtrainAlerts\x127\n" +
 	"\x15generous_arrival_time\x18\r \x01(\tH\x00R\x13generousArrivalTime\x88\x01\x01\x127\n" +
 	"\x15generous_passing_time\x18\x0e \x01(\tH\x01R\x13generousPassingTime\x88\x01\x01\x12;\n" +
 	"\x17generous_departure_time\x18\x0f \x01(\tH\x02R\x15generousDepartureTime\x88\x01\x01B\x18\n" +
 	"\x16_generous_arrival_timeB\x18\n" +
 	"\x16_generous_passing_timeB\x1a\n" +
-	"\x18_generous_departure_timeJ\x04\b\a\x10\r\"\xd9\a\n" +
+	"\x18_generous_departure_timeJ\x04\b\x03\x10\x05J\x04\b\n" +
+	"\x10\r\"\xd9\a\n" +
 	"\x10ScheduleLocation\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12#\n" +
 	"\rschedule_uuid\x18\x02 \x01(\tR\fscheduleUuid\x12\x1f\n" +
