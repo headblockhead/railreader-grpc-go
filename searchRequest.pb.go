@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v3.21.12
-// source: search.proto
+// source: searchRequest.proto
 
 package railreader_grpc
 
@@ -35,7 +35,7 @@ type SearchRequest struct {
 
 func (x *SearchRequest) Reset() {
 	*x = SearchRequest{}
-	mi := &file_search_proto_msgTypes[0]
+	mi := &file_searchRequest_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -47,7 +47,7 @@ func (x *SearchRequest) String() string {
 func (*SearchRequest) ProtoMessage() {}
 
 func (x *SearchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_search_proto_msgTypes[0]
+	mi := &file_searchRequest_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +60,7 @@ func (x *SearchRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchRequest.ProtoReflect.Descriptor instead.
 func (*SearchRequest) Descriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{0}
+	return file_searchRequest_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *SearchRequest) GetLocationId() string {
@@ -105,55 +105,11 @@ func (x *SearchRequest) GetIncludeCharteredServices() bool {
 	return false
 }
 
-type SearchResponse struct {
-	state                protoimpl.MessageState `protogen:"open.v1"`
-	ScheduleLocationUuid []string               `protobuf:"bytes,1,rep,name=schedule_location_uuid,json=scheduleLocationUuid,proto3" json:"schedule_location_uuid,omitempty"` // These can be used in a DescribeServiceByScheduleLocationUUIDRequest to get full details about the services.
-	unknownFields        protoimpl.UnknownFields
-	sizeCache            protoimpl.SizeCache
-}
+var File_searchRequest_proto protoreflect.FileDescriptor
 
-func (x *SearchResponse) Reset() {
-	*x = SearchResponse{}
-	mi := &file_search_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchResponse) ProtoMessage() {}
-
-func (x *SearchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_search_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchResponse.ProtoReflect.Descriptor instead.
-func (*SearchResponse) Descriptor() ([]byte, []int) {
-	return file_search_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *SearchResponse) GetScheduleLocationUuid() []string {
-	if x != nil {
-		return x.ScheduleLocationUuid
-	}
-	return nil
-}
-
-var File_search_proto protoreflect.FileDescriptor
-
-const file_search_proto_rawDesc = "" +
+const file_searchRequest_proto_rawDesc = "" +
 	"\n" +
-	"\fsearch.proto\x1a\x0frailtypes.proto\"\xa8\x02\n" +
+	"\x13searchRequest.proto\"\xa8\x02\n" +
 	"\rSearchRequest\x12\x1f\n" +
 	"\vlocation_id\x18\x01 \x01(\tR\n" +
 	"locationId\x12\x1b\n" +
@@ -161,28 +117,25 @@ const file_search_proto_rawDesc = "" +
 	"\ato_time\x18\x03 \x01(\tR\x06toTime\x12C\n" +
 	"\x1einclude_non_passenger_services\x18\x04 \x01(\bR\x1bincludeNonPassengerServices\x12=\n" +
 	"\x1bexclude_non_active_services\x18\x05 \x01(\bR\x18excludeNonActiveServices\x12<\n" +
-	"\x1ainclude_chartered_services\x18\x06 \x01(\bR\x18includeCharteredServices\"F\n" +
-	"\x0eSearchResponse\x124\n" +
-	"\x16schedule_location_uuid\x18\x01 \x03(\tR\x14scheduleLocationUuidB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x1ainclude_chartered_services\x18\x06 \x01(\bR\x18includeCharteredServicesB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
-	file_search_proto_rawDescOnce sync.Once
-	file_search_proto_rawDescData []byte
+	file_searchRequest_proto_rawDescOnce sync.Once
+	file_searchRequest_proto_rawDescData []byte
 )
 
-func file_search_proto_rawDescGZIP() []byte {
-	file_search_proto_rawDescOnce.Do(func() {
-		file_search_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_search_proto_rawDesc), len(file_search_proto_rawDesc)))
+func file_searchRequest_proto_rawDescGZIP() []byte {
+	file_searchRequest_proto_rawDescOnce.Do(func() {
+		file_searchRequest_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_searchRequest_proto_rawDesc), len(file_searchRequest_proto_rawDesc)))
 	})
-	return file_search_proto_rawDescData
+	return file_searchRequest_proto_rawDescData
 }
 
-var file_search_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_search_proto_goTypes = []any{
-	(*SearchRequest)(nil),  // 0: SearchRequest
-	(*SearchResponse)(nil), // 1: SearchResponse
+var file_searchRequest_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_searchRequest_proto_goTypes = []any{
+	(*SearchRequest)(nil), // 0: SearchRequest
 }
-var file_search_proto_depIdxs = []int32{
+var file_searchRequest_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -190,27 +143,26 @@ var file_search_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_search_proto_init() }
-func file_search_proto_init() {
-	if File_search_proto != nil {
+func init() { file_searchRequest_proto_init() }
+func file_searchRequest_proto_init() {
+	if File_searchRequest_proto != nil {
 		return
 	}
-	file_railtypes_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_search_proto_rawDesc), len(file_search_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_searchRequest_proto_rawDesc), len(file_searchRequest_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_search_proto_goTypes,
-		DependencyIndexes: file_search_proto_depIdxs,
-		MessageInfos:      file_search_proto_msgTypes,
+		GoTypes:           file_searchRequest_proto_goTypes,
+		DependencyIndexes: file_searchRequest_proto_depIdxs,
+		MessageInfos:      file_searchRequest_proto_msgTypes,
 	}.Build()
-	File_search_proto = out.File
-	file_search_proto_goTypes = nil
-	file_search_proto_depIdxs = nil
+	File_searchRequest_proto = out.File
+	file_searchRequest_proto_goTypes = nil
+	file_searchRequest_proto_depIdxs = nil
 }

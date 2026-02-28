@@ -24,28 +24,27 @@ var File_railreader_proto protoreflect.FileDescriptor
 
 const file_railreader_proto_rawDesc = "" +
 	"\n" +
-	"\x10railreader.proto\x1a\x1egetLatestLocationUpdates.proto\x1a\fsearch.proto\x1a+describeServiceByScheduleLocationUUID.proto\x1a\x18serviceDescription.proto2\x8a\x02\n" +
+	"\x10railreader.proto\x1a\x1cupdateLocationsRequest.proto\x1a\x1dupdateLocationsResponse.proto\x1a\x13searchRequest.proto\x1a\x14searchResponse.proto\x1a\x16describeResponse.proto2\xb7\x01\n" +
 	"\n" +
-	"RailReader\x12[\n" +
-	"\x18GetLatestLocationUpdates\x12\x1d.LatestLocationUpdatesRequest\x1a\x1e.LatestLocationUpdatesResponse\"\x00\x12+\n" +
-	"\x06Search\x12\x0e.SearchRequest\x1a\x0f.SearchResponse\"\x00\x12r\n" +
-	"&DescribeServicesByScheduleLocationUUID\x12-.DescribeServiceByScheduleLocationUUIDRequest\x1a\x13.ServiceDescription\"\x00(\x010\x01B*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"RailReader\x12F\n" +
+	"\x0fUpdateLocations\x12\x17.UpdateLocationsRequest\x1a\x18.UpdateLocationsResponse\"\x00\x12+\n" +
+	"\x06Search\x12\x0e.SearchRequest\x1a\x0f.SearchResponse\"\x00\x124\n" +
+	"\bDescribe\x12\x0f.SearchResponse\x1a\x11.DescribeResponse\"\x00(\x010\x01B*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var file_railreader_proto_goTypes = []any{
-	(*LatestLocationUpdatesRequest)(nil),                 // 0: LatestLocationUpdatesRequest
-	(*SearchRequest)(nil),                                // 1: SearchRequest
-	(*DescribeServiceByScheduleLocationUUIDRequest)(nil), // 2: DescribeServiceByScheduleLocationUUIDRequest
-	(*LatestLocationUpdatesResponse)(nil),                // 3: LatestLocationUpdatesResponse
-	(*SearchResponse)(nil),                               // 4: SearchResponse
-	(*ServiceDescription)(nil),                           // 5: ServiceDescription
+	(*UpdateLocationsRequest)(nil),  // 0: UpdateLocationsRequest
+	(*SearchRequest)(nil),           // 1: SearchRequest
+	(*SearchResponse)(nil),          // 2: SearchResponse
+	(*UpdateLocationsResponse)(nil), // 3: UpdateLocationsResponse
+	(*DescribeResponse)(nil),        // 4: DescribeResponse
 }
 var file_railreader_proto_depIdxs = []int32{
-	0, // 0: RailReader.GetLatestLocationUpdates:input_type -> LatestLocationUpdatesRequest
+	0, // 0: RailReader.UpdateLocations:input_type -> UpdateLocationsRequest
 	1, // 1: RailReader.Search:input_type -> SearchRequest
-	2, // 2: RailReader.DescribeServicesByScheduleLocationUUID:input_type -> DescribeServiceByScheduleLocationUUIDRequest
-	3, // 3: RailReader.GetLatestLocationUpdates:output_type -> LatestLocationUpdatesResponse
-	4, // 4: RailReader.Search:output_type -> SearchResponse
-	5, // 5: RailReader.DescribeServicesByScheduleLocationUUID:output_type -> ServiceDescription
+	2, // 2: RailReader.Describe:input_type -> SearchResponse
+	3, // 3: RailReader.UpdateLocations:output_type -> UpdateLocationsResponse
+	2, // 4: RailReader.Search:output_type -> SearchResponse
+	4, // 5: RailReader.Describe:output_type -> DescribeResponse
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -58,10 +57,11 @@ func file_railreader_proto_init() {
 	if File_railreader_proto != nil {
 		return
 	}
-	file_getLatestLocationUpdates_proto_init()
-	file_search_proto_init()
-	file_describeServiceByScheduleLocationUUID_proto_init()
-	file_serviceDescription_proto_init()
+	file_updateLocationsRequest_proto_init()
+	file_updateLocationsResponse_proto_init()
+	file_searchRequest_proto_init()
+	file_searchResponse_proto_init()
+	file_describeResponse_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
