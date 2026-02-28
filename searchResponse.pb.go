@@ -22,10 +22,10 @@ const (
 )
 
 type SearchResponse struct {
-	state                protoimpl.MessageState `protogen:"open.v1"`
-	ScheduleLocationUuid []string               `protobuf:"bytes,1,rep,name=schedule_location_uuid,json=scheduleLocationUuid,proto3" json:"schedule_location_uuid,omitempty"`
-	unknownFields        protoimpl.UnknownFields
-	sizeCache            protoimpl.SizeCache
+	state                 protoimpl.MessageState `protogen:"open.v1"`
+	ScheduleLocationUuids []string               `protobuf:"bytes,1,rep,name=schedule_location_uuids,json=scheduleLocationUuids,proto3" json:"schedule_location_uuids,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *SearchResponse) Reset() {
@@ -58,9 +58,9 @@ func (*SearchResponse) Descriptor() ([]byte, []int) {
 	return file_searchResponse_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *SearchResponse) GetScheduleLocationUuid() []string {
+func (x *SearchResponse) GetScheduleLocationUuids() []string {
 	if x != nil {
-		return x.ScheduleLocationUuid
+		return x.ScheduleLocationUuids
 	}
 	return nil
 }
@@ -69,9 +69,9 @@ var File_searchResponse_proto protoreflect.FileDescriptor
 
 const file_searchResponse_proto_rawDesc = "" +
 	"\n" +
-	"\x14searchResponse.proto\"F\n" +
-	"\x0eSearchResponse\x124\n" +
-	"\x16schedule_location_uuid\x18\x01 \x03(\tR\x14scheduleLocationUuidB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x14searchResponse.proto\"H\n" +
+	"\x0eSearchResponse\x126\n" +
+	"\x17schedule_location_uuids\x18\x01 \x03(\tR\x15scheduleLocationUuidsB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
 	file_searchResponse_proto_rawDescOnce sync.Once
