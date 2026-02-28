@@ -1270,12 +1270,12 @@ func (x *DescribeResponse_RouteLocation_RouteLocationEdge_ScheduleEdge) GetSched
 }
 
 type DescribeResponse_RouteLocation_RouteLocationEdge_AssociationEdge struct {
-	state                          protoimpl.MessageState                                                               `protogen:"open.v1"`
-	AssociatedScheduleLocationUuid string                                                                               `protobuf:"bytes,1,opt,name=associated_schedule_location_uuid,json=associatedScheduleLocationUuid,proto3" json:"associated_schedule_location_uuid,omitempty"`
-	AssociationCategory            DescribeResponse_RouteLocation_RouteLocationEdge_AssociationEdge_AssociationCategory `protobuf:"varint,2,opt,name=association_category,json=associationCategory,proto3,enum=DescribeResponse_RouteLocation_RouteLocationEdge_AssociationEdge_AssociationCategory" json:"association_category,omitempty"`
-	IsCancelled                    bool                                                                                 `protobuf:"varint,3,opt,name=is_cancelled,json=isCancelled,proto3" json:"is_cancelled,omitempty"`
-	unknownFields                  protoimpl.UnknownFields
-	sizeCache                      protoimpl.SizeCache
+	state                protoimpl.MessageState                                                               `protogen:"open.v1"`
+	ScheduleLocationUuid string                                                                               `protobuf:"bytes,1,opt,name=schedule_location_uuid,json=scheduleLocationUuid,proto3" json:"schedule_location_uuid,omitempty"`
+	AssociationCategory  DescribeResponse_RouteLocation_RouteLocationEdge_AssociationEdge_AssociationCategory `protobuf:"varint,2,opt,name=association_category,json=associationCategory,proto3,enum=DescribeResponse_RouteLocation_RouteLocationEdge_AssociationEdge_AssociationCategory" json:"association_category,omitempty"`
+	IsCancelled          bool                                                                                 `protobuf:"varint,3,opt,name=is_cancelled,json=isCancelled,proto3" json:"is_cancelled,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *DescribeResponse_RouteLocation_RouteLocationEdge_AssociationEdge) Reset() {
@@ -1308,9 +1308,9 @@ func (*DescribeResponse_RouteLocation_RouteLocationEdge_AssociationEdge) Descrip
 	return file_describeResponse_proto_rawDescGZIP(), []int{1, 2, 0, 1}
 }
 
-func (x *DescribeResponse_RouteLocation_RouteLocationEdge_AssociationEdge) GetAssociatedScheduleLocationUuid() string {
+func (x *DescribeResponse_RouteLocation_RouteLocationEdge_AssociationEdge) GetScheduleLocationUuid() string {
 	if x != nil {
-		return x.AssociatedScheduleLocationUuid
+		return x.ScheduleLocationUuid
 	}
 	return ""
 }
@@ -1338,7 +1338,7 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\treason_id\x18\x01 \x01(\rR\breasonId\x121\n" +
 	"\x12reason_location_id\x18\x02 \x01(\tH\x00R\x10reasonLocationId\x88\x01\x01\x125\n" +
 	"\x17reason_is_near_location\x18\x03 \x01(\bR\x14reasonIsNearLocationB\x15\n" +
-	"\x13_reason_location_id\"\xa6\x1f\n" +
+	"\x13_reason_location_id\"\x91\x1f\n" +
 	"\x10DescribeResponse\x128\n" +
 	"\tschedules\x18\x01 \x03(\v2\x1a.DescribeResponse.ScheduleR\tschedules\x12;\n" +
 	"\n" +
@@ -1369,7 +1369,7 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\x14_cancellation_reasonB\x1b\n" +
 	"\x19_diverted_via_location_idB\x13\n" +
 	"\x11_diversion_reasonJ\x04\b\x02\x10\x04J\x04\b\x06\x10\bJ\x04\b\x0f\x10\x10\x1a\v\n" +
-	"\tFormation\x1a\xb5\x17\n" +
+	"\tFormation\x1a\xa0\x17\n" +
 	"\rRouteLocation\x12P\n" +
 	"\n" +
 	"next_edges\x18\x01 \x03(\v21.DescribeResponse.RouteLocation.RouteLocationEdgeR\tnextEdges\x12X\n" +
@@ -1378,14 +1378,14 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\x10current_platform\x18\f \x01(\tH\x00R\x0fcurrentPlatform\x88\x01\x01\x127\n" +
 	"\x15generous_arrival_time\x18\r \x01(\tH\x01R\x13generousArrivalTime\x88\x01\x01\x127\n" +
 	"\x15generous_passing_time\x18\x0e \x01(\tH\x02R\x13generousPassingTime\x88\x01\x01\x12;\n" +
-	"\x17generous_departure_time\x18\x0f \x01(\tH\x03R\x15generousDepartureTime\x88\x01\x01\x1a\xfd\x05\n" +
+	"\x17generous_departure_time\x18\x0f \x01(\tH\x03R\x15generousDepartureTime\x88\x01\x01\x1a\xe8\x05\n" +
 	"\x11RouteLocationEdge\x12e\n" +
 	"\rschedule_edge\x18\x01 \x01(\v2>.DescribeResponse.RouteLocation.RouteLocationEdge.ScheduleEdgeH\x00R\fscheduleEdge\x12n\n" +
 	"\x10association_edge\x18\x02 \x01(\v2A.DescribeResponse.RouteLocation.RouteLocationEdge.AssociationEdgeH\x00R\x0fassociationEdge\x1aD\n" +
 	"\fScheduleEdge\x124\n" +
-	"\x16schedule_location_uuid\x18\x01 \x01(\tR\x14scheduleLocationUuid\x1a\xc2\x03\n" +
-	"\x0fAssociationEdge\x12I\n" +
-	"!associated_schedule_location_uuid\x18\x01 \x01(\tR\x1eassociatedScheduleLocationUuid\x12\x88\x01\n" +
+	"\x16schedule_location_uuid\x18\x01 \x01(\tR\x14scheduleLocationUuid\x1a\xad\x03\n" +
+	"\x0fAssociationEdge\x124\n" +
+	"\x16schedule_location_uuid\x18\x01 \x01(\tR\x14scheduleLocationUuid\x12\x88\x01\n" +
 	"\x14association_category\x18\x02 \x01(\x0e2U.DescribeResponse.RouteLocation.RouteLocationEdge.AssociationEdge.AssociationCategoryR\x13associationCategory\x12!\n" +
 	"\fis_cancelled\x18\x03 \x01(\bR\visCancelled\"\xb5\x01\n" +
 	"\x13AssociationCategory\x12 \n" +
