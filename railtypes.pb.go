@@ -82,103 +82,6 @@ func (ServiceType) EnumDescriptor() ([]byte, []int) {
 	return file_railtypes_proto_rawDescGZIP(), []int{0}
 }
 
-type CategoryType int32
-
-const (
-	CategoryType_CATEGORY_TYPE_CATEGORY_UNKNOWN                                   CategoryType = 0
-	CategoryType_CATEGORY_TYPE_CATEGORY_UNDERGROUND_OR_METRO                      CategoryType = 1
-	CategoryType_CATEGORY_TYPE_CATEGORY_UNADVERTISED_PASSENGER                    CategoryType = 2
-	CategoryType_CATEGORY_TYPE_CATEGORY_PASSENGER                                 CategoryType = 3
-	CategoryType_CATEGORY_TYPE_CATEGORY_STAFF                                     CategoryType = 4
-	CategoryType_CATEGORY_TYPE_CATEGORY_MIXED                                     CategoryType = 5
-	CategoryType_CATEGORY_TYPE_CATEGORY_CHANNEL_TUNNEL                            CategoryType = 6
-	CategoryType_CATEGORY_TYPE_CATEGORY_SLEEPER                                   CategoryType = 7
-	CategoryType_CATEGORY_TYPE_CATEGORY_INTERNATIONAL                             CategoryType = 8
-	CategoryType_CATEGORY_TYPE_CATEGORY_MOTORAIL                                  CategoryType = 9
-	CategoryType_CATEGORY_TYPE_CATEGORY_UNADVERTISED_EXPRESS                      CategoryType = 10
-	CategoryType_CATEGORY_TYPE_CATEGORY_EXPRESS                                   CategoryType = 11
-	CategoryType_CATEGORY_TYPE_CATEGORY_SLEEPER_DOMESTIC                          CategoryType = 12
-	CategoryType_CATEGORY_TYPE_CATEGORY_BUS_REPLACEMENT                           CategoryType = 13
-	CategoryType_CATEGORY_TYPE_CATEGORY_BUS_SERVICE                               CategoryType = 14
-	CategoryType_CATEGORY_TYPE_CATEGORY_SHIP                                      CategoryType = 15
-	CategoryType_CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK                      CategoryType = 16
-	CategoryType_CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_UNDERGROUND_OR_METRO CategoryType = 17
-	CategoryType_CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_OR_STAFF             CategoryType = 18
-)
-
-// Enum value maps for CategoryType.
-var (
-	CategoryType_name = map[int32]string{
-		0:  "CATEGORY_TYPE_CATEGORY_UNKNOWN",
-		1:  "CATEGORY_TYPE_CATEGORY_UNDERGROUND_OR_METRO",
-		2:  "CATEGORY_TYPE_CATEGORY_UNADVERTISED_PASSENGER",
-		3:  "CATEGORY_TYPE_CATEGORY_PASSENGER",
-		4:  "CATEGORY_TYPE_CATEGORY_STAFF",
-		5:  "CATEGORY_TYPE_CATEGORY_MIXED",
-		6:  "CATEGORY_TYPE_CATEGORY_CHANNEL_TUNNEL",
-		7:  "CATEGORY_TYPE_CATEGORY_SLEEPER",
-		8:  "CATEGORY_TYPE_CATEGORY_INTERNATIONAL",
-		9:  "CATEGORY_TYPE_CATEGORY_MOTORAIL",
-		10: "CATEGORY_TYPE_CATEGORY_UNADVERTISED_EXPRESS",
-		11: "CATEGORY_TYPE_CATEGORY_EXPRESS",
-		12: "CATEGORY_TYPE_CATEGORY_SLEEPER_DOMESTIC",
-		13: "CATEGORY_TYPE_CATEGORY_BUS_REPLACEMENT",
-		14: "CATEGORY_TYPE_CATEGORY_BUS_SERVICE",
-		15: "CATEGORY_TYPE_CATEGORY_SHIP",
-		16: "CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK",
-		17: "CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_UNDERGROUND_OR_METRO",
-		18: "CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_OR_STAFF",
-	}
-	CategoryType_value = map[string]int32{
-		"CATEGORY_TYPE_CATEGORY_UNKNOWN":                                   0,
-		"CATEGORY_TYPE_CATEGORY_UNDERGROUND_OR_METRO":                      1,
-		"CATEGORY_TYPE_CATEGORY_UNADVERTISED_PASSENGER":                    2,
-		"CATEGORY_TYPE_CATEGORY_PASSENGER":                                 3,
-		"CATEGORY_TYPE_CATEGORY_STAFF":                                     4,
-		"CATEGORY_TYPE_CATEGORY_MIXED":                                     5,
-		"CATEGORY_TYPE_CATEGORY_CHANNEL_TUNNEL":                            6,
-		"CATEGORY_TYPE_CATEGORY_SLEEPER":                                   7,
-		"CATEGORY_TYPE_CATEGORY_INTERNATIONAL":                             8,
-		"CATEGORY_TYPE_CATEGORY_MOTORAIL":                                  9,
-		"CATEGORY_TYPE_CATEGORY_UNADVERTISED_EXPRESS":                      10,
-		"CATEGORY_TYPE_CATEGORY_EXPRESS":                                   11,
-		"CATEGORY_TYPE_CATEGORY_SLEEPER_DOMESTIC":                          12,
-		"CATEGORY_TYPE_CATEGORY_BUS_REPLACEMENT":                           13,
-		"CATEGORY_TYPE_CATEGORY_BUS_SERVICE":                               14,
-		"CATEGORY_TYPE_CATEGORY_SHIP":                                      15,
-		"CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK":                      16,
-		"CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_UNDERGROUND_OR_METRO": 17,
-		"CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_OR_STAFF":             18,
-	}
-)
-
-func (x CategoryType) Enum() *CategoryType {
-	p := new(CategoryType)
-	*p = x
-	return p
-}
-
-func (x CategoryType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (CategoryType) Descriptor() protoreflect.EnumDescriptor {
-	return file_railtypes_proto_enumTypes[1].Descriptor()
-}
-
-func (CategoryType) Type() protoreflect.EnumType {
-	return &file_railtypes_proto_enumTypes[1]
-}
-
-func (x CategoryType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use CategoryType.Descriptor instead.
-func (CategoryType) EnumDescriptor() ([]byte, []int) {
-	return file_railtypes_proto_rawDescGZIP(), []int{1}
-}
-
 type ActivityType int32
 
 const (
@@ -311,11 +214,11 @@ func (x ActivityType) String() string {
 }
 
 func (ActivityType) Descriptor() protoreflect.EnumDescriptor {
-	return file_railtypes_proto_enumTypes[2].Descriptor()
+	return file_railtypes_proto_enumTypes[1].Descriptor()
 }
 
 func (ActivityType) Type() protoreflect.EnumType {
-	return &file_railtypes_proto_enumTypes[2]
+	return &file_railtypes_proto_enumTypes[1]
 }
 
 func (x ActivityType) Number() protoreflect.EnumNumber {
@@ -324,7 +227,159 @@ func (x ActivityType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ActivityType.Descriptor instead.
 func (ActivityType) EnumDescriptor() ([]byte, []int) {
+	return file_railtypes_proto_rawDescGZIP(), []int{1}
+}
+
+type CategoryType int32
+
+const (
+	CategoryType_CATEGORY_TYPE_CATEGORY_UNKNOWN                                   CategoryType = 0
+	CategoryType_CATEGORY_TYPE_CATEGORY_UNDERGROUND_OR_METRO                      CategoryType = 1
+	CategoryType_CATEGORY_TYPE_CATEGORY_UNADVERTISED_PASSENGER                    CategoryType = 2
+	CategoryType_CATEGORY_TYPE_CATEGORY_PASSENGER                                 CategoryType = 3
+	CategoryType_CATEGORY_TYPE_CATEGORY_STAFF                                     CategoryType = 4
+	CategoryType_CATEGORY_TYPE_CATEGORY_MIXED                                     CategoryType = 5
+	CategoryType_CATEGORY_TYPE_CATEGORY_CHANNEL_TUNNEL                            CategoryType = 6
+	CategoryType_CATEGORY_TYPE_CATEGORY_SLEEPER                                   CategoryType = 7
+	CategoryType_CATEGORY_TYPE_CATEGORY_INTERNATIONAL                             CategoryType = 8
+	CategoryType_CATEGORY_TYPE_CATEGORY_MOTORAIL                                  CategoryType = 9
+	CategoryType_CATEGORY_TYPE_CATEGORY_UNADVERTISED_EXPRESS                      CategoryType = 10
+	CategoryType_CATEGORY_TYPE_CATEGORY_EXPRESS                                   CategoryType = 11
+	CategoryType_CATEGORY_TYPE_CATEGORY_SLEEPER_DOMESTIC                          CategoryType = 12
+	CategoryType_CATEGORY_TYPE_CATEGORY_BUS_REPLACEMENT                           CategoryType = 13
+	CategoryType_CATEGORY_TYPE_CATEGORY_BUS_SERVICE                               CategoryType = 14
+	CategoryType_CATEGORY_TYPE_CATEGORY_SHIP                                      CategoryType = 15
+	CategoryType_CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK                      CategoryType = 16
+	CategoryType_CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_UNDERGROUND_OR_METRO CategoryType = 17
+	CategoryType_CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_OR_STAFF             CategoryType = 18
+)
+
+// Enum value maps for CategoryType.
+var (
+	CategoryType_name = map[int32]string{
+		0:  "CATEGORY_TYPE_CATEGORY_UNKNOWN",
+		1:  "CATEGORY_TYPE_CATEGORY_UNDERGROUND_OR_METRO",
+		2:  "CATEGORY_TYPE_CATEGORY_UNADVERTISED_PASSENGER",
+		3:  "CATEGORY_TYPE_CATEGORY_PASSENGER",
+		4:  "CATEGORY_TYPE_CATEGORY_STAFF",
+		5:  "CATEGORY_TYPE_CATEGORY_MIXED",
+		6:  "CATEGORY_TYPE_CATEGORY_CHANNEL_TUNNEL",
+		7:  "CATEGORY_TYPE_CATEGORY_SLEEPER",
+		8:  "CATEGORY_TYPE_CATEGORY_INTERNATIONAL",
+		9:  "CATEGORY_TYPE_CATEGORY_MOTORAIL",
+		10: "CATEGORY_TYPE_CATEGORY_UNADVERTISED_EXPRESS",
+		11: "CATEGORY_TYPE_CATEGORY_EXPRESS",
+		12: "CATEGORY_TYPE_CATEGORY_SLEEPER_DOMESTIC",
+		13: "CATEGORY_TYPE_CATEGORY_BUS_REPLACEMENT",
+		14: "CATEGORY_TYPE_CATEGORY_BUS_SERVICE",
+		15: "CATEGORY_TYPE_CATEGORY_SHIP",
+		16: "CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK",
+		17: "CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_UNDERGROUND_OR_METRO",
+		18: "CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_OR_STAFF",
+	}
+	CategoryType_value = map[string]int32{
+		"CATEGORY_TYPE_CATEGORY_UNKNOWN":                                   0,
+		"CATEGORY_TYPE_CATEGORY_UNDERGROUND_OR_METRO":                      1,
+		"CATEGORY_TYPE_CATEGORY_UNADVERTISED_PASSENGER":                    2,
+		"CATEGORY_TYPE_CATEGORY_PASSENGER":                                 3,
+		"CATEGORY_TYPE_CATEGORY_STAFF":                                     4,
+		"CATEGORY_TYPE_CATEGORY_MIXED":                                     5,
+		"CATEGORY_TYPE_CATEGORY_CHANNEL_TUNNEL":                            6,
+		"CATEGORY_TYPE_CATEGORY_SLEEPER":                                   7,
+		"CATEGORY_TYPE_CATEGORY_INTERNATIONAL":                             8,
+		"CATEGORY_TYPE_CATEGORY_MOTORAIL":                                  9,
+		"CATEGORY_TYPE_CATEGORY_UNADVERTISED_EXPRESS":                      10,
+		"CATEGORY_TYPE_CATEGORY_EXPRESS":                                   11,
+		"CATEGORY_TYPE_CATEGORY_SLEEPER_DOMESTIC":                          12,
+		"CATEGORY_TYPE_CATEGORY_BUS_REPLACEMENT":                           13,
+		"CATEGORY_TYPE_CATEGORY_BUS_SERVICE":                               14,
+		"CATEGORY_TYPE_CATEGORY_SHIP":                                      15,
+		"CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK":                      16,
+		"CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_UNDERGROUND_OR_METRO": 17,
+		"CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_OR_STAFF":             18,
+	}
+)
+
+func (x CategoryType) Enum() *CategoryType {
+	p := new(CategoryType)
+	*p = x
+	return p
+}
+
+func (x CategoryType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (CategoryType) Descriptor() protoreflect.EnumDescriptor {
+	return file_railtypes_proto_enumTypes[2].Descriptor()
+}
+
+func (CategoryType) Type() protoreflect.EnumType {
+	return &file_railtypes_proto_enumTypes[2]
+}
+
+func (x CategoryType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use CategoryType.Descriptor instead.
+func (CategoryType) EnumDescriptor() ([]byte, []int) {
 	return file_railtypes_proto_rawDescGZIP(), []int{2}
+}
+
+type AssociationCategory int32
+
+const (
+	AssociationCategory_ASSOCIATION_CATEGORY_UNKNOWN AssociationCategory = 0
+	AssociationCategory_ASSOCIATION_CATEGORY_JOIN    AssociationCategory = 1
+	AssociationCategory_ASSOCIATION_CATEGORY_DIVIDE  AssociationCategory = 2
+	AssociationCategory_ASSOCIATION_CATEGORY_LINK    AssociationCategory = 3
+	AssociationCategory_ASSOCIATION_CATEGORY_NEXT    AssociationCategory = 4
+)
+
+// Enum value maps for AssociationCategory.
+var (
+	AssociationCategory_name = map[int32]string{
+		0: "ASSOCIATION_CATEGORY_UNKNOWN",
+		1: "ASSOCIATION_CATEGORY_JOIN",
+		2: "ASSOCIATION_CATEGORY_DIVIDE",
+		3: "ASSOCIATION_CATEGORY_LINK",
+		4: "ASSOCIATION_CATEGORY_NEXT",
+	}
+	AssociationCategory_value = map[string]int32{
+		"ASSOCIATION_CATEGORY_UNKNOWN": 0,
+		"ASSOCIATION_CATEGORY_JOIN":    1,
+		"ASSOCIATION_CATEGORY_DIVIDE":  2,
+		"ASSOCIATION_CATEGORY_LINK":    3,
+		"ASSOCIATION_CATEGORY_NEXT":    4,
+	}
+)
+
+func (x AssociationCategory) Enum() *AssociationCategory {
+	p := new(AssociationCategory)
+	*p = x
+	return p
+}
+
+func (x AssociationCategory) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (AssociationCategory) Descriptor() protoreflect.EnumDescriptor {
+	return file_railtypes_proto_enumTypes[3].Descriptor()
+}
+
+func (AssociationCategory) Type() protoreflect.EnumType {
+	return &file_railtypes_proto_enumTypes[3]
+}
+
+func (x AssociationCategory) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use AssociationCategory.Descriptor instead.
+func (AssociationCategory) EnumDescriptor() ([]byte, []int) {
+	return file_railtypes_proto_rawDescGZIP(), []int{3}
 }
 
 var File_railtypes_proto protoreflect.FileDescriptor
@@ -339,28 +394,7 @@ const file_railtypes_proto_rawDesc = "" +
 	"\x18SERVICE_TYPE_SERVICE_BUS\x10\x03\x12/\n" +
 	"+SERVICE_TYPE_SERVICE_SHORT_TERM_PLANNED_BUS\x10\x04\x12\x1d\n" +
 	"\x19SERVICE_TYPE_SERVICE_SHIP\x10\x05\x120\n" +
-	",SERVICE_TYPE_SERVICE_SHORT_TERM_PLANNED_SHIP\x10\x06*\xc6\x06\n" +
-	"\fCategoryType\x12\"\n" +
-	"\x1eCATEGORY_TYPE_CATEGORY_UNKNOWN\x10\x00\x12/\n" +
-	"+CATEGORY_TYPE_CATEGORY_UNDERGROUND_OR_METRO\x10\x01\x121\n" +
-	"-CATEGORY_TYPE_CATEGORY_UNADVERTISED_PASSENGER\x10\x02\x12$\n" +
-	" CATEGORY_TYPE_CATEGORY_PASSENGER\x10\x03\x12 \n" +
-	"\x1cCATEGORY_TYPE_CATEGORY_STAFF\x10\x04\x12 \n" +
-	"\x1cCATEGORY_TYPE_CATEGORY_MIXED\x10\x05\x12)\n" +
-	"%CATEGORY_TYPE_CATEGORY_CHANNEL_TUNNEL\x10\x06\x12\"\n" +
-	"\x1eCATEGORY_TYPE_CATEGORY_SLEEPER\x10\a\x12(\n" +
-	"$CATEGORY_TYPE_CATEGORY_INTERNATIONAL\x10\b\x12#\n" +
-	"\x1fCATEGORY_TYPE_CATEGORY_MOTORAIL\x10\t\x12/\n" +
-	"+CATEGORY_TYPE_CATEGORY_UNADVERTISED_EXPRESS\x10\n" +
-	"\x12\"\n" +
-	"\x1eCATEGORY_TYPE_CATEGORY_EXPRESS\x10\v\x12+\n" +
-	"'CATEGORY_TYPE_CATEGORY_SLEEPER_DOMESTIC\x10\f\x12*\n" +
-	"&CATEGORY_TYPE_CATEGORY_BUS_REPLACEMENT\x10\r\x12&\n" +
-	"\"CATEGORY_TYPE_CATEGORY_BUS_SERVICE\x10\x0e\x12\x1f\n" +
-	"\x1bCATEGORY_TYPE_CATEGORY_SHIP\x10\x0f\x12/\n" +
-	"+CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK\x10\x10\x12D\n" +
-	"@CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_UNDERGROUND_OR_METRO\x10\x11\x128\n" +
-	"4CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_OR_STAFF\x10\x12*\x82\x11\n" +
+	",SERVICE_TYPE_SERVICE_SHORT_TERM_PLANNED_SHIP\x10\x06*\x82\x11\n" +
 	"\fActivityType\x12\"\n" +
 	"\x1eACTIVITY_TYPE_ACTIVITY_UNKNOWN\x10\x00\x12'\n" +
 	"#ACTIVITY_TYPE_ACTIVITY_TRAIN_BEGINS\x10\x01\x12)\n" +
@@ -398,7 +432,34 @@ const file_railtypes_proto_rawDesc = "" +
 	"@ACTIVITY_TYPE_ACTIVITY_STOPS_OR_PASSES_FOR_TABLET_STAFF_OR_TOKEN\x10 \x123\n" +
 	"/ACTIVITY_TYPE_ACTIVITY_STOPS_TO_ATTACH_VEHICLES\x10!\x128\n" +
 	"4ACTIVITY_TYPE_ACTIVITY_STOPS_FOR_WATERING_OF_COACHES\x10\"\x12P\n" +
-	"LACTIVITY_TYPE_ACTIVITY_PASSES_ANOTHER_TRAIN_AT_CROSSING_POINT_ON_SINGLE_LINE\x10#B*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"LACTIVITY_TYPE_ACTIVITY_PASSES_ANOTHER_TRAIN_AT_CROSSING_POINT_ON_SINGLE_LINE\x10#*\xc6\x06\n" +
+	"\fCategoryType\x12\"\n" +
+	"\x1eCATEGORY_TYPE_CATEGORY_UNKNOWN\x10\x00\x12/\n" +
+	"+CATEGORY_TYPE_CATEGORY_UNDERGROUND_OR_METRO\x10\x01\x121\n" +
+	"-CATEGORY_TYPE_CATEGORY_UNADVERTISED_PASSENGER\x10\x02\x12$\n" +
+	" CATEGORY_TYPE_CATEGORY_PASSENGER\x10\x03\x12 \n" +
+	"\x1cCATEGORY_TYPE_CATEGORY_STAFF\x10\x04\x12 \n" +
+	"\x1cCATEGORY_TYPE_CATEGORY_MIXED\x10\x05\x12)\n" +
+	"%CATEGORY_TYPE_CATEGORY_CHANNEL_TUNNEL\x10\x06\x12\"\n" +
+	"\x1eCATEGORY_TYPE_CATEGORY_SLEEPER\x10\a\x12(\n" +
+	"$CATEGORY_TYPE_CATEGORY_INTERNATIONAL\x10\b\x12#\n" +
+	"\x1fCATEGORY_TYPE_CATEGORY_MOTORAIL\x10\t\x12/\n" +
+	"+CATEGORY_TYPE_CATEGORY_UNADVERTISED_EXPRESS\x10\n" +
+	"\x12\"\n" +
+	"\x1eCATEGORY_TYPE_CATEGORY_EXPRESS\x10\v\x12+\n" +
+	"'CATEGORY_TYPE_CATEGORY_SLEEPER_DOMESTIC\x10\f\x12*\n" +
+	"&CATEGORY_TYPE_CATEGORY_BUS_REPLACEMENT\x10\r\x12&\n" +
+	"\"CATEGORY_TYPE_CATEGORY_BUS_SERVICE\x10\x0e\x12\x1f\n" +
+	"\x1bCATEGORY_TYPE_CATEGORY_SHIP\x10\x0f\x12/\n" +
+	"+CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK\x10\x10\x12D\n" +
+	"@CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_UNDERGROUND_OR_METRO\x10\x11\x128\n" +
+	"4CATEGORY_TYPE_CATEGORY_EMPTY_COACHING_STOCK_OR_STAFF\x10\x12*\xb5\x01\n" +
+	"\x13AssociationCategory\x12 \n" +
+	"\x1cASSOCIATION_CATEGORY_UNKNOWN\x10\x00\x12\x1d\n" +
+	"\x19ASSOCIATION_CATEGORY_JOIN\x10\x01\x12\x1f\n" +
+	"\x1bASSOCIATION_CATEGORY_DIVIDE\x10\x02\x12\x1d\n" +
+	"\x19ASSOCIATION_CATEGORY_LINK\x10\x03\x12\x1d\n" +
+	"\x19ASSOCIATION_CATEGORY_NEXT\x10\x04B*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
 	file_railtypes_proto_rawDescOnce sync.Once
@@ -412,11 +473,12 @@ func file_railtypes_proto_rawDescGZIP() []byte {
 	return file_railtypes_proto_rawDescData
 }
 
-var file_railtypes_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_railtypes_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
 var file_railtypes_proto_goTypes = []any{
-	(ServiceType)(0),  // 0: ServiceType
-	(CategoryType)(0), // 1: CategoryType
-	(ActivityType)(0), // 2: ActivityType
+	(ServiceType)(0),         // 0: ServiceType
+	(ActivityType)(0),        // 1: ActivityType
+	(CategoryType)(0),        // 2: CategoryType
+	(AssociationCategory)(0), // 3: AssociationCategory
 }
 var file_railtypes_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -436,7 +498,7 @@ func file_railtypes_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_railtypes_proto_rawDesc), len(file_railtypes_proto_rawDesc)),
-			NumEnums:      3,
+			NumEnums:      4,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   0,
