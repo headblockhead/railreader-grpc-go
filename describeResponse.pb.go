@@ -991,7 +991,6 @@ type DescribeResponse_RouteLocation_ScheduleLocation struct {
 	state                      protoimpl.MessageState                               `protogen:"open.v1"`
 	Uuid                       string                                               `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	ScheduleUuid               string                                               `protobuf:"bytes,2,opt,name=schedule_uuid,json=scheduleUuid,proto3" json:"schedule_uuid,omitempty"`
-	ScheduleOrder              uint32                                               `protobuf:"varint,3,opt,name=schedule_order,json=scheduleOrder,proto3" json:"schedule_order,omitempty"`
 	LocationId                 string                                               `protobuf:"bytes,4,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
 	Activities                 []ActivityType                                       `protobuf:"varint,5,rep,packed,name=activities,proto3,enum=ActivityType" json:"activities,omitempty"`
 	PlannedActivities          []ActivityType                                       `protobuf:"varint,6,rep,packed,name=planned_activities,json=plannedActivities,proto3,enum=ActivityType" json:"planned_activities,omitempty"`
@@ -1054,13 +1053,6 @@ func (x *DescribeResponse_RouteLocation_ScheduleLocation) GetScheduleUuid() stri
 		return x.ScheduleUuid
 	}
 	return ""
-}
-
-func (x *DescribeResponse_RouteLocation_ScheduleLocation) GetScheduleOrder() uint32 {
-	if x != nil {
-		return x.ScheduleOrder
-	}
-	return 0
 }
 
 func (x *DescribeResponse_RouteLocation_ScheduleLocation) GetLocationId() string {
@@ -1723,7 +1715,7 @@ var File_describeResponse_proto protoreflect.FileDescriptor
 
 const file_describeResponse_proto_rawDesc = "" +
 	"\n" +
-	"\x16describeResponse.proto\x1a\x0frailtypes.proto\"\x829\n" +
+	"\x16describeResponse.proto\x1a\x0frailtypes.proto\"\xe18\n" +
 	"\x10DescribeResponse\x12G\n" +
 	" requested_schedule_location_uuid\x18\x01 \x01(\tR\x1drequestedScheduleLocationUuid\x128\n" +
 	"\tschedules\x18\x02 \x03(\v2\x1a.DescribeResponse.ScheduleR\tschedules\x12;\n" +
@@ -1776,7 +1768,7 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\rtoilet_status\x18\x05 \x01(\tR\ftoiletStatusB\b\n" +
 	"\x06_classJ\x04\b\x01\x10\x02B\t\n" +
 	"\a_sourceB\x10\n" +
-	"\x0e_source_systemJ\x04\b\x01\x10\x04\x1a\xca,\n" +
+	"\x0e_source_systemJ\x04\b\x01\x10\x04\x1a\xa9,\n" +
 	"\rRouteLocation\x12C\n" +
 	"\n" +
 	"next_edges\x18\x01 \x03(\v2$.DescribeResponse.RouteLocation.EdgeR\tnextEdges\x12K\n" +
@@ -1859,11 +1851,10 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\rsource_system\x18\x04 \x01(\tH\x01R\fsourceSystem\x88\x01\x01\x12'\n" +
 	"\x0fpercentage_load\x18\x05 \x01(\rR\x0epercentageLoadB\t\n" +
 	"\a_sourceB\x10\n" +
-	"\x0e_source_systemJ\x04\b\x01\x10\x02J\x04\b\x01\x10\v\x1a\xf0\v\n" +
+	"\x0e_source_systemJ\x04\b\x01\x10\x02J\x04\b\x01\x10\v\x1a\xcf\v\n" +
 	"\x10ScheduleLocation\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12#\n" +
-	"\rschedule_uuid\x18\x02 \x01(\tR\fscheduleUuid\x12%\n" +
-	"\x0eschedule_order\x18\x03 \x01(\rR\rscheduleOrder\x12\x1f\n" +
+	"\rschedule_uuid\x18\x02 \x01(\tR\fscheduleUuid\x12\x1f\n" +
 	"\vlocation_id\x18\x04 \x01(\tR\n" +
 	"locationId\x12-\n" +
 	"\n" +
@@ -1901,7 +1892,7 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\x16_public_departure_timeB \n" +
 	"\x1e_false_destination_location_idB\x1f\n" +
 	"\x1d_location_cancellation_reasonB\x16\n" +
-	"\x14_timetabled_platform\x1a\xf6\x05\n" +
+	"\x14_timetabled_platformJ\x04\b\x03\x10\x04\x1a\xf6\x05\n" +
 	"\x0eServiceLoading\x12X\n" +
 	"\bcategory\x18\n" +
 	" \x01(\v27.DescribeResponse.RouteLocation.ServiceLoading.CategoryH\x00R\bcategory\x88\x01\x01\x12^\n" +
