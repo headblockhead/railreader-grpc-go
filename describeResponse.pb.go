@@ -82,7 +82,7 @@ func (x DescribeResponse_RouteLocation_ScheduleLocation_Type) Number() protorefl
 
 // Deprecated: Use DescribeResponse_RouteLocation_ScheduleLocation_Type.Descriptor instead.
 func (DescribeResponse_RouteLocation_ScheduleLocation_Type) EnumDescriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 3, 0}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 3, 0}
 }
 
 type DescribeResponse_RouteLocation_ServiceLoading_Type int32
@@ -131,16 +131,15 @@ func (x DescribeResponse_RouteLocation_ServiceLoading_Type) Number() protoreflec
 
 // Deprecated: Use DescribeResponse_RouteLocation_ServiceLoading_Type.Descriptor instead.
 func (DescribeResponse_RouteLocation_ServiceLoading_Type) EnumDescriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 4, 0}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 4, 0}
 }
 
 type DescribeResponse struct {
 	state                         protoimpl.MessageState            `protogen:"open.v1"`
 	RequestedScheduleLocationUuid string                            `protobuf:"bytes,1,opt,name=requested_schedule_location_uuid,json=requestedScheduleLocationUuid,proto3" json:"requested_schedule_location_uuid,omitempty"`
 	Schedules                     []*DescribeResponse_Schedule      `protobuf:"bytes,2,rep,name=schedules,proto3" json:"schedules,omitempty"`
-	Forecasts                     []*DescribeResponse_Forecast      `protobuf:"bytes,3,rep,name=forecasts,proto3" json:"forecasts,omitempty"`
-	Formations                    []*DescribeResponse_Formation     `protobuf:"bytes,4,rep,name=formations,proto3" json:"formations,omitempty"`
-	Route                         []*DescribeResponse_RouteLocation `protobuf:"bytes,5,rep,name=route,proto3" json:"route,omitempty"`
+	Formations                    []*DescribeResponse_Formation     `protobuf:"bytes,3,rep,name=formations,proto3" json:"formations,omitempty"`
+	Route                         []*DescribeResponse_RouteLocation `protobuf:"bytes,4,rep,name=route,proto3" json:"route,omitempty"`
 	unknownFields                 protoimpl.UnknownFields
 	sizeCache                     protoimpl.SizeCache
 }
@@ -185,13 +184,6 @@ func (x *DescribeResponse) GetRequestedScheduleLocationUuid() string {
 func (x *DescribeResponse) GetSchedules() []*DescribeResponse_Schedule {
 	if x != nil {
 		return x.Schedules
-	}
-	return nil
-}
-
-func (x *DescribeResponse) GetForecasts() []*DescribeResponse_Forecast {
-	if x != nil {
-		return x.Forecasts
 	}
 	return nil
 }
@@ -273,22 +265,23 @@ func (x *DisruptionReason) GetReasonIsNearLocation() bool {
 }
 
 type DescribeResponse_Schedule struct {
-	state                 protoimpl.MessageState `protogen:"open.v1"`
-	Uuid                  string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	ScheduleId            string                 `protobuf:"bytes,4,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
-	Uid                   string                 `protobuf:"bytes,5,opt,name=uid,proto3" json:"uid,omitempty"`
-	Headcode              string                 `protobuf:"bytes,8,opt,name=headcode,proto3" json:"headcode,omitempty"`
-	RetailServiceId       *string                `protobuf:"bytes,9,opt,name=retail_service_id,json=retailServiceId,proto3,oneof" json:"retail_service_id,omitempty"`
-	TocId                 string                 `protobuf:"bytes,10,opt,name=toc_id,json=tocId,proto3" json:"toc_id,omitempty"`
-	Service               ServiceType            `protobuf:"varint,11,opt,name=service,proto3,enum=ServiceType" json:"service,omitempty"`
-	Category              CategoryType           `protobuf:"varint,12,opt,name=category,proto3,enum=CategoryType" json:"category,omitempty"`
-	IsPassengerService    bool                   `protobuf:"varint,13,opt,name=is_passenger_service,json=isPassengerService,proto3" json:"is_passenger_service,omitempty"`
-	IsActive              bool                   `protobuf:"varint,14,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	IsCharter             bool                   `protobuf:"varint,16,opt,name=is_charter,json=isCharter,proto3" json:"is_charter,omitempty"`
-	IsCancelled           bool                   `protobuf:"varint,17,opt,name=is_cancelled,json=isCancelled,proto3" json:"is_cancelled,omitempty"`
-	CancellationReason    *DisruptionReason      `protobuf:"bytes,18,opt,name=cancellation_reason,json=cancellationReason,proto3,oneof" json:"cancellation_reason,omitempty"`
-	DivertedViaLocationId *string                `protobuf:"bytes,19,opt,name=diverted_via_location_id,json=divertedViaLocationId,proto3,oneof" json:"diverted_via_location_id,omitempty"`
-	DiversionReason       *DisruptionReason      `protobuf:"bytes,20,opt,name=diversion_reason,json=diversionReason,proto3,oneof" json:"diversion_reason,omitempty"`
+	state                 protoimpl.MessageState              `protogen:"open.v1"`
+	Uuid                  string                              `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	ScheduleId            string                              `protobuf:"bytes,4,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
+	Uid                   string                              `protobuf:"bytes,5,opt,name=uid,proto3" json:"uid,omitempty"`
+	Headcode              string                              `protobuf:"bytes,8,opt,name=headcode,proto3" json:"headcode,omitempty"`
+	RetailServiceId       *string                             `protobuf:"bytes,9,opt,name=retail_service_id,json=retailServiceId,proto3,oneof" json:"retail_service_id,omitempty"`
+	TocId                 string                              `protobuf:"bytes,10,opt,name=toc_id,json=tocId,proto3" json:"toc_id,omitempty"`
+	Service               ServiceType                         `protobuf:"varint,11,opt,name=service,proto3,enum=ServiceType" json:"service,omitempty"`
+	Category              CategoryType                        `protobuf:"varint,12,opt,name=category,proto3,enum=CategoryType" json:"category,omitempty"`
+	IsPassengerService    bool                                `protobuf:"varint,13,opt,name=is_passenger_service,json=isPassengerService,proto3" json:"is_passenger_service,omitempty"`
+	IsActive              bool                                `protobuf:"varint,14,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	IsCharter             bool                                `protobuf:"varint,16,opt,name=is_charter,json=isCharter,proto3" json:"is_charter,omitempty"`
+	IsCancelled           bool                                `protobuf:"varint,17,opt,name=is_cancelled,json=isCancelled,proto3" json:"is_cancelled,omitempty"`
+	CancellationReason    *DisruptionReason                   `protobuf:"bytes,18,opt,name=cancellation_reason,json=cancellationReason,proto3,oneof" json:"cancellation_reason,omitempty"`
+	DivertedViaLocationId *string                             `protobuf:"bytes,19,opt,name=diverted_via_location_id,json=divertedViaLocationId,proto3,oneof" json:"diverted_via_location_id,omitempty"`
+	DiversionReason       *DisruptionReason                   `protobuf:"bytes,20,opt,name=diversion_reason,json=diversionReason,proto3,oneof" json:"diversion_reason,omitempty"`
+	Forecast              *DescribeResponse_Schedule_Forecast `protobuf:"bytes,21,opt,name=forecast,proto3,oneof" json:"forecast,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -428,62 +421,9 @@ func (x *DescribeResponse_Schedule) GetDiversionReason() *DisruptionReason {
 	return nil
 }
 
-type DescribeResponse_Forecast struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	ScheduleUuid       string                 `protobuf:"bytes,1,opt,name=schedule_uuid,json=scheduleUuid,proto3" json:"schedule_uuid,omitempty"`
-	IsReverseFormation bool                   `protobuf:"varint,2,opt,name=is_reverse_formation,json=isReverseFormation,proto3" json:"is_reverse_formation,omitempty"`
-	LateReason         *DisruptionReason      `protobuf:"bytes,3,opt,name=late_reason,json=lateReason,proto3,oneof" json:"late_reason,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
-}
-
-func (x *DescribeResponse_Forecast) Reset() {
-	*x = DescribeResponse_Forecast{}
-	mi := &file_describeResponse_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DescribeResponse_Forecast) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DescribeResponse_Forecast) ProtoMessage() {}
-
-func (x *DescribeResponse_Forecast) ProtoReflect() protoreflect.Message {
-	mi := &file_describeResponse_proto_msgTypes[3]
+func (x *DescribeResponse_Schedule) GetForecast() *DescribeResponse_Schedule_Forecast {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DescribeResponse_Forecast.ProtoReflect.Descriptor instead.
-func (*DescribeResponse_Forecast) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 1}
-}
-
-func (x *DescribeResponse_Forecast) GetScheduleUuid() string {
-	if x != nil {
-		return x.ScheduleUuid
-	}
-	return ""
-}
-
-func (x *DescribeResponse_Forecast) GetIsReverseFormation() bool {
-	if x != nil {
-		return x.IsReverseFormation
-	}
-	return false
-}
-
-func (x *DescribeResponse_Forecast) GetLateReason() *DisruptionReason {
-	if x != nil {
-		return x.LateReason
+		return x.Forecast
 	}
 	return nil
 }
@@ -500,7 +440,7 @@ type DescribeResponse_Formation struct {
 
 func (x *DescribeResponse_Formation) Reset() {
 	*x = DescribeResponse_Formation{}
-	mi := &file_describeResponse_proto_msgTypes[4]
+	mi := &file_describeResponse_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -512,7 +452,7 @@ func (x *DescribeResponse_Formation) String() string {
 func (*DescribeResponse_Formation) ProtoMessage() {}
 
 func (x *DescribeResponse_Formation) ProtoReflect() protoreflect.Message {
-	mi := &file_describeResponse_proto_msgTypes[4]
+	mi := &file_describeResponse_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -525,7 +465,7 @@ func (x *DescribeResponse_Formation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DescribeResponse_Formation.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_Formation) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 1}
 }
 
 func (x *DescribeResponse_Formation) GetFormationId() string {
@@ -575,7 +515,7 @@ type DescribeResponse_RouteLocation struct {
 
 func (x *DescribeResponse_RouteLocation) Reset() {
 	*x = DescribeResponse_RouteLocation{}
-	mi := &file_describeResponse_proto_msgTypes[5]
+	mi := &file_describeResponse_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -587,7 +527,7 @@ func (x *DescribeResponse_RouteLocation) String() string {
 func (*DescribeResponse_RouteLocation) ProtoMessage() {}
 
 func (x *DescribeResponse_RouteLocation) ProtoReflect() protoreflect.Message {
-	mi := &file_describeResponse_proto_msgTypes[5]
+	mi := &file_describeResponse_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -600,7 +540,7 @@ func (x *DescribeResponse_RouteLocation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DescribeResponse_RouteLocation.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_RouteLocation) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2}
 }
 
 func (x *DescribeResponse_RouteLocation) GetNextEdges() []*DescribeResponse_RouteLocation_Edge {
@@ -680,6 +620,58 @@ func (x *DescribeResponse_RouteLocation) GetGenerousDepartureTime() string {
 	return ""
 }
 
+type DescribeResponse_Schedule_Forecast struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	IsReverseFormation bool                   `protobuf:"varint,4,opt,name=is_reverse_formation,json=isReverseFormation,proto3" json:"is_reverse_formation,omitempty"`
+	LateReason         *DisruptionReason      `protobuf:"bytes,5,opt,name=late_reason,json=lateReason,proto3,oneof" json:"late_reason,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *DescribeResponse_Schedule_Forecast) Reset() {
+	*x = DescribeResponse_Schedule_Forecast{}
+	mi := &file_describeResponse_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DescribeResponse_Schedule_Forecast) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DescribeResponse_Schedule_Forecast) ProtoMessage() {}
+
+func (x *DescribeResponse_Schedule_Forecast) ProtoReflect() protoreflect.Message {
+	mi := &file_describeResponse_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DescribeResponse_Schedule_Forecast.ProtoReflect.Descriptor instead.
+func (*DescribeResponse_Schedule_Forecast) Descriptor() ([]byte, []int) {
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 0, 0}
+}
+
+func (x *DescribeResponse_Schedule_Forecast) GetIsReverseFormation() bool {
+	if x != nil {
+		return x.IsReverseFormation
+	}
+	return false
+}
+
+func (x *DescribeResponse_Schedule_Forecast) GetLateReason() *DisruptionReason {
+	if x != nil {
+		return x.LateReason
+	}
+	return nil
+}
+
 type DescribeResponse_Formation_Coach struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Identifier    string                 `protobuf:"bytes,2,opt,name=identifier,proto3" json:"identifier,omitempty"`
@@ -717,7 +709,7 @@ func (x *DescribeResponse_Formation_Coach) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DescribeResponse_Formation_Coach.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_Formation_Coach) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 0}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 1, 0}
 }
 
 func (x *DescribeResponse_Formation_Coach) GetIdentifier() string {
@@ -786,7 +778,7 @@ func (x *DescribeResponse_RouteLocation_Edge) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use DescribeResponse_RouteLocation_Edge.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_RouteLocation_Edge) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 0}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 0}
 }
 
 func (x *DescribeResponse_RouteLocation_Edge) GetEdge() isDescribeResponse_RouteLocation_Edge_Edge {
@@ -874,7 +866,7 @@ func (x *DescribeResponse_RouteLocation_ForecastLocation) ProtoReflect() protore
 
 // Deprecated: Use DescribeResponse_RouteLocation_ForecastLocation.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_RouteLocation_ForecastLocation) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 1}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 1}
 }
 
 func (x *DescribeResponse_RouteLocation_ForecastLocation) GetArrival() *DescribeResponse_RouteLocation_ForecastLocation_Times {
@@ -981,7 +973,7 @@ func (x *DescribeResponse_RouteLocation_FormationLoading) ProtoReflect() protore
 
 // Deprecated: Use DescribeResponse_RouteLocation_FormationLoading.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_RouteLocation_FormationLoading) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 2}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 2}
 }
 
 func (x *DescribeResponse_RouteLocation_FormationLoading) GetCoaches() []*DescribeResponse_RouteLocation_FormationLoading_Coach {
@@ -1047,7 +1039,7 @@ func (x *DescribeResponse_RouteLocation_ScheduleLocation) ProtoReflect() protore
 
 // Deprecated: Use DescribeResponse_RouteLocation_ScheduleLocation.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_RouteLocation_ScheduleLocation) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 3}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 3}
 }
 
 func (x *DescribeResponse_RouteLocation_ScheduleLocation) GetUuid() string {
@@ -1218,7 +1210,7 @@ func (x *DescribeResponse_RouteLocation_ServiceLoading) ProtoReflect() protorefl
 
 // Deprecated: Use DescribeResponse_RouteLocation_ServiceLoading.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_RouteLocation_ServiceLoading) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 4}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 4}
 }
 
 func (x *DescribeResponse_RouteLocation_ServiceLoading) GetCategory() *DescribeResponse_RouteLocation_ServiceLoading_Category {
@@ -1269,7 +1261,7 @@ func (x *DescribeResponse_RouteLocation_Edge_Schedule) ProtoReflect() protorefle
 
 // Deprecated: Use DescribeResponse_RouteLocation_Edge_Schedule.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_RouteLocation_Edge_Schedule) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 0, 0}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 0, 0}
 }
 
 func (x *DescribeResponse_RouteLocation_Edge_Schedule) GetScheduleLocationUuid() string {
@@ -1315,7 +1307,7 @@ func (x *DescribeResponse_RouteLocation_Edge_Association) ProtoReflect() protore
 
 // Deprecated: Use DescribeResponse_RouteLocation_Edge_Association.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_RouteLocation_Edge_Association) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 0, 1}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 0, 1}
 }
 
 func (x *DescribeResponse_RouteLocation_Edge_Association) GetScheduleLocationUuid() string {
@@ -1381,7 +1373,7 @@ func (x *DescribeResponse_RouteLocation_ForecastLocation_Times) ProtoReflect() p
 
 // Deprecated: Use DescribeResponse_RouteLocation_ForecastLocation_Times.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_RouteLocation_ForecastLocation_Times) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 1, 0}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 1, 0}
 }
 
 func (x *DescribeResponse_RouteLocation_ForecastLocation_Times) GetEstimatedPublicTime() string {
@@ -1485,7 +1477,7 @@ func (x *DescribeResponse_RouteLocation_ForecastLocation_Platform) ProtoReflect(
 
 // Deprecated: Use DescribeResponse_RouteLocation_ForecastLocation_Platform.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_RouteLocation_ForecastLocation_Platform) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 1, 1}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 1, 1}
 }
 
 func (x *DescribeResponse_RouteLocation_ForecastLocation_Platform) GetIsSuppressed() bool {
@@ -1560,7 +1552,7 @@ func (x *DescribeResponse_RouteLocation_FormationLoading_Coach) ProtoReflect() p
 
 // Deprecated: Use DescribeResponse_RouteLocation_FormationLoading_Coach.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_RouteLocation_FormationLoading_Coach) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 2, 0}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 2, 0}
 }
 
 func (x *DescribeResponse_RouteLocation_FormationLoading_Coach) GetIdentifier() string {
@@ -1628,7 +1620,7 @@ func (x *DescribeResponse_RouteLocation_ServiceLoading_Category) ProtoReflect() 
 
 // Deprecated: Use DescribeResponse_RouteLocation_ServiceLoading_Category.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_RouteLocation_ServiceLoading_Category) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 4, 0}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 4, 0}
 }
 
 func (x *DescribeResponse_RouteLocation_ServiceLoading_Category) GetCode() string {
@@ -1696,7 +1688,7 @@ func (x *DescribeResponse_RouteLocation_ServiceLoading_Percentage) ProtoReflect(
 
 // Deprecated: Use DescribeResponse_RouteLocation_ServiceLoading_Percentage.ProtoReflect.Descriptor instead.
 func (*DescribeResponse_RouteLocation_ServiceLoading_Percentage) Descriptor() ([]byte, []int) {
-	return file_describeResponse_proto_rawDescGZIP(), []int{0, 3, 4, 1}
+	return file_describeResponse_proto_rawDescGZIP(), []int{0, 2, 4, 1}
 }
 
 func (x *DescribeResponse_RouteLocation_ServiceLoading_Percentage) GetPercentageLoad() uint32 {
@@ -1731,15 +1723,14 @@ var File_describeResponse_proto protoreflect.FileDescriptor
 
 const file_describeResponse_proto_rawDesc = "" +
 	"\n" +
-	"\x16describeResponse.proto\x1a\x0frailtypes.proto\"\x889\n" +
+	"\x16describeResponse.proto\x1a\x0frailtypes.proto\"\x829\n" +
 	"\x10DescribeResponse\x12G\n" +
 	" requested_schedule_location_uuid\x18\x01 \x01(\tR\x1drequestedScheduleLocationUuid\x128\n" +
-	"\tschedules\x18\x02 \x03(\v2\x1a.DescribeResponse.ScheduleR\tschedules\x128\n" +
-	"\tforecasts\x18\x03 \x03(\v2\x1a.DescribeResponse.ForecastR\tforecasts\x12;\n" +
+	"\tschedules\x18\x02 \x03(\v2\x1a.DescribeResponse.ScheduleR\tschedules\x12;\n" +
 	"\n" +
-	"formations\x18\x04 \x03(\v2\x1b.DescribeResponse.FormationR\n" +
+	"formations\x18\x03 \x03(\v2\x1b.DescribeResponse.FormationR\n" +
 	"formations\x125\n" +
-	"\x05route\x18\x05 \x03(\v2\x1f.DescribeResponse.RouteLocationR\x05route\x1a\xd5\x05\n" +
+	"\x05route\x18\x04 \x03(\v2\x1f.DescribeResponse.RouteLocationR\x05route\x1a\xb6\a\n" +
 	"\bSchedule\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1f\n" +
 	"\vschedule_id\x18\x04 \x01(\tR\n" +
@@ -1758,17 +1749,18 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\fis_cancelled\x18\x11 \x01(\bR\visCancelled\x12G\n" +
 	"\x13cancellation_reason\x18\x12 \x01(\v2\x11.DisruptionReasonH\x01R\x12cancellationReason\x88\x01\x01\x12<\n" +
 	"\x18diverted_via_location_id\x18\x13 \x01(\tH\x02R\x15divertedViaLocationId\x88\x01\x01\x12A\n" +
-	"\x10diversion_reason\x18\x14 \x01(\v2\x11.DisruptionReasonH\x03R\x0fdiversionReason\x88\x01\x01B\x14\n" +
+	"\x10diversion_reason\x18\x14 \x01(\v2\x11.DisruptionReasonH\x03R\x0fdiversionReason\x88\x01\x01\x12D\n" +
+	"\bforecast\x18\x15 \x01(\v2#.DescribeResponse.Schedule.ForecastH\x04R\bforecast\x88\x01\x01\x1a\x8b\x01\n" +
+	"\bForecast\x120\n" +
+	"\x14is_reverse_formation\x18\x04 \x01(\bR\x12isReverseFormation\x127\n" +
+	"\vlate_reason\x18\x05 \x01(\v2\x11.DisruptionReasonH\x00R\n" +
+	"lateReason\x88\x01\x01B\x0e\n" +
+	"\f_late_reasonJ\x04\b\x01\x10\x04B\x14\n" +
 	"\x12_retail_service_idB\x16\n" +
 	"\x14_cancellation_reasonB\x1b\n" +
 	"\x19_diverted_via_location_idB\x13\n" +
-	"\x11_diversion_reasonJ\x04\b\x02\x10\x04J\x04\b\x06\x10\bJ\x04\b\x0f\x10\x10\x1a\xaa\x01\n" +
-	"\bForecast\x12#\n" +
-	"\rschedule_uuid\x18\x01 \x01(\tR\fscheduleUuid\x120\n" +
-	"\x14is_reverse_formation\x18\x02 \x01(\bR\x12isReverseFormation\x127\n" +
-	"\vlate_reason\x18\x03 \x01(\v2\x11.DisruptionReasonH\x00R\n" +
-	"lateReason\x88\x01\x01B\x0e\n" +
-	"\f_late_reason\x1a\xf0\x02\n" +
+	"\x11_diversion_reasonB\v\n" +
+	"\t_forecastJ\x04\b\x02\x10\x04J\x04\b\x06\x10\bJ\x04\b\x0f\x10\x10\x1a\xf0\x02\n" +
 	"\tFormation\x12!\n" +
 	"\fformation_id\x18\x04 \x01(\tR\vformationId\x12\x1b\n" +
 	"\x06source\x18\x05 \x01(\tH\x00R\x06source\x88\x01\x01\x12(\n" +
@@ -1972,9 +1964,9 @@ var file_describeResponse_proto_goTypes = []any{
 	(*DescribeResponse)(nil),                                         // 2: DescribeResponse
 	(*DisruptionReason)(nil),                                         // 3: DisruptionReason
 	(*DescribeResponse_Schedule)(nil),                                // 4: DescribeResponse.Schedule
-	(*DescribeResponse_Forecast)(nil),                                // 5: DescribeResponse.Forecast
-	(*DescribeResponse_Formation)(nil),                               // 6: DescribeResponse.Formation
-	(*DescribeResponse_RouteLocation)(nil),                           // 7: DescribeResponse.RouteLocation
+	(*DescribeResponse_Formation)(nil),                               // 5: DescribeResponse.Formation
+	(*DescribeResponse_RouteLocation)(nil),                           // 6: DescribeResponse.RouteLocation
+	(*DescribeResponse_Schedule_Forecast)(nil),                       // 7: DescribeResponse.Schedule.Forecast
 	(*DescribeResponse_Formation_Coach)(nil),                         // 8: DescribeResponse.Formation.Coach
 	(*DescribeResponse_RouteLocation_Edge)(nil),                      // 9: DescribeResponse.RouteLocation.Edge
 	(*DescribeResponse_RouteLocation_ForecastLocation)(nil),          // 10: DescribeResponse.RouteLocation.ForecastLocation
@@ -1995,21 +1987,21 @@ var file_describeResponse_proto_goTypes = []any{
 }
 var file_describeResponse_proto_depIdxs = []int32{
 	4,  // 0: DescribeResponse.schedules:type_name -> DescribeResponse.Schedule
-	5,  // 1: DescribeResponse.forecasts:type_name -> DescribeResponse.Forecast
-	6,  // 2: DescribeResponse.formations:type_name -> DescribeResponse.Formation
-	7,  // 3: DescribeResponse.route:type_name -> DescribeResponse.RouteLocation
-	21, // 4: DescribeResponse.Schedule.service:type_name -> ServiceType
-	22, // 5: DescribeResponse.Schedule.category:type_name -> CategoryType
-	3,  // 6: DescribeResponse.Schedule.cancellation_reason:type_name -> DisruptionReason
-	3,  // 7: DescribeResponse.Schedule.diversion_reason:type_name -> DisruptionReason
-	3,  // 8: DescribeResponse.Forecast.late_reason:type_name -> DisruptionReason
-	8,  // 9: DescribeResponse.Formation.coaches:type_name -> DescribeResponse.Formation.Coach
-	9,  // 10: DescribeResponse.RouteLocation.next_edges:type_name -> DescribeResponse.RouteLocation.Edge
-	9,  // 11: DescribeResponse.RouteLocation.previous_edges:type_name -> DescribeResponse.RouteLocation.Edge
-	10, // 12: DescribeResponse.RouteLocation.forecast_location:type_name -> DescribeResponse.RouteLocation.ForecastLocation
-	11, // 13: DescribeResponse.RouteLocation.formation_loading:type_name -> DescribeResponse.RouteLocation.FormationLoading
-	12, // 14: DescribeResponse.RouteLocation.schedule_location:type_name -> DescribeResponse.RouteLocation.ScheduleLocation
-	13, // 15: DescribeResponse.RouteLocation.service_loading:type_name -> DescribeResponse.RouteLocation.ServiceLoading
+	5,  // 1: DescribeResponse.formations:type_name -> DescribeResponse.Formation
+	6,  // 2: DescribeResponse.route:type_name -> DescribeResponse.RouteLocation
+	21, // 3: DescribeResponse.Schedule.service:type_name -> ServiceType
+	22, // 4: DescribeResponse.Schedule.category:type_name -> CategoryType
+	3,  // 5: DescribeResponse.Schedule.cancellation_reason:type_name -> DisruptionReason
+	3,  // 6: DescribeResponse.Schedule.diversion_reason:type_name -> DisruptionReason
+	7,  // 7: DescribeResponse.Schedule.forecast:type_name -> DescribeResponse.Schedule.Forecast
+	8,  // 8: DescribeResponse.Formation.coaches:type_name -> DescribeResponse.Formation.Coach
+	9,  // 9: DescribeResponse.RouteLocation.next_edges:type_name -> DescribeResponse.RouteLocation.Edge
+	9,  // 10: DescribeResponse.RouteLocation.previous_edges:type_name -> DescribeResponse.RouteLocation.Edge
+	10, // 11: DescribeResponse.RouteLocation.forecast_location:type_name -> DescribeResponse.RouteLocation.ForecastLocation
+	11, // 12: DescribeResponse.RouteLocation.formation_loading:type_name -> DescribeResponse.RouteLocation.FormationLoading
+	12, // 13: DescribeResponse.RouteLocation.schedule_location:type_name -> DescribeResponse.RouteLocation.ScheduleLocation
+	13, // 14: DescribeResponse.RouteLocation.service_loading:type_name -> DescribeResponse.RouteLocation.ServiceLoading
+	3,  // 15: DescribeResponse.Schedule.Forecast.late_reason:type_name -> DisruptionReason
 	14, // 16: DescribeResponse.RouteLocation.Edge.schedule:type_name -> DescribeResponse.RouteLocation.Edge.Schedule
 	15, // 17: DescribeResponse.RouteLocation.Edge.association:type_name -> DescribeResponse.RouteLocation.Edge.Association
 	16, // 18: DescribeResponse.RouteLocation.ForecastLocation.arrival:type_name -> DescribeResponse.RouteLocation.ForecastLocation.Times
