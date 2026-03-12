@@ -832,9 +832,10 @@ type DescribeResponse_RouteLocation_ForecastLocation struct {
 	DisruptionRisk               *string                                                   `protobuf:"bytes,13,opt,name=disruption_risk,json=disruptionRisk,proto3,oneof" json:"disruption_risk,omitempty"`
 	DisruptionRiskReason         *DisruptionReason                                         `protobuf:"bytes,14,opt,name=disruption_risk_reason,json=disruptionRiskReason,proto3,oneof" json:"disruption_risk_reason,omitempty"`
 	AffectedBy                   *string                                                   `protobuf:"bytes,15,opt,name=affected_by,json=affectedBy,proto3,oneof" json:"affected_by,omitempty"`
-	ForecastPlatform             *DescribeResponse_RouteLocation_ForecastLocation_Platform `protobuf:"bytes,16,opt,name=forecast_platform,json=forecastPlatform,proto3,oneof" json:"forecast_platform,omitempty"`
-	ServiceIsSuppressedHere      bool                                                      `protobuf:"varint,17,opt,name=service_is_suppressed_here,json=serviceIsSuppressedHere,proto3" json:"service_is_suppressed_here,omitempty"`
-	ServiceDetachesFromFrontHere bool                                                      `protobuf:"varint,18,opt,name=service_detaches_from_front_here,json=serviceDetachesFromFrontHere,proto3" json:"service_detaches_from_front_here,omitempty"`
+	ForecastLength               *uint32                                                   `protobuf:"varint,16,opt,name=forecast_length,json=forecastLength,proto3,oneof" json:"forecast_length,omitempty"`
+	ForecastPlatform             *DescribeResponse_RouteLocation_ForecastLocation_Platform `protobuf:"bytes,17,opt,name=forecast_platform,json=forecastPlatform,proto3,oneof" json:"forecast_platform,omitempty"`
+	ServiceIsSuppressedHere      bool                                                      `protobuf:"varint,18,opt,name=service_is_suppressed_here,json=serviceIsSuppressedHere,proto3" json:"service_is_suppressed_here,omitempty"`
+	ServiceDetachesFromFrontHere bool                                                      `protobuf:"varint,19,opt,name=service_detaches_from_front_here,json=serviceDetachesFromFrontHere,proto3" json:"service_detaches_from_front_here,omitempty"`
 	unknownFields                protoimpl.UnknownFields
 	sizeCache                    protoimpl.SizeCache
 }
@@ -916,6 +917,13 @@ func (x *DescribeResponse_RouteLocation_ForecastLocation) GetAffectedBy() string
 		return *x.AffectedBy
 	}
 	return ""
+}
+
+func (x *DescribeResponse_RouteLocation_ForecastLocation) GetForecastLength() uint32 {
+	if x != nil && x.ForecastLength != nil {
+		return *x.ForecastLength
+	}
+	return 0
 }
 
 func (x *DescribeResponse_RouteLocation_ForecastLocation) GetForecastPlatform() *DescribeResponse_RouteLocation_ForecastLocation_Platform {
@@ -1715,7 +1723,7 @@ var File_describeResponse_proto protoreflect.FileDescriptor
 
 const file_describeResponse_proto_rawDesc = "" +
 	"\n" +
-	"\x16describeResponse.proto\x1a\x0frailtypes.proto\"\xe18\n" +
+	"\x16describeResponse.proto\x1a\x0frailtypes.proto\"\xa39\n" +
 	"\x10DescribeResponse\x12G\n" +
 	" requested_schedule_location_uuid\x18\x01 \x01(\tR\x1drequestedScheduleLocationUuid\x128\n" +
 	"\tschedules\x18\x02 \x03(\v2\x1a.DescribeResponse.ScheduleR\tschedules\x12;\n" +
@@ -1768,7 +1776,7 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\rtoilet_status\x18\x05 \x01(\tR\ftoiletStatusB\b\n" +
 	"\x06_classJ\x04\b\x01\x10\x02B\t\n" +
 	"\a_sourceB\x10\n" +
-	"\x0e_source_systemJ\x04\b\x01\x10\x04\x1a\xa9,\n" +
+	"\x0e_source_systemJ\x04\b\x01\x10\x04\x1a\xeb,\n" +
 	"\rRouteLocation\x12C\n" +
 	"\n" +
 	"next_edges\x18\x01 \x03(\v2$.DescribeResponse.RouteLocation.EdgeR\tnextEdges\x12K\n" +
@@ -1791,7 +1799,7 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\x16schedule_location_uuid\x18\x01 \x01(\tR\x14scheduleLocationUuid\x12G\n" +
 	"\x14association_category\x18\x02 \x01(\x0e2\x14.AssociationCategoryR\x13associationCategory\x12!\n" +
 	"\fis_cancelled\x18\x03 \x01(\bR\visCancelledB\x06\n" +
-	"\x04edge\x1a\xac\r\n" +
+	"\x04edge\x1a\xee\r\n" +
 	"\x10ForecastLocation\x12U\n" +
 	"\aarrival\x18\t \x01(\v26.DescribeResponse.RouteLocation.ForecastLocation.TimesH\x00R\aarrival\x88\x01\x01\x12U\n" +
 	"\apassing\x18\n" +
@@ -1802,10 +1810,11 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\x0fdisruption_risk\x18\r \x01(\tH\x04R\x0edisruptionRisk\x88\x01\x01\x12L\n" +
 	"\x16disruption_risk_reason\x18\x0e \x01(\v2\x11.DisruptionReasonH\x05R\x14disruptionRiskReason\x88\x01\x01\x12$\n" +
 	"\vaffected_by\x18\x0f \x01(\tH\x06R\n" +
-	"affectedBy\x88\x01\x01\x12k\n" +
-	"\x11forecast_platform\x18\x10 \x01(\v29.DescribeResponse.RouteLocation.ForecastLocation.PlatformH\aR\x10forecastPlatform\x88\x01\x01\x12;\n" +
-	"\x1aservice_is_suppressed_here\x18\x11 \x01(\bR\x17serviceIsSuppressedHere\x12F\n" +
-	" service_detaches_from_front_here\x18\x12 \x01(\bR\x1cserviceDetachesFromFrontHere\x1a\xe5\x04\n" +
+	"affectedBy\x88\x01\x01\x12,\n" +
+	"\x0fforecast_length\x18\x10 \x01(\rH\aR\x0eforecastLength\x88\x01\x01\x12k\n" +
+	"\x11forecast_platform\x18\x11 \x01(\v29.DescribeResponse.RouteLocation.ForecastLocation.PlatformH\bR\x10forecastPlatform\x88\x01\x01\x12;\n" +
+	"\x1aservice_is_suppressed_here\x18\x12 \x01(\bR\x17serviceIsSuppressedHere\x12F\n" +
+	" service_detaches_from_front_here\x18\x13 \x01(\bR\x1cserviceDetachesFromFrontHere\x1a\xe5\x04\n" +
 	"\x05Times\x127\n" +
 	"\x15estimated_public_time\x18\x01 \x01(\tH\x00R\x13estimatedPublicTime\x88\x01\x01\x129\n" +
 	"\x16estimated_working_time\x18\x02 \x01(\tH\x01R\x14estimatedWorkingTime\x88\x01\x01\x129\n" +
@@ -1839,7 +1848,8 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\f_late_reasonB\x12\n" +
 	"\x10_disruption_riskB\x19\n" +
 	"\x17_disruption_risk_reasonB\x0e\n" +
-	"\f_affected_byB\x14\n" +
+	"\f_affected_byB\x12\n" +
+	"\x10_forecast_lengthB\x14\n" +
 	"\x12_forecast_platformJ\x04\b\x01\x10\t\x1a\xa7\x02\n" +
 	"\x10FormationLoading\x12P\n" +
 	"\acoaches\x18\v \x03(\v26.DescribeResponse.RouteLocation.FormationLoading.CoachR\acoaches\x1a\xba\x01\n" +
