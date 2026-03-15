@@ -505,7 +505,6 @@ type DescribeResponse_RouteLocation struct {
 	FormationLoading      *DescribeResponse_RouteLocation_FormationLoading `protobuf:"bytes,5,opt,name=formation_loading,json=formationLoading,proto3,oneof" json:"formation_loading,omitempty"`
 	ScheduleLocation      *DescribeResponse_RouteLocation_ScheduleLocation `protobuf:"bytes,6,opt,name=schedule_location,json=scheduleLocation,proto3" json:"schedule_location,omitempty"`
 	ServiceLoading        *DescribeResponse_RouteLocation_ServiceLoading   `protobuf:"bytes,7,opt,name=service_loading,json=serviceLoading,proto3,oneof" json:"service_loading,omitempty"`
-	CurrentPlatform       *string                                          `protobuf:"bytes,12,opt,name=current_platform,json=currentPlatform,proto3,oneof" json:"current_platform,omitempty"`
 	GenerousArrivalTime   *string                                          `protobuf:"bytes,13,opt,name=generous_arrival_time,json=generousArrivalTime,proto3,oneof" json:"generous_arrival_time,omitempty"`
 	GenerousPassingTime   *string                                          `protobuf:"bytes,14,opt,name=generous_passing_time,json=generousPassingTime,proto3,oneof" json:"generous_passing_time,omitempty"`
 	GenerousDepartureTime *string                                          `protobuf:"bytes,15,opt,name=generous_departure_time,json=generousDepartureTime,proto3,oneof" json:"generous_departure_time,omitempty"`
@@ -590,13 +589,6 @@ func (x *DescribeResponse_RouteLocation) GetServiceLoading() *DescribeResponse_R
 		return x.ServiceLoading
 	}
 	return nil
-}
-
-func (x *DescribeResponse_RouteLocation) GetCurrentPlatform() string {
-	if x != nil && x.CurrentPlatform != nil {
-		return *x.CurrentPlatform
-	}
-	return ""
 }
 
 func (x *DescribeResponse_RouteLocation) GetGenerousArrivalTime() string {
@@ -1723,7 +1715,7 @@ var File_describeResponse_proto protoreflect.FileDescriptor
 
 const file_describeResponse_proto_rawDesc = "" +
 	"\n" +
-	"\x16describeResponse.proto\x1a\x0frailtypes.proto\"\xa39\n" +
+	"\x16describeResponse.proto\x1a\x0frailtypes.proto\"\xde8\n" +
 	"\x10DescribeResponse\x12G\n" +
 	" requested_schedule_location_uuid\x18\x01 \x01(\tR\x1drequestedScheduleLocationUuid\x128\n" +
 	"\tschedules\x18\x02 \x03(\v2\x1a.DescribeResponse.ScheduleR\tschedules\x12;\n" +
@@ -1776,7 +1768,7 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\rtoilet_status\x18\x05 \x01(\tR\ftoiletStatusB\b\n" +
 	"\x06_classJ\x04\b\x01\x10\x02B\t\n" +
 	"\a_sourceB\x10\n" +
-	"\x0e_source_systemJ\x04\b\x01\x10\x04\x1a\xeb,\n" +
+	"\x0e_source_systemJ\x04\b\x01\x10\x04\x1a\xa6,\n" +
 	"\rRouteLocation\x12C\n" +
 	"\n" +
 	"next_edges\x18\x01 \x03(\v2$.DescribeResponse.RouteLocation.EdgeR\tnextEdges\x12K\n" +
@@ -1785,11 +1777,10 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\x11forecast_location\x18\x04 \x01(\v20.DescribeResponse.RouteLocation.ForecastLocationH\x01R\x10forecastLocation\x88\x01\x01\x12b\n" +
 	"\x11formation_loading\x18\x05 \x01(\v20.DescribeResponse.RouteLocation.FormationLoadingH\x02R\x10formationLoading\x88\x01\x01\x12]\n" +
 	"\x11schedule_location\x18\x06 \x01(\v20.DescribeResponse.RouteLocation.ScheduleLocationR\x10scheduleLocation\x12\\\n" +
-	"\x0fservice_loading\x18\a \x01(\v2..DescribeResponse.RouteLocation.ServiceLoadingH\x03R\x0eserviceLoading\x88\x01\x01\x12.\n" +
-	"\x10current_platform\x18\f \x01(\tH\x04R\x0fcurrentPlatform\x88\x01\x01\x127\n" +
-	"\x15generous_arrival_time\x18\r \x01(\tH\x05R\x13generousArrivalTime\x88\x01\x01\x127\n" +
-	"\x15generous_passing_time\x18\x0e \x01(\tH\x06R\x13generousPassingTime\x88\x01\x01\x12;\n" +
-	"\x17generous_departure_time\x18\x0f \x01(\tH\aR\x15generousDepartureTime\x88\x01\x01\x1a\xa5\x03\n" +
+	"\x0fservice_loading\x18\a \x01(\v2..DescribeResponse.RouteLocation.ServiceLoadingH\x03R\x0eserviceLoading\x88\x01\x01\x127\n" +
+	"\x15generous_arrival_time\x18\r \x01(\tH\x04R\x13generousArrivalTime\x88\x01\x01\x127\n" +
+	"\x15generous_passing_time\x18\x0e \x01(\tH\x05R\x13generousPassingTime\x88\x01\x01\x12;\n" +
+	"\x17generous_departure_time\x18\x0f \x01(\tH\x06R\x15generousDepartureTime\x88\x01\x01\x1a\xa5\x03\n" +
 	"\x04Edge\x12K\n" +
 	"\bschedule\x18\x01 \x01(\v2-.DescribeResponse.RouteLocation.Edge.ScheduleH\x00R\bschedule\x12T\n" +
 	"\vassociation\x18\x02 \x01(\v20.DescribeResponse.RouteLocation.Edge.AssociationH\x00R\vassociation\x1a@\n" +
@@ -1934,11 +1925,10 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\t_via_textB\x14\n" +
 	"\x12_forecast_locationB\x14\n" +
 	"\x12_formation_loadingB\x12\n" +
-	"\x10_service_loadingB\x13\n" +
-	"\x11_current_platformB\x18\n" +
+	"\x10_service_loadingB\x18\n" +
 	"\x16_generous_arrival_timeB\x18\n" +
 	"\x16_generous_passing_timeB\x1a\n" +
-	"\x18_generous_departure_timeJ\x04\b\b\x10\f\"\xb0\x01\n" +
+	"\x18_generous_departure_timeJ\x04\b\b\x10\r\"\xb0\x01\n" +
 	"\x10DisruptionReason\x12\x1b\n" +
 	"\treason_id\x18\x01 \x01(\rR\breasonId\x121\n" +
 	"\x12reason_location_id\x18\x02 \x01(\tH\x00R\x10reasonLocationId\x88\x01\x01\x125\n" +
