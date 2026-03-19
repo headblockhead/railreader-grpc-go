@@ -717,7 +717,7 @@ type DescribeResponse_Formation_Coach struct {
 	state         protoimpl.MessageState                   `protogen:"open.v1"`
 	Identifier    string                                   `protobuf:"bytes,2,opt,name=identifier,proto3" json:"identifier,omitempty"`
 	Class         *string                                  `protobuf:"bytes,3,opt,name=class,proto3,oneof" json:"class,omitempty"`
-	Toilet        *DescribeResponse_Formation_Coach_Toilet `protobuf:"bytes,4,opt,name=toilet,proto3,oneof" json:"toilet,omitempty"`
+	ToiletData    *DescribeResponse_Formation_Coach_Toilet `protobuf:"bytes,4,opt,name=toilet_data,json=toiletData,proto3,oneof" json:"toilet_data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -766,9 +766,9 @@ func (x *DescribeResponse_Formation_Coach) GetClass() string {
 	return ""
 }
 
-func (x *DescribeResponse_Formation_Coach) GetToilet() *DescribeResponse_Formation_Coach_Toilet {
+func (x *DescribeResponse_Formation_Coach) GetToiletData() *DescribeResponse_Formation_Coach_Toilet {
 	if x != nil {
-		return x.Toilet
+		return x.ToiletData
 	}
 	return nil
 }
@@ -1808,7 +1808,7 @@ var File_describeResponse_proto protoreflect.FileDescriptor
 
 const file_describeResponse_proto_rawDesc = "" +
 	"\n" +
-	"\x16describeResponse.proto\x1a\x0frailtypes.proto\"\xa2:\n" +
+	"\x16describeResponse.proto\x1a\x0frailtypes.proto\"\xb0:\n" +
 	"\x10DescribeResponse\x12G\n" +
 	" requested_schedule_location_uuid\x18\x01 \x01(\tR\x1drequestedScheduleLocationUuid\x128\n" +
 	"\tschedules\x18\x02 \x03(\v2\x1a.DescribeResponse.ScheduleR\tschedules\x12;\n" +
@@ -1845,18 +1845,19 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\x14_cancellation_reasonB\x1b\n" +
 	"\x19_diverted_via_location_idB\x13\n" +
 	"\x11_diversion_reasonB\v\n" +
-	"\t_forecastJ\x04\b\x02\x10\x04J\x04\b\x06\x10\bJ\x04\b\x0f\x10\x10\x1a\xb4\x04\n" +
+	"\t_forecastJ\x04\b\x02\x10\x04J\x04\b\x06\x10\bJ\x04\b\x0f\x10\x10\x1a\xc2\x04\n" +
 	"\tFormation\x12!\n" +
 	"\fformation_id\x18\x04 \x01(\tR\vformationId\x12\x1b\n" +
 	"\x06source\x18\x05 \x01(\tH\x00R\x06source\x88\x01\x01\x12(\n" +
 	"\rsource_system\x18\x06 \x01(\tH\x01R\fsourceSystem\x88\x01\x01\x12;\n" +
-	"\acoaches\x18\a \x03(\v2!.DescribeResponse.Formation.CoachR\acoaches\x1a\xdc\x02\n" +
+	"\acoaches\x18\a \x03(\v2!.DescribeResponse.Formation.CoachR\acoaches\x1a\xea\x02\n" +
 	"\x05Coach\x12\x1e\n" +
 	"\n" +
 	"identifier\x18\x02 \x01(\tR\n" +
 	"identifier\x12\x19\n" +
-	"\x05class\x18\x03 \x01(\tH\x00R\x05class\x88\x01\x01\x12E\n" +
-	"\x06toilet\x18\x04 \x01(\v2(.DescribeResponse.Formation.Coach.ToiletH\x01R\x06toilet\x88\x01\x01\x1a\xb5\x01\n" +
+	"\x05class\x18\x03 \x01(\tH\x00R\x05class\x88\x01\x01\x12N\n" +
+	"\vtoilet_data\x18\x04 \x01(\v2(.DescribeResponse.Formation.Coach.ToiletH\x01R\n" +
+	"toiletData\x88\x01\x01\x1a\xb5\x01\n" +
 	"\x06Toilet\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12G\n" +
 	"\x06status\x18\x02 \x01(\x0e2/.DescribeResponse.Formation.Coach.Toilet.StatusR\x06status\"N\n" +
@@ -1864,8 +1865,8 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\x0eSTATUS_UNKNOWN\x10\x00\x12\x15\n" +
 	"\x11STATUS_IN_SERVICE\x10\x01\x12\x19\n" +
 	"\x15STATUS_NOT_IN_SERVICE\x10\x02B\b\n" +
-	"\x06_classB\t\n" +
-	"\a_toiletJ\x04\b\x01\x10\x02B\t\n" +
+	"\x06_classB\x0e\n" +
+	"\f_toilet_dataJ\x04\b\x01\x10\x02B\t\n" +
 	"\a_sourceB\x10\n" +
 	"\x0e_source_systemJ\x04\b\x01\x10\x04\x1a\xa6,\n" +
 	"\rRouteLocation\x12C\n" +
@@ -2094,7 +2095,7 @@ var file_describeResponse_proto_depIdxs = []int32{
 	14, // 13: DescribeResponse.RouteLocation.schedule_location:type_name -> DescribeResponse.RouteLocation.ScheduleLocation
 	15, // 14: DescribeResponse.RouteLocation.service_loading:type_name -> DescribeResponse.RouteLocation.ServiceLoading
 	4,  // 15: DescribeResponse.Schedule.Forecast.late_reason:type_name -> DisruptionReason
-	10, // 16: DescribeResponse.Formation.Coach.toilet:type_name -> DescribeResponse.Formation.Coach.Toilet
+	10, // 16: DescribeResponse.Formation.Coach.toilet_data:type_name -> DescribeResponse.Formation.Coach.Toilet
 	0,  // 17: DescribeResponse.Formation.Coach.Toilet.status:type_name -> DescribeResponse.Formation.Coach.Toilet.Status
 	16, // 18: DescribeResponse.RouteLocation.Edge.schedule:type_name -> DescribeResponse.RouteLocation.Edge.Schedule
 	17, // 19: DescribeResponse.RouteLocation.Edge.association:type_name -> DescribeResponse.RouteLocation.Edge.Association
