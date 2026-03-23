@@ -1095,7 +1095,7 @@ type DescribeResponse_RouteLocation_ScheduleLocation struct {
 	WorkingDepartureTime       *string                                              `protobuf:"bytes,12,opt,name=working_departure_time,json=workingDepartureTime,proto3,oneof" json:"working_departure_time,omitempty"`
 	PublicArrivalTime          *string                                              `protobuf:"bytes,13,opt,name=public_arrival_time,json=publicArrivalTime,proto3,oneof" json:"public_arrival_time,omitempty"`
 	PublicDepartureTime        *string                                              `protobuf:"bytes,14,opt,name=public_departure_time,json=publicDepartureTime,proto3,oneof" json:"public_departure_time,omitempty"`
-	RoutingDelay               uint32                                               `protobuf:"varint,15,opt,name=routing_delay,json=routingDelay,proto3" json:"routing_delay,omitempty"` // in minutes
+	RoutingDelay               int32                                                `protobuf:"varint,15,opt,name=routing_delay,json=routingDelay,proto3" json:"routing_delay,omitempty"` // in minutes
 	FalseDestinationLocationId *string                                              `protobuf:"bytes,16,opt,name=false_destination_location_id,json=falseDestinationLocationId,proto3,oneof" json:"false_destination_location_id,omitempty"`
 	IsCancelled                bool                                                 `protobuf:"varint,17,opt,name=is_cancelled,json=isCancelled,proto3" json:"is_cancelled,omitempty"`
 	LocationCancellationReason *DisruptionReason                                    `protobuf:"bytes,18,opt,name=location_cancellation_reason,json=locationCancellationReason,proto3,oneof" json:"location_cancellation_reason,omitempty"`
@@ -1225,7 +1225,7 @@ func (x *DescribeResponse_RouteLocation_ScheduleLocation) GetPublicDepartureTime
 	return ""
 }
 
-func (x *DescribeResponse_RouteLocation_ScheduleLocation) GetRoutingDelay() uint32 {
+func (x *DescribeResponse_RouteLocation_ScheduleLocation) GetRoutingDelay() int32 {
 	if x != nil {
 		return x.RoutingDelay
 	}
@@ -1971,7 +1971,7 @@ const file_describeResponse_proto_rawDesc = "" +
 	"\x16working_departure_time\x18\f \x01(\tH\x03R\x14workingDepartureTime\x88\x01\x01\x123\n" +
 	"\x13public_arrival_time\x18\r \x01(\tH\x04R\x11publicArrivalTime\x88\x01\x01\x127\n" +
 	"\x15public_departure_time\x18\x0e \x01(\tH\x05R\x13publicDepartureTime\x88\x01\x01\x12#\n" +
-	"\rrouting_delay\x18\x0f \x01(\rR\froutingDelay\x12F\n" +
+	"\rrouting_delay\x18\x0f \x01(\x05R\froutingDelay\x12F\n" +
 	"\x1dfalse_destination_location_id\x18\x10 \x01(\tH\x06R\x1afalseDestinationLocationId\x88\x01\x01\x12!\n" +
 	"\fis_cancelled\x18\x11 \x01(\bR\visCancelled\x12X\n" +
 	"\x1clocation_cancellation_reason\x18\x12 \x01(\v2\x11.DisruptionReasonH\aR\x1alocationCancellationReason\x88\x01\x01\x124\n" +
