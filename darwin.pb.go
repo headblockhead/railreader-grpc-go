@@ -652,7 +652,7 @@ func (x *FormationLoading) GetCoaches() []*FormationLoading_Coach {
 type ScheduleLocation struct {
 	state                      protoimpl.MessageState `protogen:"open.v1"`
 	ScheduleUuid               string                 `protobuf:"bytes,2,opt,name=schedule_uuid,json=scheduleUuid,proto3" json:"schedule_uuid,omitempty"`
-	ComputedId                 string                 `protobuf:"bytes,3,opt,name=computed_id,json=computedId,proto3" json:"computed_id,omitempty"`
+	ComputedId                 []byte                 `protobuf:"bytes,3,opt,name=computed_id,json=computedId,proto3" json:"computed_id,omitempty"`
 	LocationId                 string                 `protobuf:"bytes,5,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`
 	Activities                 []ActivityType         `protobuf:"varint,6,rep,packed,name=activities,proto3,enum=ActivityType" json:"activities,omitempty"`
 	PlannedActivities          []ActivityType         `protobuf:"varint,7,rep,packed,name=planned_activities,json=plannedActivities,proto3,enum=ActivityType" json:"planned_activities,omitempty"`
@@ -710,11 +710,11 @@ func (x *ScheduleLocation) GetScheduleUuid() string {
 	return ""
 }
 
-func (x *ScheduleLocation) GetComputedId() string {
+func (x *ScheduleLocation) GetComputedId() []byte {
 	if x != nil {
 		return x.ComputedId
 	}
-	return ""
+	return nil
 }
 
 func (x *ScheduleLocation) GetLocationId() string {
@@ -1560,7 +1560,7 @@ const file_darwin_proto_rawDesc = "" +
 	"\x0e_source_systemJ\x04\b\x01\x10\x02J\x04\b\x01\x10\v\"\xc3\v\n" +
 	"\x10ScheduleLocation\x12#\n" +
 	"\rschedule_uuid\x18\x02 \x01(\tR\fscheduleUuid\x12\x1f\n" +
-	"\vcomputed_id\x18\x03 \x01(\tR\n" +
+	"\vcomputed_id\x18\x03 \x01(\fR\n" +
 	"computedId\x12\x1f\n" +
 	"\vlocation_id\x18\x05 \x01(\tR\n" +
 	"locationId\x12-\n" +

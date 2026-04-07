@@ -23,7 +23,7 @@ const (
 
 type SearchResponse struct {
 	state                       protoimpl.MessageState `protogen:"open.v1"`
-	ScheduleLocationComputedIds []string               `protobuf:"bytes,1,rep,name=schedule_location_computed_ids,json=scheduleLocationComputedIds,proto3" json:"schedule_location_computed_ids,omitempty"`
+	ScheduleLocationComputedIds [][]byte               `protobuf:"bytes,1,rep,name=schedule_location_computed_ids,json=scheduleLocationComputedIds,proto3" json:"schedule_location_computed_ids,omitempty"`
 	unknownFields               protoimpl.UnknownFields
 	sizeCache                   protoimpl.SizeCache
 }
@@ -58,7 +58,7 @@ func (*SearchResponse) Descriptor() ([]byte, []int) {
 	return file_searchResponse_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *SearchResponse) GetScheduleLocationComputedIds() []string {
+func (x *SearchResponse) GetScheduleLocationComputedIds() [][]byte {
 	if x != nil {
 		return x.ScheduleLocationComputedIds
 	}
@@ -71,7 +71,7 @@ const file_searchResponse_proto_rawDesc = "" +
 	"\n" +
 	"\x14searchResponse.proto\"U\n" +
 	"\x0eSearchResponse\x12C\n" +
-	"\x1eschedule_location_computed_ids\x18\x01 \x03(\tR\x1bscheduleLocationComputedIdsB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x1eschedule_location_computed_ids\x18\x01 \x03(\fR\x1bscheduleLocationComputedIdsB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
 	file_searchResponse_proto_rawDescOnce sync.Once

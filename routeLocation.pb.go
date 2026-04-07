@@ -221,7 +221,7 @@ func (*RouteLocation_Edge_Association_) isRouteLocation_Edge_Edge() {}
 
 type RouteLocation_Edge_Schedule struct {
 	state                      protoimpl.MessageState `protogen:"open.v1"`
-	ScheduleLocationComputedId string                 `protobuf:"bytes,1,opt,name=schedule_location_computed_id,json=scheduleLocationComputedId,proto3" json:"schedule_location_computed_id,omitempty"`
+	ScheduleLocationComputedId []byte                 `protobuf:"bytes,1,opt,name=schedule_location_computed_id,json=scheduleLocationComputedId,proto3" json:"schedule_location_computed_id,omitempty"`
 	unknownFields              protoimpl.UnknownFields
 	sizeCache                  protoimpl.SizeCache
 }
@@ -256,16 +256,16 @@ func (*RouteLocation_Edge_Schedule) Descriptor() ([]byte, []int) {
 	return file_routeLocation_proto_rawDescGZIP(), []int{0, 0, 0}
 }
 
-func (x *RouteLocation_Edge_Schedule) GetScheduleLocationComputedId() string {
+func (x *RouteLocation_Edge_Schedule) GetScheduleLocationComputedId() []byte {
 	if x != nil {
 		return x.ScheduleLocationComputedId
 	}
-	return ""
+	return nil
 }
 
 type RouteLocation_Edge_Association struct {
 	state                      protoimpl.MessageState `protogen:"open.v1"`
-	ScheduleLocationComputedId string                 `protobuf:"bytes,1,opt,name=schedule_location_computed_id,json=scheduleLocationComputedId,proto3" json:"schedule_location_computed_id,omitempty"`
+	ScheduleLocationComputedId []byte                 `protobuf:"bytes,1,opt,name=schedule_location_computed_id,json=scheduleLocationComputedId,proto3" json:"schedule_location_computed_id,omitempty"`
 	AssociationCategory        AssociationCategory    `protobuf:"varint,2,opt,name=association_category,json=associationCategory,proto3,enum=AssociationCategory" json:"association_category,omitempty"`
 	IsCancelled                bool                   `protobuf:"varint,3,opt,name=is_cancelled,json=isCancelled,proto3" json:"is_cancelled,omitempty"`
 	unknownFields              protoimpl.UnknownFields
@@ -302,11 +302,11 @@ func (*RouteLocation_Edge_Association) Descriptor() ([]byte, []int) {
 	return file_routeLocation_proto_rawDescGZIP(), []int{0, 0, 1}
 }
 
-func (x *RouteLocation_Edge_Association) GetScheduleLocationComputedId() string {
+func (x *RouteLocation_Edge_Association) GetScheduleLocationComputedId() []byte {
 	if x != nil {
 		return x.ScheduleLocationComputedId
 	}
-	return ""
+	return nil
 }
 
 func (x *RouteLocation_Edge_Association) GetAssociationCategory() AssociationCategory {
@@ -344,9 +344,9 @@ const file_routeLocation_proto_rawDesc = "" +
 	"\bschedule\x18\x01 \x01(\v2\x1c.RouteLocation.Edge.ScheduleH\x00R\bschedule\x12C\n" +
 	"\vassociation\x18\x02 \x01(\v2\x1f.RouteLocation.Edge.AssociationH\x00R\vassociation\x1aM\n" +
 	"\bSchedule\x12A\n" +
-	"\x1dschedule_location_computed_id\x18\x01 \x01(\tR\x1ascheduleLocationComputedId\x1a\xbc\x01\n" +
+	"\x1dschedule_location_computed_id\x18\x01 \x01(\fR\x1ascheduleLocationComputedId\x1a\xbc\x01\n" +
 	"\vAssociation\x12A\n" +
-	"\x1dschedule_location_computed_id\x18\x01 \x01(\tR\x1ascheduleLocationComputedId\x12G\n" +
+	"\x1dschedule_location_computed_id\x18\x01 \x01(\fR\x1ascheduleLocationComputedId\x12G\n" +
 	"\x14association_category\x18\x02 \x01(\x0e2\x14.AssociationCategoryR\x13associationCategory\x12!\n" +
 	"\fis_cancelled\x18\x03 \x01(\bR\visCancelledB\x06\n" +
 	"\x04edgeB\v\n" +
