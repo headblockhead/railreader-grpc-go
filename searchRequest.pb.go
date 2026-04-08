@@ -82,7 +82,8 @@ type SearchRequest struct {
 	ExcludeNonActiveServices    bool                   `protobuf:"varint,6,opt,name=exclude_non_active_services,json=excludeNonActiveServices,proto3" json:"exclude_non_active_services,omitempty"`          // If true, only active services will be included. If false or unspecified, all services will be included. A service being "inactive" indicates that it is unlikely to recieve any future data updates (altough this is not a guarentee), and/or that the train is not expected to run.
 	IncludeCharteredServices    bool                   `protobuf:"varint,7,opt,name=include_chartered_services,json=includeCharteredServices,proto3" json:"include_chartered_services,omitempty"`            // If true, all services will be included. If false or unspecified, only non-chartered services will be included.
 	Type                        *SearchRequest_Type    `protobuf:"varint,8,opt,name=type,proto3,enum=SearchRequest_Type,oneof" json:"type,omitempty"`                                                        // If specified, only services that arrival/pass/depart the location will be included. If unspecified, all services will be included
-	MustVisitTiplocs            []string               `protobuf:"bytes,9,rep,name=must_visit_tiplocs,json=mustVisitTiplocs,proto3" json:"must_visit_tiplocs,omitempty"`                                     // If any are specified, only services that include all of these TIPLOCs in their route will be returned. If unspecified, all services will be included.
+	MustStopAtPassengerTiplocs  []string               `protobuf:"bytes,9,rep,name=must_stop_at_passenger_tiplocs,json=mustStopAtPassengerTiplocs,proto3" json:"must_stop_at_passenger_tiplocs,omitempty"`   // If any are specified, only services that have a passenger stop at all of these TIPLOCs in their route (onward if type=DEPARTURES OR type=PASSING, backward if type=ARRIVALS, both directions otherwise) will be returned. If unspecified, all services will be included.
+	MustVisitTiplocs            []string               `protobuf:"bytes,10,rep,name=must_visit_tiplocs,json=mustVisitTiplocs,proto3" json:"must_visit_tiplocs,omitempty"`                                    // If any are specified, only services that visit all of these TIPLOCs in their route (onward if type=DEPARTURES OR type=PASSING, backward if type=ARRIVALS, both directions otherwise) will be returned. If unspecified, all services will be included.
 	unknownFields               protoimpl.UnknownFields
 	sizeCache                   protoimpl.SizeCache
 }
@@ -166,6 +167,13 @@ func (x *SearchRequest) GetType() SearchRequest_Type {
 	return SearchRequest_TYPE_UNKNOWN
 }
 
+func (x *SearchRequest) GetMustStopAtPassengerTiplocs() []string {
+	if x != nil {
+		return x.MustStopAtPassengerTiplocs
+	}
+	return nil
+}
+
 func (x *SearchRequest) GetMustVisitTiplocs() []string {
 	if x != nil {
 		return x.MustVisitTiplocs
@@ -177,7 +185,7 @@ var File_searchRequest_proto protoreflect.FileDescriptor
 
 const file_searchRequest_proto_rawDesc = "" +
 	"\n" +
-	"\x13searchRequest.proto\"\xde\x03\n" +
+	"\x13searchRequest.proto\"\xa2\x04\n" +
 	"\rSearchRequest\x12\x16\n" +
 	"\x06tiploc\x18\x01 \x01(\tR\x06tiploc\x12\x1b\n" +
 	"\tfrom_time\x18\x03 \x01(\tR\bfromTime\x12\x17\n" +
@@ -185,8 +193,10 @@ const file_searchRequest_proto_rawDesc = "" +
 	"\x1einclude_non_passenger_services\x18\x05 \x01(\bR\x1bincludeNonPassengerServices\x12=\n" +
 	"\x1bexclude_non_active_services\x18\x06 \x01(\bR\x18excludeNonActiveServices\x12<\n" +
 	"\x1ainclude_chartered_services\x18\a \x01(\bR\x18includeCharteredServices\x12,\n" +
-	"\x04type\x18\b \x01(\x0e2\x13.SearchRequest.TypeH\x00R\x04type\x88\x01\x01\x12,\n" +
-	"\x12must_visit_tiplocs\x18\t \x03(\tR\x10mustVisitTiplocs\"R\n" +
+	"\x04type\x18\b \x01(\x0e2\x13.SearchRequest.TypeH\x00R\x04type\x88\x01\x01\x12B\n" +
+	"\x1emust_stop_at_passenger_tiplocs\x18\t \x03(\tR\x1amustStopAtPassengerTiplocs\x12,\n" +
+	"\x12must_visit_tiplocs\x18\n" +
+	" \x03(\tR\x10mustVisitTiplocs\"R\n" +
 	"\x04Type\x12\x10\n" +
 	"\fTYPE_UNKNOWN\x10\x00\x12\x11\n" +
 	"\rTYPE_ARRIVALS\x10\x01\x12\x10\n" +
