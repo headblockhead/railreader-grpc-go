@@ -22,13 +22,15 @@ const (
 )
 
 type DescribeResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Request       *DescribeRequest       `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
-	Schedules     []*Schedule            `protobuf:"bytes,2,rep,name=schedules,proto3" json:"schedules,omitempty"`
-	Formations    []*Formation           `protobuf:"bytes,3,rep,name=formations,proto3" json:"formations,omitempty"`
-	Route         []*RouteLocation       `protobuf:"bytes,4,rep,name=route,proto3" json:"route,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"open.v1"`
+	Request                *DescribeRequest       `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
+	Schedules              []*Schedule            `protobuf:"bytes,2,rep,name=schedules,proto3" json:"schedules,omitempty"`
+	Formations             []*Formation           `protobuf:"bytes,3,rep,name=formations,proto3" json:"formations,omitempty"`
+	Route                  []*RouteLocation       `protobuf:"bytes,4,rep,name=route,proto3" json:"route,omitempty"`
+	OriginComputedIds      [][]byte               `protobuf:"bytes,5,rep,name=origin_computed_ids,json=originComputedIds,proto3" json:"origin_computed_ids,omitempty"`
+	DestinationComputedIds [][]byte               `protobuf:"bytes,6,rep,name=destination_computed_ids,json=destinationComputedIds,proto3" json:"destination_computed_ids,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *DescribeResponse) Reset() {
@@ -89,11 +91,25 @@ func (x *DescribeResponse) GetRoute() []*RouteLocation {
 	return nil
 }
 
+func (x *DescribeResponse) GetOriginComputedIds() [][]byte {
+	if x != nil {
+		return x.OriginComputedIds
+	}
+	return nil
+}
+
+func (x *DescribeResponse) GetDestinationComputedIds() [][]byte {
+	if x != nil {
+		return x.DestinationComputedIds
+	}
+	return nil
+}
+
 var File_describeResponse_proto protoreflect.FileDescriptor
 
 const file_describeResponse_proto_rawDesc = "" +
 	"\n" +
-	"\x16describeResponse.proto\x1a\x15describeRequest.proto\x1a\fdarwin.proto\x1a\x13routeLocation.proto\"\xb9\x01\n" +
+	"\x16describeResponse.proto\x1a\x15describeRequest.proto\x1a\fdarwin.proto\x1a\x13routeLocation.proto\"\xa3\x02\n" +
 	"\x10DescribeResponse\x12*\n" +
 	"\arequest\x18\x01 \x01(\v2\x10.DescribeRequestR\arequest\x12'\n" +
 	"\tschedules\x18\x02 \x03(\v2\t.ScheduleR\tschedules\x12*\n" +
@@ -101,7 +117,9 @@ const file_describeResponse_proto_rawDesc = "" +
 	"formations\x18\x03 \x03(\v2\n" +
 	".FormationR\n" +
 	"formations\x12$\n" +
-	"\x05route\x18\x04 \x03(\v2\x0e.RouteLocationR\x05routeB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x05route\x18\x04 \x03(\v2\x0e.RouteLocationR\x05route\x12.\n" +
+	"\x13origin_computed_ids\x18\x05 \x03(\fR\x11originComputedIds\x128\n" +
+	"\x18destination_computed_ids\x18\x06 \x03(\fR\x16destinationComputedIdsB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
 	file_describeResponse_proto_rawDescOnce sync.Once
