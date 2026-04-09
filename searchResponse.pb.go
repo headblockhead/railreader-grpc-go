@@ -154,7 +154,7 @@ type SearchResponse_ServiceOverview struct {
 	state                             protoimpl.MessageState `protogen:"open.v1"`
 	RouteLocation                     *RouteLocation         `protobuf:"bytes,1,opt,name=route_location,json=routeLocation,proto3" json:"route_location,omitempty"`                                                                     // The entry in the service's route that matches the "at" location in the request.
 	Schedule                          *Schedule              `protobuf:"bytes,2,opt,name=schedule,proto3" json:"schedule,omitempty"`                                                                                                    // The schedule data for the route location.
-	Formation                         *Formation             `protobuf:"bytes,3,opt,name=formation,proto3" json:"formation,omitempty"`                                                                                                  // The formation data for the route location.
+	Formation                         *Formation             `protobuf:"bytes,3,opt,name=formation,proto3,oneof" json:"formation,omitempty"`                                                                                            // The formation data for the route location.
 	OriginRouteLocations              []*RouteLocation       `protobuf:"bytes,4,rep,name=origin_route_locations,json=originRouteLocations,proto3" json:"origin_route_locations,omitempty"`                                              // The route location(s) that the service has as origins. Multiple origins may be provided when two schedules have joined previously in the service's route.
 	DestinationRouteLocations         []*RouteLocation       `protobuf:"bytes,5,rep,name=destination_route_locations,json=destinationRouteLocations,proto3" json:"destination_route_locations,omitempty"`                               // The route location(s) that the service has as destinations. Multiple destinations may be provided when a schedule will divide later in the service's route.
 	MustStopAtPassengerRouteLocations []*RouteLocation       `protobuf:"bytes,6,rep,name=must_stop_at_passenger_route_locations,json=mustStopAtPassengerRouteLocations,proto3" json:"must_stop_at_passenger_route_locations,omitempty"` // The route locations(s) in the service matching the "must_stop_at_passenger_location_ids" set in the request (if any) are given here.
@@ -246,21 +246,23 @@ var File_searchResponse_proto protoreflect.FileDescriptor
 
 const file_searchResponse_proto_rawDesc = "" +
 	"\n" +
-	"\x14searchResponse.proto\x1a\fdarwin.proto\x1a\x13routeLocation.proto\"\xbc\x05\n" +
+	"\x14searchResponse.proto\x1a\fdarwin.proto\x1a\x13routeLocation.proto\"\xcf\x05\n" +
 	"\x0eSearchResponse\x126\n" +
 	"\bmetadata\x18\x01 \x01(\v2\x18.SearchResponse.MetadataH\x00R\bmetadata\x12L\n" +
 	"\x10service_overview\x18\x02 \x01(\v2\x1f.SearchResponse.ServiceOverviewH\x00R\x0fserviceOverview\x1a6\n" +
 	"\bMetadata\x12*\n" +
-	"\x11number_of_results\x18\x01 \x01(\rR\x0fnumberOfResults\x1a\xdf\x03\n" +
+	"\x11number_of_results\x18\x01 \x01(\rR\x0fnumberOfResults\x1a\xf2\x03\n" +
 	"\x0fServiceOverview\x125\n" +
 	"\x0eroute_location\x18\x01 \x01(\v2\x0e.RouteLocationR\rrouteLocation\x12%\n" +
-	"\bschedule\x18\x02 \x01(\v2\t.ScheduleR\bschedule\x12(\n" +
+	"\bschedule\x18\x02 \x01(\v2\t.ScheduleR\bschedule\x12-\n" +
 	"\tformation\x18\x03 \x01(\v2\n" +
-	".FormationR\tformation\x12D\n" +
+	".FormationH\x00R\tformation\x88\x01\x01\x12D\n" +
 	"\x16origin_route_locations\x18\x04 \x03(\v2\x0e.RouteLocationR\x14originRouteLocations\x12N\n" +
 	"\x1bdestination_route_locations\x18\x05 \x03(\v2\x0e.RouteLocationR\x19destinationRouteLocations\x12a\n" +
 	"&must_stop_at_passenger_route_locations\x18\x06 \x03(\v2\x0e.RouteLocationR!mustStopAtPassengerRouteLocations\x12K\n" +
-	"\x1amust_visit_route_locations\x18\a \x03(\v2\x0e.RouteLocationR\x17mustVisitRouteLocationsB\n" +
+	"\x1amust_visit_route_locations\x18\a \x03(\v2\x0e.RouteLocationR\x17mustVisitRouteLocationsB\f\n" +
+	"\n" +
+	"_formationB\n" +
 	"\n" +
 	"\bresponseB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
@@ -313,6 +315,7 @@ func file_searchResponse_proto_init() {
 		(*SearchResponse_Metadata_)(nil),
 		(*SearchResponse_ServiceOverview_)(nil),
 	}
+	file_searchResponse_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
