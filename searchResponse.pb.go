@@ -159,6 +159,9 @@ type SearchResponse_ServiceOverview struct {
 	DestinationRouteLocations         []*RouteLocation       `protobuf:"bytes,5,rep,name=destination_route_locations,json=destinationRouteLocations,proto3" json:"destination_route_locations,omitempty"`                               // The route location(s) that the service has as destinations. Multiple destinations may be provided when a schedule will divide later in the service's route.
 	MustStopAtPassengerRouteLocations []*RouteLocation       `protobuf:"bytes,6,rep,name=must_stop_at_passenger_route_locations,json=mustStopAtPassengerRouteLocations,proto3" json:"must_stop_at_passenger_route_locations,omitempty"` // The route locations(s) in the service matching the "must_stop_at_passenger_location_ids" set in the request (if any) are given here.
 	MustVisitRouteLocations           []*RouteLocation       `protobuf:"bytes,7,rep,name=must_visit_route_locations,json=mustVisitRouteLocations,proto3" json:"must_visit_route_locations,omitempty"`                                   // The route location(s) in the service matching the "must_visit_location_ids" set in the request (if any) are given here.
+	Arrival                           bool                   `protobuf:"varint,8,opt,name=arrival,proto3" json:"arrival,omitempty"`
+	Passing                           bool                   `protobuf:"varint,9,opt,name=passing,proto3" json:"passing,omitempty"`
+	Departure                         bool                   `protobuf:"varint,10,opt,name=departure,proto3" json:"departure,omitempty"`
 	unknownFields                     protoimpl.UnknownFields
 	sizeCache                         protoimpl.SizeCache
 }
@@ -242,16 +245,37 @@ func (x *SearchResponse_ServiceOverview) GetMustVisitRouteLocations() []*RouteLo
 	return nil
 }
 
+func (x *SearchResponse_ServiceOverview) GetArrival() bool {
+	if x != nil {
+		return x.Arrival
+	}
+	return false
+}
+
+func (x *SearchResponse_ServiceOverview) GetPassing() bool {
+	if x != nil {
+		return x.Passing
+	}
+	return false
+}
+
+func (x *SearchResponse_ServiceOverview) GetDeparture() bool {
+	if x != nil {
+		return x.Departure
+	}
+	return false
+}
+
 var File_searchResponse_proto protoreflect.FileDescriptor
 
 const file_searchResponse_proto_rawDesc = "" +
 	"\n" +
-	"\x14searchResponse.proto\x1a\fdarwin.proto\x1a\x13routeLocation.proto\"\xcf\x05\n" +
+	"\x14searchResponse.proto\x1a\fdarwin.proto\x1a\x13routeLocation.proto\"\xa1\x06\n" +
 	"\x0eSearchResponse\x126\n" +
 	"\bmetadata\x18\x01 \x01(\v2\x18.SearchResponse.MetadataH\x00R\bmetadata\x12L\n" +
 	"\x10service_overview\x18\x02 \x01(\v2\x1f.SearchResponse.ServiceOverviewH\x00R\x0fserviceOverview\x1a6\n" +
 	"\bMetadata\x12*\n" +
-	"\x11number_of_results\x18\x01 \x01(\rR\x0fnumberOfResults\x1a\xf2\x03\n" +
+	"\x11number_of_results\x18\x01 \x01(\rR\x0fnumberOfResults\x1a\xc4\x04\n" +
 	"\x0fServiceOverview\x125\n" +
 	"\x0eroute_location\x18\x01 \x01(\v2\x0e.RouteLocationR\rrouteLocation\x12%\n" +
 	"\bschedule\x18\x02 \x01(\v2\t.ScheduleR\bschedule\x12-\n" +
@@ -260,7 +284,11 @@ const file_searchResponse_proto_rawDesc = "" +
 	"\x16origin_route_locations\x18\x04 \x03(\v2\x0e.RouteLocationR\x14originRouteLocations\x12N\n" +
 	"\x1bdestination_route_locations\x18\x05 \x03(\v2\x0e.RouteLocationR\x19destinationRouteLocations\x12a\n" +
 	"&must_stop_at_passenger_route_locations\x18\x06 \x03(\v2\x0e.RouteLocationR!mustStopAtPassengerRouteLocations\x12K\n" +
-	"\x1amust_visit_route_locations\x18\a \x03(\v2\x0e.RouteLocationR\x17mustVisitRouteLocationsB\f\n" +
+	"\x1amust_visit_route_locations\x18\a \x03(\v2\x0e.RouteLocationR\x17mustVisitRouteLocations\x12\x18\n" +
+	"\aarrival\x18\b \x01(\bR\aarrival\x12\x18\n" +
+	"\apassing\x18\t \x01(\bR\apassing\x12\x1c\n" +
+	"\tdeparture\x18\n" +
+	" \x01(\bR\tdepartureB\f\n" +
 	"\n" +
 	"_formationB\n" +
 	"\n" +
