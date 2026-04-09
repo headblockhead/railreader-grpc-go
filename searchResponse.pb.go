@@ -154,10 +154,11 @@ type SearchResponse_ServiceOverview struct {
 	state                             protoimpl.MessageState `protogen:"open.v1"`
 	RouteLocation                     *RouteLocation         `protobuf:"bytes,1,opt,name=route_location,json=routeLocation,proto3" json:"route_location,omitempty"`                                                                     // The entry in the service's route that matches the "at" location in the request.
 	Schedule                          *Schedule              `protobuf:"bytes,2,opt,name=schedule,proto3" json:"schedule,omitempty"`                                                                                                    // The schedule data for the route location.
-	OriginRouteLocations              []*RouteLocation       `protobuf:"bytes,3,rep,name=origin_route_locations,json=originRouteLocations,proto3" json:"origin_route_locations,omitempty"`                                              // The route location(s) that the service has as origins. Multiple origins may be provided when two schedules have joined previously in the service's route.
-	DestinationRouteLocations         []*RouteLocation       `protobuf:"bytes,4,rep,name=destination_route_locations,json=destinationRouteLocations,proto3" json:"destination_route_locations,omitempty"`                               // The route location(s) that the service has as destinations. Multiple destinations may be provided when a schedule will divide later in the service's route.
-	MustStopAtPassengerRouteLocations []*RouteLocation       `protobuf:"bytes,5,rep,name=must_stop_at_passenger_route_locations,json=mustStopAtPassengerRouteLocations,proto3" json:"must_stop_at_passenger_route_locations,omitempty"` // The route locations(s) in the service matching the "must_stop_at_passenger_location_ids" set in the request (if any) are given here.
-	MustVisitRouteLocations           []*RouteLocation       `protobuf:"bytes,6,rep,name=must_visit_route_locations,json=mustVisitRouteLocations,proto3" json:"must_visit_route_locations,omitempty"`                                   // The route location(s) in the service matching the "must_visit_location_ids" set in the request (if any) are given here.
+	Formation                         *Formation             `protobuf:"bytes,3,opt,name=formation,proto3" json:"formation,omitempty"`                                                                                                  // The formation data for the route location.
+	OriginRouteLocations              []*RouteLocation       `protobuf:"bytes,4,rep,name=origin_route_locations,json=originRouteLocations,proto3" json:"origin_route_locations,omitempty"`                                              // The route location(s) that the service has as origins. Multiple origins may be provided when two schedules have joined previously in the service's route.
+	DestinationRouteLocations         []*RouteLocation       `protobuf:"bytes,5,rep,name=destination_route_locations,json=destinationRouteLocations,proto3" json:"destination_route_locations,omitempty"`                               // The route location(s) that the service has as destinations. Multiple destinations may be provided when a schedule will divide later in the service's route.
+	MustStopAtPassengerRouteLocations []*RouteLocation       `protobuf:"bytes,6,rep,name=must_stop_at_passenger_route_locations,json=mustStopAtPassengerRouteLocations,proto3" json:"must_stop_at_passenger_route_locations,omitempty"` // The route locations(s) in the service matching the "must_stop_at_passenger_location_ids" set in the request (if any) are given here.
+	MustVisitRouteLocations           []*RouteLocation       `protobuf:"bytes,7,rep,name=must_visit_route_locations,json=mustVisitRouteLocations,proto3" json:"must_visit_route_locations,omitempty"`                                   // The route location(s) in the service matching the "must_visit_location_ids" set in the request (if any) are given here.
 	unknownFields                     protoimpl.UnknownFields
 	sizeCache                         protoimpl.SizeCache
 }
@@ -206,6 +207,13 @@ func (x *SearchResponse_ServiceOverview) GetSchedule() *Schedule {
 	return nil
 }
 
+func (x *SearchResponse_ServiceOverview) GetFormation() *Formation {
+	if x != nil {
+		return x.Formation
+	}
+	return nil
+}
+
 func (x *SearchResponse_ServiceOverview) GetOriginRouteLocations() []*RouteLocation {
 	if x != nil {
 		return x.OriginRouteLocations
@@ -238,19 +246,21 @@ var File_searchResponse_proto protoreflect.FileDescriptor
 
 const file_searchResponse_proto_rawDesc = "" +
 	"\n" +
-	"\x14searchResponse.proto\x1a\fdarwin.proto\x1a\x13routeLocation.proto\"\x92\x05\n" +
+	"\x14searchResponse.proto\x1a\fdarwin.proto\x1a\x13routeLocation.proto\"\xbc\x05\n" +
 	"\x0eSearchResponse\x126\n" +
 	"\bmetadata\x18\x01 \x01(\v2\x18.SearchResponse.MetadataH\x00R\bmetadata\x12L\n" +
 	"\x10service_overview\x18\x02 \x01(\v2\x1f.SearchResponse.ServiceOverviewH\x00R\x0fserviceOverview\x1a6\n" +
 	"\bMetadata\x12*\n" +
-	"\x11number_of_results\x18\x01 \x01(\rR\x0fnumberOfResults\x1a\xb5\x03\n" +
+	"\x11number_of_results\x18\x01 \x01(\rR\x0fnumberOfResults\x1a\xdf\x03\n" +
 	"\x0fServiceOverview\x125\n" +
 	"\x0eroute_location\x18\x01 \x01(\v2\x0e.RouteLocationR\rrouteLocation\x12%\n" +
-	"\bschedule\x18\x02 \x01(\v2\t.ScheduleR\bschedule\x12D\n" +
-	"\x16origin_route_locations\x18\x03 \x03(\v2\x0e.RouteLocationR\x14originRouteLocations\x12N\n" +
-	"\x1bdestination_route_locations\x18\x04 \x03(\v2\x0e.RouteLocationR\x19destinationRouteLocations\x12a\n" +
-	"&must_stop_at_passenger_route_locations\x18\x05 \x03(\v2\x0e.RouteLocationR!mustStopAtPassengerRouteLocations\x12K\n" +
-	"\x1amust_visit_route_locations\x18\x06 \x03(\v2\x0e.RouteLocationR\x17mustVisitRouteLocationsB\n" +
+	"\bschedule\x18\x02 \x01(\v2\t.ScheduleR\bschedule\x12(\n" +
+	"\tformation\x18\x03 \x01(\v2\n" +
+	".FormationR\tformation\x12D\n" +
+	"\x16origin_route_locations\x18\x04 \x03(\v2\x0e.RouteLocationR\x14originRouteLocations\x12N\n" +
+	"\x1bdestination_route_locations\x18\x05 \x03(\v2\x0e.RouteLocationR\x19destinationRouteLocations\x12a\n" +
+	"&must_stop_at_passenger_route_locations\x18\x06 \x03(\v2\x0e.RouteLocationR!mustStopAtPassengerRouteLocations\x12K\n" +
+	"\x1amust_visit_route_locations\x18\a \x03(\v2\x0e.RouteLocationR\x17mustVisitRouteLocationsB\n" +
 	"\n" +
 	"\bresponseB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
@@ -273,21 +283,23 @@ var file_searchResponse_proto_goTypes = []any{
 	(*SearchResponse_ServiceOverview)(nil), // 2: SearchResponse.ServiceOverview
 	(*RouteLocation)(nil),                  // 3: RouteLocation
 	(*Schedule)(nil),                       // 4: Schedule
+	(*Formation)(nil),                      // 5: Formation
 }
 var file_searchResponse_proto_depIdxs = []int32{
 	1, // 0: SearchResponse.metadata:type_name -> SearchResponse.Metadata
 	2, // 1: SearchResponse.service_overview:type_name -> SearchResponse.ServiceOverview
 	3, // 2: SearchResponse.ServiceOverview.route_location:type_name -> RouteLocation
 	4, // 3: SearchResponse.ServiceOverview.schedule:type_name -> Schedule
-	3, // 4: SearchResponse.ServiceOverview.origin_route_locations:type_name -> RouteLocation
-	3, // 5: SearchResponse.ServiceOverview.destination_route_locations:type_name -> RouteLocation
-	3, // 6: SearchResponse.ServiceOverview.must_stop_at_passenger_route_locations:type_name -> RouteLocation
-	3, // 7: SearchResponse.ServiceOverview.must_visit_route_locations:type_name -> RouteLocation
-	8, // [8:8] is the sub-list for method output_type
-	8, // [8:8] is the sub-list for method input_type
-	8, // [8:8] is the sub-list for extension type_name
-	8, // [8:8] is the sub-list for extension extendee
-	0, // [0:8] is the sub-list for field type_name
+	5, // 4: SearchResponse.ServiceOverview.formation:type_name -> Formation
+	3, // 5: SearchResponse.ServiceOverview.origin_route_locations:type_name -> RouteLocation
+	3, // 6: SearchResponse.ServiceOverview.destination_route_locations:type_name -> RouteLocation
+	3, // 7: SearchResponse.ServiceOverview.must_stop_at_passenger_route_locations:type_name -> RouteLocation
+	3, // 8: SearchResponse.ServiceOverview.must_visit_route_locations:type_name -> RouteLocation
+	9, // [9:9] is the sub-list for method output_type
+	9, // [9:9] is the sub-list for method input_type
+	9, // [9:9] is the sub-list for extension type_name
+	9, // [9:9] is the sub-list for extension extendee
+	0, // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_searchResponse_proto_init() }
