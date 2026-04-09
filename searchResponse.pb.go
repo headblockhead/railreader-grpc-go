@@ -21,11 +21,16 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// SearchResponse is sent n+1 times, where n represents the number of results found by the search query.
 type SearchResponse struct {
-	state                       protoimpl.MessageState `protogen:"open.v1"`
-	ScheduleLocationComputedIds [][]byte               `protobuf:"bytes,1,rep,name=schedule_location_computed_ids,json=scheduleLocationComputedIds,proto3" json:"schedule_location_computed_ids,omitempty"`
-	unknownFields               protoimpl.UnknownFields
-	sizeCache                   protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Response:
+	//
+	//	*SearchResponse_Metadata_
+	//	*SearchResponse_ServiceOverview_
+	Response      isSearchResponse_Response `protobuf_oneof:"response"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SearchResponse) Reset() {
@@ -58,9 +63,173 @@ func (*SearchResponse) Descriptor() ([]byte, []int) {
 	return file_searchResponse_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *SearchResponse) GetScheduleLocationComputedIds() [][]byte {
+func (x *SearchResponse) GetResponse() isSearchResponse_Response {
 	if x != nil {
-		return x.ScheduleLocationComputedIds
+		return x.Response
+	}
+	return nil
+}
+
+func (x *SearchResponse) GetMetadata() *SearchResponse_Metadata {
+	if x != nil {
+		if x, ok := x.Response.(*SearchResponse_Metadata_); ok {
+			return x.Metadata
+		}
+	}
+	return nil
+}
+
+func (x *SearchResponse) GetServiceOverview() *SearchResponse_ServiceOverview {
+	if x != nil {
+		if x, ok := x.Response.(*SearchResponse_ServiceOverview_); ok {
+			return x.ServiceOverview
+		}
+	}
+	return nil
+}
+
+type isSearchResponse_Response interface {
+	isSearchResponse_Response()
+}
+
+type SearchResponse_Metadata_ struct {
+	Metadata *SearchResponse_Metadata `protobuf:"bytes,1,opt,name=metadata,proto3,oneof"`
+}
+
+type SearchResponse_ServiceOverview_ struct {
+	ServiceOverview *SearchResponse_ServiceOverview `protobuf:"bytes,2,opt,name=service_overview,json=serviceOverview,proto3,oneof"`
+}
+
+func (*SearchResponse_Metadata_) isSearchResponse_Response() {}
+
+func (*SearchResponse_ServiceOverview_) isSearchResponse_Response() {}
+
+// Metadata is sent once at the start of the SearchResponse stream.
+type SearchResponse_Metadata struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	NumberOfResults uint32                 `protobuf:"varint,1,opt,name=number_of_results,json=numberOfResults,proto3" json:"number_of_results,omitempty"` // The number of results to expect from the stream.
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *SearchResponse_Metadata) Reset() {
+	*x = SearchResponse_Metadata{}
+	mi := &file_searchResponse_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SearchResponse_Metadata) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchResponse_Metadata) ProtoMessage() {}
+
+func (x *SearchResponse_Metadata) ProtoReflect() protoreflect.Message {
+	mi := &file_searchResponse_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchResponse_Metadata.ProtoReflect.Descriptor instead.
+func (*SearchResponse_Metadata) Descriptor() ([]byte, []int) {
+	return file_searchResponse_proto_rawDescGZIP(), []int{0, 0}
+}
+
+func (x *SearchResponse_Metadata) GetNumberOfResults() uint32 {
+	if x != nil {
+		return x.NumberOfResults
+	}
+	return 0
+}
+
+// ServiceOverview is sent for each matching search result, and provides a small amount of data about each service.
+type SearchResponse_ServiceOverview struct {
+	state                             protoimpl.MessageState `protogen:"open.v1"`
+	RouteLocation                     *RouteLocation         `protobuf:"bytes,1,opt,name=route_location,json=routeLocation,proto3" json:"route_location,omitempty"`                                                                     // The entry in the service's route that matches the "at" location in the request.
+	Schedule                          *Schedule              `protobuf:"bytes,2,opt,name=schedule,proto3" json:"schedule,omitempty"`                                                                                                    // The schedule data for the route location.
+	OriginRouteLocations              []*RouteLocation       `protobuf:"bytes,3,rep,name=origin_route_locations,json=originRouteLocations,proto3" json:"origin_route_locations,omitempty"`                                              // The route location(s) that the service has as origins. Multiple origins may be provided when two schedules have joined previously in the service's route.
+	DestinationRouteLocations         []*RouteLocation       `protobuf:"bytes,4,rep,name=destination_route_locations,json=destinationRouteLocations,proto3" json:"destination_route_locations,omitempty"`                               // The route location(s) that the service has as destinations. Multiple destinations may be provided when a schedule will divide later in the service's route.
+	MustStopAtPassengerRouteLocations []*RouteLocation       `protobuf:"bytes,5,rep,name=must_stop_at_passenger_route_locations,json=mustStopAtPassengerRouteLocations,proto3" json:"must_stop_at_passenger_route_locations,omitempty"` // The route locations(s) in the service matching the "must_stop_at_passenger_location_ids" set in the request (if any) are given here.
+	MustVisitRouteLocations           []*RouteLocation       `protobuf:"bytes,6,rep,name=must_visit_route_locations,json=mustVisitRouteLocations,proto3" json:"must_visit_route_locations,omitempty"`                                   // The route location(s) in the service matching the "must_visit_location_ids" set in the request (if any) are given here.
+	unknownFields                     protoimpl.UnknownFields
+	sizeCache                         protoimpl.SizeCache
+}
+
+func (x *SearchResponse_ServiceOverview) Reset() {
+	*x = SearchResponse_ServiceOverview{}
+	mi := &file_searchResponse_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SearchResponse_ServiceOverview) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchResponse_ServiceOverview) ProtoMessage() {}
+
+func (x *SearchResponse_ServiceOverview) ProtoReflect() protoreflect.Message {
+	mi := &file_searchResponse_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchResponse_ServiceOverview.ProtoReflect.Descriptor instead.
+func (*SearchResponse_ServiceOverview) Descriptor() ([]byte, []int) {
+	return file_searchResponse_proto_rawDescGZIP(), []int{0, 1}
+}
+
+func (x *SearchResponse_ServiceOverview) GetRouteLocation() *RouteLocation {
+	if x != nil {
+		return x.RouteLocation
+	}
+	return nil
+}
+
+func (x *SearchResponse_ServiceOverview) GetSchedule() *Schedule {
+	if x != nil {
+		return x.Schedule
+	}
+	return nil
+}
+
+func (x *SearchResponse_ServiceOverview) GetOriginRouteLocations() []*RouteLocation {
+	if x != nil {
+		return x.OriginRouteLocations
+	}
+	return nil
+}
+
+func (x *SearchResponse_ServiceOverview) GetDestinationRouteLocations() []*RouteLocation {
+	if x != nil {
+		return x.DestinationRouteLocations
+	}
+	return nil
+}
+
+func (x *SearchResponse_ServiceOverview) GetMustStopAtPassengerRouteLocations() []*RouteLocation {
+	if x != nil {
+		return x.MustStopAtPassengerRouteLocations
+	}
+	return nil
+}
+
+func (x *SearchResponse_ServiceOverview) GetMustVisitRouteLocations() []*RouteLocation {
+	if x != nil {
+		return x.MustVisitRouteLocations
 	}
 	return nil
 }
@@ -69,9 +238,21 @@ var File_searchResponse_proto protoreflect.FileDescriptor
 
 const file_searchResponse_proto_rawDesc = "" +
 	"\n" +
-	"\x14searchResponse.proto\"U\n" +
-	"\x0eSearchResponse\x12C\n" +
-	"\x1eschedule_location_computed_ids\x18\x01 \x03(\fR\x1bscheduleLocationComputedIdsB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x14searchResponse.proto\x1a\fdarwin.proto\x1a\x13routeLocation.proto\"\x92\x05\n" +
+	"\x0eSearchResponse\x126\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x18.SearchResponse.MetadataH\x00R\bmetadata\x12L\n" +
+	"\x10service_overview\x18\x02 \x01(\v2\x1f.SearchResponse.ServiceOverviewH\x00R\x0fserviceOverview\x1a6\n" +
+	"\bMetadata\x12*\n" +
+	"\x11number_of_results\x18\x01 \x01(\rR\x0fnumberOfResults\x1a\xb5\x03\n" +
+	"\x0fServiceOverview\x125\n" +
+	"\x0eroute_location\x18\x01 \x01(\v2\x0e.RouteLocationR\rrouteLocation\x12%\n" +
+	"\bschedule\x18\x02 \x01(\v2\t.ScheduleR\bschedule\x12D\n" +
+	"\x16origin_route_locations\x18\x03 \x03(\v2\x0e.RouteLocationR\x14originRouteLocations\x12N\n" +
+	"\x1bdestination_route_locations\x18\x04 \x03(\v2\x0e.RouteLocationR\x19destinationRouteLocations\x12a\n" +
+	"&must_stop_at_passenger_route_locations\x18\x05 \x03(\v2\x0e.RouteLocationR!mustStopAtPassengerRouteLocations\x12K\n" +
+	"\x1amust_visit_route_locations\x18\x06 \x03(\v2\x0e.RouteLocationR\x17mustVisitRouteLocationsB\n" +
+	"\n" +
+	"\bresponseB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
 	file_searchResponse_proto_rawDescOnce sync.Once
@@ -85,16 +266,28 @@ func file_searchResponse_proto_rawDescGZIP() []byte {
 	return file_searchResponse_proto_rawDescData
 }
 
-var file_searchResponse_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_searchResponse_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_searchResponse_proto_goTypes = []any{
-	(*SearchResponse)(nil), // 0: SearchResponse
+	(*SearchResponse)(nil),                 // 0: SearchResponse
+	(*SearchResponse_Metadata)(nil),        // 1: SearchResponse.Metadata
+	(*SearchResponse_ServiceOverview)(nil), // 2: SearchResponse.ServiceOverview
+	(*RouteLocation)(nil),                  // 3: RouteLocation
+	(*Schedule)(nil),                       // 4: Schedule
 }
 var file_searchResponse_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: SearchResponse.metadata:type_name -> SearchResponse.Metadata
+	2, // 1: SearchResponse.service_overview:type_name -> SearchResponse.ServiceOverview
+	3, // 2: SearchResponse.ServiceOverview.route_location:type_name -> RouteLocation
+	4, // 3: SearchResponse.ServiceOverview.schedule:type_name -> Schedule
+	3, // 4: SearchResponse.ServiceOverview.origin_route_locations:type_name -> RouteLocation
+	3, // 5: SearchResponse.ServiceOverview.destination_route_locations:type_name -> RouteLocation
+	3, // 6: SearchResponse.ServiceOverview.must_stop_at_passenger_route_locations:type_name -> RouteLocation
+	3, // 7: SearchResponse.ServiceOverview.must_visit_route_locations:type_name -> RouteLocation
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_searchResponse_proto_init() }
@@ -102,13 +295,19 @@ func file_searchResponse_proto_init() {
 	if File_searchResponse_proto != nil {
 		return
 	}
+	file_darwin_proto_init()
+	file_routeLocation_proto_init()
+	file_searchResponse_proto_msgTypes[0].OneofWrappers = []any{
+		(*SearchResponse_Metadata_)(nil),
+		(*SearchResponse_ServiceOverview_)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_searchResponse_proto_rawDesc), len(file_searchResponse_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

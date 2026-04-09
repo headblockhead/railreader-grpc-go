@@ -21,9 +21,10 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// DescribeRequest is sent for each service that the client would like to be described.
 type DescribeRequest struct {
 	state                      protoimpl.MessageState `protogen:"open.v1"`
-	ScheduleLocationComputedId []byte                 `protobuf:"bytes,1,opt,name=schedule_location_computed_id,json=scheduleLocationComputedId,proto3" json:"schedule_location_computed_id,omitempty"`
+	ScheduleLocationComputedId []byte                 `protobuf:"bytes,1,opt,name=schedule_location_computed_id,json=scheduleLocationComputedId,proto3" json:"schedule_location_computed_id,omitempty"` // The computed_id of a ScheduleLocation within the service to be described.
 	unknownFields              protoimpl.UnknownFields
 	sizeCache                  protoimpl.SizeCache
 }

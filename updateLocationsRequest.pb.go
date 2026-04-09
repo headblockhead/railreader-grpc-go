@@ -21,9 +21,10 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// UpdateLocationsRequest is sent once.
 type UpdateLocationsRequest struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
-	CurrentReferenceFileId *string                `protobuf:"bytes,1,opt,name=current_reference_file_id,json=currentReferenceFileId,proto3,oneof" json:"current_reference_file_id,omitempty"` // If not specified, all updates will be returned.
+	CurrentReferenceFileId *string                `protobuf:"bytes,1,opt,name=current_reference_file_id,json=currentReferenceFileId,proto3,oneof" json:"current_reference_file_id,omitempty"` // If specified, only location updates occurring after this file_id will be returned. If unspecified, all updates will be returned.
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }

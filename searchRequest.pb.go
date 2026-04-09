@@ -73,19 +73,22 @@ func (SearchRequest_Type) EnumDescriptor() ([]byte, []int) {
 	return file_searchRequest_proto_rawDescGZIP(), []int{0, 0}
 }
 
+// SearchRequest is sent once.
 type SearchRequest struct {
 	state                       protoimpl.MessageState `protogen:"open.v1"`
-	Tiploc                      string                 `protobuf:"bytes,1,opt,name=tiploc,proto3" json:"tiploc,omitempty"`
-	FromTime                    string                 `protobuf:"bytes,3,opt,name=from_time,json=fromTime,proto3" json:"from_time,omitempty"`                                                               // Services scheduled up to 2 hours before the from_time may be included if they are delayed.
-	ToTime                      string                 `protobuf:"bytes,4,opt,name=to_time,json=toTime,proto3" json:"to_time,omitempty"`                                                                     // Services scheduled up to 2 hours after the to_time may be included if they are early.
-	IncludeNonPassengerServices bool                   `protobuf:"varint,5,opt,name=include_non_passenger_services,json=includeNonPassengerServices,proto3" json:"include_non_passenger_services,omitempty"` // If true, all services will be included. If false or unspecified, only passenger services will be included.
-	ExcludeNonActiveServices    bool                   `protobuf:"varint,6,opt,name=exclude_non_active_services,json=excludeNonActiveServices,proto3" json:"exclude_non_active_services,omitempty"`          // If true, only active services will be included. If false or unspecified, all services will be included. A service being "inactive" indicates that it is unlikely to recieve any future data updates (altough this is not a guarentee), and/or that the train is not expected to run.
-	IncludeCharteredServices    bool                   `protobuf:"varint,7,opt,name=include_chartered_services,json=includeCharteredServices,proto3" json:"include_chartered_services,omitempty"`            // If true, all services will be included. If false or unspecified, only non-chartered services will be included.
-	Type                        *SearchRequest_Type    `protobuf:"varint,8,opt,name=type,proto3,enum=SearchRequest_Type,oneof" json:"type,omitempty"`                                                        // If specified, only services that arrival/pass/depart the location will be included. If unspecified, all services will be included
-	MustStopAtPassengerTiplocs  []string               `protobuf:"bytes,9,rep,name=must_stop_at_passenger_tiplocs,json=mustStopAtPassengerTiplocs,proto3" json:"must_stop_at_passenger_tiplocs,omitempty"`   // If any are specified, only services that have a passenger stop at all of these TIPLOCs in their route (onward if type=DEPARTURES OR type=PASSING, backward if type=ARRIVALS, both directions otherwise) will be returned. If unspecified, all services will be included.
-	MustVisitTiplocs            []string               `protobuf:"bytes,10,rep,name=must_visit_tiplocs,json=mustVisitTiplocs,proto3" json:"must_visit_tiplocs,omitempty"`                                    // If any are specified, only services that visit all of these TIPLOCs in their route (onward if type=DEPARTURES OR type=PASSING, backward if type=ARRIVALS, both directions otherwise) will be returned. If unspecified, all services will be included.
-	unknownFields               protoimpl.UnknownFields
-	sizeCache                   protoimpl.SizeCache
+	AtLocationId                string                 `protobuf:"bytes,1,opt,name=at_location_id,json=atLocationId,proto3" json:"at_location_id,omitempty"`                                                 // Must be provided. Only services that visit this location_id in their route will be returned.
+	FromTime                    string                 `protobuf:"bytes,3,opt,name=from_time,json=fromTime,proto3" json:"from_time,omitempty"`                                                               // Services scheduled up to 2 hours before the from_time may be returned if they are delayed.
+	ToTime                      string                 `protobuf:"bytes,4,opt,name=to_time,json=toTime,proto3" json:"to_time,omitempty"`                                                                     // Services scheduled up to 2 hours after the to_time may be returned if they are early.
+	IncludeNonPassengerServices bool                   `protobuf:"varint,5,opt,name=include_non_passenger_services,json=includeNonPassengerServices,proto3" json:"include_non_passenger_services,omitempty"` // If true, all services will be returned. If false or unspecified, only passenger services will be returned.
+	ExcludeNonActiveServices    bool                   `protobuf:"varint,6,opt,name=exclude_non_active_services,json=excludeNonActiveServices,proto3" json:"exclude_non_active_services,omitempty"`          // If true, only active services will be returned. If false or unspecified, all services will be returned. A service being "inactive" indicates that it is unlikely to recieve any future data updates (altough this is not a guarentee), and/or that the train is not expected to run.
+	IncludeCharteredServices    bool                   `protobuf:"varint,7,opt,name=include_chartered_services,json=includeCharteredServices,proto3" json:"include_chartered_services,omitempty"`            // If true, all services will be returned. If false or unspecified, only non-chartered services will be returned.
+	IncludeOnlyType             *SearchRequest_Type    `protobuf:"varint,8,opt,name=include_only_type,json=includeOnlyType,proto3,enum=SearchRequest_Type,oneof" json:"include_only_type,omitempty"`         // If specified, only services that arrive/pass/depart the requested location will be returned. If unspecified, all services will be returned.
+	// TODO: use CRS instead here?
+	MustStopAtPassengerLocationIds []string `protobuf:"bytes,9,rep,name=must_stop_at_passenger_location_ids,json=mustStopAtPassengerLocationIds,proto3" json:"must_stop_at_passenger_location_ids,omitempty"` // If any are specified, only services that have a passenger stop at all of these location_ids in their route will be returned. If unspecified, all services will be returned.
+	// This is affected by the include_only_type field: ARRIVALS will only consider stops that come before the requested location, DEPARTURES will only consider stops that come after the requested location, PASSING and unspecified type will consider stops in both directions.
+	MustVisitLocationIds []string `protobuf:"bytes,10,rep,name=must_visit_location_ids,json=mustVisitLocationIds,proto3" json:"must_visit_location_ids,omitempty"` // If any are specified, only services that visit all of these location_ids in their route will be returned. If unspecified, all services will be returned.
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *SearchRequest) Reset() {
@@ -118,9 +121,9 @@ func (*SearchRequest) Descriptor() ([]byte, []int) {
 	return file_searchRequest_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *SearchRequest) GetTiploc() string {
+func (x *SearchRequest) GetAtLocationId() string {
 	if x != nil {
-		return x.Tiploc
+		return x.AtLocationId
 	}
 	return ""
 }
@@ -160,23 +163,23 @@ func (x *SearchRequest) GetIncludeCharteredServices() bool {
 	return false
 }
 
-func (x *SearchRequest) GetType() SearchRequest_Type {
-	if x != nil && x.Type != nil {
-		return *x.Type
+func (x *SearchRequest) GetIncludeOnlyType() SearchRequest_Type {
+	if x != nil && x.IncludeOnlyType != nil {
+		return *x.IncludeOnlyType
 	}
 	return SearchRequest_TYPE_UNKNOWN
 }
 
-func (x *SearchRequest) GetMustStopAtPassengerTiplocs() []string {
+func (x *SearchRequest) GetMustStopAtPassengerLocationIds() []string {
 	if x != nil {
-		return x.MustStopAtPassengerTiplocs
+		return x.MustStopAtPassengerLocationIds
 	}
 	return nil
 }
 
-func (x *SearchRequest) GetMustVisitTiplocs() []string {
+func (x *SearchRequest) GetMustVisitLocationIds() []string {
 	if x != nil {
-		return x.MustVisitTiplocs
+		return x.MustVisitLocationIds
 	}
 	return nil
 }
@@ -185,24 +188,24 @@ var File_searchRequest_proto protoreflect.FileDescriptor
 
 const file_searchRequest_proto_rawDesc = "" +
 	"\n" +
-	"\x13searchRequest.proto\"\xa2\x04\n" +
-	"\rSearchRequest\x12\x16\n" +
-	"\x06tiploc\x18\x01 \x01(\tR\x06tiploc\x12\x1b\n" +
+	"\x13searchRequest.proto\"\xe7\x04\n" +
+	"\rSearchRequest\x12$\n" +
+	"\x0eat_location_id\x18\x01 \x01(\tR\fatLocationId\x12\x1b\n" +
 	"\tfrom_time\x18\x03 \x01(\tR\bfromTime\x12\x17\n" +
 	"\ato_time\x18\x04 \x01(\tR\x06toTime\x12C\n" +
 	"\x1einclude_non_passenger_services\x18\x05 \x01(\bR\x1bincludeNonPassengerServices\x12=\n" +
 	"\x1bexclude_non_active_services\x18\x06 \x01(\bR\x18excludeNonActiveServices\x12<\n" +
-	"\x1ainclude_chartered_services\x18\a \x01(\bR\x18includeCharteredServices\x12,\n" +
-	"\x04type\x18\b \x01(\x0e2\x13.SearchRequest.TypeH\x00R\x04type\x88\x01\x01\x12B\n" +
-	"\x1emust_stop_at_passenger_tiplocs\x18\t \x03(\tR\x1amustStopAtPassengerTiplocs\x12,\n" +
-	"\x12must_visit_tiplocs\x18\n" +
-	" \x03(\tR\x10mustVisitTiplocs\"R\n" +
+	"\x1ainclude_chartered_services\x18\a \x01(\bR\x18includeCharteredServices\x12D\n" +
+	"\x11include_only_type\x18\b \x01(\x0e2\x13.SearchRequest.TypeH\x00R\x0fincludeOnlyType\x88\x01\x01\x12K\n" +
+	"#must_stop_at_passenger_location_ids\x18\t \x03(\tR\x1emustStopAtPassengerLocationIds\x125\n" +
+	"\x17must_visit_location_ids\x18\n" +
+	" \x03(\tR\x14mustVisitLocationIds\"R\n" +
 	"\x04Type\x12\x10\n" +
 	"\fTYPE_UNKNOWN\x10\x00\x12\x11\n" +
 	"\rTYPE_ARRIVALS\x10\x01\x12\x10\n" +
 	"\fTYPE_PASSING\x10\x02\x12\x13\n" +
-	"\x0fTYPE_DEPARTURES\x10\x03B\a\n" +
-	"\x05_typeJ\x04\b\x02\x10\x03B*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x0fTYPE_DEPARTURES\x10\x03B\x14\n" +
+	"\x12_include_only_typeJ\x04\b\x02\x10\x03B*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
 	file_searchRequest_proto_rawDescOnce sync.Once
@@ -223,7 +226,7 @@ var file_searchRequest_proto_goTypes = []any{
 	(*SearchRequest)(nil),   // 1: SearchRequest
 }
 var file_searchRequest_proto_depIdxs = []int32{
-	0, // 0: SearchRequest.type:type_name -> SearchRequest.Type
+	0, // 0: SearchRequest.include_only_type:type_name -> SearchRequest.Type
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

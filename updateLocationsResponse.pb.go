@@ -21,10 +21,11 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// UpdateLocationsResponse is sent once.
 type UpdateLocationsResponse struct {
 	state              protoimpl.MessageState                    `protogen:"open.v1"`
 	Updates            []*UpdateLocationsResponse_LocationUpdate `protobuf:"bytes,1,rep,name=updates,proto3" json:"updates,omitempty"`                                                     // All (if any) updates between the current_reference_file_id in UpdateLocationsRequest and the new_reference_file_id in this response.
-	NewReferenceFileId string                                    `protobuf:"bytes,2,opt,name=new_reference_file_id,json=newReferenceFileId,proto3" json:"new_reference_file_id,omitempty"` // The lastest reference_file_id equivalent you will have after applying all updates.
+	NewReferenceFileId string                                    `protobuf:"bytes,2,opt,name=new_reference_file_id,json=newReferenceFileId,proto3" json:"new_reference_file_id,omitempty"` // The lastest reference_file_id equivalent you will have after applying all updates given.
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -73,16 +74,15 @@ func (x *UpdateLocationsResponse) GetNewReferenceFileId() string {
 	return ""
 }
 
-// An update made to a location at a point in time.
-// Provides the new state for a given location_id, and the reference_file_id at which this change occurred.
+// Describes an update made to a location at a point in time.
 type UpdateLocationsResponse_LocationUpdate struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	LocationId      string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`                  // The location_id affected
-	ReferenceFileId string                 `protobuf:"bytes,2,opt,name=reference_file_id,json=referenceFileId,proto3" json:"reference_file_id,omitempty"` // The reference_file_id at which this change occurred.
-	IsDeleted       bool                   `protobuf:"varint,3,opt,name=is_deleted,json=isDeleted,proto3" json:"is_deleted,omitempty"`
-	CrsId           *string                `protobuf:"bytes,4,opt,name=crs_id,json=crsId,proto3,oneof" json:"crs_id,omitempty"`
-	TocId           *string                `protobuf:"bytes,5,opt,name=toc_id,json=tocId,proto3,oneof" json:"toc_id,omitempty"`
-	Name            string                 `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`
+	LocationId      string                 `protobuf:"bytes,1,opt,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`                  // The location_id affected by this update.
+	ReferenceFileId string                 `protobuf:"bytes,2,opt,name=reference_file_id,json=referenceFileId,proto3" json:"reference_file_id,omitempty"` // The reference_file_id at which this update occurred.
+	IsDeleted       bool                   `protobuf:"varint,3,opt,name=is_deleted,json=isDeleted,proto3" json:"is_deleted,omitempty"`                    // The new deletion status of the location after this update.
+	CrsId           *string                `protobuf:"bytes,4,opt,name=crs_id,json=crsId,proto3,oneof" json:"crs_id,omitempty"`                           // The new crs_id of the location after this update. If not provided, the crs_id is null after this update.
+	TocId           *string                `protobuf:"bytes,5,opt,name=toc_id,json=tocId,proto3,oneof" json:"toc_id,omitempty"`                           // The new toc_id of the location after this update. If not provided, the toc_id is null after this update.
+	Name            string                 `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`                                                // The new name of the location after this update.
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }

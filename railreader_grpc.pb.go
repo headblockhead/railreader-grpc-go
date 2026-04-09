@@ -21,7 +21,6 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	RailReader_UpdateLocations_FullMethodName = "/RailReader/UpdateLocations"
 	RailReader_Search_FullMethodName          = "/RailReader/Search"
-	RailReader_Overview_FullMethodName        = "/RailReader/Overview"
 	RailReader_Describe_FullMethodName        = "/RailReader/Describe"
 )
 
@@ -30,8 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RailReaderClient interface {
 	UpdateLocations(ctx context.Context, in *UpdateLocationsRequest, opts ...grpc.CallOption) (*UpdateLocationsResponse, error)
-	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
-	Overview(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[OverviewRequest, OverviewResponse], error)
+	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SearchResponse], error)
 	Describe(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[DescribeRequest, DescribeResponse], error)
 }
 
@@ -53,28 +51,24 @@ func (c *railReaderClient) UpdateLocations(ctx context.Context, in *UpdateLocati
 	return out, nil
 }
 
-func (c *railReaderClient) Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error) {
+func (c *railReaderClient) Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SearchResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SearchResponse)
-	err := c.cc.Invoke(ctx, RailReader_Search_FullMethodName, in, out, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &RailReader_ServiceDesc.Streams[0], RailReader_Search_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
-}
-
-func (c *railReaderClient) Overview(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[OverviewRequest, OverviewResponse], error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &RailReader_ServiceDesc.Streams[0], RailReader_Overview_FullMethodName, cOpts...)
-	if err != nil {
+	x := &grpc.GenericClientStream[SearchRequest, SearchResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[OverviewRequest, OverviewResponse]{ClientStream: stream}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
 	return x, nil
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RailReader_OverviewClient = grpc.BidiStreamingClient[OverviewRequest, OverviewResponse]
+type RailReader_SearchClient = grpc.ServerStreamingClient[SearchResponse]
 
 func (c *railReaderClient) Describe(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[DescribeRequest, DescribeResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -94,8 +88,7 @@ type RailReader_DescribeClient = grpc.BidiStreamingClient[DescribeRequest, Descr
 // for forward compatibility.
 type RailReaderServer interface {
 	UpdateLocations(context.Context, *UpdateLocationsRequest) (*UpdateLocationsResponse, error)
-	Search(context.Context, *SearchRequest) (*SearchResponse, error)
-	Overview(grpc.BidiStreamingServer[OverviewRequest, OverviewResponse]) error
+	Search(*SearchRequest, grpc.ServerStreamingServer[SearchResponse]) error
 	Describe(grpc.BidiStreamingServer[DescribeRequest, DescribeResponse]) error
 	mustEmbedUnimplementedRailReaderServer()
 }
@@ -110,11 +103,8 @@ type UnimplementedRailReaderServer struct{}
 func (UnimplementedRailReaderServer) UpdateLocations(context.Context, *UpdateLocationsRequest) (*UpdateLocationsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateLocations not implemented")
 }
-func (UnimplementedRailReaderServer) Search(context.Context, *SearchRequest) (*SearchResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method Search not implemented")
-}
-func (UnimplementedRailReaderServer) Overview(grpc.BidiStreamingServer[OverviewRequest, OverviewResponse]) error {
-	return status.Error(codes.Unimplemented, "method Overview not implemented")
+func (UnimplementedRailReaderServer) Search(*SearchRequest, grpc.ServerStreamingServer[SearchResponse]) error {
+	return status.Error(codes.Unimplemented, "method Search not implemented")
 }
 func (UnimplementedRailReaderServer) Describe(grpc.BidiStreamingServer[DescribeRequest, DescribeResponse]) error {
 	return status.Error(codes.Unimplemented, "method Describe not implemented")
@@ -158,30 +148,16 @@ func _RailReader_UpdateLocations_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RailReader_Search_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SearchRequest)
-	if err := dec(in); err != nil {
-		return nil, err
+func _RailReader_Search_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(SearchRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(RailReaderServer).Search(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: RailReader_Search_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RailReaderServer).Search(ctx, req.(*SearchRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _RailReader_Overview_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(RailReaderServer).Overview(&grpc.GenericServerStream[OverviewRequest, OverviewResponse]{ServerStream: stream})
+	return srv.(RailReaderServer).Search(m, &grpc.GenericServerStream[SearchRequest, SearchResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RailReader_OverviewServer = grpc.BidiStreamingServer[OverviewRequest, OverviewResponse]
+type RailReader_SearchServer = grpc.ServerStreamingServer[SearchResponse]
 
 func _RailReader_Describe_Handler(srv interface{}, stream grpc.ServerStream) error {
 	return srv.(RailReaderServer).Describe(&grpc.GenericServerStream[DescribeRequest, DescribeResponse]{ServerStream: stream})
@@ -201,17 +177,12 @@ var RailReader_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "UpdateLocations",
 			Handler:    _RailReader_UpdateLocations_Handler,
 		},
-		{
-			MethodName: "Search",
-			Handler:    _RailReader_Search_Handler,
-		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "Overview",
-			Handler:       _RailReader_Overview_Handler,
+			StreamName:    "Search",
+			Handler:       _RailReader_Search_Handler,
 			ServerStreams: true,
-			ClientStreams: true,
 		},
 		{
 			StreamName:    "Describe",

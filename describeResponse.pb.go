@@ -21,16 +21,17 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// DescribeResponse is sent n times, where n represents the number of DescribeRequests received.
 type DescribeResponse struct {
-	state                  protoimpl.MessageState `protogen:"open.v1"`
-	Request                *DescribeRequest       `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
-	Schedules              []*Schedule            `protobuf:"bytes,2,rep,name=schedules,proto3" json:"schedules,omitempty"`
-	Formations             []*Formation           `protobuf:"bytes,3,rep,name=formations,proto3" json:"formations,omitempty"`
-	Route                  []*RouteLocation       `protobuf:"bytes,4,rep,name=route,proto3" json:"route,omitempty"`
-	OriginComputedIds      [][]byte               `protobuf:"bytes,5,rep,name=origin_computed_ids,json=originComputedIds,proto3" json:"origin_computed_ids,omitempty"`
-	DestinationComputedIds [][]byte               `protobuf:"bytes,6,rep,name=destination_computed_ids,json=destinationComputedIds,proto3" json:"destination_computed_ids,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                                  protoimpl.MessageState `protogen:"open.v1"`
+	Request                                *DescribeRequest       `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`                                                                                                                   // The request being answered.
+	Schedules                              []*Schedule            `protobuf:"bytes,2,rep,name=schedules,proto3" json:"schedules,omitempty"`                                                                                                               // All schedules that form the service being described. A service may have multiple schedules if a schedule joins, divides, or links with other schedules.
+	Formations                             []*Formation           `protobuf:"bytes,3,rep,name=formations,proto3" json:"formations,omitempty"`                                                                                                             // All formation data (if any) that is given about the service being described. A service may have multiple formations if it loses or gains coaches during its route, or if multiple schedules that form the service have different formations.
+	Route                                  []*RouteLocation       `protobuf:"bytes,4,rep,name=route,proto3" json:"route,omitempty"`                                                                                                                       // A graph of all route entries that form the service being described.
+	OriginScheduleLocationComputedIds      [][]byte               `protobuf:"bytes,5,rep,name=origin_schedule_location_computed_ids,json=originScheduleLocationComputedIds,proto3" json:"origin_schedule_location_computed_ids,omitempty"`                // The schedule_location.computed_ids of the RouteLocations that the service has as origins. Multiple origins may be provided when two schedules have joined previously in the service's route.
+	DestinationScheduleLocationComputedIds [][]byte               `protobuf:"bytes,6,rep,name=destination_schedule_location_computed_ids,json=destinationScheduleLocationComputedIds,proto3" json:"destination_schedule_location_computed_ids,omitempty"` // The schedule_location.computed_ids of the RouteLocations that the service has as destinations. Multiple destinations may be provided when a schedule will divide later in the service's route.
+	unknownFields                          protoimpl.UnknownFields
+	sizeCache                              protoimpl.SizeCache
 }
 
 func (x *DescribeResponse) Reset() {
@@ -91,16 +92,16 @@ func (x *DescribeResponse) GetRoute() []*RouteLocation {
 	return nil
 }
 
-func (x *DescribeResponse) GetOriginComputedIds() [][]byte {
+func (x *DescribeResponse) GetOriginScheduleLocationComputedIds() [][]byte {
 	if x != nil {
-		return x.OriginComputedIds
+		return x.OriginScheduleLocationComputedIds
 	}
 	return nil
 }
 
-func (x *DescribeResponse) GetDestinationComputedIds() [][]byte {
+func (x *DescribeResponse) GetDestinationScheduleLocationComputedIds() [][]byte {
 	if x != nil {
-		return x.DestinationComputedIds
+		return x.DestinationScheduleLocationComputedIds
 	}
 	return nil
 }
@@ -109,7 +110,7 @@ var File_describeResponse_proto protoreflect.FileDescriptor
 
 const file_describeResponse_proto_rawDesc = "" +
 	"\n" +
-	"\x16describeResponse.proto\x1a\x15describeRequest.proto\x1a\fdarwin.proto\x1a\x13routeLocation.proto\"\xa3\x02\n" +
+	"\x16describeResponse.proto\x1a\x15describeRequest.proto\x1a\fdarwin.proto\x1a\x13routeLocation.proto\"\xe7\x02\n" +
 	"\x10DescribeResponse\x12*\n" +
 	"\arequest\x18\x01 \x01(\v2\x10.DescribeRequestR\arequest\x12'\n" +
 	"\tschedules\x18\x02 \x03(\v2\t.ScheduleR\tschedules\x12*\n" +
@@ -117,9 +118,9 @@ const file_describeResponse_proto_rawDesc = "" +
 	"formations\x18\x03 \x03(\v2\n" +
 	".FormationR\n" +
 	"formations\x12$\n" +
-	"\x05route\x18\x04 \x03(\v2\x0e.RouteLocationR\x05route\x12.\n" +
-	"\x13origin_computed_ids\x18\x05 \x03(\fR\x11originComputedIds\x128\n" +
-	"\x18destination_computed_ids\x18\x06 \x03(\fR\x16destinationComputedIdsB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
+	"\x05route\x18\x04 \x03(\v2\x0e.RouteLocationR\x05route\x12P\n" +
+	"%origin_schedule_location_computed_ids\x18\x05 \x03(\fR!originScheduleLocationComputedIds\x12Z\n" +
+	"*destination_schedule_location_computed_ids\x18\x06 \x03(\fR&destinationScheduleLocationComputedIdsB*Z(github.com/headblockhead/railreader-grpcb\x06proto3"
 
 var (
 	file_describeResponse_proto_rawDescOnce sync.Once
