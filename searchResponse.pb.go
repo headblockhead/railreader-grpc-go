@@ -151,19 +151,23 @@ func (x *SearchResponse_Metadata) GetNumberOfResults() uint32 {
 
 // ServiceOverview is sent for each matching search result, and provides a small amount of data about each service.
 type SearchResponse_ServiceOverview struct {
-	state                             protoimpl.MessageState `protogen:"open.v1"`
-	RouteLocation                     *RouteLocation         `protobuf:"bytes,1,opt,name=route_location,json=routeLocation,proto3" json:"route_location,omitempty"`                                                                     // The entry in the service's route that matches the "at" location in the request.
-	Schedule                          *Schedule              `protobuf:"bytes,2,opt,name=schedule,proto3" json:"schedule,omitempty"`                                                                                                    // The schedule data for the route location.
-	Formation                         *Formation             `protobuf:"bytes,3,opt,name=formation,proto3,oneof" json:"formation,omitempty"`                                                                                            // The formation data for the route location.
-	OriginRouteLocations              []*RouteLocation       `protobuf:"bytes,4,rep,name=origin_route_locations,json=originRouteLocations,proto3" json:"origin_route_locations,omitempty"`                                              // The route location(s) that the service has as origins. Multiple origins may be provided when two schedules have joined previously in the service's route.
-	DestinationRouteLocations         []*RouteLocation       `protobuf:"bytes,5,rep,name=destination_route_locations,json=destinationRouteLocations,proto3" json:"destination_route_locations,omitempty"`                               // The route location(s) that the service has as destinations. Multiple destinations may be provided when a schedule will divide later in the service's route.
-	MustStopAtPassengerRouteLocations []*RouteLocation       `protobuf:"bytes,6,rep,name=must_stop_at_passenger_route_locations,json=mustStopAtPassengerRouteLocations,proto3" json:"must_stop_at_passenger_route_locations,omitempty"` // The route locations(s) in the service matching the "must_stop_at_passenger_location_ids" set in the request (if any) are given here.
-	MustVisitRouteLocations           []*RouteLocation       `protobuf:"bytes,7,rep,name=must_visit_route_locations,json=mustVisitRouteLocations,proto3" json:"must_visit_route_locations,omitempty"`                                   // The route location(s) in the service matching the "must_visit_location_ids" set in the request (if any) are given here.
-	Arrival                           bool                   `protobuf:"varint,8,opt,name=arrival,proto3" json:"arrival,omitempty"`
-	Passing                           bool                   `protobuf:"varint,9,opt,name=passing,proto3" json:"passing,omitempty"`
-	Departure                         bool                   `protobuf:"varint,10,opt,name=departure,proto3" json:"departure,omitempty"`
-	unknownFields                     protoimpl.UnknownFields
-	sizeCache                         protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"open.v1"`
+	RouteLocation             *RouteLocation         `protobuf:"bytes,1,opt,name=route_location,json=routeLocation,proto3" json:"route_location,omitempty"`                                       // The entry in the service's route that matches the "at" location in the request.
+	Schedule                  *Schedule              `protobuf:"bytes,2,opt,name=schedule,proto3" json:"schedule,omitempty"`                                                                      // The schedule data for the route location.
+	Formation                 *Formation             `protobuf:"bytes,3,opt,name=formation,proto3,oneof" json:"formation,omitempty"`                                                              // The formation data for the route location.
+	OriginRouteLocations      []*RouteLocation       `protobuf:"bytes,4,rep,name=origin_route_locations,json=originRouteLocations,proto3" json:"origin_route_locations,omitempty"`                // The route location(s) that the service has as origins. Multiple origins may be provided when two schedules have joined previously in the service's route.
+	DestinationRouteLocations []*RouteLocation       `protobuf:"bytes,5,rep,name=destination_route_locations,json=destinationRouteLocations,proto3" json:"destination_route_locations,omitempty"` // The route location(s) that the service has as destinations. Multiple destinations may be provided when a schedule will divide later in the service's route.
+	// The route locations(s) in the service matching the "must_stop_at_passenger_location_ids" set in the request (if any) are given here.
+	MustStopAtNextPassengerRouteLocations     []*RouteLocation `protobuf:"bytes,6,rep,name=must_stop_at_next_passenger_route_locations,json=mustStopAtNextPassengerRouteLocations,proto3" json:"must_stop_at_next_passenger_route_locations,omitempty"`
+	MustStopAtPreviousPassengerRouteLocations []*RouteLocation `protobuf:"bytes,7,rep,name=must_stop_at_previous_passenger_route_locations,json=mustStopAtPreviousPassengerRouteLocations,proto3" json:"must_stop_at_previous_passenger_route_locations,omitempty"`
+	// The route location(s) in the service matching the "must_visit_location_ids" set in the request (if any) are given here.
+	MustVisitNextRouteLocations     []*RouteLocation `protobuf:"bytes,8,rep,name=must_visit_next_route_locations,json=mustVisitNextRouteLocations,proto3" json:"must_visit_next_route_locations,omitempty"`
+	MustVisitPreviousRouteLocations []*RouteLocation `protobuf:"bytes,9,rep,name=must_visit_previous_route_locations,json=mustVisitPreviousRouteLocations,proto3" json:"must_visit_previous_route_locations,omitempty"`
+	Arrival                         bool             `protobuf:"varint,10,opt,name=arrival,proto3" json:"arrival,omitempty"`
+	Passing                         bool             `protobuf:"varint,11,opt,name=passing,proto3" json:"passing,omitempty"`
+	Departure                       bool             `protobuf:"varint,12,opt,name=departure,proto3" json:"departure,omitempty"`
+	unknownFields                   protoimpl.UnknownFields
+	sizeCache                       protoimpl.SizeCache
 }
 
 func (x *SearchResponse_ServiceOverview) Reset() {
@@ -231,16 +235,30 @@ func (x *SearchResponse_ServiceOverview) GetDestinationRouteLocations() []*Route
 	return nil
 }
 
-func (x *SearchResponse_ServiceOverview) GetMustStopAtPassengerRouteLocations() []*RouteLocation {
+func (x *SearchResponse_ServiceOverview) GetMustStopAtNextPassengerRouteLocations() []*RouteLocation {
 	if x != nil {
-		return x.MustStopAtPassengerRouteLocations
+		return x.MustStopAtNextPassengerRouteLocations
 	}
 	return nil
 }
 
-func (x *SearchResponse_ServiceOverview) GetMustVisitRouteLocations() []*RouteLocation {
+func (x *SearchResponse_ServiceOverview) GetMustStopAtPreviousPassengerRouteLocations() []*RouteLocation {
 	if x != nil {
-		return x.MustVisitRouteLocations
+		return x.MustStopAtPreviousPassengerRouteLocations
+	}
+	return nil
+}
+
+func (x *SearchResponse_ServiceOverview) GetMustVisitNextRouteLocations() []*RouteLocation {
+	if x != nil {
+		return x.MustVisitNextRouteLocations
+	}
+	return nil
+}
+
+func (x *SearchResponse_ServiceOverview) GetMustVisitPreviousRouteLocations() []*RouteLocation {
+	if x != nil {
+		return x.MustVisitPreviousRouteLocations
 	}
 	return nil
 }
@@ -270,25 +288,27 @@ var File_searchResponse_proto protoreflect.FileDescriptor
 
 const file_searchResponse_proto_rawDesc = "" +
 	"\n" +
-	"\x14searchResponse.proto\x1a\fdarwin.proto\x1a\x13routeLocation.proto\"\xa1\x06\n" +
+	"\x14searchResponse.proto\x1a\fdarwin.proto\x1a\x13routeLocation.proto\"\x85\b\n" +
 	"\x0eSearchResponse\x126\n" +
 	"\bmetadata\x18\x01 \x01(\v2\x18.SearchResponse.MetadataH\x00R\bmetadata\x12L\n" +
 	"\x10service_overview\x18\x02 \x01(\v2\x1f.SearchResponse.ServiceOverviewH\x00R\x0fserviceOverview\x1a6\n" +
 	"\bMetadata\x12*\n" +
-	"\x11number_of_results\x18\x01 \x01(\rR\x0fnumberOfResults\x1a\xc4\x04\n" +
+	"\x11number_of_results\x18\x01 \x01(\rR\x0fnumberOfResults\x1a\xa8\x06\n" +
 	"\x0fServiceOverview\x125\n" +
 	"\x0eroute_location\x18\x01 \x01(\v2\x0e.RouteLocationR\rrouteLocation\x12%\n" +
 	"\bschedule\x18\x02 \x01(\v2\t.ScheduleR\bschedule\x12-\n" +
 	"\tformation\x18\x03 \x01(\v2\n" +
 	".FormationH\x00R\tformation\x88\x01\x01\x12D\n" +
 	"\x16origin_route_locations\x18\x04 \x03(\v2\x0e.RouteLocationR\x14originRouteLocations\x12N\n" +
-	"\x1bdestination_route_locations\x18\x05 \x03(\v2\x0e.RouteLocationR\x19destinationRouteLocations\x12a\n" +
-	"&must_stop_at_passenger_route_locations\x18\x06 \x03(\v2\x0e.RouteLocationR!mustStopAtPassengerRouteLocations\x12K\n" +
-	"\x1amust_visit_route_locations\x18\a \x03(\v2\x0e.RouteLocationR\x17mustVisitRouteLocations\x12\x18\n" +
-	"\aarrival\x18\b \x01(\bR\aarrival\x12\x18\n" +
-	"\apassing\x18\t \x01(\bR\apassing\x12\x1c\n" +
-	"\tdeparture\x18\n" +
-	" \x01(\bR\tdepartureB\f\n" +
+	"\x1bdestination_route_locations\x18\x05 \x03(\v2\x0e.RouteLocationR\x19destinationRouteLocations\x12j\n" +
+	"+must_stop_at_next_passenger_route_locations\x18\x06 \x03(\v2\x0e.RouteLocationR%mustStopAtNextPassengerRouteLocations\x12r\n" +
+	"/must_stop_at_previous_passenger_route_locations\x18\a \x03(\v2\x0e.RouteLocationR)mustStopAtPreviousPassengerRouteLocations\x12T\n" +
+	"\x1fmust_visit_next_route_locations\x18\b \x03(\v2\x0e.RouteLocationR\x1bmustVisitNextRouteLocations\x12\\\n" +
+	"#must_visit_previous_route_locations\x18\t \x03(\v2\x0e.RouteLocationR\x1fmustVisitPreviousRouteLocations\x12\x18\n" +
+	"\aarrival\x18\n" +
+	" \x01(\bR\aarrival\x12\x18\n" +
+	"\apassing\x18\v \x01(\bR\apassing\x12\x1c\n" +
+	"\tdeparture\x18\f \x01(\bR\tdepartureB\f\n" +
 	"\n" +
 	"_formationB\n" +
 	"\n" +
@@ -316,20 +336,22 @@ var file_searchResponse_proto_goTypes = []any{
 	(*Formation)(nil),                      // 5: Formation
 }
 var file_searchResponse_proto_depIdxs = []int32{
-	1, // 0: SearchResponse.metadata:type_name -> SearchResponse.Metadata
-	2, // 1: SearchResponse.service_overview:type_name -> SearchResponse.ServiceOverview
-	3, // 2: SearchResponse.ServiceOverview.route_location:type_name -> RouteLocation
-	4, // 3: SearchResponse.ServiceOverview.schedule:type_name -> Schedule
-	5, // 4: SearchResponse.ServiceOverview.formation:type_name -> Formation
-	3, // 5: SearchResponse.ServiceOverview.origin_route_locations:type_name -> RouteLocation
-	3, // 6: SearchResponse.ServiceOverview.destination_route_locations:type_name -> RouteLocation
-	3, // 7: SearchResponse.ServiceOverview.must_stop_at_passenger_route_locations:type_name -> RouteLocation
-	3, // 8: SearchResponse.ServiceOverview.must_visit_route_locations:type_name -> RouteLocation
-	9, // [9:9] is the sub-list for method output_type
-	9, // [9:9] is the sub-list for method input_type
-	9, // [9:9] is the sub-list for extension type_name
-	9, // [9:9] is the sub-list for extension extendee
-	0, // [0:9] is the sub-list for field type_name
+	1,  // 0: SearchResponse.metadata:type_name -> SearchResponse.Metadata
+	2,  // 1: SearchResponse.service_overview:type_name -> SearchResponse.ServiceOverview
+	3,  // 2: SearchResponse.ServiceOverview.route_location:type_name -> RouteLocation
+	4,  // 3: SearchResponse.ServiceOverview.schedule:type_name -> Schedule
+	5,  // 4: SearchResponse.ServiceOverview.formation:type_name -> Formation
+	3,  // 5: SearchResponse.ServiceOverview.origin_route_locations:type_name -> RouteLocation
+	3,  // 6: SearchResponse.ServiceOverview.destination_route_locations:type_name -> RouteLocation
+	3,  // 7: SearchResponse.ServiceOverview.must_stop_at_next_passenger_route_locations:type_name -> RouteLocation
+	3,  // 8: SearchResponse.ServiceOverview.must_stop_at_previous_passenger_route_locations:type_name -> RouteLocation
+	3,  // 9: SearchResponse.ServiceOverview.must_visit_next_route_locations:type_name -> RouteLocation
+	3,  // 10: SearchResponse.ServiceOverview.must_visit_previous_route_locations:type_name -> RouteLocation
+	11, // [11:11] is the sub-list for method output_type
+	11, // [11:11] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_searchResponse_proto_init() }
